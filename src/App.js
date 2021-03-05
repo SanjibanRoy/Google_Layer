@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Tasks from './components/Tasks'
+import Map from './components/Map'
+
 import AddTask from './components/AddTask'
 import About from './components/About'
 
@@ -56,13 +58,21 @@ const App = () => {
 
   // Delete Task
   const deleteTask = async (id) => {
+    const taskToHide = await fetchTask(id)
+    const updTask = { ...taskToHide, show: !taskToHide.show }
     const res = await fetch(`http://localhost:5000/tasks/${id}`, {
-      method: 'DELETE',
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(updTask),
     })
+    await res.json()
+    // console.log('In delete Tas')
     //We should control the response status to decide if we will change the state or not.
-    res.status === 200
-      ? setTasks(tasks.filter((task) => task.id !== id))
-      : alert('Error Deleting This Task')
+    // res.status === 200
+    //   ? setTasks(tasks.filter((task) => task.id !== id))
+    //   : alert('Error Deleting This Task')
   }
 
   // Toggle Reminder
@@ -77,7 +87,6 @@ const App = () => {
       },
       body: JSON.stringify(updTask),
     })
-
     const data = await res.json()
 
     setTasks(
@@ -94,6 +103,10 @@ const App = () => {
           onAdd={() => setShowAddTask(!showAddTask)}
           showAdd={showAddTask}
         />
+        <Map 
+        tasks = {tasks}
+        onDelete={deleteTask}
+        />
         <Route
           path='/'
           exact
@@ -106,12 +119,14 @@ const App = () => {
                   onDelete={deleteTask}
                   onToggle={toggleReminder}
                 />
+                
               ) : (
                 'No Tasks To Show'
               )}
             </>
           )}
         />
+        
         <Route path='/about' component={About} />
         <Footer />
       </div>
