@@ -67,12 +67,17 @@ const App = () => {
       },
       body: JSON.stringify(updTask),
     })
-    await res.json()
+    const data = await res.json()
     // console.log('In delete Tas')
     //We should control the response status to decide if we will change the state or not.
     // res.status === 200
     //   ? setTasks(tasks.filter((task) => task.id !== id))
     //   : alert('Error Deleting This Task')
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, show: data.show } : task
+      )
+    )
   }
 
   // Toggle Reminder
@@ -105,7 +110,6 @@ const App = () => {
         />
         <Map 
         tasks = {tasks}
-        onDelete={deleteTask}
         />
         <Route
           path='/'
