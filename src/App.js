@@ -7,6 +7,7 @@ import Map from './components/Map'
 
 import AddTask from './components/AddTask'
 import About from './components/About'
+import InfoBox from './components/InfoBox'
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false)
@@ -107,26 +108,32 @@ const App = () => {
         <Header
           onAdd={() => setShowAddTask(!showAddTask)}
           showAdd={showAddTask}
-        />
+        />               
+        <Tasks
+        tasks={tasks}
+        onDelete={deleteTask}
+        onToggle={toggleReminder}
+        category = "Admin"
+      />
+              <Tasks
+        tasks={tasks}
+        onDelete={deleteTask}
+        onToggle={toggleReminder}
+        category = "Natural Resource"
+
+      />
         <Map 
         tasks = {tasks}
+        onDelete={deleteTask}
         />
+        <InfoBox/>
         <Route
           path='/'
           exact
           render={(props) => (
             <>
               {showAddTask && <AddTask onAdd={addTask} />}
-              {tasks.length > 0 ? (
-                <Tasks
-                  tasks={tasks}
-                  onDelete={deleteTask}
-                  onToggle={toggleReminder}
-                />
-                
-              ) : (
-                'No Tasks To Show'
-              )}
+
             </>
           )}
         />

@@ -1,15 +1,17 @@
 import React from 'react'
 import L from 'leaflet';
 const style = {
-    width: '100%',
-    height: '100vh'
+
+  width: '80%',
+  bottom: '0px',
+  top: '0px',
+  left:'20%',
+  position: 'absolute',
+  margin: 0
 }
-// const Map = ({tasks}) =>{
-//     console.log({tasks})
+
 const osm = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
     maxZoom: 18,
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     id: 'mapbox/streets-v11',
     tileSize: 512,
     zoomOffset: -1
@@ -17,51 +19,77 @@ const osm = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}
 const mapParams = {
     center: [25.95681, -35.729687],
     zoomControl: false,
+    attributionControl:false,
     zoom: 2,
     layers: [osm]
 }
-//       L.map('map', mapParams)
 
-//     return (
-//         <div id ='map'>
-//         {
-//             tasks.map((task)=>(
-//                 <h3>{task.text}</h3>
-//                 ))
-//         }
-//             I am here
-//         </div>
-//     )
-// }
-
-// export default Map
 
 
 class Map extends React.Component {
-    handleClick() {
-        console.log('Click happened');
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeLayers: [],
+      mapId: 'mainMap'
+    };
+    this.layer = null;
+    this.mainMap = null;
+    this.mapControls = null;
+    this.progress = null;
+
+  }
+
     componentDidMount() {
         console.log(this.props.tasks)
         this.mainMap = L.map('map', mapParams)
+        this.mainMap.on('click', (e) => {
+          console.log("Test")
+        //this.props.onDelete(1)
+          // Store.setMapBounds(this.mainMap.getBounds());
+          // Store.setLat(this.mainMap.getCenter().lat);
+          // Store.setLng(this.mainMap.getCenter().wrap().lng);
+          // Store.setZoom(this.mainMap.getZoom());
+        });
         
     }
-    componentDidUpdate(prevProps,nextProps) {
-        console.log(["prop Updated:",prevProps,"Next Prop",nextProps])
+    componentDidUpdate(prevProps) {
+        console.log(["prop Updated:","Next Prop",this.props.tasks[0].show.toString()])
+        for(var i=0;i<this.props.tasks.length;i++)
+        {
+          console.log(prevProps)
+          if(prevProps.tasks.length !== 0 ){
+          if(  prevProps.tasks[i].show !== this.props.tasks[i].show){
+            console.log("Great Success", prevProps.tasks[i].id)
+          }
+        }
+        }
         this.showActiveLayer()
 
       }
     showActiveLayer(){
-        console.log(this.props.tasks)
 
-        L.tileLayer.wms( "https://apps.nesdr.gov.in:442/geoserver/wms", {
+        
+        if(this.props.tasks[0].show){
+        this.layer = L.tileLayer.wms( "https://apps.nesdr.gov.in:442/geoserver/wms", {
             layers: "analytic:ner_boundary",
             format: "image/png",
             transparent: true, 
-          }).addTo(this.mainMap);
+          })
+        this.mainMap.addLayer(this.layer)
+        }
+        else 
+        {
+          console.log(this.mainMap._layers)
+
+          console.log(this.mainMap._layers[parseInt(Object.keys(this.mainMap._layers)[1])])
+          if(this.layer!=null){
+            this.mainMap.removeLayer(this.layer);
+          }
+        }
     }
     render() {
-        return <div id="map" style={style}></div>;
+        return <div id="map" className="mapStyle" style={style}></div>;
     }
 }
 export default Map
