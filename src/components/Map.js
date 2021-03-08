@@ -80,7 +80,7 @@ class Map extends React.Component {
         }
         else 
         {
-          console.log(this.mainMap._layers)
+          console.log(this.mainMap)
 
           console.log(this.mainMap._layers[parseInt(Object.keys(this.mainMap._layers)[1])])
           if(this.layer!=null){
