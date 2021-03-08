@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header'
-import Footer from './components/Footer'
 import Tasks from './components/LayerTree'
 import Map from './components/Map'
-import About from './components/About'
 import InfoBox from './components/InfoBox'
+import Legend from './components/Legend'
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false)
@@ -126,9 +125,11 @@ const App = () => {
         info = {info}
         />
 
+        <Legend
+        tasks = {tasks}
+
+        />
         
-        <Route path='/about' component={About} />
-        <Footer />
       </div>
     </Router>
   )
