@@ -10,7 +10,9 @@ import InfoBox from './components/InfoBox'
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState([])
-  const info =[]
+  const [info, setinfo] = useState(
+    "Test1"
+)
   useEffect(() => {
     const getTasks = async () => {
       const tasksFromServer = await fetchTasks()
@@ -52,9 +54,22 @@ const App = () => {
   //   // const newTask = { id, ...task }
   //   // setTasks([...tasks, newTask])
   // }
-
+  //Update Info
+  const updateInfo = (id) => {
+    console.log(id)
+    setinfo("Test"+Object.keys(id.target._layers)+
+            "coodrinates"+id.latlng.lat
+         // info.map((e) =>
+      // {
+      //   Object.keys(id)
+      //  // return(Object.keys(id))
+      // }
+     // )
+    )
+    // console.log("Testing Info Update", id)
+  }
   // Delete Task
-  const deleteTask = async (id) => {
+  const activateLayer = async (id) => {
     const taskToHide = await fetchTask(id)
     const updTask = { ...taskToHide, show: !taskToHide.show }
     const res = await fetch(`http://localhost:5000/tasks/${id}`, {
@@ -87,26 +102,29 @@ const App = () => {
         />               
         <Tasks
         tasks={tasks}
-        changeLayer={deleteTask}
+        changeLayer={activateLayer}
         category = "Admin"
       />
         <Tasks
         tasks={tasks}
-        changeLayer={deleteTask}
+        changeLayer={activateLayer}
         category = "Natural Resource"
 
       />
         <Tasks
         tasks={tasks}
-        changeLayer={deleteTask}
+        changeLayer={activateLayer}
         category = "Agri"
 
       />
         <Map 
         tasks = {tasks}
-        changeLayer={deleteTask}
+        changeLayer={activateLayer}
+        updateBox = {updateInfo}
         />
-        <InfoBox/>
+        <InfoBox
+        info = {info}
+        />
 
         
         <Route path='/about' component={About} />

@@ -43,6 +43,7 @@ class Map extends React.Component {
     componentDidMount() {
         this.mainMap = L.map('map', mapParams)
         this.mainMap.on('click', (e) => {
+            this.props.updateBox(e)
             console.log("Test")
         });
 
