@@ -42,7 +42,7 @@
       "day": "Feb 6th at 1:30pm",
       "reminder": true,
       "show": false,
-      "class": "Natural Resource",
+      "class": "Agri",
       "layer": "analytic:ner_boundary"
     }
   ]

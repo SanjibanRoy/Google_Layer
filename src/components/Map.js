@@ -68,9 +68,9 @@ class Map extends React.Component {
             this.mainMap.addLayer(this.layer)
         }
         else {
-            var keys_array = Object.keys(this.mainMap._layers).map(key=>parseInt(key))
-            keys_array.map(d=>{
-                if(this.props.tasks[e].layer===this.mainMap._layers[d].options.layers){
+            var keys_array = Object.keys(this.mainMap._layers).map(key => parseInt(key))
+            keys_array.map(d => {
+                if (this.props.tasks[e].layer === this.mainMap._layers[d].options.layers) {
                     this.mainMap.removeLayer(this.mainMap._layers[d])
                 }
             })
