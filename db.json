@@ -7,7 +7,7 @@
       "reminder": true,
       "show": false,
       "class": "Admin",
-      "layer": "analytic:ner_boundary"
+      "layer": "NEC:ner_states"
     },
     {
       "id": 2,
@@ -30,6 +30,15 @@
     {
       "id": 4,
       "text": "Wetlands",
+      "day": "Feb 6th at 1:30pm",
+      "reminder": true,
+      "show": false,
+      "class": "Natural Resource",
+      "layer": "analytic:ner_boundary"
+    },
+    {
+      "id": 4,
+      "text": "Agriculture",
       "day": "Feb 6th at 1:30pm",
       "reminder": true,
       "show": false,

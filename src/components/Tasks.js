@@ -1,7 +1,6 @@
 import Task from './Task'
 
 const Tasks = ({ tasks, onDelete, onToggle, category }) => {
-  console.log(category, tasks.filter((task) => task.class === category))
   
   return (
     <>
