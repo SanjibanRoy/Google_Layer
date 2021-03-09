@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
 import Header from './components/Header'
 import Tasks from './components/LayerTree'
 import Map from './components/Map'
@@ -9,7 +8,7 @@ import Legend from './components/Legend'
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState([])
-  const [info, setinfo] = useState()
+  const [info, setinfo] = useState([])
   useEffect(() => {
     const getTasks = async () => {
       const tasksFromServer = await fetchTasks()
@@ -52,19 +51,30 @@ const App = () => {
   //   // setTasks([...tasks, newTask])
   // }
 
-  //Update Info
+  //Update Info box
   const updateInfo = (id) => {
-    console.log(id)
+    for( let prop in id.target._layers ){
+      console.log( id.target._layers[prop]);
+    }
+    let layers =[id.target._layers]
     setinfo(
-            {
-              "Layer ID": Object.keys(id.target._layers),
-              "Lat": id.latlng.lat,
-              "Lon": id.latlng.lng,
-            }
+      layers.map((layer)=>{
+        console.log(layer)
+      })
+            // [{
+            //   "Layer ID": Object.keys(id.target._layers),
+            //   "Lat": id.latlng.lat,
+            //   "Lon": id.latlng.lng,
+            // },
+            // {
+            //   "Layer ID": Object.keys(id.target._layers),
+            //   "Lat": id.latlng.lat,
+            //   "Lon": id.latlng.lng,
+            // }]
     )
   }
 
-  // Delete Task
+  // Add Remove Layer
   const activateLayer = async (id) => {
     const taskToHide = await fetchTask(id)
     const updTask = { ...taskToHide, show: !taskToHide.show }
@@ -90,36 +100,37 @@ const App = () => {
 
 
   return (
-    <Router>
       <div className='container'>
         <Header
           onAdd={() => setShowAddTask(!showAddTask)}
           showAdd={showAddTask}
-        />               
+        />
+
         <Tasks
         tasks={tasks}
         changeLayer={activateLayer}
         category = "Admin"
-      />
+        />
+        
         <Tasks
         tasks={tasks}
         changeLayer={activateLayer}
         category = "Natural Resource"
+        />
 
-      />
         <Tasks
         tasks={tasks}
         changeLayer={activateLayer}
         category = "Agri"
-
-      />
-              <Tasks
+        />
+        
+        <Tasks
         tasks={tasks}
         changeLayer={activateLayer}
         category = "Disaster"
+        />
 
-      />
-        <Map 
+       <Map 
         tasks = {tasks}
         changeLayer={activateLayer}
         updateBox = {updateInfo}
@@ -134,7 +145,6 @@ const App = () => {
         />
         
       </div>
-    </Router>
   )
 }
 

@@ -5,7 +5,14 @@ const InfoBox = ({info}) => {
     return (
         <div className='infobox'>
         {
-            info!==undefined?(<Info info={info}/>):"Info Box"
+            info!==undefined?(
+               info.map((task, index) => (
+                    <Info key={index} info={task}  />
+                  ))
+            
+            
+            
+            ):"Info Box"
         }
         </div>
     )

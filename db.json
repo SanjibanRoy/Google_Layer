@@ -14,7 +14,7 @@
       "text": "District Boundary",
       "day": "Feb 6th at 1:30pm",
       "reminder": true,
-      "show": false,
+      "show": true,
       "class": "Admin",
       "layer": "analytic:ner_boundary"
     },
@@ -23,7 +23,7 @@
       "text": "Land Use",
       "day": "Feb 6th at 1:30pm",
       "reminder": true,
-      "show": false,
+      "show": true,
       "class": "Natural Resource",
       "layer": "analytic:ner_boundary"
     },
