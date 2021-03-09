@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import Header from './components/Header'
 import Tasks from './components/LayerTree'
 import Map from './components/Map'
@@ -9,9 +9,7 @@ import Legend from './components/Legend'
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState([])
-  const [info, setinfo] = useState(
-    "Test1"
-)
+  const [info, setinfo] = useState()
   useEffect(() => {
     const getTasks = async () => {
       const tasksFromServer = await fetchTasks()
@@ -53,20 +51,19 @@ const App = () => {
   //   // const newTask = { id, ...task }
   //   // setTasks([...tasks, newTask])
   // }
+
   //Update Info
   const updateInfo = (id) => {
     console.log(id)
-    setinfo("Test"+Object.keys(id.target._layers)+
-            "coodrinates"+id.latlng.lat
-         // info.map((e) =>
-      // {
-      //   Object.keys(id)
-      //  // return(Object.keys(id))
-      // }
-     // )
+    setinfo(
+            {
+              "Layer ID": Object.keys(id.target._layers),
+              "Lat": id.latlng.lat,
+              "Lon": id.latlng.lng,
+            }
     )
-    // console.log("Testing Info Update", id)
   }
+
   // Delete Task
   const activateLayer = async (id) => {
     const taskToHide = await fetchTask(id)
@@ -114,6 +111,12 @@ const App = () => {
         tasks={tasks}
         changeLayer={activateLayer}
         category = "Agri"
+
+      />
+              <Tasks
+        tasks={tasks}
+        changeLayer={activateLayer}
+        category = "Disaster"
 
       />
         <Map 

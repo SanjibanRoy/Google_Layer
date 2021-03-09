@@ -4,7 +4,7 @@ const Legend = ({tasks}) => {
     return (
         <div className='Legend'>
            {tasks.filter((task)=>task.show==true).map((task)=>(
-                <p>{task.text}</p>
+                <p key ={task.id}>{task.text}</p>
            ))}
         </div>
     )
