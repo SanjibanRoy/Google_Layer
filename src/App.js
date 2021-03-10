@@ -4,6 +4,7 @@ import Tasks from './components/LayerTree'
 import Map from './components/Map'
 import InfoBox from './components/InfoBox'
 import Legend from './components/Legend'
+import SidePanel from './components/SidePanel'
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false)
@@ -53,24 +54,33 @@ const App = () => {
 
   //Update Info box
   const updateInfo = (id) => {
-    for( let prop in id.target._layers ){
-      console.log( id.target._layers[prop]);
-    }
-    let layers =[id.target._layers]
+    // for( let prop in id.target._layers ){
+    //   console.log( id.target._layers[prop]);
+    // }
+    console.log(tasks.filter((task)=>task.show===true))
+    // let layers =[id.target._layers]
     setinfo(
-      layers.map((layer)=>{
-        console.log(layer)
+
+      [
+      tasks.filter((task)=>task.show===true).map((t)=>
+      {
+        return t.layer
       })
-            // [{
-            //   "Layer ID": Object.keys(id.target._layers),
-            //   "Lat": id.latlng.lat,
-            //   "Lon": id.latlng.lng,
-            // },
-            // {
-            //   "Layer ID": Object.keys(id.target._layers),
-            //   "Lat": id.latlng.lat,
-            //   "Lon": id.latlng.lng,
-            // }]
+      ] 
+      //     [{
+        //       "Layer ID": Object.keys(id.target._layers),
+        //       "Lat": id.latlng.lat,
+        //       "Lon": id.latlng.lng,
+        //     },
+        //     {
+        //       "Layer ID": Object.keys(id.target._layers),
+        //       "Lat": id.latlng.lat,
+        //       "Lon": id.latlng.lng,
+        //     },
+        // //     Object.keys(id.target._layers).map(function (element) {
+        // //       return(id.target._layers[element])
+        // //  })
+        // ]
     )
   }
 
@@ -105,7 +115,6 @@ const App = () => {
           onAdd={() => setShowAddTask(!showAddTask)}
           showAdd={showAddTask}
         />
-
         <Tasks
         tasks={tasks}
         changeLayer={activateLayer}
@@ -129,6 +138,7 @@ const App = () => {
         changeLayer={activateLayer}
         category = "Disaster"
         />
+        <SidePanel/>
 
        <Map 
         tasks = {tasks}

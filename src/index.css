@@ -48,6 +48,22 @@ body {
   font-size: 15px;
   font-family: inherit;
 }
+.SidePanel{
+  overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    display: block;
+    overflow-y: auto;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    width: 4.75rem;
+    height: 100%;
+
+  z-index: 2000;  
+  top: 20px;
+  left: 0px;
+  background-color: rgba(98, 89, 89, 0.55);
+}
 
 .btn:focus {
   outline: none;
@@ -61,16 +77,12 @@ body {
   display: block;
   width: 100%;
 }
-.mapStyle{
-  /* display: flex; */
-  width: '80%';
-  height: '100vh';
-
-}
 .task {
   width: 20vw;
   background: #f4f4f4;
+  width: 20rem;
   margin: 5px;
+  margin-left: 150px;
   padding: 10px 20px;
   cursor: pointer;
 }
@@ -85,40 +97,6 @@ body {
   justify-content: space-between;
 }
 
-.add-form {
-  margin-bottom: 40px;
-}
-
-.form-control {
-  margin: 20px 0;
-}
-
-.form-control label {
-  display: block;
-}
-
-.form-control input {
-  width: 100%;
-  height: 40px;
-  margin: 5px;
-  padding: 3px 7px;
-  font-size: 17px;
-}
-
-.form-control-check {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.form-control-check label {
-  flex: 1;
-}
-
-.form-control-check input {
-  flex: 2;
-  height: 20px;
-}
 
 footer {
   margin-top: 30px;

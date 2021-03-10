@@ -15,8 +15,8 @@ const Info = ({info}) => {
                     <tbody>
                        {
                            
-                           Object.keys(info).map(function (element) {
-                              return <tr>
+                           Object.keys(info).map(function (element, index) {
+                              return <tr key={index}>
                                 <td>{element}</td>
                                 <td>{info[element]}</td>
                               </tr>
