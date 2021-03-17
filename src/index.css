@@ -74,24 +74,22 @@ body {
 
 
 .task {
-  width: 20vw;
-  width: 20rem;
-  margin: 5px;
+ 
   margin-left: 150px;
-  padding: 10px 20px;
   cursor: pointer;
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
+
 
 }
 .LayerTree p{
   width: 20vw;
   background: #f4f4f4;
   width: 20rem;
-  margin: 5px;
   margin-left: 150px;
   padding: 10px 20px;
   cursor: pointer;
+  border-right: 1px solid #ccc;
 }
 
 .task h5 {
