@@ -49,20 +49,39 @@ body {
   font-family: inherit;
 }
 .SidePanel{
-  overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    display: block;
-    overflow-y: auto;
-    flex-direction: column;
-    justify-content: space-between;
+    border-right:1px solid #080808;
     position: absolute;
     width: 4.75rem;
     height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(98, 89, 89, 0.55);
+  
+}
 
-  z-index: 2000;  
-  top: 20px;
-  left: 0px;
-  background-color: rgba(98, 89, 89, 0.55);
+
+.SidePanel >ul>li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  margin-top: 15px;
+  padding:  15px;
+}
+
+.SidePanel >ul>li:hover {
+  background-color: rgb(60, 137, 160);
+  border-radius: 10px;
+}
+
+.SideBarWrapper{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 20rem;
+}
+.MuiSvgIcon-root:hover{
+  color: #dad9e0;
 }
 
 .btn:focus {

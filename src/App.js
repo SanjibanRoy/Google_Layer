@@ -5,7 +5,7 @@ import Map from './components/Map'
 import InfoBox from './components/InfoBox'
 import Legend from './components/Legend'
 import SidePanel from './components/SidePanel'
-
+import SideBarWrapper from './components/SideBarWrapper'
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState([])
@@ -115,30 +115,11 @@ const App = () => {
           onAdd={() => setShowAddTask(!showAddTask)}
           showAdd={showAddTask}
         />
-        <Tasks
-        tasks={tasks}
-        changeLayer={activateLayer}
-        category = "Admin"
-        />
-        
-        <Tasks
-        tasks={tasks}
-        changeLayer={activateLayer}
-        category = "Natural Resource"
-        />
 
-        <Tasks
-        tasks={tasks}
-        changeLayer={activateLayer}
-        category = "Agri"
+        <SideBarWrapper
+                tasks={tasks}
+                activateLayer={activateLayer}
         />
-        
-        <Tasks
-        tasks={tasks}
-        changeLayer={activateLayer}
-        category = "Disaster"
-        />
-        <SidePanel/>
 
        <Map 
         tasks = {tasks}
