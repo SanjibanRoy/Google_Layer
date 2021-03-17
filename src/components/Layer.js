@@ -1,17 +1,18 @@
-import { FaTimes } from 'react-icons/fa'
+import Checkbox from '@material-ui/core/Checkbox';
 
 const Layer = ({ task, changeLayer }) => {
   return (
     <div
       className='task reminder' 
     >
-      <h5>
-        {task.text}{' '}
-        <FaTimes
-          style={{ color: 'red', cursor: 'pointer' }}
+      <table>
+      <td>        <Checkbox
+                 color="primary"
+
           onClick={() => changeLayer(task.id)}
-        />
-      </h5>
+        /></td><td>{task.text}{' '}</td>
+
+      </table>
     </div>
   )
 }

@@ -35,48 +35,61 @@ body {
   margin-bottom: 20px;
 }
 
-.btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 15px;
-  font-family: inherit;
+
+.SidePanel{
+    border-right:1px solid #080808;
+    position: absolute;
+    width: 4.75rem;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(98, 89, 89, 0.55);
+  
 }
 
-.btn:focus {
-  outline: none;
+
+.SidePanel >ul>li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  margin-top: 15px;
+  padding:  15px;
 }
 
-.btn:active {
-  transform: scale(0.98);
+.SidePanel >ul>li:hover {
+  background-color: rgb(60, 137, 160);
+  border-radius: 10px;
 }
 
-.btn-block {
-  display: block;
-  width: 100%;
+.SideBarWrapper{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 20rem;
 }
-.mapStyle{
-  /* display: flex; */
-  width: '80%';
-  height: '100vh';
+.MuiSvgIcon-root:hover{
+  color: #dad9e0;
+}
 
-}
+
 .task {
+ 
+  margin-left: 150px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+
+
+}
+.LayerTree p{
   width: 20vw;
   background: #f4f4f4;
-  margin: 5px;
+  width: 20rem;
+  margin-left: 150px;
   padding: 10px 20px;
   cursor: pointer;
-}
-
-.task.reminder {
-  border-left: 5px solid green;
+  border-right: 1px solid #ccc;
 }
 
 .task h5 {
@@ -85,43 +98,6 @@ body {
   justify-content: space-between;
 }
 
-.add-form {
-  margin-bottom: 40px;
-}
 
-.form-control {
-  margin: 20px 0;
-}
 
-.form-control label {
-  display: block;
-}
-
-.form-control input {
-  width: 100%;
-  height: 40px;
-  margin: 5px;
-  padding: 3px 7px;
-  font-size: 17px;
-}
-
-.form-control-check {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.form-control-check label {
-  flex: 1;
-}
-
-.form-control-check input {
-  flex: 2;
-  height: 20px;
-}
-
-footer {
-  margin-top: 30px;
-  text-align: center;
-}
 

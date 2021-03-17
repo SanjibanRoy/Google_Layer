@@ -1,17 +1,13 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header'
-import Tasks from './components/LayerTree'
 import Map from './components/Map'
 import InfoBox from './components/InfoBox'
 import Legend from './components/Legend'
-
+import SideBarWrapper from './components/SideBarWrapper'
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState([])
-  const [info, setinfo] = useState(
-    "Test1"
-)
+  const [info, setinfo] = useState([])
   useEffect(() => {
     const getTasks = async () => {
       const tasksFromServer = await fetchTasks()
@@ -53,21 +49,40 @@ const App = () => {
   //   // const newTask = { id, ...task }
   //   // setTasks([...tasks, newTask])
   // }
-  //Update Info
+
+  //Update Info box
   const updateInfo = (id) => {
-    console.log(id)
-    setinfo("Test"+Object.keys(id.target._layers)+
-            "coodrinates"+id.latlng.lat
-         // info.map((e) =>
-      // {
-      //   Object.keys(id)
-      //  // return(Object.keys(id))
-      // }
-     // )
+    // for( let prop in id.target._layers ){
+    //   console.log( id.target._layers[prop]);
+    // }
+    console.log(tasks.filter((task)=>task.show===true))
+    // let layers =[id.target._layers]
+    setinfo(
+
+      [
+      tasks.filter((task)=>task.show===true).map((t)=>
+      {
+        return t.layer
+      })
+      ] 
+      //     [{
+        //       "Layer ID": Object.keys(id.target._layers),
+        //       "Lat": id.latlng.lat,
+        //       "Lon": id.latlng.lng,
+        //     },
+        //     {
+        //       "Layer ID": Object.keys(id.target._layers),
+        //       "Lat": id.latlng.lat,
+        //       "Lon": id.latlng.lng,
+        //     },
+        // //     Object.keys(id.target._layers).map(function (element) {
+        // //       return(id.target._layers[element])
+        // //  })
+        // ]
     )
-    // console.log("Testing Info Update", id)
   }
-  // Delete Task
+
+  // Add Remove Layer
   const activateLayer = async (id) => {
     const taskToHide = await fetchTask(id)
     const updTask = { ...taskToHide, show: !taskToHide.show }
@@ -93,30 +108,18 @@ const App = () => {
 
 
   return (
-    <Router>
       <div className='container'>
         <Header
           onAdd={() => setShowAddTask(!showAddTask)}
           showAdd={showAddTask}
-        />               
-        <Tasks
-        tasks={tasks}
-        changeLayer={activateLayer}
-        category = "Admin"
-      />
-        <Tasks
-        tasks={tasks}
-        changeLayer={activateLayer}
-        category = "Natural Resource"
+        />
 
-      />
-        <Tasks
-        tasks={tasks}
-        changeLayer={activateLayer}
-        category = "Agri"
+        <SideBarWrapper
+                tasks={tasks}
+                activateLayer={activateLayer}
+        />
 
-      />
-        <Map 
+       <Map 
         tasks = {tasks}
         changeLayer={activateLayer}
         updateBox = {updateInfo}
@@ -131,7 +134,6 @@ const App = () => {
         />
         
       </div>
-    </Router>
   )
 }
 
