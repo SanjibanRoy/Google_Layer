@@ -5,13 +5,13 @@ const Layer = ({ task, changeLayer }) => {
     <div
       className='task reminder' 
     >
-      <h5>
-        {task.text}{' '}
-        <FaTimes
+      <table>
+      <td>        <FaTimes
           style={{ color: 'red', cursor: 'pointer' }}
           onClick={() => changeLayer(task.id)}
-        />
-      </h5>
+        /></td><td>{task.text}{' '}</td>
+
+      </table>
     </div>
   )
 }

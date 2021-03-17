@@ -35,19 +35,7 @@ body {
   margin-bottom: 20px;
 }
 
-.btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 15px;
-  font-family: inherit;
-}
+
 .SidePanel{
     border-right:1px solid #080808;
     position: absolute;
@@ -84,19 +72,19 @@ body {
   color: #dad9e0;
 }
 
-.btn:focus {
-  outline: none;
-}
 
-.btn:active {
-  transform: scale(0.98);
-}
-
-.btn-block {
-  display: block;
-  width: 100%;
-}
 .task {
+  width: 20vw;
+  width: 20rem;
+  margin: 5px;
+  margin-left: 150px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+
+}
+.LayerTree p{
   width: 20vw;
   background: #f4f4f4;
   width: 20rem;
@@ -106,10 +94,6 @@ body {
   cursor: pointer;
 }
 
-.task.reminder {
-  border-left: 5px solid green;
-}
-
 .task h5 {
 
   align-items: center;
@@ -117,8 +101,5 @@ body {
 }
 
 
-footer {
-  margin-top: 30px;
-  text-align: center;
-}
+
 

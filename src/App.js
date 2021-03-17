@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react'
 import Header from './components/Header'
-import Tasks from './components/LayerTree'
 import Map from './components/Map'
 import InfoBox from './components/InfoBox'
 import Legend from './components/Legend'
-import SidePanel from './components/SidePanel'
 import SideBarWrapper from './components/SideBarWrapper'
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false)
