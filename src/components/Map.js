@@ -2,10 +2,10 @@ import React from 'react'
 import L from 'leaflet';
 const style = {
 
-    width: '90%',
+    width: '100%',
     bottom: '0px',
     top: '0px',
-    left: '25rem',
+    left: '0px',
     position: 'absolute',
     margin: 0
 }
