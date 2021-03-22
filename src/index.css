@@ -37,7 +37,6 @@ body {
   z-index: 10000;
 }
 
-
 .SidePanel{
     border-right:1px solid #080808;
     position: absolute;
@@ -45,26 +44,7 @@ body {
     height: 100%;
     top: 0px;
     left: 0px;
-    background-color: rgba(98, 89, 89, 0.55);
-  
-}
-
-.SidePanelBottom{
-  border-right:1px solid #080808;
-  position: absolute;
-  width: 4.75rem;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-  background-color: rgba(98, 89, 89, 0.55);
-
-}
-.SidePanelBottom >ul>li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  list-style-type: none;
-  padding:  20px;
+    background-color: rgba(162, 162, 162, 0.9);
 }
 
 .SidePanel >ul>li {
@@ -72,19 +52,20 @@ body {
   flex-direction: column;
   align-items: center;
   list-style-type: none;
-  padding:  20px;
+  padding:  10px;
 }
 
 .SidePanel>ul>li>img{
   /* display: inline-block; */
   /* vertical-align: middle; */
   max-width: 100%;
-  padding:  0px;
+  padding:  10px;
   height: auto;
+  background-color: rgb(13, 100, 141);
 }
-.logo{
-  padding:  0px;
 
+.SidePanel>ul>li:nth-child(1){
+  padding:  0px;
 }
 
 .SidePanel >ul>li:hover {
@@ -95,13 +76,12 @@ body {
 
 .SideBarWrapper{
   display:flex;
-  flex-direction: column;
-  align-items: center;
   position: absolute;
   height: 100%;
   max-width: 20rem;
   z-index: 10000;
 }
+
 .SidePanel >ul>li>span{
     margin: 0;
     padding: 0;
@@ -110,39 +90,45 @@ body {
     font: -webkit-control;
     vertical-align: baseline;
 }
+
 .SidePanel >ul>li:hover>.MuiSvgIcon-root{
   color: #dad9e0;
 }
+
 .SidePanel >ul>li>.MuiSvgIcon-root{
   border: #dad9e0;
 }
+
 .task {
 display:none;  
 }
-
 .active{
-  margin-left: 150px;
   cursor: pointer;
   border-bottom: 1px solid #ccc;
   background-color: #fff;
 }
 
+.active td{
+  padding:0px;
+  margin: 0px;
+}
+
 .LayerTree p{
   background: #bbb8b8;
   align-items: flex-end;
-
-  width: 20rem;
-  margin-left: 150px;
-  padding: 10px 20px;
+  width: 15rem;
+  padding: 8px 10px;
   cursor: pointer;
   border-bottom: 1px solid #ccc;
 }
+
 .LayerTree p>.MuiSvgIcon-root{
   float: right;
   color: gray;
 }
 .LayerContainer{
   height: 100%;
+  margin-left: 4.75rem;
   background-color: rgba(243, 241, 241, 0.87);
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;

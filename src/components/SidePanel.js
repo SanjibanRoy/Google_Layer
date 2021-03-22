@@ -8,7 +8,7 @@ const SidePanel = ({changeVisibility}) => {
     return (
         <div className="SidePanel">
             <ul>
-                <li className="logo"><img src="./NeSDRLogo.png"/>
+                <li className="logo"><img src="./NeSDRLogo1.png"/>
                 </li>
                 <li><CloudIcon/>
                     <span>Cloud</span>
