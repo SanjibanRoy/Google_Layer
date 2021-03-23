@@ -7,7 +7,7 @@ import {layer} from './config'
 const App = () => {
   const [tasks, setTasks] = useState([])
   const [info, setinfo] = useState([])
-
+  const []=useState([])
 
 
   //Update Info box
@@ -23,6 +23,9 @@ const App = () => {
   }
 
   // Add Remove Layer
+  const activateLayer1 =  (id) => {
+    console.log(id)
+  }
   const activateLayer =  (id) => {
     setTasks(
       tasks.map((task) =>
@@ -43,11 +46,13 @@ const App = () => {
         <SideBarWrapper
                 tasks={layer}
                 activateLayer={activateLayer}
-        />
+                activateLayer1={activateLayer1}
 
+        />
        <Map 
         tasks = {tasks}
         changeLayer={activateLayer}
+
         updateBox = {updateInfo}
         />
         <InfoBox

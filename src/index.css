@@ -108,15 +108,23 @@ display:none;
   background-color: #fff;
 }
 
-.active td{
+.active table>tbody>tr>td{
   padding:0px;
   margin: 0px;
+  text-align: right;
+  
+}
+
+.active td>.MuiSvgIcon-root{
+  float: right;
+  color: gray;
+  /* margin-left: 150px; */
 }
 
 .LayerTree p{
   background: #bbb8b8;
   align-items: flex-end;
-  width: 15rem;
+  width: 20rem;
   padding: 8px 10px;
   cursor: pointer;
   border-bottom: 1px solid #ccc;
@@ -126,6 +134,7 @@ display:none;
   float: right;
   color: gray;
 }
+
 .LayerContainer{
   height: 100%;
   margin-left: 4.75rem;

@@ -1,4 +1,5 @@
 import Checkbox from '@material-ui/core/Checkbox';
+import InfoIcon from '@material-ui/icons/Info';
 
 const Layer = ({ task, changeLayer, showLayer }) => {
   return (
@@ -7,11 +8,14 @@ const Layer = ({ task, changeLayer, showLayer }) => {
       >
       <table>
         <tbody>
+          <tr>
       <td>        
         <Checkbox color="primary"
           onClick={() => changeLayer(task.id)}
         /></td><td>{task.text}{' '}</td>
-</tbody>
+        <td><InfoIcon /></td>
+        </tr>
+        </tbody>
       </table>
     </div>
   )
