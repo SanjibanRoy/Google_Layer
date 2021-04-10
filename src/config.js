@@ -54,13 +54,7 @@ export const  layer= [
 
 
   export const  analytics= [
-    {
-      id: 1,
-      text: "State Boundary",
-      show: true,
-      class: "Admin",
-      layer: "NEC:ner_states"
-    },
+
     {
       id: 2,
       text: "District Boundary",
@@ -78,7 +72,7 @@ export const  layer= [
     {
       id: 4,
       text: "Wetlands",
-      show: true,
+      show: false,
       class: "Natural Resource",
       layer: "analytic:ner_boundary"
     },

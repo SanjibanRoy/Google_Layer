@@ -3,7 +3,7 @@ import SidePanel from './SidePanel'
 import LayerTree from './LayerTree'
 import AnalyticsLayers from './AnalyticsLayers'
 
-const SideBarWrapper = ({ tasks, activateLayer, activateLayer1}) => {
+const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1}) => {
     
     return (
         <div className="SideBarWrapper">
@@ -30,7 +30,7 @@ const SideBarWrapper = ({ tasks, activateLayer, activateLayer1}) => {
                     category="Disaster"
                 />
                 <AnalyticsLayers
-                    tasks={tasks}
+                    tasks={analyticsLayers}
                     changeLayer1={activateLayer1}
                     category="Disaster"
                 />

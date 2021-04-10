@@ -4,10 +4,12 @@ import InfoBox from './components/InfoBox'
 import Legend from './components/Legend'
 import SideBarWrapper from './components/SideBarWrapper'
 import {layer} from './config'
+import {analytics} from './config'
+
 const App = () => {
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState(layer)
   const [info, setinfo] = useState([])
-  const []=useState([])
+  const [analytic,setAnalytics]=useState(analytics)
 
 
   //Update Info box
@@ -25,6 +27,11 @@ const App = () => {
   // Add Remove Layer
   const activateLayer1 =  (id) => {
     console.log(id)
+    setAnalytics(
+      analytic.map((task) =>
+      task.id == id ? { ...task, show: !task.show } : task
+      )
+    )
   }
   const activateLayer =  (id) => {
     setTasks(
@@ -33,22 +40,17 @@ const App = () => {
       )
     )
   }
-  useEffect(() => {
-    const getTasks = async () => {
-     // const tasksFromServer = await fetchTasks()
-      setTasks(layer)
-    }
-    getTasks()
-  }, [])
+
 
   return (
       <div className='container'>
         <SideBarWrapper
                 tasks={layer}
                 activateLayer={activateLayer}
+                analyticsLayers = {analytics}
                 activateLayer1={activateLayer1}
-
         />
+
        <Map 
         tasks = {tasks}
         changeLayer={activateLayer}
