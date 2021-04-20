@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Map from './components/Map'
 import InfoBox from './components/InfoBox'
 import Legend from './components/Legend'
@@ -25,11 +25,11 @@ const App = () => {
   }
 
   // Add Remove Layer
-  const activateLayer1 =  (id) => {
+  const activateAnalytics =  (id) => {
     console.log(id)
     setAnalytics(
       analytic.map((task) =>
-      task.id == id ? { ...task, show: !task.show } : task
+      task.id == id ? { ...task, show: !task.show } :  { ...task, show: false }
       )
     )
   }
@@ -48,13 +48,13 @@ const App = () => {
                 tasks={layer}
                 activateLayer={activateLayer}
                 analyticsLayers = {analytics}
-                activateLayer1={activateLayer1}
+                activateLayer1={activateAnalytics}
         />
 
        <Map 
         tasks = {tasks}
         changeLayer={activateLayer}
-
+        analyticsLayers = {analytic}
         updateBox = {updateInfo}
         />
         <InfoBox

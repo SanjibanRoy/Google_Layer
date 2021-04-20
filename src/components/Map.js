@@ -37,6 +37,8 @@ class Map extends React.Component {
         this.mainMap = null;
         this.mapControls = null;
         this.progress = null;
+        this.analyticsLayer = null
+
 
     }
 
@@ -48,13 +50,22 @@ class Map extends React.Component {
         });
 
     }
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps, nextprops) {
         for (var i = 0; i < this.props.tasks.length; i++) {
             if (prevProps.tasks.length !== 0) {
                 if (prevProps.tasks[i].show !== this.props.tasks[i].show) {
                     this.showActiveLayer(i)
                 }
             }
+        }
+        
+        for (var i = 0; i < this.props.analyticsLayers.length; i++) {
+         
+                if (prevProps.analyticsLayers !== this.props.analyticsLayers && this.props.analyticsLayers[i].show===true) {
+                    this.showAnalyticsLayer(this.props.analyticsLayers[i])
+                   // console.log(this.props.analyticsLayers[i])
+                }
+            
         }
 
 
@@ -76,6 +87,27 @@ class Map extends React.Component {
                 }
             })
         }
+    }
+
+    showAnalyticsLayer(e) {
+        console.log(e)
+        // if (this.props.tasks[e].show) {
+            if( this.analyticsLayer!=null)
+            {
+                this.mainMap.removeLayer( this.analyticsLayer)
+            }
+            this.analyticsLayer = L.tileLayer("https://vedas.sac.gov.in/InteractiveGeoService/tms_comp_diff/NDVI_MODIS/{z}/{x}/{-y}?tm_arr1=1616976000&tm_arr2=1585440000&opr=max&min_val=0&max_val=250&color_map_name=NDVI_DIFF")
+
+            this.mainMap.addLayer( this.analyticsLayer)
+        // }
+        // else {
+        //     var keys_array = Object.keys(this.mainMap._layers).map(key => parseInt(key))
+        //     keys_array.map(d => {
+        //         if (this.props.tasks[e].layer === this.mainMap._layers[d].options.layers) {
+        //             this.mainMap.removeLayer(this.mainMap._layers[d])
+        //         }
+        //     })
+        // }
     }
     render() {
         return <div id="map" className="mapStyle" style={style}></div>;
