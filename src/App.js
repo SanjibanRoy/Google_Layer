@@ -3,69 +3,102 @@ import Map from './components/Map'
 import InfoBox from './components/InfoBox'
 import Legend from './components/Legend'
 import SideBarWrapper from './components/SideBarWrapper'
-import {layer} from './config'
-import {analytics} from './config'
+import { layer } from './config'
+import { analytics } from './config'
+import { panelVisibilty } from './config'
+import { maps } from './config'
 
 const App = () => {
   const [tasks, setTasks] = useState(layer)
   const [info, setinfo] = useState([])
-  const [analytic,setAnalytics]=useState(analytics)
+  const [analytic, setAnalytics] = useState(analytics)
+  const [visibility, setVisibility] = useState(panelVisibilty)
+  const [mapsvisibility, setmaps] = useState(maps)
+
 
 
   //Update Info box
   const updateInfo = (id) => {
     setinfo(
       [
-      tasks.filter((task)=>task.show===true).map((t)=>
-      {
-        return t.layer
-      })
-      ]      
+        tasks.filter((task) => task.show === true).map((t) => {
+          return t.layer
+        })
+      ]
     )
   }
-
-  // Add Remove Layer
-  const activateAnalytics =  (id) => {
+  // add or remove map 
+  const ChangeMap = (id) => {
     console.log(id)
-    setAnalytics(
-      analytic.map((task) =>
-      task.id == id ? { ...task, show: !task.show } :  { ...task, show: false }
+    setmaps(
+      mapsvisibility.map((task) =>
+        task.id === id ? { ...task, show: !task.show } : { ...task, show: false }
       )
     )
   }
-  const activateLayer =  (id) => {
+
+
+
+
+  // Add Remove Layer
+  const activateAnalytics = (id) => {
+    console.log(id)
+    setAnalytics(
+      analytic.map((task) =>
+        task.id === id ? { ...task, show: !task.show } : { ...task, show: false }
+      )
+    )
+  }
+  const activateLayer = (id) => {
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, show: !task.show } : task
       )
     )
   }
+  //toggle visibility 
+  const changeVisibility = (id) => {
+
+    setVisibility(
+      visibility.map((task) =>
+        task.id === id ? { ...task, show: true } : { ...task, show: false }
+      )
+    )
+    //changeVisibility: false 
 
 
+  }
   return (
-      <div className='container'>
-        <SideBarWrapper
-                tasks={layer}
-                activateLayer={activateLayer}
-                analyticsLayers = {analytics}
-                activateLayer1={activateAnalytics}
-        />
+    <div className='container'>
 
-       <Map 
-        tasks = {tasks}
+      <SideBarWrapper
+        visibility={visibility}
+        tasks={layer}
+        activateLayer={activateLayer}
+        analyticsLayers={analytics}
+        activateLayer1={activateAnalytics}
+        changeVisibility={changeVisibility}
+        ChangeMap={ChangeMap}
+
+
+      />
+
+      <Map
+        tasks={tasks}
         changeLayer={activateLayer}
-        analyticsLayers = {analytic}
-        updateBox = {updateInfo}
-        />
-        <InfoBox
-        info = {info}
-        />
+        analyticsLayers={analytic}
+        updateBox={updateInfo}
+        mapslayer={mapsvisibility}
+      />
+      <InfoBox
+        info={info}
+      />
 
-        <Legend
-        tasks = {tasks}
-        />
-        
-      </div>
+      <Legend
+        tasks={tasks}
+      />
+
+    </div>
   )
 }
 
