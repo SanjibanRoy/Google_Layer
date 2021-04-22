@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import L from 'leaflet';
+import { maps } from '../config'
 const style = {
 
     width: '100%',
@@ -25,8 +26,8 @@ const mapParams = {
 }
 
 
-
 class Map extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -38,6 +39,8 @@ class Map extends React.Component {
         this.mapControls = null;
         this.progress = null;
         this.analyticsLayer = null
+        this.maplayer = null
+
 
 
     }
@@ -58,14 +61,24 @@ class Map extends React.Component {
                 }
             }
         }
-        
-        for (var i = 0; i < this.props.analyticsLayers.length; i++) {
-         
-                if (prevProps.analyticsLayers !== this.props.analyticsLayers && this.props.analyticsLayers[i].show===true) {
-                    this.showAnalyticsLayer(this.props.analyticsLayers[i])
-                   // console.log(this.props.analyticsLayers[i])
-                }
-            
+
+        for (i = 0; i < this.props.analyticsLayers.length; i++) {
+
+            if (prevProps.analyticsLayers !== this.props.analyticsLayers && this.props.analyticsLayers[i].show === true) {
+                this.showAnalyticsLayer(this.props.analyticsLayers[i])
+                // console.log(this.props.analyticsLayers[i])
+            }
+
+        }
+
+
+        for (i = 0; i < this.props.mapslayer.length; i++) {
+
+            if (prevProps.mapslayer !== this.props.mapslayer && this.props.mapslayer[i].show === true) {
+                this.showMapsLayer(this.props.mapslayer[i])
+                //console.log(this.props.analyticsLayers[i])
+            }
+
         }
 
 
@@ -92,22 +105,27 @@ class Map extends React.Component {
     showAnalyticsLayer(e) {
         console.log(e)
         // if (this.props.tasks[e].show) {
-            if( this.analyticsLayer!=null)
-            {
-                this.mainMap.removeLayer( this.analyticsLayer)
-            }
-            this.analyticsLayer = L.tileLayer("https://vedas.sac.gov.in/InteractiveGeoService/tms_comp_diff/NDVI_MODIS/{z}/{x}/{-y}?tm_arr1=1616976000&tm_arr2=1585440000&opr=max&min_val=0&max_val=250&color_map_name=NDVI_DIFF")
+        if (this.analyticsLayer != null) {
+            this.mainMap.removeLayer(this.analyticsLayer)
+        }
+        this.analyticsLayer = L.tileLayer("https://vedas.sac.gov.in/InteractiveGeoService/tms_comp_diff/NDVI_MODIS/{z}/{x}/{-y}?tm_arr1=1616976000&tm_arr2=1585440000&opr=max&min_val=0&max_val=250&color_map_name=NDVI_DIFF")
 
-            this.mainMap.addLayer( this.analyticsLayer)
-        // }
-        // else {
-        //     var keys_array = Object.keys(this.mainMap._layers).map(key => parseInt(key))
-        //     keys_array.map(d => {
-        //         if (this.props.tasks[e].layer === this.mainMap._layers[d].options.layers) {
-        //             this.mainMap.removeLayer(this.mainMap._layers[d])
-        //         }
-        //     })
-        // }
+        this.mainMap.addLayer(this.analyticsLayer)
+    }
+
+    //maps layer update
+    showMapsLayer(e) {
+        console.log(e.link)
+        if (this.maplayer != null) {
+            this.mainMap.removeLayer(this.maplayer)
+        }
+        this.maplayer = L.tileLayer.wms(e.link, {
+            layers: e.layer,
+            format: e.format,
+            zIndex: 1,
+            subdomains: e.domain
+        });
+        this.mainMap.addLayer(this.maplayer)
     }
     render() {
         return <div id="map" className="mapStyle" style={style}></div>;
