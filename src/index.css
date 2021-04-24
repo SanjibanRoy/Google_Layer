@@ -151,6 +151,22 @@ display:none;
 
 .hidden { display:none !important; }
 
+.css-e56m7-control {
+min-width: 250px !important;
+width: 250px !important;
+}
+.css-17s834-control {
+  min-width: 250px !important;
+  width: 250px !important;
+  }
+.select {
+  width: 250px !important;
+}
+.MuiAccordion-root.Mui-expanded {
+  margin: 1px 0 !important;
+}
+
+
 
 
 

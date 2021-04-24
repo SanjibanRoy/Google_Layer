@@ -129,7 +129,7 @@ export const maps = [
 
 ]
 
-
+// analytics layer
 export const analytics = [
 
   {
@@ -176,7 +176,7 @@ export const analytics = [
   }
 ]
 
-
+// side pannel visibility
 export const panelVisibilty = [
 
   {
@@ -210,3 +210,12 @@ export const panelVisibilty = [
     show: false
   }
 ]
+
+//list of dates
+
+export const flavourOptions = [
+  { value: 'vanilla', label: 'Vanilla', rating: 'safe' },
+  { value: 'chocolate', label: 'Chocolate', rating: 'good' },
+  { value: 'strawberry', label: 'Strawberry', rating: 'wild' },
+  { value: 'salted-caramel', label: 'Salted Caramel', rating: 'crazy' },
+];

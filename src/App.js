@@ -7,6 +7,8 @@ import { layer } from './config'
 import { analytics } from './config'
 import { panelVisibilty } from './config'
 import { maps } from './config'
+import { flavourOptions } from './config'
+import { PlayCircleFilledWhiteRounded } from '@material-ui/icons'
 
 const App = () => {
   const [tasks, setTasks] = useState(layer)
@@ -66,6 +68,10 @@ const App = () => {
     )
     //changeVisibility: false 
 
+    //content 
+
+
+
 
   }
   return (
@@ -79,7 +85,7 @@ const App = () => {
         activateLayer1={activateAnalytics}
         changeVisibility={changeVisibility}
         ChangeMap={ChangeMap}
-
+        ndvidates={flavourOptions}
 
       />
 

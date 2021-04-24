@@ -50,19 +50,19 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
     // hide show sideBarWrapper ends
 
 
-    async getOptions(){
-        const res = await axios.get('https://jsonplaceholder.typicode.com/users')
-        const data = res.data
+    // async getOptions(){
+    //     const res = await axios.get('https://jsonplaceholder.typicode.com/users')
+    //     const data = res.data
 
-        const options = data.map(d => ({
-            "value": d.id,
-            "label": d.name
+    //     const options = data.map(d => ({
+    //         "value": d.id,
+    //         "label": d.name
 
-        }))
+    //     }))
 
 
 
-    }
+    //}
     // const options = data.map(d => ({
     //     "value": d.id,
     //     "label": d.name
