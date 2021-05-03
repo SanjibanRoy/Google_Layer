@@ -103,6 +103,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
         if (newValue) {
             const inputValue = newValue.replace(/\W/g, '');
             console.log(newValue)
+            alert('HI')
         }
         else {
             console.log('Empty')
