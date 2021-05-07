@@ -129,7 +129,7 @@ export const maps = [
 
 ]
 
-
+// analytics layer
 export const analytics = [
 
   {
@@ -176,7 +176,7 @@ export const analytics = [
   }
 ]
 
-
+// side pannel visibility
 export const panelVisibilty = [
 
   {
@@ -210,3 +210,7 @@ export const panelVisibilty = [
     show: false
   }
 ]
+
+//list of dates
+
+
