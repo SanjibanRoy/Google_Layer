@@ -68,7 +68,8 @@ export const maps = [
     layer: "analytic:ner_boundary",
     link: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
     format: 'image/png',
-    domain: " "
+    domain: " ",
+    type:"tile"
   },
   {
     id: 'Bhuvan',
@@ -98,10 +99,10 @@ export const maps = [
     text: "Open Street",
     show: false,
     class: "Maps",
-    layer: "bhuvan_imagery2",
-    link: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    link: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     format: 'png/jpeg',
-    domain: " "
+    domain: " ",
+    type:"tile"
   }
   ,
   {
@@ -112,7 +113,7 @@ export const maps = [
     layer: "analytic:ner_boundary",
     link: "http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
     format: 'image/png',
-    domain: "['mt0','mt1','mt2','mt3']"
+    domain: "['mt0','mt1','mt2','mt3']",
   }
   ,
   {

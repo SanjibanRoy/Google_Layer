@@ -1,15 +1,16 @@
+import Select from 'react-select';
 
 const LayerAnalytics = ({ task, changeLayer1, showLayer }) => {
   return (
       <div
         className={ `${showLayer? 'active':'task'}`} 
       >
-           <select onChange={(event)=>changeLayer1(event.target.value)}>
+           <Select onChange={(event)=>changeLayer1(event.target.value)}>
             {
             task.map((task, index) => (
                 <option key={index} value={task.id}>{task.text}</option>
             ))}
-      </select>
+      </Select>
       {/* <table>
         <tbody>
           <tr>

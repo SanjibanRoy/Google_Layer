@@ -8,7 +8,6 @@ import { analytics } from './config'
 import { panelVisibilty } from './config'
 import { maps } from './config'
 
-import { PlayCircleFilledWhiteRounded } from '@material-ui/icons'
 
 const App = () => {
   const [tasks, setTasks] = useState(layer)

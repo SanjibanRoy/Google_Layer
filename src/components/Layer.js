@@ -6,17 +6,14 @@ const Layer = ({ task, changeLayer, showLayer }) => {
       <div
         className={ `${showLayer? 'active':'task'}`} 
       >
-      <table>
-        <tbody>
-          <tr>
-      <td>        
+      
         <Checkbox color="primary"
           onClick={() => changeLayer(task.id)}
-        /></td><td>{task.text}{' '}</td>
-        <td><InfoIcon /></td>
-        </tr>
-        </tbody>
-      </table>
+        />
+        {task.text}{' '}
+        <InfoIcon />
+        
+       
     </div>
   )
 }

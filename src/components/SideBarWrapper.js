@@ -85,7 +85,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
 
     setTimeout(
         function () {
-            console.log(arrays.ndvidates[0].value)
+           // console.log(arrays.ndvidates[0].value)
         }
             .bind(this),
         2000
@@ -122,8 +122,24 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
             {/* load of side panel start */}
 
             {/* *************Layer Tab start*************** */}
+            
             <div className={type === 'Layer' ? 'LayerContainer' : 'hidden'}>
                 {/* List of map layers */}
+                <Paper square>
+                    <Tabs
+                        value={value}
+                        indicatorColor="primary"
+                        textColor="primary"
+                        onChange={handleChange}
+                        aria-label="disabled tabs example"
+                    >
+                        <Tab label="Base Layers" />
+                        <Tab label="Overlays" />
+
+                    </Tabs>
+
+                </Paper>
+                <div className={value === 0 ? ' ' : 'hidden'}>
                 <ul>
                     <li key={2} onClick={() => ChangeMap('Cartodb')} >< MapIcon />
                         <span> Cartodb</span>
@@ -156,7 +172,8 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                     <hr>
                     </hr>
                 </ul>
-
+                </div>
+                <div className={value === 1 ? ' ' : 'hidden'}>
                 <LayerTree
                     tasks={tasks}
                     changeLayer={activateLayer}
@@ -172,7 +189,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                     changeLayer={activateLayer}
                     category="Census"
                 />
-
+                </div>
             </div>
             {/* *************Layer Tab end*************** */}
 
@@ -196,6 +213,11 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                 </Paper>
                 {/* Tab1 Data */}
                 <div className={value === 0 ? ' ' : 'hidden'}>
+                    <AnalyticsLayers
+                    tasks={tasks}
+                    changeLayer={activateLayer}
+                    category="Natural Resource"
+                    />
                     <Accordion>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
@@ -227,7 +249,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             aria-controls="panel2a-content"
                             id="panel2a-header"
                         >
-                            <Typography className={classes.heading}>SOIL MOISTURE (SMAP)</Typography>
+                            <Typography className={classes.heading}>Soil Moisture (SMAP)</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Select className="css-e56m7-control"

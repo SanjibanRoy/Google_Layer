@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import L from 'leaflet';
-import { maps } from '../config'
 const style = {
 
     width: '100%',
@@ -17,6 +16,7 @@ const osm = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}
     tileSize: 512,
     zoomOffset: -1
 });
+
 const mapParams = {
     center: [25.95681, 91.7362],
     zoomControl: false,
@@ -24,7 +24,6 @@ const mapParams = {
     zoom: 8,
     layers: [osm]
 }
-
 
 class Map extends React.Component {
 
@@ -40,9 +39,6 @@ class Map extends React.Component {
         this.progress = null;
         this.analyticsLayer = null
         this.maplayer = null
-
-
-
     }
 
     componentDidMount() {
@@ -51,8 +47,8 @@ class Map extends React.Component {
             this.props.updateBox(e)
             console.log("Test")
         });
-
     }
+
     componentDidUpdate(prevProps, nextprops) {
         for (var i = 0; i < this.props.tasks.length; i++) {
             if (prevProps.tasks.length !== 0) {
@@ -75,7 +71,7 @@ class Map extends React.Component {
         for (i = 0; i < this.props.mapslayer.length; i++) {
 
             if (prevProps.mapslayer !== this.props.mapslayer && this.props.mapslayer[i].show === true) {
-                this.showMapsLayer(this.props.mapslayer[i])
+                this.toggleBaseLayer(this.props.mapslayer[i])
                 //console.log(this.props.analyticsLayers[i])
             }
 
@@ -89,6 +85,7 @@ class Map extends React.Component {
                 layers: this.props.tasks[e].layer,
                 format: "image/png",
                 transparent: true,
+                zIndex:100,
             })
             this.mainMap.addLayer(this.layer)
         }
@@ -114,19 +111,31 @@ class Map extends React.Component {
     }
 
     //maps layer update
-    showMapsLayer(e) {
-        console.log(e.link)
+    toggleBaseLayer(e) {
+        if(e.type==='tile'){
+        console.log(this.mainMap)
         if (this.maplayer != null) {
             this.mainMap.removeLayer(this.maplayer)
         }
-        this.maplayer = L.tileLayer.wms(e.link, {
-            layers: e.layer,
-            format: e.format,
-            zIndex: 1,
-            subdomains: e.domain
+        this.maplayer = L.tileLayer(e.link, {
+
         });
         this.mainMap.addLayer(this.maplayer)
     }
+else{
+    console.log(this.mainMap)
+    if (this.maplayer != null) {
+        this.mainMap.removeLayer(this.maplayer)
+    }
+    this.maplayer = L.tileLayer.wms(e.link, {
+        layers: e.layer,
+        format: e.format,
+        zIndex: 1,
+        subdomains: e.domain
+    });
+    this.mainMap.addLayer(this.maplayer)
+}
+}
     render() {
         return <div id="map" className="mapStyle" style={style}></div>;
     }
