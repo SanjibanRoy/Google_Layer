@@ -1,5 +1,5 @@
 //import necessary lib
-import React, { Component } from 'react'
+import React from 'react'
 import SidePanel from './SidePanel'
 import LayerTree from './LayerTree'
 import AnalyticsLayers from './AnalyticsLayers'
@@ -14,7 +14,7 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Select from 'react-select';
+import LayerAnalytics from './LayerAnalytics'
 
 // import CreatableSelect from 'react-select/creatable';
 //end of import 
@@ -24,7 +24,6 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
     const [value, setValue] = React.useState(0);
     const handleChange = (event, newValue) => {
         setValue(newValue);
-
     };
     //tab view ends
 
@@ -47,14 +46,14 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
     // hide show sideBarWrapper ends
 
 
-    // ******************************** fatch date data from database Start*******************************
+    // ******************************** fetch date data from database Start*******************************
 
     // declare list of array *PS: array used in select in list 
-    var arrays = {
-        ndvidates: [],
-        soil_moisture_dates: [],
-        et_dates: []
-    };
+    var arrays = [{
+        ndvidates: 200,
+        soil_moisture_dates: [200,300],
+        et_dates: [200,300]
+    }];
 
     //main function *API Key Required
     function getdates(name, value) {
@@ -83,13 +82,13 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
             });
     }
 
-    setTimeout(
-        function () {
-           // console.log(arrays.ndvidates[0].value)
-        }
-            .bind(this),
-        2000
-    );
+    // setTimeout(
+    //     function () {
+    //        // console.log(arrays.ndvidates[0].value)
+    //     }
+    //         .bind(this),
+    //     2000
+    // );
     // get date function *PS: put database name and array name used in select list 
     getdates('modis_ndvi', 'ndvidates')
     getdates('soil_date', 'soil_moisture_dates')
@@ -207,9 +206,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                     >
                         <Tab label="Visualization" />
                         <Tab label="Analysis" />
-
                     </Tabs>
-
                 </Paper>
                 {/* Tab1 Data */}
                 <div className={value === 0 ? ' ' : 'hidden'}>
@@ -227,20 +224,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             <Typography className={classes.heading}>MODIS NDVI</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-
-                            <Select className="css-e56m7-control"
-                                defaultValue="Select"
-                                label="Single select"
-                                options={arrays.ndvidates}
-                                onChange={handleChange}
-                                theme={theme => ({
-                                    ...theme,
-
-                                    borderRadius: 1,
-
-                                })}
-                            />
-
+                            <LayerAnalytics task={arrays} changeLayer1={activateLayer} showLayer={true} />
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>
@@ -252,17 +236,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             <Typography className={classes.heading}>Soil Moisture (SMAP)</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Select className="css-e56m7-control"
-                                defaultValue={arrays.soil_moisture_dates[2]}
-                                label="Single select"
-                                options={arrays.soil_moisture_dates}
-                                theme={theme => ({
-                                    ...theme,
-
-                                    borderRadius: 1,
-
-                                })}
-                            />
+                            <LayerAnalytics task={arrays} changeLayer1={activateLayer} showLayer={true} />
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>
@@ -274,17 +248,8 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             <Typography className={classes.heading}>Evapotranspiration</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Select className="css-e56m7-control"
-                                defaultValue={arrays.et_dates[2]}
-                                label="Single select"
-                                options={arrays.et_dates}
-                                theme={theme => ({
-                                    ...theme,
+                            <LayerAnalytics task={arrays} changeLayer1={activateLayer} showLayer={true} />
 
-                                    borderRadius: 1,
-
-                                })}
-                            />
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>
@@ -296,17 +261,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             <Typography className={classes.heading}>Tree cover</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Select className="css-e56m7-control"
-                                defaultValue={arrays.ndvidates[2]}
-                                label="Single select"
-                                options={arrays.ndvidates}
-                                theme={theme => ({
-                                    ...theme,
-
-                                    borderRadius: 1,
-
-                                })}
-                            />
+                            <LayerAnalytics task={arrays} changeLayer1={activateLayer} showLayer={true} />
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>
@@ -318,17 +273,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             <Typography className={classes.heading}>Tree cover gain</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Select className="css-e56m7-control"
-                                defaultValue={arrays.ndvidates[2]}
-                                label="Single select"
-                                options={arrays.ndvidates}
-                                theme={theme => ({
-                                    ...theme,
-
-                                    borderRadius: 1,
-
-                                })}
-                            />
+                            <LayerAnalytics task={arrays} changeLayer1={activateLayer} showLayer={true} />
                         </AccordionDetails>
                     </Accordion>
 
@@ -416,10 +361,6 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
             </div>
             {/* *************Vedas Services Tab start*************** */}
         </div>
-
-
-
-
     )
 }
 

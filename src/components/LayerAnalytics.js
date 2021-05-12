@@ -1,27 +1,17 @@
-import Select from 'react-select';
 
 const LayerAnalytics = ({ task, changeLayer1, showLayer }) => {
+  console.log(task)
   return (
       <div
         className={ `${showLayer? 'active':'task'}`} 
       >
-           <Select onChange={(event)=>changeLayer1(event.target.value)}>
+           <select onChange={(event)=>changeLayer1(event.target.value)}>
+              {/* <option value="1">Test</option> */}
             {
             task.map((task, index) => (
-                <option key={index} value={task.id}>{task.text}</option>
+                <option key={index} value={task.ndvidates}>{task.ndvidates}</option>
             ))}
-      </Select>
-      {/* <table>
-        <tbody>
-          <tr>
-      <td>        
-        <Checkbox color="primary"
-          onClick={() => changeLayer(task.id)}
-        /></td><td>{task.text}{' '}</td>
-        <td><InfoIcon /></td>
-        </tr>
-        </tbody>
-      </table> */}
+      </select>
     </div>
   )
 }
