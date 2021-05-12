@@ -38,15 +38,12 @@ const App = () => {
     )
   }
 
-
-
-
   // Add Remove Layer
   const activateAnalytics = (id) => {
     console.log(id)
     setAnalytics(
       analytic.map((task) =>
-        task.id === id ? { ...task, show: !task.show } : { ...task, show: false }
+        task.id == id ? { ...task, show: !task.show } : { ...task, show: false }
       )
     )
   }

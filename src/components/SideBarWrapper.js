@@ -2,7 +2,6 @@
 import React from 'react'
 import SidePanel from './SidePanel'
 import LayerTree from './LayerTree'
-import AnalyticsLayers from './AnalyticsLayers'
 import SatelliteIcon from '@material-ui/icons/Satellite';
 import MapIcon from '@material-ui/icons/Map';
 import Paper from '@material-ui/core/Paper';
@@ -96,18 +95,6 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
 
     // ******************************** fatch date data from database End here*******************************
 
-    //handle input change
-
-    const handleInputChange = (newValue) => {
-        if (newValue) {
-            const inputValue = newValue.replace(/\W/g, '');
-            console.log(newValue)
-            alert('HI')
-        }
-        else {
-            console.log('Empty')
-        }
-    };
 
 
 
@@ -210,11 +197,6 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                 </Paper>
                 {/* Tab1 Data */}
                 <div className={value === 0 ? ' ' : 'hidden'}>
-                    <AnalyticsLayers
-                    tasks={tasks}
-                    changeLayer={activateLayer}
-                    category="Natural Resource"
-                    />
                     <Accordion>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
@@ -224,7 +206,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             <Typography className={classes.heading}>MODIS NDVI</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <LayerAnalytics task={arrays} changeLayer1={activateLayer} showLayer={true} />
+                            <LayerAnalytics task={analyticsLayers} changeLayer1={activateLayer1} showLayer="modisndvi" />
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>
@@ -236,7 +218,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             <Typography className={classes.heading}>Soil Moisture (SMAP)</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <LayerAnalytics task={arrays} changeLayer1={activateLayer} showLayer={true} />
+                            <LayerAnalytics task={analyticsLayers} changeLayer1={activateLayer1} showLayer="smap" />
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>
@@ -248,7 +230,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             <Typography className={classes.heading}>Evapotranspiration</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <LayerAnalytics task={arrays} changeLayer1={activateLayer} showLayer={true} />
+                            <LayerAnalytics task={analyticsLayers} changeLayer1={activateLayer1} showLayer="et" />
 
                         </AccordionDetails>
                     </Accordion>
@@ -261,7 +243,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             <Typography className={classes.heading}>Tree cover</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <LayerAnalytics task={arrays} changeLayer1={activateLayer} showLayer={true} />
+                            <LayerAnalytics task={analyticsLayers} changeLayer1={activateLayer1} showLayer={true} />
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>
@@ -273,24 +255,50 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             <Typography className={classes.heading}>Tree cover gain</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <LayerAnalytics task={arrays} changeLayer1={activateLayer} showLayer={true} />
+                            <LayerAnalytics task={analyticsLayers} changeLayer1={activateLayer1} showLayer={true} />
                         </AccordionDetails>
                     </Accordion>
 
                 </div>
                 {/* Tab2 Data */}
                 <div className={value === 1 ? ' ' : 'hidden'}>
-                    <LayerTree
-                        tasks={tasks}
-                        changeLayer={activateLayer}
-                        category="Two"
-                        state='test'
-                    />
-                    <LayerTree
-                        tasks={tasks}
-                        changeLayer={activateLayer}
-                        category="Natural Resource"
-                    />
+                <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <Typography className={classes.heading}>MODIS NDVI</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <LayerAnalytics task={analyticsLayers} changeLayer1={activateLayer1} showLayer="modisndvi" />
+                        </AccordionDetails>
+                    </Accordion>
+                    <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel2a-content"
+                            id="panel2a-header"
+                        >
+                            <Typography className={classes.heading}>Soil Moisture (SMAP)</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <LayerAnalytics task={analyticsLayers} changeLayer1={activateLayer1} showLayer="smap" />
+                        </AccordionDetails>
+                    </Accordion>
+                    <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel3a-content"
+                            id="panel3a-header"
+                        >
+                            <Typography className={classes.heading}>Evapotranspiration</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <LayerAnalytics task={analyticsLayers} changeLayer1={activateLayer1} showLayer="et" />
+
+                        </AccordionDetails>
+                    </Accordion>
                 </div>
 
             </div>
