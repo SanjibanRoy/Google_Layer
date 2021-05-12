@@ -39,11 +39,11 @@ const App = () => {
   }
 
   // Add Remove Layer
-  const activateAnalytics = (id) => {
-    console.log(id)
+  const activateAnalytics = (id, typeLayer) => {
+    console.log(id, typeLayer)
     setAnalytics(
       analytic.map((task) =>
-        task.id == id ? { ...task, show: !task.show } : { ...task, show: false }
+        task.text == typeLayer ? { ...task, show: true } : { ...task, show: false }
       )
     )
   }

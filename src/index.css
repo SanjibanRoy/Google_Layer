@@ -62,6 +62,7 @@ body {
   padding:  10px;
   height: auto;
   background-color: rgb(13, 100, 141);
+  box-shadow: 0px 0px 5px #fff;
 }
 
 .SidePanel>ul>li:nth-child(1){
@@ -108,7 +109,11 @@ display:none;
   background-color: #fff;
   
 }
-
+.activeAnalytics{
+  cursor: pointer;
+  background-color: #fff;
+  
+}
 .active table>tbody>tr>td{
   padding:0px;
   margin: 0px;
@@ -175,8 +180,15 @@ width: 250px !important;
   background-color: #bbb8b8;
   border-bottom: 1px solid #080808;
 }
+.MuiButtonBase-root.MuiAccordionSummary-root{
+  max-height: 35px;
+  min-height: 30px;
+}
+.MuiButtonBase-root.MuiAccordionSummary-root.Mui-expanded {
+  min-height: 30px;
+  max-height: 35px;
 
-
+}
 
 
 

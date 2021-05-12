@@ -135,21 +135,21 @@ export const analytics = [
 
   {
     id: 2,
-    text: "District Boundary",
+    text: "modisndvi",
     show: false,
     class: "Admin",
     layer: "analytic:ner_boundary"
   },
   {
     id: 3,
-    text: "Land Use",
+    text: "smap",
     show: false,
     class: "Natural Resource",
     layer: "analytic:ner_boundary"
   },
   {
     id: 4,
-    text: "Wetlands",
+    text: "et",
     show: false,
     class: "Natural Resource",
     layer: "analytic:ner_boundary"

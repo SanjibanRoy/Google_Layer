@@ -12,27 +12,27 @@ const SidePanel = ({ changeVisibility }) => {
                 <hr>
                 </hr>
                 <li key={2} onClick={() => changeVisibility('Layer')} >< LayersIcon />
-                    <span>Layer</span>
+                    <span align="center">Layer</span>
                 </li>
                 <hr>
                 </hr>
                 <li key={3} onClick={() => changeVisibility('Vegetation')} >< EcoIcon />
-                    <span>Vegetation</span>
+                    <span align="center">Vegetation</span>
                 </li>
                 <hr>
                 </hr>
                 <li key={4} onClick={() => changeVisibility('Weather')} ><EcoIcon />
-                    <span>Weather</span>
+                    <span align="center">Weather</span>
                 </li>
                 <hr>
                 </hr>
                 <li key={5} onClick={() => changeVisibility('Water_Resources')} ><EcoIcon />
-                    <span>Water Resource</span>
+                    <span align="center">Water Resource</span>
                 </li>
                 <hr>
                 </hr>
                 <li key={6} onClick={() => changeVisibility('Satellite_Imagery')} ><CloudIcon />
-                    <span>Satellite Imagery</span>
+                    <span align="center">Satellite Imagery</span>
                 </li>
                 <hr>
                 </hr>
