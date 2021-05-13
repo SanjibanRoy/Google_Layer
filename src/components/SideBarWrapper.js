@@ -13,8 +13,9 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import LayerAnalytics from './LayerAnalytics'
-import LayerAnalyticsVisualise from './LayerAnalyticsVisualise'
+import LayerAnalytics from './LayerAnalytics';
+import LayerAnalyticsVisualise from './LayerAnalyticsVisualise';
+import VegetationAnalysis from './VegetationAnalysis'
 // import CreatableSelect from 'react-select/creatable';
 //end of import 
 
@@ -257,56 +258,8 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                 </div>
                 {/* Tab2 Data */}
                 <div className={value === 1 ? ' ' : 'hidden'}>
-                <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel1a-content"
-                            id="panel1a-header"
-                        >
-                            <Typography className={classes.heading}>Change Analysis</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <LayerAnalytics task={analyticsLayers} changeLayer1={activateLayer1} showLayer="modisndvi" />
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel2a-content"
-                            id="panel2a-header"
-                        >
-                            <Typography className={classes.heading}>Statistical Analysis</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <LayerAnalytics task={analyticsLayers} changeLayer1={activateLayer1} showLayer="smap" />
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel3a-content"
-                            id="panel3a-header"
-                        >
-                            <Typography className={classes.heading}>Threshold Analysis</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <LayerAnalytics task={analyticsLayers} changeLayer1={activateLayer1} showLayer="et" />
 
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel3a-content"
-                            id="panel3a-header"
-                        >
-                            <Typography className={classes.heading}>RGB Composite</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <LayerAnalytics task={analyticsLayers} changeLayer1={activateLayer1} showLayer="et" />
-
-                        </AccordionDetails>
-                    </Accordion>
+                            <VegetationAnalysis task={analyticsLayers} changeLayer1={activateLayer1} showLayer="modisndvi" />
                 </div>
 
             </div>
