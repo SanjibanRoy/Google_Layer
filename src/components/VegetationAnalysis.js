@@ -1,11 +1,11 @@
+import ChangeDates from "./ChangeDates";
+import AnalyticsDates from "./AnalyticsDates";
+import RGBDropDown from "./RGBDropDown";
+import React, { useState } from "react";
+// import todos from "../redux/reducers/todos";
+import Todo from "./Todo"
 const VegetationAnalysis = ({ task, changeLayer1, showLayer }) => {
-  var arrays = [
-    {
-      ndvidates: [200, 300],
-      soil_moisture_dates: [200, 300],
-      et_dates: [200, 300],
-    },
-  ];
+  const [analytics, setanalytics] = useState("rgb");
 
   return (
     <div>
@@ -20,7 +20,23 @@ const VegetationAnalysis = ({ task, changeLayer1, showLayer }) => {
       <div className="LayerTree">
         <p>Operations</p>
       </div>
-      <select onChange={(event) => changeLayer1(event.target.value, showLayer)}>
+      <select
+        // onChange={(event) =>
+        //   event.target.value === "Difference"
+        //     ? setanalytics("Change")
+        //     : event.target.value === "rgb"
+        //     ? setanalytics("RGB")
+        //     : setanalytics("Anaytics")
+        // }
+        onChange={(event) => {
+          event.target.value === "Difference"
+            ? setanalytics("Change")
+            : event.target.value === "rgb"
+            ? setanalytics("RGB")
+            : setanalytics("Anaytics");
+
+            changeLayer1(event.target.value, showLayer);        }}
+      >
         <option value="Anomaly">Anomaly</option>
         <option value="Difference">Difference</option>
         <option value="Maximum">Maximum</option>
@@ -33,21 +49,18 @@ const VegetationAnalysis = ({ task, changeLayer1, showLayer }) => {
       </select>
       <div className="LayerTree">
         <p>Dates</p>
+        <Todo />
+
       </div>
-      <select onChange={(event) => changeLayer1(event.target.value, showLayer)}>
-        {arrays[0].ndvidates.map((task, index) => (
-          <option key={index} value={task}>
-            {task}
-          </option>
-        ))}
-      </select>
-      <select onChange={(event) => changeLayer1(event.target.value, showLayer)}>
-        {arrays[0].ndvidates.map((task, index) => (
-          <option key={index} value={task}>
-            {task}
-          </option>
-        ))}
-      </select>
+      {analytics === "Change" ? (
+        <ChangeDates />
+      ) : analytics === "Anaytics" ? (
+        <AnalyticsDates />
+      ) : (
+        <RGBDropDown />
+      )
+    }
+
       <div className="LayerTree">
         <p>Mask</p>
       </div>
