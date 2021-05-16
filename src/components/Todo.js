@@ -1,15 +1,13 @@
 import React from "react";
-import { connect } from "react-redux";
-// import { toggleTodo } from "../redux/actions";
 import {useSelector} from 'react-redux';
-import {selectUserName} from '../features/layers/layerslice'
+import {selectDataSet} from '../features/layers/layerslice'
 
 function Todo({ todo }) {
-    const state = useSelector(selectUserName)
+    const state = useSelector(selectDataSet)
     console.log(state)
     return (
         <div>
-            <li>{todo}</li>
+            <li>{state}</li>
         </div>
     )
 }

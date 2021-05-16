@@ -1,52 +1,29 @@
-// // import {createSlice} from 'react-redux';
-// // import { createSlice } from '@reduxjs/toolkit'
-// import { createSlice } from "@reduxjs/toolkit";
-
-// const initialState = {
-//   layers: [
-//     "Test1",
-//     "Test2",
-//     //Administrator boundary start
-//   ],
-// };
-
-// // const layerSlice = createSlice({
-// //   name: "layer",
-// //   initialState,
-// //   reducers: {},
-// // });
-
-// const userSlice = createSlice({
-//     name: "user",
-//     initialState,
-//     reducers: {},
-//   });
-// export const selectLayers = (state) => state.user.name;
-
-// // export const selectLayers = (state) => state.layer.layers;
-
-// export default userSlice.reducers;
-
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  name: ["Test","Test2"],
-  email: "",
-  photo: "",
+  dataset: "Test",
+  operation: "",
+  dates: "",
+  mask:""
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    
+    setAnalyticsDetails: (state, action) => {
+      state.dataset = action.payload.dataset;
+      state.operation = action.payload.operation;
+      state.mask = action.payload.mask;
+    }
   },
 });
 
-// export const { setUserLoginDetails, setSignOutState } = userSlice.actions;
+export const { setAnalyticsDetails } = userSlice.actions;
 
-export const selectUserName = (state) => state;
-export const selectUserEmail = (state) => state.user.email;
-export const selectUserPhoto = (state) => state.user.photo;
+export const selectDataSet = (state) => state.user.dataset;
+export const selectOperation = (state) => state.user.operation;
+export const selectDates = (state) => state.user.dates;
+export const selectMask = (state) => state.user.mask;
 
 export default userSlice.reducer;
