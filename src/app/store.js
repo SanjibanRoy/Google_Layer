@@ -9,12 +9,12 @@
 
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import userReducer from "../features/layers/layerslice";
-// import movieReducer from "../features/movie/movieSlice";
+import layervisualiseReducer from "../features/layers/layervisualiseslice";
 
 export default configureStore({
   reducer: {
     user: userReducer,
-    // movie: movieReducer,
+    layervisualise: layervisualiseReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

@@ -7,7 +7,7 @@ function Todo({ todo }) {
     console.log(state)
     return (
         <div>
-            <li>{state}</li>
+            <li>state</li>
         </div>
     )
 }

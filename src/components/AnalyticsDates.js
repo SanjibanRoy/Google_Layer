@@ -1,6 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setAnalyticsDetails } from "../features/layers/layerslice";
+import { useSelector } from "react-redux";
+import { selectDataSet } from "../features/layers/layerslice";
+
 var arrays = [
   {
     ndvidates: [200, 300],
@@ -9,32 +12,31 @@ var arrays = [
   },
 ];
 
-function AnalyticsDates(changeLayer1, showLayer) {
+function AnalyticsDates() {
   const dispatch = useDispatch();
+  const state = useSelector(selectDataSet);
+
   const setDate = (e) => {
-    dispatch(
-      setAnalyticsDetails({
-        dates: [e],
-      })
-    );
+    dispatch(setAnalyticsDetails({ ...state, dates: e }));
   };
+
   return (
     <div>
-      <select onChange={(event) => setDate(event.target.value, showLayer)}>
+      <select onChange={(event) => setDate(event.target.value)}>
         {arrays[0].ndvidates.map((task, index) => (
           <option key={index} value={task}>
             {task}
           </option>
         ))}
       </select>
-      <select onChange={(event) => changeLayer1(event.target.value, showLayer)}>
+      <select onChange={(event) => setDate(event.target.value)}>
         {arrays[0].ndvidates.map((task, index) => (
           <option key={index} value={task}>
             {task}
           </option>
         ))}
       </select>
-      <select onChange={(event) => changeLayer1(event.target.value, showLayer)}>
+      <select onChange={(event) => setDate(event.target.value)}>
         {arrays[0].ndvidates.map((task, index) => (
           <option key={index} value={task}>
             {task}

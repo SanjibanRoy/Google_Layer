@@ -203,7 +203,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             <Typography className={classes.heading}>NDVI</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <LayerAnalyticsVisualise task={analyticsLayers} changeLayer1={activateLayer1} showLayer="modisndvi" />
+                            <LayerAnalyticsVisualise  showLayer="modisndvi" />
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>
@@ -215,7 +215,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             <Typography className={classes.heading}>Soil Moisture (SMAP)</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <LayerAnalyticsVisualise task={analyticsLayers} changeLayer1={activateLayer1} showLayer="smap" />
+                            <LayerAnalyticsVisualise   showLayer="smap" />
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>
@@ -227,7 +227,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             <Typography className={classes.heading}>Evapotranspiration</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <LayerAnalyticsVisualise task={analyticsLayers} changeLayer1={activateLayer1} showLayer="et" />
+                            <LayerAnalyticsVisualise  showLayer="et" />
 
                         </AccordionDetails>
                     </Accordion>
@@ -240,7 +240,7 @@ const SideBarWrapper = ({ tasks, analyticsLayers, activateLayer, activateLayer1,
                             <Typography className={classes.heading}>Forest Fire</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <LayerAnalyticsVisualise task={analyticsLayers} changeLayer1={activateLayer1} showLayer="fire" />
+                            <LayerAnalyticsVisualise   showLayer="fire" />
                         </AccordionDetails>
                     </Accordion>
                     <Accordion>

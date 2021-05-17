@@ -1,17 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setAnalyticsDetails } from "../features/layers/layerslice";
-
+import { useSelector } from "react-redux";
+import { selectDataSet } from "../features/layers/layerslice";
 const RGBDropDown = () => {
   const dispatch = useDispatch();
+  const state = useSelector(selectDataSet);
+
   const setDate = (e) => {
     dispatch(
-      setAnalyticsDetails({
-        dates: [e],
+      setAnalyticsDetails({...state,
+        dates: e,
       })
     );
   };
+
   return (
     <RGB>
       <select onChange={(e) => setDate(e.target.value)}>
@@ -24,7 +28,7 @@ const RGBDropDown = () => {
         <option value="Band7">Band7</option>
         <option value="Band8">Band8</option>
       </select>
-      <select>
+      <select onChange={(e) => setDate(e.target.value)}>
         <option value="Band1">Band1</option>
         <option value="Band2">Band2</option>
         <option value="Band3">Band3</option>
@@ -34,7 +38,7 @@ const RGBDropDown = () => {
         <option value="Band7">Band7</option>
         <option value="Band8">Band8</option>
       </select>
-      <select>
+      <select onChange={(e) => setDate(e.target.value)}>
         <option value="Band1">Band1</option>
         <option value="Band2">Band2</option>
         <option value="Band3">Band3</option>
