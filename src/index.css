@@ -11,7 +11,10 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-
+.leaflet-container {
+  width: 100%;
+  height: 100vh;
+}
 .infobox{
   width: 15%;
   top: 8px;
