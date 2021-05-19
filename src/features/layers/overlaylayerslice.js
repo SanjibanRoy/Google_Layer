@@ -1,17 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { layer } from '../../config'
 
-const initialState = {
-  dataset: "Test",
-  dates: ""
-};
-
+const initialState = layer
+// console.log(initialState)
 const overlayLayerSlice = createSlice({
   name: "overlaylayer",
   initialState,
   reducers: {
     setAnalyticsDetails: (state, action) => {
-      state.dataset =  action.payload.dataset;
-      state.dates = action.payload.dates;
+      state[action.payload.id].show = action.payload.show;
     }
   },
 });
@@ -19,6 +16,5 @@ const overlayLayerSlice = createSlice({
 export const { setAnalyticsDetails } = overlayLayerSlice.actions;
 
 export const selectLayerDataSet = (state) => state.overlaylayer;
-
 
 export default overlayLayerSlice.reducer;

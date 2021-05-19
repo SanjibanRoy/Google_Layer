@@ -4,12 +4,14 @@ import {
   WMSTileLayer,
   useMapEvents,
 } from "react-leaflet";
-// import { LatLngExpression } from "leaflet";
 import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { selectDataSet } from "../features/layers/layerslice";
-import { selectLayerDataSet } from "../features/layers/layervisualiseslice";
+import { selectLayerDataSet } from "../features/layers/overlaylayerslice";
+import { selectBaseDataSet } from "../features/layers/baselayerslice";
+import { selectLayerData } from "../features/layers/layervisualiseslice";
 import React from "react";
+
 function HandleClick() {
   const map = useMapEvents({
     click: (e) => {
@@ -18,6 +20,7 @@ function HandleClick() {
   });
   return null;
 }
+
 function HandleHover() {
   const map = useMapEvents({
     mousemove: (e) => {
@@ -28,40 +31,60 @@ function HandleHover() {
 }
 
 const Map = () => {
-  // const mounted = useRef();
-
+  const [AnalyticsLayer,SetAnalytics]=useState({
+    show:false
+  })   
   const state = useSelector(selectDataSet);
-  const layerState = useSelector(selectLayerDataSet);
-  console.log(layerState);
+  const base = useSelector(selectBaseDataSet);
   console.log(state);
-  // console.log(layerState);
-  // // const [mainMap, setmainMap] = useState(0);
-  // // const [analyticsLayer, setanalyticsLayer] = useState(null);
-  // useEffect(() => {
-  //   // Update the document title using the browser API
-  //   console.log("Test use effect");
-  // });
+  const analyticsvisualise = useSelector(selectLayerData);
+  console.log(analyticsvisualise);
+  const layerState = useSelector(selectLayerDataSet);
+
+
+
+
+  
+
   return (
     <MapContainer center={[26.2006, 92.9376]} zoom={6} zoomControl={false}>
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      
-          <WMSTileLayer
-            format="image/png"
-            layers="analytic:ner_landuse_landcover_50k_1st_cycle"
-            url="https://apps.nesdr.gov.in:442/geoserver/wms"
-            transparent="true"
-          />
-          <WMSTileLayer
-            format="image/png"
-            layers="analytic:ner_census"
-            url="https://apps.nesdr.gov.in:442/geoserver/wms"
-            transparent="true"
-          />
-       
-
+      {base.map(
+        (baselayer) =>
+          baselayer.show &&
+          (baselayer.type === "tile" ? (
+            <TileLayer url={baselayer.link} zIndex="1" />
+          ) : (
+            <WMSTileLayer
+              url={baselayer.link}
+              layers={baselayer.layer}
+              format="image/png"
+              zIndex="1"
+            />
+          ))
+      )}
+      {layerState.map(
+        ( overlayer) =>
+          overlayer.show && (
+            <WMSTileLayer
+              format="image/png"
+              layers={overlayer.layer}
+              url="https://apps.nesdr.gov.in:442/geoserver/wms"
+              transparent="true"
+              zIndex="10"
+            />
+          )
+      )}
+      {
+          AnalyticsLayer.show && (
+            <WMSTileLayer
+              format="image/png"
+              layers={AnalyticsLayer.layer}
+              url="https://apps.nesdr.gov.in:442/geoserver/wms"
+              transparent="true"
+              zIndex="10"
+            />
+          )
+      }
       <HandleClick />
       <HandleHover />
     </MapContainer>

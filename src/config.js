@@ -61,9 +61,9 @@ export const maps = [
 
   //maps start 
   {
-    id: 'Cartodb',
+    id: 1,
     text: "Cartodb",
-    show: false,
+    show: true,
     class: "Maps",
     layer: "analytic:ner_boundary",
     link: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
@@ -72,7 +72,7 @@ export const maps = [
     type:"tile"
   },
   {
-    id: 'Bhuvan',
+    id: 2,
     text: "Bhuvan",
     show: false,
     class: "Maps",
@@ -84,7 +84,7 @@ export const maps = [
   }
   ,
   {
-    id: 'BhuvanSatellite',
+    id: 3,
     text: "BhuvanSatellite",
     show: false,
     class: "Maps",
@@ -95,7 +95,7 @@ export const maps = [
   }
   ,
   {
-    id: 'Open_Street',
+    id: 4,
     text: "Open Street",
     show: false,
     class: "Maps",
@@ -106,7 +106,7 @@ export const maps = [
   }
   ,
   {
-    id: 'Google_Map',
+    id: 5,
     text: "Google Map",
     show: false,
     class: "Maps",
@@ -117,7 +117,7 @@ export const maps = [
   }
   ,
   {
-    id: 'Google_Satellite',
+    id: 6,
     text: "Google Satellite",
     show: false,
     class: "Maps",

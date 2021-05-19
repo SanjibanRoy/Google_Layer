@@ -2,23 +2,25 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   dataset: "Test",
-  dates: ""
+  dates: "",
+  show: ""
 };
 
 const layerVisualiseSlice = createSlice({
   name: "layervisualise",
   initialState,
   reducers: {
-    setAnalyticsDetails: (state, action) => {
+    setAnalyticsVisual: (state, action) => {
       state.dataset =  action.payload.dataset;
       state.dates = action.payload.dates;
+      state.show = action.payload.show;
     }
   },
 });
 
-export const { setAnalyticsDetails } = layerVisualiseSlice.actions;
+export const { setAnalyticsVisual } = layerVisualiseSlice.actions;
 
-export const selectLayerDataSet = (state) => state.layervisualise;
+export const selectLayerData = (state) => state.layervisualise;
 
 
 export default layerVisualiseSlice.reducer;

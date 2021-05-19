@@ -1,24 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { maps } from "../../config";
 
-const initialState = {
-  dataset: "Test",
-  dates: ""
-};
-
-const layerVisualiseSlice = createSlice({
-  name: "layervisualise",
+const initialState = maps;
+console.log(initialState);
+const baseLayerSlice = createSlice({
+  name: "baselayer",
   initialState,
   reducers: {
-    setAnalyticsDetails: (state, action) => {
-      state.dataset =  action.payload.dataset;
-      state.dates = action.payload.dates;
-    }
+    setBaseDetails: (state, action) => {
+      console.log(action.payload.data);
+      state.map((st) => {
+        st.id === action.payload.data ? (st.show = true) : (st.show = false);
+      });
+    },
   },
 });
 
-export const { setAnalyticsDetails } = layerVisualiseSlice.actions;
+export const { setBaseDetails } = baseLayerSlice.actions;
 
-export const selectLayerDataSet = (state) => state.layervisualise;
+export const selectBaseDataSet = (state) => state.baselayer;
 
-
-export default layerVisualiseSlice.reducer;
+export default baseLayerSlice.reducer;

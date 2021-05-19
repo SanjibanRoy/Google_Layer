@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { setAnalyticsDetails } from "../features/layers/layervisualiseslice";
-import { useSelector } from "react-redux";
-import { selectLayerDataSet } from "../features/layers/layervisualiseslice";
+import { setAnalyticsVisual } from "../features/layers/layervisualiseslice";
+// import { useSelector } from "react-redux";
+// import { selectLayerData } from "../features/layers/layervisualiseslice";
 
 const LayerAnalyticsVisualise = ({showLayer }) => {
   var arrays = [{
@@ -10,12 +10,13 @@ const LayerAnalyticsVisualise = ({showLayer }) => {
     et_dates: [200,300]
 }];
 const dispatch = useDispatch();
-const state = useSelector(selectLayerDataSet);
+// const state = useSelector(selectLayerData);
 
 const setDate = (date,data) => {
   dispatch(
-    setAnalyticsDetails({dataset:data.showLayer,
+    setAnalyticsVisual({dataset:data.showLayer,
       dates: date,
+      show:true
     })
   );
 };

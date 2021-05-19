@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { selectDataSet } from "../features/layers/layerslice";
 import { useDispatch } from "react-redux";
 import { setAnalyticsDetails } from "../features/layers/layerslice";
+import { setAnalyticsVisual } from "../features/layers/layervisualiseslice";
 
 var arrays = [
   {
@@ -14,10 +15,13 @@ var arrays = [
 
 function ChangeDates() {
   const dispatch = useDispatch();
+  const dispatch1 = useDispatch();
   const state = useSelector(selectDataSet);
 
   const setDate = (e) => {
-    dispatch(setAnalyticsDetails({ ...state, dates: e }));
+    dispatch(setAnalyticsDetails({ ...state, dates: e, show:true }));
+    dispatch1(setAnalyticsVisual({ show: false }));
+
   };
 
   return (

@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  dataset: "Test",
+  dataset: "",
   operation: "",
   dates: "",
-  mask:""
+  mask:"",
+  show:""
 };
 
 const userSlice = createSlice({
@@ -16,6 +17,7 @@ const userSlice = createSlice({
       state.operation = action.payload.operation;
       state.dates = action.payload.dates;
       state.mask =  action.payload.mask;
+      state.show = action.payload.show;
     }
   },
 });

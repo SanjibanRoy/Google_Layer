@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { setAnalyticsDetails } from "../features/layers/layerslice";
 import {useSelector} from 'react-redux';
 import {selectDataSet} from '../features/layers/layerslice'
+import { setAnalyticsVisual } from "../features/layers/layervisualiseslice";
+
 // import todos from "../redux/reducers/todos";
 // import Todo from "./Todo"
 const VegetationAnalysis = () => {
@@ -20,6 +22,11 @@ const VegetationAnalysis = () => {
         operation: e,
       })
     );
+    dispatch(
+      setAnalyticsVisual({
+        show: false,
+      })
+    );
   };
 
   const setMask = (e) => {
@@ -29,12 +36,22 @@ const VegetationAnalysis = () => {
         mask: e,
       })
     );
+    dispatch(
+      setAnalyticsVisual({
+        show: false,
+      })
+    );
   };
 
   const setDataset = (e) => {
     dispatch(
       setAnalyticsDetails({...state,
         dataset: e,
+      })
+    );
+    dispatch(
+      setAnalyticsVisual({
+        show: false,
       })
     );
   };
