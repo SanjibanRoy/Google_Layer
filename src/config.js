@@ -4,7 +4,7 @@ export const layer = [
   {
     id: 1,
     text: "State Boundary",
-    show: false,
+    show: true,
     class: "Administrator",
     layer: "NEC:ner_states"
   },

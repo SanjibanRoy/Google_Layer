@@ -1,29 +1,26 @@
-// import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-// const initialState = {
-//   dataset: "Test",
-//   operation: "",
-//   dates: "",
-//   mask: "",
-// };
+const initialState = {
+  lat: "Test",
+  lon: "",
+  zoom: "",
+  overlays:[]
+};
 
-// const mapSlice = createSlice({
-//   name: "mapstate",
-//   initialState,
-//   reducers: {
-//     setAnalyticsDetails: (state, action) => {
-//       state.dataset = action.payload.dataset;
-//       state.operation = action.payload.operation;
-//       state.dates = action.payload.dates;
-//       state.mask = action.payload.mask;
-//     },
-//   },
-// });
+const mapSlice = createSlice({
+  name: "mapstate",
+  initialState,
+  reducers: {
+    setMapState: (state, action) => {
+      state.lat = action.payload.lat;
+      state.lon = action.payload.lon;
+      state.zoom = action.payload.zoom;
+      state.overlays = action.payload.overlays
+    },
+  },
+});
 
-// export const { setAnalyticsDetails } = mapSlice.actions;
-// export const selectDataSet = (state) => state.mapstate;
-// export const selectOperation = (state) => state.mapstate.operation;
-// export const selectDates = (state) => state.mapstate.dates;
-// export const selectMask = (state) => state.mapstate.mask;
+export const { setMapState } = mapSlice.actions;
+export const selectMapstate = (state) => state.mapstate;
 
-// export default mapSlice.reducer;
+export default mapSlice.reducer;

@@ -23,7 +23,7 @@ const Layer = ({ task, showLayer }) => {
         className={ `${showLayer? 'active':'task'}`} 
       >
       
-        <Checkbox color="primary"
+        <Checkbox color="primary"  defaultChecked={task.show&&"checked"}
           onClick={(e) => toggleLayer(task.id,e.target.checked)}
         />
         {task.text}{' '}
