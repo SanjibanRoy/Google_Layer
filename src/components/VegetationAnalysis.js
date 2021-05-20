@@ -61,9 +61,9 @@ const VegetationAnalysis = () => {
         <p>Dataset</p>
       </div>
       <select onChange={(event) => setDataset(event.target.value)}>
-        <option value="ndvi">Modis NDVI</option>
+        <option value="modis_ndvi">Modis NDVI</option>
         <option value="et">MODIS ET</option>
-        <option value="smap">Soil Moisture (SMAP)</option>
+        <option value="soil_date">Soil Moisture (SMAP)</option>
       </select>
       <div className="LayerTree">
         <p>Operations</p>
