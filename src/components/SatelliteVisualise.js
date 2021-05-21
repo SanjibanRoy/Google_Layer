@@ -30,7 +30,7 @@ const SatelliteVisualise = () => {
               <Typography className={classes.heading}>Landsat</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <LayerAnalyticsVisualise showLayer="modisndvi" />
+              {/* <LayerAnalyticsVisualise showLayer="modisndvi" /> */}
             </AccordionDetails>
           </Accordion>
           <Accordion>
@@ -42,7 +42,7 @@ const SatelliteVisualise = () => {
               <Typography className={classes.heading}>Sentinel</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <LayerAnalyticsVisualise showLayer="modisndvi" />
+              {/* <LayerAnalyticsVisualise showLayer="modisndvi" /> */}
             </AccordionDetails>
           </Accordion>
           <Accordion>
@@ -56,7 +56,7 @@ const SatelliteVisualise = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <LayerAnalyticsVisualise showLayer="modisndvi" />
+              {/* <LayerAnalyticsVisualise showLayer="modisndvi" /> */}
             </AccordionDetails>
           </Accordion>
         </div>

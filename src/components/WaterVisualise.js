@@ -29,7 +29,7 @@ const WaterVisualise = () => {
               <Typography className={classes.heading}>NDWI</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <LayerAnalyticsVisualise showLayer="smap" />
+              {/* <LayerAnalyticsVisualise showLayer="smap" /> */}
             </AccordionDetails>
           </Accordion>
           <Accordion>
@@ -43,7 +43,7 @@ const WaterVisualise = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <LayerAnalyticsVisualise showLayer="smap" />
+              {/* <LayerAnalyticsVisualise showLayer="smap" /> */}
             </AccordionDetails>
           </Accordion>
           <Accordion>
@@ -57,7 +57,7 @@ const WaterVisualise = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <LayerAnalyticsVisualise showLayer="smap" />
+              {/* <LayerAnalyticsVisualise showLayer="smap" /> */}
             </AccordionDetails>
           </Accordion>
         </div>

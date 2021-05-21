@@ -11,12 +11,14 @@ import { setAnalyticsVisual } from "../features/layers/layervisualiseslice";
 // import todos from "../redux/reducers/todos";
 // import Todo from "./Todo"
 const VegetationAnalysis = () => {
-  const [analytics, setanalytics] = useState("rgb");
+  const [analytics, setanalytics] = useState("Change");
   const dispatch = useDispatch();
-  const state = useSelector(selectDataSet)
+  const dispatch1 = useDispatch();
 
+  const state = useSelector(selectDataSet)
+  const [data,setData] = useState("modis_ndvi")
   const setOperation = (e) => {
-    console.log(e)
+    // console.log(e)
     dispatch(
       setAnalyticsDetails({...state,
         operation: e,
@@ -60,7 +62,8 @@ const VegetationAnalysis = () => {
       <div className="LayerTree">
         <p>Dataset</p>
       </div>
-      <select onChange={(event) => setDataset(event.target.value)}>
+      <select onChange={(event) => setDataset(event.target.value)
+      }>
         <option value="modis_ndvi">Modis NDVI</option>
         <option value="et">MODIS ET</option>
         <option value="soil_date">Soil Moisture (SMAP)</option>

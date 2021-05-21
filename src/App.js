@@ -27,7 +27,8 @@ const App = () => {
       />
 
       <Map />
-      <InfoBox />
+      <InfoBox         visibility={visibility}
+/>
 
       <Legend />
     </div>

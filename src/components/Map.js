@@ -3,8 +3,9 @@ import {
   TileLayer,
   WMSTileLayer,
   useMapEvents,
+  useMap,
 } from "react-leaflet";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectDataSet } from "../features/layers/layerslice";
 import { selectLayerDataSet } from "../features/layers/overlaylayerslice";
@@ -12,20 +13,7 @@ import { selectBaseDataSet } from "../features/layers/baselayerslice";
 import { selectLayerData } from "../features/layers/layervisualiseslice";
 import { setMapState } from "../features/maps/mapStateSlice";
 import React from "react";
-
-// function HandleClick() {
-//   const map = useMapEvents({
-//     click: (e) => {
-//       dispatch({
-//         lat:"test",
-//         lon:"test2",
-//         zoom:"3"
-//       })
-//       console.log(e);
-//     },
-//   });
-//   return null;
-// }
+import L from "leaflet";
 
 function HandleHover() {
   const map = useMapEvents({
@@ -35,11 +23,28 @@ function HandleHover() {
   });
   return null;
 }
+let analyticslayer = null;
 
-const Map = () => {
-  const [AnalyticsLayer, SetAnalytics] = useState({
-    show: false,
-  });
+function AddAnalytics({ test }) {
+  const map = useMap();
+  if (analyticslayer != null) {
+    map.removeLayer(analyticslayer);
+  }
+  analyticslayer = L.tileLayer.wms(
+    "https://analytics.nesdr.gov.in/modis_ndvi_visu/visu?date=" + test,
+    {
+      // layers: this.props.tasks[e].layer,
+      format: "image/png",
+      transparent: true,
+      zIndex: 100,
+    }
+  );
+  map.addLayer(analyticslayer);
+  return null;
+}
+
+const Map = ({ visibility }) => {
+
   const dispatch = useDispatch();
   function HandleClick() {
     const map = useMapEvents({
@@ -49,7 +54,7 @@ const Map = () => {
             lat: e.latlng.lat,
             lon: e.latlng.lng,
             zoom: map.getZoom(),
-            overlays: overlayLayers.filter((overlay)=>overlay.show===true)
+            overlays: overlayLayers.filter((overlay) => overlay.show === true),
           })
         );
         console.log(e);
@@ -59,11 +64,11 @@ const Map = () => {
   }
   const analyticsLayer = useSelector(selectDataSet);
   const baseLayers = useSelector(selectBaseDataSet);
-  console.log(analyticsLayer);
   const analyticsvisualise = useSelector(selectLayerData);
-  console.log(analyticsvisualise);
   const overlayLayers = useSelector(selectLayerDataSet);
-
+  useEffect(() => {
+    //AddAnalytics()
+  }, [analyticsvisualise, analyticsLayer]);
   return (
     <MapContainer center={[26.2006, 92.9376]} zoom={6} zoomControl={false}>
       {baseLayers.map(
@@ -92,15 +97,8 @@ const Map = () => {
             />
           )
       )}
-      {AnalyticsLayer.show && (
-        <WMSTileLayer
-          format="image/png"
-          layers={AnalyticsLayer.layer}
-          url="https://apps.nesdr.gov.in:442/geoserver/wms"
-          transparent="true"
-          zIndex="10"
-        />
-      )}
+
+      {<AddAnalytics test={analyticsvisualise[0].dates} />}
       <HandleClick />
       <HandleHover />
     </MapContainer>

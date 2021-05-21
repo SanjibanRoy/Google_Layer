@@ -16,19 +16,23 @@ const VegetationVisualise = () => {
           fontWeight: theme.typography.fontWeightRegular,
         },
       }));
+      const handleChange =(e) =>{
+        console.log(e)
+      }
       const classes = useStyles();
     return (
         <div>
-               <Accordion>
+               <Accordion onChange={handleChange('panel')}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
+              
             >
               <Typography className={classes.heading}>NDVI</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <LayerAnalyticsVisualise showLayer="modisndvi" />
+              {<LayerAnalyticsVisualise showLayer="modis_ndvi" />}
             </AccordionDetails>
           </Accordion>
           <Accordion>
@@ -42,7 +46,7 @@ const VegetationVisualise = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <LayerAnalyticsVisualise showLayer="smap" />
+              {/* <LayerAnalyticsVisualise showLayer="modis_ndvi" /> */}
             </AccordionDetails>
           </Accordion>
           <Accordion>
@@ -56,7 +60,7 @@ const VegetationVisualise = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <LayerAnalyticsVisualise showLayer="et" />
+              {/* <LayerAnalyticsVisualise showLayer="et" /> */}
             </AccordionDetails>
           </Accordion>
           <Accordion>
@@ -68,7 +72,7 @@ const VegetationVisualise = () => {
               <Typography className={classes.heading}>Forest Fire</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <LayerAnalyticsVisualise showLayer="fire" />
+            {/* <LayerAnalyticsVisualise showLayer="modis_ndvi" /> */}
             </AccordionDetails>
           </Accordion>
           <Accordion>
@@ -82,7 +86,7 @@ const VegetationVisualise = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <LayerAnalyticsVisualise showLayer="Public Resources" />
+            {/* <LayerAnalyticsVisualise showLayer="modis_ndvi" /> */}
             </AccordionDetails>
           </Accordion>
         </div>

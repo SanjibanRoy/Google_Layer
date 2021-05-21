@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  dataset: "",
-  operation: "",
+  dataset: "modis_ndvi",
+  operation: "Change",
   dates: "",
   mask:"",
   show:""

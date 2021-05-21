@@ -30,7 +30,7 @@ const WeatherVisualise = () => {
               <Typography className={classes.heading}>Temperature</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <LayerAnalyticsVisualise showLayer="smap" />
+              {/* <LayerAnalyticsVisualise showLayer="smap" /> */}
             </AccordionDetails>
           </Accordion>
           <Accordion>
@@ -44,7 +44,7 @@ const WeatherVisualise = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <LayerAnalyticsVisualise showLayer="smap" />
+              {/* <LayerAnalyticsVisualise showLayer="smap" /> */}
             </AccordionDetails>
           </Accordion>
           <Accordion>
@@ -58,7 +58,7 @@ const WeatherVisualise = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <LayerAnalyticsVisualise showLayer="smap" />
+              {/* <LayerAnalyticsVisualise showLayer="smap" /> */}
             </AccordionDetails>
           </Accordion>
         </div>
