@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
@@ -6,6 +6,9 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import LayerAnalyticsVisualise from "./LayerAnalyticsVisualise";
+
+
+ 
 const VegetationVisualise = () => {
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -16,26 +19,44 @@ const VegetationVisualise = () => {
           fontWeight: theme.typography.fontWeightRegular,
         },
       }));
+      const [cvalue, setObjectValue] = useState({});
+      // ***** hide show of date loader ********
+      var flag=false
+      //const cvalue = { ...cvalue, 'MODISNDVI':false, 'SMAP':false };
+      //var cvalue=[{}]
+      //console.log(cvalue)
       const handleChange =(e) =>{
-        console.log(e)
+        //flag ===true ? cvalue[e]=false : cvalue[e]=true
+        //setObjectValue(cvalue);
+        if(flag){
+          const cvalue = { ...cvalue, [e]: false, };
+          setObjectValue(cvalue);
+        }
+        else{
+          const cvalue = { ...cvalue, [e]: true,};
+          setObjectValue(cvalue);
+        }
+        flag = !flag;
+        //console.log('falg',cvalue)
       }
-      const classes = useStyles();
+      
+      // ends here
+    const classes = useStyles();
     return (
         <div>
-               <Accordion onChange={handleChange('panel')}>
+          <Accordion isOpen onChange={isOpen => handleChange('MODISNDVI')}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
-              
             >
-              <Typography className={classes.heading}>NDVI</Typography>
+            <Typography className={classes.heading}>NDVI</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              {<LayerAnalyticsVisualise showLayer="modis_ndvi" />}
+              {cvalue['MODISNDVI'] &&<LayerAnalyticsVisualise showLayer="modis_ndvi" />}
             </AccordionDetails>
           </Accordion>
-          <Accordion>
+          <Accordion isOpen  onChange={isOpen => handleChange('SMAP')}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel2a-content"
@@ -46,7 +67,7 @@ const VegetationVisualise = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              {/* <LayerAnalyticsVisualise showLayer="modis_ndvi" /> */}
+              {cvalue['SMAP'] &&<LayerAnalyticsVisualise showLayer="modis_ndvi" />}
             </AccordionDetails>
           </Accordion>
           <Accordion>

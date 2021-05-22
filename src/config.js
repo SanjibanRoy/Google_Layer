@@ -5,14 +5,14 @@ export const layer = [
     id: 1,
     text: "State Boundary",
     show: true,
-    class: "Administrator",
+    class: "Administrative",
     layer: "NEC:ner_states"
   },
   {
     id: 2,
     text: "District Boundary",
     show: false,
-    class: "Administrator",
+    class: "Administrative",
     layer: "analytic:ner_boundary"
   },
   // Administrator boundary end
@@ -69,7 +69,8 @@ export const maps = [
     link: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
     format: 'image/png',
     domain: " ",
-    type:"tile"
+    type:"tile",
+    image: "carto.jpg"
   },
   {
     id: 2,
@@ -79,7 +80,9 @@ export const maps = [
     layer: "india3",
     link: "https://bhuvan-vec1.nrsc.gov.in/bhuvan/gwc/service/wms/",
     format: 'image/png',
-    domain: " "
+    domain: " ",
+    image: "bhuvanmaps.png"
+
 
   }
   ,
@@ -91,7 +94,9 @@ export const maps = [
     layer: "bhuvan_imagery2",
     link: "https://bhuvan-ras2.nrsc.gov.in/tilecache/tilecache.py?",
     format: 'png/jpeg',
-    domain: " "
+    domain: " ",
+    image: "bhuvan.png"
+
   }
   ,
   {
@@ -102,7 +107,9 @@ export const maps = [
     link: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     format: 'png/jpeg',
     domain: " ",
-    type:"tile"
+    type:"tile",
+    image: "osm.png"
+
   }
   ,
   {
@@ -114,6 +121,8 @@ export const maps = [
     link: "http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
     format: 'image/png',
     domain: "['mt0','mt1','mt2','mt3']",
+    image: "osm.png"
+
   }
   ,
   {
@@ -124,7 +133,9 @@ export const maps = [
     layer: "analytic:ner_boundary",
     link: "http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
     format: 'image/png',
-    domain: ['mt0', 'mt1', 'mt2', 'mt3']
+    domain: ['mt0', 'mt1', 'mt2', 'mt3'],
+    image: "google.png"
+
   }
   //maps end
 

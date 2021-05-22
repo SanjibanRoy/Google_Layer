@@ -25,7 +25,8 @@ function HandleHover() {
 }
 let analyticslayer = null;
 
-function AddAnalytics({ test }) {
+function AddAnalytics({ test, showAnalytics }) {
+  console.log(showAnalytics);
   const map = useMap();
   if (analyticslayer != null) {
     map.removeLayer(analyticslayer);
@@ -40,11 +41,13 @@ function AddAnalytics({ test }) {
     }
   );
   map.addLayer(analyticslayer);
+  if (showAnalytics) {
+    map.removeLayer(analyticslayer);
+  }
   return null;
 }
 
 const Map = ({ visibility }) => {
-
   const dispatch = useDispatch();
   function HandleClick() {
     const map = useMapEvents({
@@ -66,11 +69,22 @@ const Map = ({ visibility }) => {
   const baseLayers = useSelector(selectBaseDataSet);
   const analyticsvisualise = useSelector(selectLayerData);
   const overlayLayers = useSelector(selectLayerDataSet);
+
+  console.log(visibility.filter((themes) => themes.id === "Layer"));
+  const [showAnalytics, setVisibility] = useState(
+    visibility.filter((themes) => themes.id === "Layer")[0].show
+  );
   useEffect(() => {
     //AddAnalytics()
-  }, [analyticsvisualise, analyticsLayer]);
+    setVisibility(visibility.filter((themes) => themes.id === "Layer")[0].show);
+  }, [visibility]);
   return (
-    <MapContainer center={[26.2006, 92.9376]} zoom={6} zoomControl={false}>
+    <MapContainer
+      center={[26.2006, 92.9376]}
+      zoom={6}
+      zoomControl={false}
+      attributionControl={false}
+    >
       {baseLayers.map(
         (baselayer) =>
           baselayer.show &&
@@ -98,7 +112,12 @@ const Map = ({ visibility }) => {
           )
       )}
 
-      {<AddAnalytics test={analyticsvisualise[0].dates} />}
+      {
+        <AddAnalytics
+          test={analyticsvisualise[0].dates}
+          showAnalytics={showAnalytics}
+        />
+      }
       <HandleClick />
       <HandleHover />
     </MapContainer>

@@ -12,13 +12,14 @@ const RGBDropDown = () => {
   const state = useSelector(selectDataSet);
 
   const setDate = (e) => {
-    dispatch(setAnalyticsDetails({ ...state, dates: e, show:true }));
+    dispatch(setAnalyticsDetails({ ...state, dates: e, show: true }));
     dispatch1(setAnalyticsVisual({ show: false }));
   };
 
   return (
     <RGB>
-      <select onChange={(e) => setDate(e.target.value)}>
+      Red
+      <select className="SelectMenu" onChange={(e) => setDate(e.target.value)}>
         <option value="Band1">Band1</option>
         <option value="Band2">Band2</option>
         <option value="Band3">Band3</option>
@@ -28,7 +29,8 @@ const RGBDropDown = () => {
         <option value="Band7">Band7</option>
         <option value="Band8">Band8</option>
       </select>
-      <select onChange={(e) => setDate(e.target.value)}>
+      Green
+      <select className="SelectMenu" onChange={(e) => setDate(e.target.value)}>
         <option value="Band1">Band1</option>
         <option value="Band2">Band2</option>
         <option value="Band3">Band3</option>
@@ -38,7 +40,8 @@ const RGBDropDown = () => {
         <option value="Band7">Band7</option>
         <option value="Band8">Band8</option>
       </select>
-      <select onChange={(e) => setDate(e.target.value)}>
+       Blue
+      <select className="SelectMenu" onChange={(e) => setDate(e.target.value)}>
         <option value="Band1">Band1</option>
         <option value="Band2">Band2</option>
         <option value="Band3">Band3</option>
@@ -55,6 +58,6 @@ const RGBDropDown = () => {
 export default RGBDropDown;
 
 const RGB = styled.div`
-  height: 75px;
-  background-color: white;
+  /* height: 75px;
+  background-color: white; */
 `;

@@ -5,9 +5,8 @@ import { useDispatch } from "react-redux";
 import { setAnalyticsDetails } from "../features/layers/layerslice";
 import { setAnalyticsVisual } from "../features/layers/layervisualiseslice";
 import { useState, useEffect } from "react";
-import CircularProgress from '@material-ui/core/CircularProgress';
-
-
+import CircularProgress from "@material-ui/core/CircularProgress";
+import styled from "styled-components";
 
 function ChangeDates() {
   const dispatch = useDispatch();
@@ -25,7 +24,7 @@ function ChangeDates() {
   });
 
   useEffect(() => {
-    console.log("inside Effect");
+    // console.log("inside Effect");
     const fetchDates = async () => {
       try {
         setdate({ dates: [], isFetching: false });
@@ -57,29 +56,51 @@ function ChangeDates() {
   }, []);
 
   return (
-    <div>
+    <CHANGE>
       {date.isFetching ? (
         <CircularProgress />
       ) : (
-        <div>
-          <select onChange={(event) => setDate(event.target.value)}>
-            {date.dates.map((task, index) => (
-              <option key={index} value={task.date}>
-                {task.date}
-              </option>
-            ))}
-          </select>
-          <select onChange={(event) => setDate(event.target.value)}>
-            {date.dates.map((task, index) => (
-              <option key={index} value={task.date}>
-                {task.date}
-              </option>
-            ))}
-          </select>
-        </div>
+        <React.Fragment>
+          <div className="Change">
+            From Date
+            <select
+              className="SelectMenu"
+              onChange={(event) => setDate(event.target.value)}
+            >
+              {date.dates.map((task, index) => (
+                <option key={index} value={task.date}>
+                  {task.date}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div  className="Change">
+            To Date{" "}
+            <select
+              className="SelectMenu"
+              onChange={(event) => setDate(event.target.value)}
+            >
+              {date.dates.map((task, index) => (
+                <option key={index} value={task.date}>
+                  {task.date}
+                </option>
+              ))}
+            </select>
+          </div>
+        </React.Fragment>
       )}
-    </div>
+    </CHANGE>
   );
 }
 
 export default ChangeDates;
+
+const CHANGE = styled.div`
+margin:10px;
+  .Change {
+    display: flex;
+  }
+  .SelectMenu{
+    width: 50%;
+  }
+`;

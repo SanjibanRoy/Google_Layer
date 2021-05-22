@@ -15,7 +15,6 @@ var arrays = [
   },
 ];
 
-
 function AnalyticsDates() {
   const dispatch = useDispatch();
   const dispatch1 = useDispatch();
@@ -31,17 +30,12 @@ function AnalyticsDates() {
     isFetching: false,
   });
 
-  
   // useEffect(() => {
   //   console.log("Here")
   //   getdates('modis_ndvi', 'ndvidates')
   //   setdate(true)
   //   console.log(date)
   //   });
-
-
-
-
 
   const fetchDates = async () => {
     try {
@@ -71,9 +65,6 @@ function AnalyticsDates() {
     }
   };
 
-
-
-
   useEffect(() => {
     fetchDates();
   }, [state.dataset]);
@@ -84,21 +75,33 @@ function AnalyticsDates() {
         <CircularProgress />
       ) : (
         <div>
-          <select onChange={(event) => setDate(event.target.value)}>
+          Date{" "}
+          <select
+            className="SelectMenu"
+            onChange={(event) => setDate(event.target.value)}
+          >
             {date.dates.map((task, index) => (
               <option key={index} value={task.date}>
                 {task.date}
               </option>
             ))}
           </select>
-          <select onChange={(event) => setDate(event.target.value)}>
+          From Year{" "}
+          <select
+            className="SelectMenu"
+            onChange={(event) => setDate(event.target.value)}
+          >
             {arrays[0].ndvidates.map((task, index) => (
               <option key={index} value={task}>
                 {task}
               </option>
             ))}
           </select>
-          <select onChange={(event) => setDate(event.target.value)}>
+          To Year{" "}
+          <select
+            className="SelectMenu"
+            onChange={(event) => setDate(event.target.value)}
+          >
             {arrays[0].ndvidates.map((task, index) => (
               <option key={index} value={task}>
                 {task}

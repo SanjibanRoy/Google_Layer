@@ -26,9 +26,8 @@ const App = () => {
         changeVisibility={changeVisibility}
       />
 
-      <Map />
-      <InfoBox         visibility={visibility}
-/>
+      <Map visibility={visibility} />
+      <InfoBox />
 
       <Legend />
     </div>

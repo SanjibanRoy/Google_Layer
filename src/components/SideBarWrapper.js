@@ -117,7 +117,7 @@ const SideBarWrapper = ({
           <BaseSwitcher />
         </div>
         <div className={value === 1 ? " " : "hidden"}>
-          <LayerTree category="Administrator" />
+          <LayerTree category="Administrative" />
           <LayerTree category="Land Use/Land Cover" />
           <LayerTree category="Census" />
         </div>
