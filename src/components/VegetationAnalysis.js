@@ -8,17 +8,18 @@ import { useSelector } from "react-redux";
 import { selectDataSet } from "../features/layers/layerslice";
 import { setAnalyticsVisual } from "../features/layers/layervisualiseslice";
 import styled from "styled-components";
-
+import analytics from "../config"
 
 const VegetationAnalysis = () => {
+  console.log(analytics)
   const [analytics, setanalytics] = useState("Change");
   const dispatch = useDispatch();
   const dispatch1 = useDispatch();
 
   const state = useSelector(selectDataSet);
   const [data, setData] = useState("modis_ndvi");
+  
   const setOperation = (e) => {
-    // console.log(e)
     dispatch(setAnalyticsDetails({ ...state, operation: e }));
     dispatch(
       setAnalyticsVisual({
@@ -28,7 +29,6 @@ const VegetationAnalysis = () => {
   };
 
   const setMask = (e) => {
-    console.log(e);
     dispatch(setAnalyticsDetails({ ...state, mask: e }));
     dispatch(
       setAnalyticsVisual({
@@ -45,12 +45,15 @@ const VegetationAnalysis = () => {
       })
     );
   };
+
+
   return (
     <VEGANALYSIS>
       <div className="LayerTree">
         <p className="heads">Dataset</p>
       </div>
       <select
+      id="data"
         className="SelectMenu"
         onChange={(event) => setDataset(event.target.value)}
       >
@@ -73,8 +76,8 @@ const VegetationAnalysis = () => {
           setOperation(event.target.value);
         }}
       >
-        <option value="Anomaly">Anomaly</option>
         <option value="Difference">Difference</option>
+        <option value="Anomaly">Anomaly</option>
         <option value="Maximum">Maximum</option>
         <option value="Minimum">Minimum</option>
         <option value="sd">Standard Deviation</option>
@@ -88,16 +91,13 @@ const VegetationAnalysis = () => {
         {/* <Todo /> */}
       </div>
       {analytics === "Change" ? (
-        <ChangeDates         className="SelectMenu"
-        />
+        <ChangeDates />
       ) : analytics === "Anaytics" ? (
-        <AnalyticsDates         className="SelectMenu"
-        />
+        <AnalyticsDates />
       ) : (
-        <RGBDropDown         className="SelectMenu"
-        />
+        <RGBDropDown />
       )}
-
+      {}
       <div className="LayerTree">
         <p>Mask</p>
       </div>
@@ -134,7 +134,6 @@ const VEGANALYSIS = styled.div`
     box-shadow: none;
     font-size: 12px;
     font-weight: 400;
-    height: 38px;
     /* width: 5000px; */
     display: block;
     width: 70%;
@@ -147,7 +146,7 @@ const VEGANALYSIS = styled.div`
     background-image: none;
     margin-top: 10px;
     margin-bottom: 10px;
-    margin-left: 20px;
+    margin-left: 40px;
     margin-right: 10px;
   }
 `;

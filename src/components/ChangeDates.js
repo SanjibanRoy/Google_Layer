@@ -13,8 +13,10 @@ function ChangeDates() {
   const dispatch1 = useDispatch();
   const state = useSelector(selectDataSet);
 
-  const setDate = (e) => {
-    dispatch(setAnalyticsDetails({ ...state, dates: e, show: true }));
+  const setChangeDate = () => {
+    let fromdate=document.getElementById('fromdate').value
+    let todate=document.getElementById('todate').value
+    dispatch(setAnalyticsDetails({ ...state, dates: [fromdate,todate], show: true }));
     dispatch1(setAnalyticsVisual({ show: false }));
   };
 
@@ -23,37 +25,39 @@ function ChangeDates() {
     isFetching: false,
   });
 
+  const fetchDates = async () => {
+    try {
+      setdate({ dates: [], isFetching: false });
+      const formData = new FormData();
+
+      formData.append("database", state.dataset);
+      formData.append("key", "mgy1exz0n8mXQXi8NrOq24DDvmLrZ16a");
+      // console.log(formData);
+      fetch("https://mobileapp.nesdr.gov.in/analytics_api/modis_ndvi.php", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          setdate({ dates: result, isFetching: false });
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      setdate({ ...date, isFetching: true });
+    } catch (exception) {
+      console.log(exception);
+      setdate({ dates: date.dates, isFetching: false });
+    }
+  };
+
   useEffect(() => {
     // console.log("inside Effect");
-    const fetchDates = async () => {
-      try {
-        setdate({ dates: [], isFetching: false });
-        const formData = new FormData();
-
-        formData.append("database", state.dataset);
-        formData.append("key", "mgy1exz0n8mXQXi8NrOq24DDvmLrZ16a");
-        // console.log(formData);
-        fetch("https://mobileapp.nesdr.gov.in/analytics_api/modis_ndvi.php", {
-          method: "POST",
-          body: formData,
-        })
-          .then((response) => response.json())
-          .then((result) => {
-            // console.log(result);
-            setdate({ dates: result, isFetching: false });
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-        // console.log(response);
-        setdate({ ...date, isFetching: true });
-      } catch (exception) {
-        console.log(exception);
-        setdate({ dates: date.dates, isFetching: false });
-      }
-    };
+    // console.log(state)
     fetchDates();
   }, []);
+
+
 
   return (
     <CHANGE>
@@ -62,26 +66,26 @@ function ChangeDates() {
       ) : (
         <React.Fragment>
           <div className="Change">
-            From Date
-            <select
+            <p>From Date</p>
+            <select id="fromdate"
               className="SelectMenu"
-              onChange={(event) => setDate(event.target.value)}
+              onChange={() => setChangeDate()}
             >
               {date.dates.map((task, index) => (
-                <option key={index} value={task.date}>
+                <option key={index} value={task.time_stamp}>
                   {task.date}
                 </option>
               ))}
             </select>
           </div>
-          <div  className="Change">
-            To Date{" "}
-            <select
+          <div className="Change">
+            <p>To Date</p>
+            <select id="todate"
               className="SelectMenu"
-              onChange={(event) => setDate(event.target.value)}
+              onChange={() => setChangeDate()}
             >
               {date.dates.map((task, index) => (
-                <option key={index} value={task.date}>
+                <option key={index} value={task.time_stamp}>
                   {task.date}
                 </option>
               ))}
@@ -96,11 +100,20 @@ function ChangeDates() {
 export default ChangeDates;
 
 const CHANGE = styled.div`
-margin:10px;
+  margin: 0px;
+  margin-left: 20px;
+  margin-right: 40px;
   .Change {
     display: flex;
+    justify-content: space-between;
+    /* margin: auto; */
+    top: 50%;
   }
-  .SelectMenu{
+  .Change > p {
+    margin-top: 15px;
+  }
+  .SelectMenu {
     width: 50%;
+    margin-left: 20px;
   }
 `;

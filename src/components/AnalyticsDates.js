@@ -6,7 +6,7 @@ import { selectDataSet } from "../features/layers/layerslice";
 import { setAnalyticsVisual } from "../features/layers/layervisualiseslice";
 import { useState, useEffect } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import styled from "styled-components";
 var arrays = [
   {
     ndvidates: [200, 300],
@@ -19,9 +19,19 @@ function AnalyticsDates() {
   const dispatch = useDispatch();
   const dispatch1 = useDispatch();
   const state = useSelector(selectDataSet);
-  console.log(state);
+
   const setDate = (e) => {
-    dispatch(setAnalyticsDetails({ ...state, dates: e, show: true }));
+    let fromyear = document.getElementById("fromyear").value;
+    let toyear = document.getElementById("toyear").value;
+    let date = document.getElementById("date").value;
+
+    dispatch(
+      setAnalyticsDetails({
+        ...state,
+        dates: [date, fromyear, toyear],
+        show: true,
+      })
+    );
     dispatch1(setAnalyticsVisual({ show: false }));
   };
 
@@ -70,48 +80,76 @@ function AnalyticsDates() {
   }, [state.dataset]);
 
   return (
-    <div>
+    <ANALYTICS>
       {date.isFetching ? (
         <CircularProgress />
       ) : (
-        <div>
-          Date{" "}
-          <select
-            className="SelectMenu"
-            onChange={(event) => setDate(event.target.value)}
-          >
-            {date.dates.map((task, index) => (
-              <option key={index} value={task.date}>
-                {task.date}
-              </option>
-            ))}
-          </select>
-          From Year{" "}
-          <select
-            className="SelectMenu"
-            onChange={(event) => setDate(event.target.value)}
-          >
-            {arrays[0].ndvidates.map((task, index) => (
-              <option key={index} value={task}>
-                {task}
-              </option>
-            ))}
-          </select>
-          To Year{" "}
-          <select
-            className="SelectMenu"
-            onChange={(event) => setDate(event.target.value)}
-          >
-            {arrays[0].ndvidates.map((task, index) => (
-              <option key={index} value={task}>
-                {task}
-              </option>
-            ))}
-          </select>
-        </div>
+        <React.Fragment>
+          <div className="Analytics">
+            <p>Date</p>
+            <select
+              id="date"
+              className="SelectMenu"
+              onChange={(event) => setDate(event.target.value)}
+            >
+              {date.dates.map((task, index) => (
+                <option key={index} value={task.date}>
+                  {task.date}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="Analytics">
+            <p>From Year</p>
+            <select
+              id="fromyear"
+              className="SelectMenu"
+              onChange={(event) => setDate(event.target.value)}
+            >
+              {arrays[0].ndvidates.map((task, index) => (
+                <option key={index} value={task}>
+                  {task}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="Analytics">
+            <p>To Year</p>
+            <select
+              id="toyear"
+              className="SelectMenu"
+              onChange={(event) => setDate(event.target.value)}
+            >
+              {arrays[0].ndvidates.map((task, index) => (
+                <option key={index} value={task}>
+                  {task}
+                </option>
+              ))}
+            </select>
+          </div>
+        </React.Fragment>
       )}
-    </div>
+    </ANALYTICS>
   );
 }
 
 export default AnalyticsDates;
+
+const ANALYTICS = styled.div`
+  margin: 0px;
+  margin-left: 30px;
+  padding: 0px;
+  margin-right: 30px;
+  .Analytics {
+    display: flex;
+    justify-content: space-between;
+    /* margin: auto; */
+    top: 50%;
+  }
+  .Analytics > p {
+    margin-top: 15px;
+  }
+  .SelectMenu {
+    width: 50%;
+  }
+`;

@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [{
-  dataset: "Test",
+const initialState = {
+  dataset: "modis_ndvi",
   dates: "",
   show: false
-}];
+};
 
 const layerVisualiseSlice = createSlice({
   name: "layervisualise",
   initialState,
   reducers: {
     setAnalyticsVisual: (state, action) => {
-      state[0].dataset =  action.payload.dataset;
-      state[0].dates = action.payload.dates;
-      state[0].show = action.payload.show;
+      state.dataset =  action.payload.dataset;
+      state.dates = action.payload.dates;
+      state.show = action.payload.show;
     }
   },
 });

@@ -28,11 +28,22 @@ let analyticslayer = null;
 function AddAnalytics({ test, showAnalytics }) {
   console.log(showAnalytics);
   const map = useMap();
+  let data =
+    test.dataset === "modis_ndvi"
+      ? "modis_ndvi_visu"
+      : test.dataset === "insat_rainfall"
+      ? "insat_rain"
+      : test.dataset === "lst_date"
+      ? "lst"
+      : test.dataset === "aod_date"
+      ? "aod_visu"
+      : test.dataset;
+
   if (analyticslayer != null) {
     map.removeLayer(analyticslayer);
   }
   analyticslayer = L.tileLayer.wms(
-    "https://analytics.nesdr.gov.in/modis_ndvi_visu/visu?date=" + test,
+    "https://analytics.nesdr.gov.in/" + data + "/visu?date=" + test.dates,
     {
       // layers: this.props.tasks[e].layer,
       format: "image/png",
@@ -69,7 +80,7 @@ const Map = ({ visibility }) => {
   const baseLayers = useSelector(selectBaseDataSet);
   const analyticsvisualise = useSelector(selectLayerData);
   const overlayLayers = useSelector(selectLayerDataSet);
-
+  console.log(analyticsvisualise);
   console.log(visibility.filter((themes) => themes.id === "Layer"));
   const [showAnalytics, setVisibility] = useState(
     visibility.filter((themes) => themes.id === "Layer")[0].show
@@ -78,6 +89,11 @@ const Map = ({ visibility }) => {
     //AddAnalytics()
     setVisibility(visibility.filter((themes) => themes.id === "Layer")[0].show);
   }, [visibility]);
+
+  useEffect(() => {
+    //AddAnalytics()
+    console.log("Analyticcs Changed");
+  }, [analyticsLayer]);
   return (
     <MapContainer
       center={[26.2006, 92.9376]}
@@ -86,12 +102,13 @@ const Map = ({ visibility }) => {
       attributionControl={false}
     >
       {baseLayers.map(
-        (baselayer) =>
+        (baselayer, index) =>
           baselayer.show &&
           (baselayer.type === "tile" ? (
-            <TileLayer url={baselayer.link} zIndex="1" />
+            <TileLayer key={index} url={baselayer.link} zIndex="1" />
           ) : (
             <WMSTileLayer
+              key={index}
               url={baselayer.link}
               layers={baselayer.layer}
               format="image/png"
@@ -100,9 +117,10 @@ const Map = ({ visibility }) => {
           ))
       )}
       {overlayLayers.map(
-        (overlayer) =>
+        (overlayer, index) =>
           overlayer.show && (
             <WMSTileLayer
+              key={index}
               format="image/png"
               layers={overlayer.layer}
               url="https://apps.nesdr.gov.in:442/geoserver/wms"
@@ -112,12 +130,7 @@ const Map = ({ visibility }) => {
           )
       )}
 
-      {
-        <AddAnalytics
-          test={analyticsvisualise[0].dates}
-          showAnalytics={showAnalytics}
-        />
-      }
+      {<AddAnalytics test={analyticsvisualise} showAnalytics={showAnalytics} />}
       <HandleClick />
       <HandleHover />
     </MapContainer>

@@ -64,6 +64,7 @@ body {
   max-width: 100%;
   padding:  10px;
   height: auto;
+  background-color: rgba(103, 151, 190, 0.603);
 }
 
 .SidePanel>ul>li:nth-child(1){

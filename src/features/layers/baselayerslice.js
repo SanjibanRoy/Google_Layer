@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { maps } from "../../config";
 
 const initialState = maps;
-console.log(initialState);
 const baseLayerSlice = createSlice({
   name: "baselayer",
   initialState,

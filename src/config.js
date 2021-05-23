@@ -1,4 +1,3 @@
-
 export const layer = [
   //Administrator boundary start
   {
@@ -6,14 +5,14 @@ export const layer = [
     text: "State Boundary",
     show: true,
     class: "Administrative",
-    layer: "NEC:ner_states"
+    layer: "NEC:ner_states",
   },
   {
     id: 2,
     text: "District Boundary",
     show: false,
     class: "Administrative",
-    layer: "analytic:ner_boundary"
+    layer: "analytic:ner_boundary",
   },
   // Administrator boundary end
 
@@ -23,21 +22,21 @@ export const layer = [
     text: "LULC (2005-06)",
     show: false,
     class: "Land Use/Land Cover",
-    layer: "analytic:ner_landuse_landcover_50k_1st_cycle"
+    layer: "analytic:ner_landuse_landcover_50k_1st_cycle",
   },
   {
     id: 4,
     text: "LULC(2011-12)",
     show: false,
     class: "Land Use/Land Cover",
-    layer: "analytic:lulc2ndcycle"
+    layer: "analytic:lulc2ndcycle",
   },
   {
     id: 5,
     text: "LULC(2015-16)",
     show: false,
     class: "Land Use/Land Cover",
-    layer: "analytic:lulc3rdcycle"
+    layer: "analytic:lulc3rdcycle",
   },
   // Land Use and Land Cover end
 
@@ -47,19 +46,15 @@ export const layer = [
     text: "Census",
     show: false,
     class: "Census",
-    layer: "analytic:ner_census"
+    layer: "analytic:ner_census",
   },
 
   // census end
-
-
-
-]
+];
 
 // maps configuration
 export const maps = [
-
-  //maps start 
+  //maps start
   {
     id: 1,
     text: "Cartodb",
@@ -67,10 +62,10 @@ export const maps = [
     class: "Maps",
     layer: "analytic:ner_boundary",
     link: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-    format: 'image/png',
+    format: "image/png",
     domain: " ",
-    type:"tile",
-    image: "carto.jpg"
+    type: "tile",
+    image: "carto.jpg",
   },
   {
     id: 2,
@@ -79,13 +74,10 @@ export const maps = [
     class: "Maps",
     layer: "india3",
     link: "https://bhuvan-vec1.nrsc.gov.in/bhuvan/gwc/service/wms/",
-    format: 'image/png',
+    format: "image/png",
     domain: " ",
-    image: "bhuvanmaps.png"
-
-
-  }
-  ,
+    image: "bhuvanmaps.png",
+  },
   {
     id: 3,
     text: "BhuvanSatellite",
@@ -93,25 +85,21 @@ export const maps = [
     class: "Maps",
     layer: "bhuvan_imagery2",
     link: "https://bhuvan-ras2.nrsc.gov.in/tilecache/tilecache.py?",
-    format: 'png/jpeg',
+    format: "png/jpeg",
     domain: " ",
-    image: "bhuvan.png"
-
-  }
-  ,
+    image: "bhuvan.png",
+  },
   {
     id: 4,
     text: "Open Street",
     show: false,
     class: "Maps",
-    link: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    format: 'png/jpeg',
+    link: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    format: "png/jpeg",
     domain: " ",
-    type:"tile",
-    image: "osm.png"
-
-  }
-  ,
+    type: "tile",
+    image: "osm.png",
+  },
   {
     id: 5,
     text: "Google Map",
@@ -119,12 +107,10 @@ export const maps = [
     class: "Maps",
     layer: "analytic:ner_boundary",
     link: "http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
-    format: 'image/png',
+    format: "image/png",
     domain: "['mt0','mt1','mt2','mt3']",
-    image: "osm.png"
-
-  }
-  ,
+    image: "osm.png",
+  },
   {
     id: 6,
     text: "Google Satellite",
@@ -132,97 +118,108 @@ export const maps = [
     class: "Maps",
     layer: "analytic:ner_boundary",
     link: "http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
-    format: 'image/png',
-    domain: ['mt0', 'mt1', 'mt2', 'mt3'],
-    image: "google.png"
-
-  }
+    format: "image/png",
+    domain: ["mt0", "mt1", "mt2", "mt3"],
+    image: "google.png",
+  },
   //maps end
-
-]
+];
 
 // analytics layer
 export const analytics = [
-
   {
     id: 2,
     text: "modisndvi",
+    wmsname: "modis_ndvi_visu",
     show: false,
-    class: "Admin",
-    layer: "analytic:ner_boundary"
+    operations: [
+      { value: "difference", text: "Change", legend: "" },
+      { value: "Mean", text: "Mean", legend: "" },
+      { value: "Maximum", text: "Maximum", legend: "" },
+      { value: "Minimum", text: "Minimum", legend: "" },
+      { value: "sd", text: "Standard Deviation", legend: "" },
+      { value: "cv", text: "Coefficient of Variance", legend: "" },
+      { value: "vci", text: "Vegetation Condition Index", legend: "" },
+      { value: "rgb", text: "RGB", legend: "" },
+    ],
+    // legends: [],
+    category: "vegetation",
   },
   {
     id: 3,
     text: "smap",
+    wmsname: "smap",
     show: false,
-    class: "Natural Resource",
-    layer: "analytic:ner_boundary"
+    operations: [
+      { value: "difference", text: "Change", legend: "" },
+      { value: "Mean", text: "Mean", legend: "" },
+      { value: "Maximum", text: "Maximum", legend: "" },
+      { value: "Minimum", text: "Minimum", legend: "" },
+      { value: "sd", text: "Standard Deviation", legend: "" },
+      { value: "cv", text: "Coefficient of Variance", legend: "" },
+    ],
+    category: "vegetation",
   },
   {
     id: 4,
     text: "et",
+    wmsname: "et",
     show: false,
-    class: "Natural Resource",
-    layer: "analytic:ner_boundary"
+    operations: [
+      { value: "difference", text: "Change", legend: "" },
+      { value: "Mean", text: "Mean", legend: "" },
+      { value: "Maximum", text: "Maximum", legend: "" },
+      { value: "Minimum", text: "Minimum", legend: "" },
+      { value: "sd", text: "Standard Deviation", legend: "" },
+      { value: "cv", text: "Coefficient of Variance", legend: "" },
+    ],    category: "vegetation",
   },
   {
-    id: 5,
-    text: "Agriculture",
+    id: 4,
+    text: "INSAT Rainfall",
+    wmsname: "insat_rain",
     show: false,
-    class: "Agri",
-    layer: "analytic:ner_boundary"
+    operations: [
+      { value: "sum", text: "Change", legend: "" },
+      { value: "Mean", text: "Mean", legend: "" },
+      { value: "Maximum", text: "Maximum", legend: "" },
+    ],
+    category: "weather",
   },
-  {
-    id: 6,
-    text: "Cropland",
-    show: false,
-    class: "Agri",
-    layer: "analytic:ner_boundary"
-  },
-  {
-    id: 7,
-    text: "Disaster",
-    show: false,
-    class: "Disaster",
-    layer: "analytic:ner_boundary"
-  }
-]
+];
 
 // side pannel visibility
 export const panelVisibilty = [
-
   {
     id: "Vegetation",
     text: "Vegetation",
-    show: false
+    show: false,
   },
   {
     id: "Layer",
     text: "Layer",
-    show: true
+    show: true,
   },
   {
     id: "Weather",
     text: "Weather",
-    show: false
+    show: false,
   },
   {
     id: "Satellite_Imagery",
     text: "Satellite_Imagery",
-    show: false
+    show: false,
   },
   {
     id: "Vedas_Services",
     text: "Vedas_Services",
-    show: false
+    show: false,
   },
   {
     id: "Water_Resources",
     text: "Water_Resources",
-    show: false
-  }
-]
+    show: false,
+  },
+];
 
 //list of dates
-
-
