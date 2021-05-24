@@ -1,24 +1,25 @@
 import ChangeDates from "./ChangeDates";
 import AnalyticsDates from "./AnalyticsDates";
 import RGBDropDown from "./RGBDropDown";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setAnalyticsDetails } from "../features/layers/layerslice";
 import { useSelector } from "react-redux";
 import { selectDataSet } from "../features/layers/layerslice";
 import { setAnalyticsVisual } from "../features/layers/layervisualiseslice";
 import styled from "styled-components";
-import analytics from "../config"
+import { analyticoper } from "../config";
 
 const VegetationAnalysis = () => {
-  console.log(analytics)
+
+
   const [analytics, setanalytics] = useState("Change");
   const dispatch = useDispatch();
   const dispatch1 = useDispatch();
 
   const state = useSelector(selectDataSet);
   const [data, setData] = useState("modis_ndvi");
-  
+
   const setOperation = (e) => {
     dispatch(setAnalyticsDetails({ ...state, operation: e }));
     dispatch(
@@ -46,6 +47,14 @@ const VegetationAnalysis = () => {
     );
   };
 
+  useEffect(() => {
+    dispatch(
+      setAnalyticsDetails({
+        ...state,
+        dataset: document.getElementById("data").value,
+      })
+    );
+  }, []);
 
   return (
     <VEGANALYSIS>
@@ -53,7 +62,7 @@ const VegetationAnalysis = () => {
         <p className="heads">Dataset</p>
       </div>
       <select
-      id="data"
+        id="data"
         className="SelectMenu"
         onChange={(event) => setDataset(event.target.value)}
       >
@@ -64,10 +73,11 @@ const VegetationAnalysis = () => {
       <div className="LayerTree">
         <p>Operations</p>
       </div>
+
       <select
         className="SelectMenu"
         onChange={(event) => {
-          event.target.value === "Difference"
+          event.target.value === "difference"
             ? setanalytics("Change")
             : event.target.value === "rgb"
             ? setanalytics("RGB")
@@ -76,15 +86,11 @@ const VegetationAnalysis = () => {
           setOperation(event.target.value);
         }}
       >
-        <option value="Difference">Difference</option>
-        <option value="Anomaly">Anomaly</option>
-        <option value="Maximum">Maximum</option>
-        <option value="Minimum">Minimum</option>
-        <option value="sd">Standard Deviation</option>
-        <option value="trend">Trend</option>
-        <option value="vci">Vegetation Condition Analysis(VCI)</option>
-        <option value="threshold">Long Term Threshold</option>
-        <option value="rgb">RGB</option>
+        {analyticoper
+          .filter((operations) => operations.state === state.dataset)[0]
+          .operations.map((ops) => (
+            <option value={ops.value}>{ops.text}</option>
+          ))}
       </select>
       <div className="LayerTree">
         <p>Dates</p>
@@ -97,18 +103,21 @@ const VegetationAnalysis = () => {
       ) : (
         <RGBDropDown />
       )}
-      {}
-      <div className="LayerTree">
-        <p>Mask</p>
-      </div>
-      <select
-        className="SelectMenu"
-        onChange={(event) => setMask(event.target.value)}
-      >
-        <option value="none">None</option>
-        <option value="forest">Forest</option>
-        <option value="agriculture">Agriculture</option>
-      </select>
+      {state.dataset === "modis_ndvi" && (
+        <>
+          <div className="LayerTree">
+            <p>Mask</p>
+          </div>
+          <select
+            className="SelectMenu"
+            onChange={(event) => setMask(event.target.value)}
+          >
+            <option value="none">None</option>
+            <option value="forest">Forest</option>
+            <option value="agriculture">Agriculture</option>
+          </select>
+        </>
+      )}
     </VEGANALYSIS>
   );
 };

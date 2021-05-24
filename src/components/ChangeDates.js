@@ -57,7 +57,11 @@ function ChangeDates() {
     fetchDates();
   }, []);
 
-
+  useEffect(() => {
+    // console.log("inside Effect");
+    // console.log(state)
+    fetchDates();
+  }, [state.dataset]);
 
   return (
     <CHANGE>
@@ -68,7 +72,7 @@ function ChangeDates() {
           <div className="Change">
             <p>From Date</p>
             <select id="fromdate"
-              className="SelectMenu"
+              className="SelectMenu1"
               onChange={() => setChangeDate()}
             >
               {date.dates.map((task, index) => (
@@ -81,7 +85,7 @@ function ChangeDates() {
           <div className="Change">
             <p>To Date</p>
             <select id="todate"
-              className="SelectMenu"
+              className="SelectMenu1"
               onChange={() => setChangeDate()}
             >
               {date.dates.map((task, index) => (
@@ -112,8 +116,25 @@ const CHANGE = styled.div`
   .Change > p {
     margin-top: 15px;
   }
-  .SelectMenu {
+  .SelectMenu1 {
+    border: 1px solid #555;
+    border-radius: 4px;
+    box-shadow: none;
+    font-size: 12px;
+    font-weight: 400;
+    /* width: 5000px; */
+    display: block;
     width: 50%;
-    margin-left: 20px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 40px;
+    margin-right: 10px;
   }
 `;

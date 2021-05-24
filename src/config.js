@@ -126,12 +126,17 @@ export const maps = [
 ];
 
 // analytics layer
-export const analytics = [
+export const analyticoper = [
   {
     id: 2,
     text: "modisndvi",
     wmsname: "modis_ndvi_visu",
+    state: "modis_ndvi",
     show: false,
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
     operations: [
       { value: "difference", text: "Change", legend: "" },
       { value: "Mean", text: "Mean", legend: "" },
@@ -149,6 +154,11 @@ export const analytics = [
     id: 3,
     text: "smap",
     wmsname: "smap",
+    state: "soil_date",
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
     show: false,
     operations: [
       { value: "difference", text: "Change", legend: "" },
@@ -164,6 +174,11 @@ export const analytics = [
     id: 4,
     text: "et",
     wmsname: "et",
+    state: "et",
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
     show: false,
     operations: [
       { value: "difference", text: "Change", legend: "" },
@@ -172,12 +187,18 @@ export const analytics = [
       { value: "Minimum", text: "Minimum", legend: "" },
       { value: "sd", text: "Standard Deviation", legend: "" },
       { value: "cv", text: "Coefficient of Variance", legend: "" },
-    ],    category: "vegetation",
+    ],
+    category: "vegetation",
   },
   {
     id: 4,
     text: "INSAT Rainfall",
     wmsname: "insat_rain",
+    state: "insat_rain",
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
     show: false,
     operations: [
       { value: "sum", text: "Change", legend: "" },

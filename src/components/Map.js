@@ -80,7 +80,7 @@ const Map = ({ visibility }) => {
   const baseLayers = useSelector(selectBaseDataSet);
   const analyticsvisualise = useSelector(selectLayerData);
   const overlayLayers = useSelector(selectLayerDataSet);
-  console.log(analyticsvisualise);
+  console.log(analyticsLayer);
   console.log(visibility.filter((themes) => themes.id === "Layer"));
   const [showAnalytics, setVisibility] = useState(
     visibility.filter((themes) => themes.id === "Layer")[0].show

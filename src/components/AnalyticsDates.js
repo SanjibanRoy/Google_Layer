@@ -7,18 +7,24 @@ import { setAnalyticsVisual } from "../features/layers/layervisualiseslice";
 import { useState, useEffect } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import styled from "styled-components";
-var arrays = [
-  {
-    ndvidates: [200, 300],
-    soil_moisture_dates: [200, 300],
-    et_dates: [200, 300],
-  },
-];
+import { analyticoper } from "../config";
+
+
+
 
 function AnalyticsDates() {
+// var arrays = [
+//   {
+//     ndvidates: [200, 300],
+//     soil_moisture_dates: [200, 300],
+//     et_dates: [200, 300],
+//   },
+// ];
+console.log(arrays)
   const dispatch = useDispatch();
   const dispatch1 = useDispatch();
   const state = useSelector(selectDataSet);
+  let arrays = analyticoper.filter((data)=>data.state===state.dataset)[0].yearrange
 
   const setDate = (e) => {
     let fromyear = document.getElementById("fromyear").value;
@@ -89,7 +95,7 @@ function AnalyticsDates() {
             <p>Date</p>
             <select
               id="date"
-              className="SelectMenu"
+              className="SelectMenu1"
               onChange={(event) => setDate(event.target.value)}
             >
               {date.dates.map((task, index) => (
@@ -103,10 +109,10 @@ function AnalyticsDates() {
             <p>From Year</p>
             <select
               id="fromyear"
-              className="SelectMenu"
+              className="SelectMenu1"
               onChange={(event) => setDate(event.target.value)}
             >
-              {arrays[0].ndvidates.map((task, index) => (
+              {arrays.map((task, index) => (
                 <option key={index} value={task}>
                   {task}
                 </option>
@@ -117,10 +123,10 @@ function AnalyticsDates() {
             <p>To Year</p>
             <select
               id="toyear"
-              className="SelectMenu"
+              className="SelectMenu1"
               onChange={(event) => setDate(event.target.value)}
             >
-              {arrays[0].ndvidates.map((task, index) => (
+              {arrays.map((task, index) => (
                 <option key={index} value={task}>
                   {task}
                 </option>
@@ -149,7 +155,24 @@ const ANALYTICS = styled.div`
   .Analytics > p {
     margin-top: 15px;
   }
-  .SelectMenu {
+  .SelectMenu1 {
+    border: 1px solid #555;
+    border-radius: 4px;
+    box-shadow: none;
+    font-size: 12px;
+    font-weight: 400;
+    /* width: 5000px; */
+    display: block;
     width: 50%;
-  }
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 40px;
+    margin-right: 10px;  }
 `;
