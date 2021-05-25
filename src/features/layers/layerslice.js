@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   dataset: "modis_ndvi",
-  operation: "Change",
+  operation: "diff",
   dates: "",
   mask:"",
-  show:""
+  show:false
 };
 
 const userSlice = createSlice({

@@ -1,9 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectDataSet } from "../features/layers/layerslice";
 import { useDispatch } from "react-redux";
-import { setAnalyticsDetails } from "../features/layers/layerslice";
-import { setAnalyticsVisual } from "../features/layers/layervisualiseslice";
+import { setAnalyticsDetails, selectDataSet } from "../features/layers/layerslice";
+import { setAnalyticsVisual, selectLayerData } from "../features/layers/layervisualiseslice";
 import { useState, useEffect } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import styled from "styled-components";
@@ -12,12 +11,13 @@ function ChangeDates() {
   const dispatch = useDispatch();
   const dispatch1 = useDispatch();
   const state = useSelector(selectDataSet);
+  const visualise = useSelector(selectLayerData);
 
   const setChangeDate = () => {
     let fromdate=document.getElementById('fromdate').value
     let todate=document.getElementById('todate').value
     dispatch(setAnalyticsDetails({ ...state, dates: [fromdate,todate], show: true }));
-    dispatch1(setAnalyticsVisual({ show: false }));
+    dispatch1(setAnalyticsVisual({ ...visualise, show: false }));
   };
 
   const [date, setdate] = useState({
@@ -65,7 +65,8 @@ function ChangeDates() {
 
   return (
     <CHANGE>
-      {date.isFetching ? (
+      {
+      date.isFetching ? (
         <CircularProgress />
       ) : (
         <React.Fragment>
@@ -73,7 +74,10 @@ function ChangeDates() {
             <p>From Date</p>
             <select id="fromdate"
               className="SelectMenu1"
+              value={{ label: 200, value: 2000 }}
+
               onChange={() => setChangeDate()}
+              defaultValue={{ label: 200, value: 2000}}
             >
               {date.dates.map((task, index) => (
                 <option key={index} value={task.time_stamp}>

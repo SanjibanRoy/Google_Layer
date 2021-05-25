@@ -1,57 +1,55 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { setAnalyticsDetails } from "../features/layers/layerslice";
-import { useSelector } from "react-redux";
-import { selectDataSet } from "../features/layers/layerslice";
-import { setAnalyticsVisual } from "../features/layers/layervisualiseslice";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectDataSet,
+  setAnalyticsDetails,
+} from "../features/layers/layerslice";
+import {
+  setAnalyticsVisual,
+  selectLayerData,
+} from "../features/layers/layervisualiseslice";
 import { useState, useEffect } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import styled from "styled-components";
 import { analyticoper } from "../config";
 
-
-
-
 function AnalyticsDates() {
-// var arrays = [
-//   {
-//     ndvidates: [200, 300],
-//     soil_moisture_dates: [200, 300],
-//     et_dates: [200, 300],
-//   },
-// ];
-console.log(arrays)
   const dispatch = useDispatch();
-  const dispatch1 = useDispatch();
   const state = useSelector(selectDataSet);
-  let arrays = analyticoper.filter((data)=>data.state===state.dataset)[0].yearrange
+  const visualise = useSelector(selectLayerData);
+
+  let arrays = analyticoper.filter((data) => data.state === state.dataset)[0]
+    .yearrange;
+
+  const getDates = (fy, ty, da) => {
+    console.log(da)
+    let year_range = arrays.filter((year)=>(year>=fy&year<=ty))
+    let date = new Date(da * 1000);
+    let dates = year_range.map((year)=>(date.setFullYear(year)/1000))
+    console.log(date)
+    let t = date.getTime()
+    return dates
+  };
 
   const setDate = (e) => {
     let fromyear = document.getElementById("fromyear").value;
     let toyear = document.getElementById("toyear").value;
     let date = document.getElementById("date").value;
-
+    // getDates();
     dispatch(
       setAnalyticsDetails({
         ...state,
-        dates: [date, fromyear, toyear],
+        dates: getDates(fromyear, toyear, date ),
         show: true,
       })
     );
-    dispatch1(setAnalyticsVisual({ show: false }));
+    dispatch(setAnalyticsVisual({ ...visualise, show: false }));
   };
 
   const [date, setdate] = useState({
     dates: [],
     isFetching: false,
   });
-
-  // useEffect(() => {
-  //   console.log("Here")
-  //   getdates('modis_ndvi', 'ndvidates')
-  //   setdate(true)
-  //   console.log(date)
-  //   });
 
   const fetchDates = async () => {
     try {
@@ -174,5 +172,6 @@ const ANALYTICS = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 40px;
-    margin-right: 10px;  }
+    margin-right: 10px;
+  }
 `;

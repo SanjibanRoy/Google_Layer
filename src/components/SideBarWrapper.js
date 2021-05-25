@@ -12,6 +12,8 @@ import WeatherVisualise from "./WeatherVisualise";
 import VegetationVisualise from "./VegetationVisualise";
 import WaterVisualise from "./WaterVisualise";
 import SatelliteVisualise from "./SatelliteVisualise";
+import WeatherAnalysis from "./WeatherAnalysis"
+import WaterAnalysis from "./WaterAnalysis"
 // import CreatableSelect from 'react-select/creatable';
 //end of import
 
@@ -125,7 +127,7 @@ const SideBarWrapper = ({
           </div>
           {/* Tab2 Data */}
           <div className={value === 1 ? " " : "hidden"}>
-            <VegetationAnalysis />
+            <WeatherAnalysis />
           </div>
         </div>
       ) : type === "Water_Resources" ? (
@@ -150,7 +152,7 @@ const SideBarWrapper = ({
           </div>
           {/* Tab2 Data */}
           <div className={value === 1 ? " " : "hidden"}>
-            <VegetationAnalysis />
+            <WaterAnalysis />
           </div>
         </div>
       ) : type === "Satellite_Imagery" ? (

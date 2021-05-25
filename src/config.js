@@ -132,19 +132,23 @@ export const analyticoper = [
     text: "modisndvi",
     wmsname: "modis_ndvi_visu",
     state: "modis_ndvi",
+    wmsname_op:"modis_ndvi",
     show: false,
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
       2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
     ],
     operations: [
-      { value: "difference", text: "Change", legend: "" },
-      { value: "Mean", text: "Mean", legend: "" },
-      { value: "Maximum", text: "Maximum", legend: "" },
-      { value: "Minimum", text: "Minimum", legend: "" },
-      { value: "sd", text: "Standard Deviation", legend: "" },
-      { value: "cv", text: "Coefficient of Variance", legend: "" },
+      { value: "diff", text: "Change", legend: "" },
+      { value: "mean", text: "Mean", legend: "" },
+      { value: "max", text: "Maximum", legend: "" },
+      { value: "min", text: "Minimum", legend: "" },
+      { value: "std", text: "Standard Deviation", legend: "" },
+      { value: "range", text: "Range", legend: "" },
       { value: "vci", text: "Vegetation Condition Index", legend: "" },
+      { value: "trend", text: "Trend", legend: "" },
+      { value: "anomaly", text: "Anomaly", legend: "" },
+
       { value: "rgb", text: "RGB", legend: "" },
     ],
     // legends: [],
@@ -153,7 +157,7 @@ export const analyticoper = [
   {
     id: 3,
     text: "smap",
-    wmsname: "smap",
+    wmsname: "soil",
     state: "soil_date",
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
@@ -194,7 +198,24 @@ export const analyticoper = [
     id: 4,
     text: "INSAT Rainfall",
     wmsname: "insat_rain",
-    state: "insat_rain",
+    state: "insat_rainfall",
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
+    show: false,
+    operations: [
+      { value: "sum", text: "Sum", legend: "" },
+      { value: "Mean", text: "Mean", legend: "" },
+      { value: "Maximum", text: "Maximum", legend: "" },
+    ],
+    category: "weather",
+  },
+  {
+    id: 5,
+    text: "Air Quality AOD",
+    wmsname: "aod",
+    state: "aod_date",
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
       2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
@@ -207,6 +228,40 @@ export const analyticoper = [
     ],
     category: "weather",
   },
+  {
+    id: 5,
+    text: "Land Surface Temperature",
+    wmsname: "lst",
+    state: "lst",
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
+    show: false,
+    operations: [
+      { value: "sum", text: "Change", legend: "" },
+      { value: "Mean", text: "Mean", legend: "" },
+      { value: "Maximum", text: "Maximum", legend: "" },
+    ],
+    category: "weather",
+  },
+  {
+    id: 6,
+    text: "MODIS NRT FLood",
+    wmsname: "modis_water_level",
+    state: "modis_water_level",
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
+    show: false,
+    operations: [
+      { value: "sum", text: "Change", legend: "" },
+      { value: "Mean", text: "Mean", legend: "" },
+      { value: "Maximum", text: "Maximum", legend: "" },
+    ],
+    category: "weather",
+  }
 ];
 
 // side pannel visibility

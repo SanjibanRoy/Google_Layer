@@ -14,6 +14,7 @@ import { selectLayerData } from "../features/layers/layervisualiseslice";
 import { setMapState } from "../features/maps/mapStateSlice";
 import React from "react";
 import L from "leaflet";
+import { analyticoper } from "../config";
 
 function HandleHover() {
   const map = useMapEvents({
@@ -26,24 +27,41 @@ function HandleHover() {
 let analyticslayer = null;
 
 function AddAnalytics({ test, showAnalytics }) {
-  console.log(showAnalytics);
+  let data = null;
+  test = test.filter((state) => state.show)[0];
+  console.log(test);
+  test =
+    test.operation === "visu"
+      ? { ...test }
+      : { ...test, dates: test.dates.join() };
+  if (
+    analyticoper.filter(
+      (operations) => operations.state === test.dataset
+    )[0] !== undefined
+  ) {
+    if (test.operation === "visu") {
+      data = analyticoper.filter(
+        (operations) => operations.state === test.dataset
+      )[0].wmsname;
+    } else {
+      data = analyticoper.filter(
+        (operations) => operations.state === test.dataset
+      )[0].wmsname_op;
+    }
+  }
   const map = useMap();
-  let data =
-    test.dataset === "modis_ndvi"
-      ? "modis_ndvi_visu"
-      : test.dataset === "insat_rainfall"
-      ? "insat_rain"
-      : test.dataset === "lst_date"
-      ? "lst"
-      : test.dataset === "aod_date"
-      ? "aod_visu"
-      : test.dataset;
+  console.log(test);
 
   if (analyticslayer != null) {
     map.removeLayer(analyticslayer);
   }
   analyticslayer = L.tileLayer.wms(
-    "https://analytics.nesdr.gov.in/" + data + "/visu?date=" + test.dates,
+    "https://analytics.nesdr.gov.in/" +
+      data +
+      "/" +
+      test.operation +
+      "?date=" +
+      test.dates,
     {
       // layers: this.props.tasks[e].layer,
       format: "image/png",
@@ -130,7 +148,12 @@ const Map = ({ visibility }) => {
           )
       )}
 
-      {<AddAnalytics test={analyticsvisualise} showAnalytics={showAnalytics} />}
+      {
+        <AddAnalytics
+          test={[analyticsvisualise, analyticsLayer]}
+          showAnalytics={showAnalytics}
+        />
+      }
       <HandleClick />
       <HandleHover />
     </MapContainer>

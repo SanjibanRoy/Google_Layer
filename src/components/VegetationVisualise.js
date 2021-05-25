@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import LayerAnalyticsVisualise from "./LayerAnalyticsVisualise";
 import { useDispatch } from "react-redux";
-import { setAnalyticsDetails } from "../features/layers/layerslice";
 import { useSelector } from "react-redux";
-import { selectDataSet } from "../features/layers/layerslice";
 import {
   setAnalyticsVisual,
   selectLayerData,
@@ -28,13 +19,7 @@ const VegetationVisualise = () => {
   };
 
   const setDataset = (e) => {
-
     dispatch(setAnalyticsVisual({ ...state, dataset: e }));
-    // dispatch(
-    //   setAnalyticsVisual({
-    //     show: false,
-    //   })
-    // );
   };
 
   const [date, setdate] = useState({
@@ -46,7 +31,6 @@ const VegetationVisualise = () => {
     try {
       setdate({ dates: [], isFetching: false });
       const formData = new FormData();
-      console.log(state)
       formData.append("database", state.dataset);
       formData.append("key", "mgy1exz0n8mXQXi8NrOq24DDvmLrZ16a");
       // console.log(formData);
@@ -72,12 +56,15 @@ const VegetationVisualise = () => {
 
   useEffect(() => {
     fetchDates();
+   // dispatch(setAnalyticsVisual({ ...state, dates: document.getElementById("date").value, show: true }));
+
   }, [state.dataset]);
 
   useEffect(() => {
-    dispatch(setAnalyticsVisual({ dataset: document.getElementById("data").value }));
+    dispatch(
+      setAnalyticsVisual({ ...state, dataset: document.getElementById("data").value, show:true })
+    );
 
-    console.log("In effect vegetion")
     fetchDates();
   }, []);
 
@@ -87,7 +74,7 @@ const VegetationVisualise = () => {
         <p className="heads">Dataset</p>
       </div>
       <select
-      id ="data"
+        id="data"
         className="SelectMenu"
         onChange={(event) => setDataset(event.target.value)}
       >
