@@ -28,6 +28,8 @@ let analyticslayer = null;
 
 function AddAnalytics({ test, showAnalytics }) {
   let data = null;
+  console.log(test);
+
   test = test.filter((state) => state.show)[0];
   console.log(test);
   test =

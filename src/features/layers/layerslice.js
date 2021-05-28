@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   dataset: "modis_ndvi",
   operation: "diff",
-  dates: "",
+  dates: [111,2222,333],
   mask:"",
   show:false
 };

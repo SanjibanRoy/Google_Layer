@@ -1,49 +1,42 @@
 import ChangeDates from "./ChangeDates";
-import AnalyticsDates from "./AnalyticsDates";
-import RGBDropDown from "./RGBDropDown";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setAnalyticsDetails } from "../features/layers/layerslice";
 import { useSelector } from "react-redux";
 import { selectDataSet } from "../features/layers/layerslice";
-import { setAnalyticsVisual } from "../features/layers/layervisualiseslice";
+import {
+  setAnalyticsVisual,
+  selectLayerData,
+} from "../features/layers/layervisualiseslice";
 import styled from "styled-components";
 import { analyticoper } from "../config";
 
 const WeatherAnalysis = () => {
-  console.log(analyticoper)
+  console.log(analyticoper);
   const [analytics, setanalytics] = useState("Change");
   const dispatch = useDispatch();
-  const dispatch1 = useDispatch();
 
   const state = useSelector(selectDataSet);
-  const [data, setData] = useState("insat_rainfall");
-  console.log(state)
+  const visualise = useSelector(selectLayerData);
+
+  // const [data, setData] = useState("insat_rainfall");
+  console.log(state);
   const setOperation = (e) => {
-    dispatch(setAnalyticsDetails({ ...state, operation: e }));
-    dispatch(
-      setAnalyticsVisual({
-        show: false,
-      })
-    );
+    dispatch(setAnalyticsDetails({ ...state, operation: e, show: true  }));
+    dispatch(setAnalyticsVisual({ ...visualise, show: false }));
   };
 
   const setMask = (e) => {
     dispatch(setAnalyticsDetails({ ...state, mask: e }));
-    dispatch(
-      setAnalyticsVisual({
-        show: false,
-      })
-    );
+    dispatch(setAnalyticsVisual({ ...visualise, show: false }));
   };
 
   const setDataset = (e) => {
-    dispatch(setAnalyticsDetails({ ...state, dataset: e }));
-    dispatch(
-      setAnalyticsVisual({
-        show: false,
-      })
-    );
+    console.log(state)
+    dispatch(setAnalyticsDetails({ ...state, dataset: e, show: true }));
+    dispatch(setAnalyticsVisual({ ...visualise, show: false }));
+    console.log(state)
+
   };
 
   useEffect(() => {
@@ -51,6 +44,8 @@ const WeatherAnalysis = () => {
       setAnalyticsDetails({
         ...state,
         dataset: document.getElementById("data").value,
+        operation: document.getElementById("operation").value,
+
       })
     );
   }, []);
@@ -66,8 +61,8 @@ const WeatherAnalysis = () => {
         onChange={(event) => setDataset(event.target.value)}
       >
         <option value="insat_rain">INSAT Rainfall</option>
-        <option value="lst">MODIS LST</option>
-        <option value="aod">MODIS AOD</option>
+        <option value="lst_date">MODIS LST</option>
+        <option value="aod_date">MODIS AOD</option>
       </select>
       <div className="LayerTree">
         <p>Operations</p>
@@ -75,13 +70,8 @@ const WeatherAnalysis = () => {
 
       <select
         className="SelectMenu"
+        id ="operation"
         onChange={(event) => {
-          event.target.value === "difference"
-            ? setanalytics("Change")
-            : event.target.value === "rgb"
-            ? setanalytics("RGB")
-            : setanalytics("Anaytics");
-
           setOperation(event.target.value);
         }}
       >
@@ -93,30 +83,8 @@ const WeatherAnalysis = () => {
       </select>
       <div className="LayerTree">
         <p>Dates</p>
-        {/* <Todo /> */}
       </div>
-      {analytics === "Change" ? (
-        <ChangeDates />
-      ) : analytics === "Anaytics" ? (
-        <AnalyticsDates />
-      ) : (
-        <RGBDropDown />
-      )}
-      {state.dataset === "modis_ndvi" && (
-        <>
-          <div className="LayerTree">
-            <p>Mask</p>
-          </div>
-          <select
-            className="SelectMenu"
-            onChange={(event) => setMask(event.target.value)}
-          >
-            <option value="none">None</option>
-            <option value="forest">Forest</option>
-            <option value="agriculture">Agriculture</option>
-          </select>
-        </>
-      )}
+      <ChangeDates />
     </VEGANALYSIS>
   );
 };

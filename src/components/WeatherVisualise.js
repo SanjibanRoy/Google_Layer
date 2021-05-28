@@ -20,7 +20,7 @@ const WeatherVisualise = () => {
   };
 
   const setDataset = (e) => {
-    dispatch(setAnalyticsVisual({ ...state, dataset: e }));
+    dispatch(setAnalyticsVisual({ ...state, dataset: e, show: true  }));
     // dispatch(
     //   setAnalyticsVisual({
     //     show: false,
@@ -37,7 +37,7 @@ const WeatherVisualise = () => {
     try {
       setdate({ dates: [], isFetching: false });
       const formData = new FormData();
-
+      console.log(state)
       formData.append("database", state.dataset);
       formData.append("key", "mgy1exz0n8mXQXi8NrOq24DDvmLrZ16a");
       // console.log(formData);

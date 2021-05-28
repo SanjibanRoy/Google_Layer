@@ -9,7 +9,6 @@ import styled from "styled-components";
 
 function ChangeDates() {
   const dispatch = useDispatch();
-  const dispatch1 = useDispatch();
   const state = useSelector(selectDataSet);
   const visualise = useSelector(selectLayerData);
 
@@ -17,7 +16,7 @@ function ChangeDates() {
     let fromdate=document.getElementById('fromdate').value
     let todate=document.getElementById('todate').value
     dispatch(setAnalyticsDetails({ ...state, dates: [fromdate,todate], show: true }));
-    dispatch1(setAnalyticsVisual({ ...visualise, show: false }));
+    dispatch(setAnalyticsVisual({ ...visualise, show: false }));
   };
 
   const [date, setdate] = useState({
@@ -29,7 +28,7 @@ function ChangeDates() {
     try {
       setdate({ dates: [], isFetching: false });
       const formData = new FormData();
-
+      console.log(state)
       formData.append("database", state.dataset);
       formData.append("key", "mgy1exz0n8mXQXi8NrOq24DDvmLrZ16a");
       // console.log(formData);

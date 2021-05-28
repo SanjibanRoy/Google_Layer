@@ -20,7 +20,7 @@ const WaterVisualise = () => {
   };
 
   const setDataset = (e) => {
-    dispatch(setAnalyticsVisual({ ...state, dataset: e }));
+    dispatch(setAnalyticsVisual({ ...state, dataset: e, show: true  }));
     // dispatch(
     //   setAnalyticsVisual({
     //     show: false,
@@ -37,7 +37,7 @@ const WaterVisualise = () => {
     try {
       setdate({ dates: [], isFetching: false });
       const formData = new FormData();
-
+      console.log(state)
       formData.append("database", state.dataset);
       formData.append("key", "mgy1exz0n8mXQXi8NrOq24DDvmLrZ16a");
       // console.log(formData);
@@ -47,6 +47,7 @@ const WaterVisualise = () => {
       })
         .then((response) => response.json())
         .then((result) => {
+          console.log(result)
           setdate({ dates: result, isFetching: false });
         })
         .catch((error) => {
@@ -86,7 +87,7 @@ const WaterVisualise = () => {
         className="SelectMenu"
         onChange={(event) => setDataset(event.target.value)}
       >
-        <option value="modis_water_level">MODIS Flood</option>
+        <option value="modis_flood">MODIS Flood</option>
         <option value="">Water occourance Change</option>
         <option value="">Maximum water extent</option>
         <option value="">Water Transition</option>

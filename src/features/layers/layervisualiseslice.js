@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   dataset: "modis_ndvi",
   dates: "",
+  bands:"",
   operation: "visu",
   show: true
 };
@@ -15,6 +16,8 @@ const layerVisualiseSlice = createSlice({
       state.dataset =  action.payload.dataset;
       state.dates = action.payload.dates;
       state.show = action.payload.show;
+      state.bands = action.payload.bands;
+
     }
   },
 });

@@ -56,13 +56,13 @@ const VegetationVisualise = () => {
 
   useEffect(() => {
     fetchDates();
-   // dispatch(setAnalyticsVisual({ ...state, dates: document.getElementById("date").value, show: true }));
+  //  dispatch(setAnalyticsVisual({ ...state, dates: document.getElementById("date").value, show: true }));
 
   }, [state.dataset]);
 
   useEffect(() => {
     dispatch(
-      setAnalyticsVisual({ ...state, dataset: document.getElementById("data").value, show:true })
+      setAnalyticsVisual({ ...state,dates: document.getElementById("date").value, dataset: document.getElementById("data").value, show:true })
     );
 
     fetchDates();
@@ -81,6 +81,8 @@ const VegetationVisualise = () => {
         <option value="modis_ndvi">Modis NDVI</option>
         <option value="et">MODIS ET</option>
         <option value="soil_date">Soil Moisture (SMAP)</option>
+        <option value="modis_flood">MODIS Flood</option>
+
       </select>
       <div className="LayerTree">
         <p className="heads">Date</p>

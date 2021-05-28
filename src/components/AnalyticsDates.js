@@ -22,12 +22,9 @@ function AnalyticsDates() {
     .yearrange;
 
   const getDates = (fy, ty, da) => {
-    console.log(da)
     let year_range = arrays.filter((year)=>(year>=fy&year<=ty))
     let date = new Date(da * 1000);
     let dates = year_range.map((year)=>(date.setFullYear(year)/1000))
-    console.log(date)
-    let t = date.getTime()
     return dates
   };
 
@@ -36,10 +33,11 @@ function AnalyticsDates() {
     let toyear = document.getElementById("toyear").value;
     let date = document.getElementById("date").value;
     // getDates();
+    console.log(e)
     dispatch(
       setAnalyticsDetails({
         ...state,
-        dates: getDates(fromyear, toyear, date ),
+        dates: getDates(fromyear, toyear, e ),
         show: true,
       })
     );
@@ -65,7 +63,7 @@ function AnalyticsDates() {
       })
         .then((response) => response.json())
         .then((result) => {
-          // console.log(result);
+          console.log(result);
           setdate({ dates: result, isFetching: false });
         })
         .catch((error) => {
@@ -78,6 +76,9 @@ function AnalyticsDates() {
       setdate({ dates: date.dates, isFetching: false });
     }
   };
+  useEffect(() => {
+    fetchDates();
+  }, []);
 
   useEffect(() => {
     fetchDates();
@@ -97,7 +98,7 @@ function AnalyticsDates() {
               onChange={(event) => setDate(event.target.value)}
             >
               {date.dates.map((task, index) => (
-                <option key={index} value={task.date}>
+                <option key={index} value={task.time_stamp}>
                   {task.date}
                 </option>
               ))}

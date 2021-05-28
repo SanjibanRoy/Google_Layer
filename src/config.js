@@ -130,7 +130,7 @@ export const analyticoper = [
   {
     id: 2,
     text: "modisndvi",
-    wmsname: "modis_ndvi_visu",
+    wmsname: "modis_ndvi",
     state: "modis_ndvi",
     wmsname_op:"modis_ndvi",
     show: false,
@@ -159,6 +159,8 @@ export const analyticoper = [
     text: "smap",
     wmsname: "soil",
     state: "soil_date",
+    wmsname_op:"soil",
+
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
       2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
@@ -179,18 +181,20 @@ export const analyticoper = [
     text: "et",
     wmsname: "et",
     state: "et",
+    wmsname_op:"et",
+
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
       2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
     ],
     show: false,
     operations: [
-      { value: "difference", text: "Change", legend: "" },
-      { value: "Mean", text: "Mean", legend: "" },
-      { value: "Maximum", text: "Maximum", legend: "" },
-      { value: "Minimum", text: "Minimum", legend: "" },
-      { value: "sd", text: "Standard Deviation", legend: "" },
-      { value: "cv", text: "Coefficient of Variance", legend: "" },
+      { value: "diff", text: "Change", legend: "" },
+      { value: "mean", text: "Mean", legend: "" },
+      { value: "max", text: "Maximum", legend: "" },
+      { value: "min", text: "Minimum", legend: "" },
+      { value: "std", text: "Standard Deviation", legend: "" },
+      // { value: "cv", text: "Coefficient of Variance", legend: "" },
     ],
     category: "vegetation",
   },
@@ -199,6 +203,8 @@ export const analyticoper = [
     text: "INSAT Rainfall",
     wmsname: "insat_rain",
     state: "insat_rainfall",
+    wmsname_op:"insat_rain",
+
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
       2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
@@ -206,8 +212,8 @@ export const analyticoper = [
     show: false,
     operations: [
       { value: "sum", text: "Sum", legend: "" },
-      { value: "Mean", text: "Mean", legend: "" },
-      { value: "Maximum", text: "Maximum", legend: "" },
+      { value: "mean", text: "Mean", legend: "" },
+      { value: "max", text: "Maximum", legend: "" },
     ],
     category: "weather",
   },
@@ -216,6 +222,8 @@ export const analyticoper = [
     text: "Air Quality AOD",
     wmsname: "aod",
     state: "aod_date",
+    wmsname_op:"aod",
+
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
       2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
@@ -232,24 +240,26 @@ export const analyticoper = [
     id: 5,
     text: "Land Surface Temperature",
     wmsname: "lst",
-    state: "lst",
+    state: "lst_date",
+    wmsname_op:"lst",
+
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
       2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
     ],
     show: false,
     operations: [
-      { value: "sum", text: "Change", legend: "" },
-      { value: "Mean", text: "Mean", legend: "" },
-      { value: "Maximum", text: "Maximum", legend: "" },
+      { value: "diff", text: "Change", legend: "" },
+      { value: "mean", text: "Mean", legend: "" },
+      { value: "max", text: "Maximum", legend: "" },
     ],
     category: "weather",
   },
   {
     id: 6,
     text: "MODIS NRT FLood",
-    wmsname: "modis_water_level",
-    state: "modis_water_level",
+    wmsname: "modis_flood",
+    state: "modis_flood",
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
       2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
@@ -257,7 +267,24 @@ export const analyticoper = [
     show: false,
     operations: [
       { value: "sum", text: "Change", legend: "" },
-      { value: "Mean", text: "Mean", legend: "" },
+      { value: "mean", text: "Mean", legend: "" },
+      { value: "Maximum", text: "Maximum", legend: "" },
+    ],
+    category: "weather",
+  },
+  {
+    id: 6,
+    text: "Sentinel",
+    wmsname: "Sentinal",
+    state: "Sentinal",
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
+    show: false,
+    operations: [
+      { value: "sum", text: "Change", legend: "" },
+      { value: "mean", text: "Mean", legend: "" },
       { value: "Maximum", text: "Maximum", legend: "" },
     ],
     category: "weather",
@@ -270,31 +297,42 @@ export const panelVisibilty = [
     id: "Vegetation",
     text: "Vegetation",
     show: false,
+    panel: false
   },
   {
     id: "Layer",
     text: "Layer",
     show: true,
+    panel: true
+
   },
   {
     id: "Weather",
     text: "Weather",
     show: false,
+    panel: false
+
   },
   {
     id: "Satellite_Imagery",
     text: "Satellite_Imagery",
     show: false,
+    panel: false
+
   },
   {
     id: "Vedas_Services",
     text: "Vedas_Services",
     show: false,
+    panel: false
+
   },
   {
     id: "Water_Resources",
     text: "Water_Resources",
     show: false,
+    panel: false
+
   },
 ];
 
