@@ -6,14 +6,8 @@ import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { makeStyles } from "@material-ui/core/styles";
-import VegetationAnalysis from "./VegetationAnalysis";
 import BaseSwitcher from "./BaseSwitcher";
-import WeatherVisualise from "./WeatherVisualise";
-import VegetationVisualise from "./VegetationVisualise";
-import WaterVisualise from "./WaterVisualise";
-import SatelliteVisualise from "./SatelliteVisualise";
-import WeatherAnalysis from "./WeatherAnalysis"
-import WaterAnalysis from "./WaterAnalysis"
+
 // import CreatableSelect from 'react-select/creatable';
 //end of import
 
@@ -83,111 +77,7 @@ const SideBarWrapper = ({
       {/* *************Layer Tab end*************** */}
 
       {/* *************Vegetation Tab start*************** */}
-      {type === "Vegetation" ? (
-        <div className="LayerContainer">
-          {/* Tab View */}
-          <Paper square>
-            <Tabs
-              value={value}
-              indicatorColor="primary"
-              textColor="primary"
-              onChange={handleChange}
-              aria-label="disabled tabs example"
-            >
-              <Tab label="Visualization" />
-              <Tab label="Analysis" />
-            </Tabs>
-          </Paper>
-          {/* Tab1 Data */}
-          <div className={value === 0 ? " " : "hidden"}>
-            <VegetationVisualise />
-          </div>
-          {/* Tab2 Data */}
-          <div className={value === 1 ? " " : "hidden"}>
-            <VegetationAnalysis />
-          </div>
-        </div>
-      ) : type === "Weather" ? (
-        <div className={type === "Weather" ? "LayerContainer" : "hidden"}>
-          <Paper square>
-            <Tabs
-              value={value}
-              indicatorColor="primary"
-              textColor="primary"
-              onChange={handleChange}
-              aria-label="disabled tabs example"
-            >
-              <Tab label="Visualization" />
-              <Tab label="Analysis" />
-            </Tabs>
-          </Paper>
-          {/* Tab1 Data */}
-          <div className={value === 0 ? " " : "hidden"}>
-            <WeatherVisualise />
-          </div>
-          {/* Tab2 Data */}
-          <div className={value === 1 ? " " : "hidden"}>
-            <WeatherAnalysis />
-          </div>
-        </div>
-      ) : type === "Water_Resources" ? (
-        <div
-          className={type === "Water_Resources" ? "LayerContainer" : "hidden"}
-        >
-          <Paper square>
-            <Tabs
-              value={value}
-              indicatorColor="primary"
-              textColor="primary"
-              onChange={handleChange}
-              aria-label="disabled tabs example"
-            >
-              <Tab label="Visualization" />
-              <Tab label="Analysis" />
-            </Tabs>
-          </Paper>
-          {/* Tab1 Data */}
-          <div className={value === 0 ? " " : "hidden"}>
-            <WaterVisualise />
-          </div>
-          {/* Tab2 Data */}
-          <div className={value === 1 ? " " : "hidden"}>
-            <WaterAnalysis />
-          </div>
-        </div>
-      ) : type === "Satellite_Imagery" ? (
-        <div
-          className={type === "Satellite_Imagery" ? "LayerContainer" : "hidden"}
-        >
-          <Paper square>
-            <Tabs
-              value={value}
-              indicatorColor="primary"
-              textColor="primary"
-              onChange={handleChange}
-              aria-label="disabled tabs example"
-            >
-              <Tab label="Visualization" />
-              <Tab label="Analysis" />
-            </Tabs>
-          </Paper>
-          {/* Tab1 Data */}
-          <div className={value === 0 ? " " : "hidden"}>
-            <SatelliteVisualise />
-          </div>
-          {/* Tab2 Data */}
-          <div className={value === 1 ? " " : "hidden"}>
-            <VegetationAnalysis />
-          </div>
-        </div>
-      ) : (
-        <div
-          className={type === "Vedas_Services" ? "LayerContainer" : "hidden"}
-        >
-          <LayerTree category="Admin" state="test" />
-          <LayerTree category="Natural Resource" />
-        </div>
-      )}
+      
 
       
     </div>
