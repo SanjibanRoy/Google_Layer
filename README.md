@@ -1,6 +1,5 @@
-# React Crash Course 2021 based Geoportal
+# ASDMA Mass Alert Management System
 
-This is the project from the [YouTube crash course](https://www.youtube.com/watch?v=w7ejDZ8SWv8). 
 
 ## Usage
 
