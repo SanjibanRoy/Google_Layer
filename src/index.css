@@ -43,7 +43,7 @@ body {
 .SidePanel{
     border-right:1px solid #080808;
     position: absolute;
-    width: 4.75rem;
+    width: 4.0rem;
     height: 100%;
     top: 0px;
     left: 0px;
@@ -142,7 +142,7 @@ display:none;
 
 .LayerContainer{
   height: 100%;
-  margin-left: 4.75rem;
+  margin-left: 4.0rem;
   background-color: rgba(243, 241, 241, 0.87);
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;

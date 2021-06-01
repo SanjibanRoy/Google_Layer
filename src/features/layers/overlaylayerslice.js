@@ -1,15 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { layer } from '../../config'
+import { layer } from "../../config";
 
-const initialState = layer
+const initialState = layer;
 // console.log(initialState)
 const overlayLayerSlice = createSlice({
   name: "overlaylayer",
   initialState,
   reducers: {
     setAnalyticsDetails: (state, action) => {
-      state[action.payload.id].show = action.payload.show;
-    }
+      if (action.payload.layer !== undefined) {
+
+        state[action.payload.id].show = true;
+        state[action.payload.id].layer = "FLEWS:"+action.payload.layer;
+      } else {
+        state[action.payload.id].show = action.payload.show;
+      }
+    },
   },
 });
 

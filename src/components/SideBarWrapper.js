@@ -7,7 +7,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { makeStyles } from "@material-ui/core/styles";
 import BaseSwitcher from "./BaseSwitcher";
-
+import AlertPanel from "./AlertPanel";
 // import CreatableSelect from 'react-select/creatable';
 //end of import
 
@@ -72,14 +72,18 @@ const SideBarWrapper = ({
           <LayerTree category="Administrative" />
           <LayerTree category="Land Use/Land Cover" />
           <LayerTree category="Census" />
+          <LayerTree category="Disaster Mitigation" />
+          <LayerTree category="Alerts and Early Warning" />
+          
+
         </div>
       </div>
       {/* *************Layer Tab end*************** */}
 
       {/* *************Vegetation Tab start*************** */}
-      
-
-      
+      <div className={type === "Alert" ? "LayerContainer" : "hidden"}>
+          <AlertPanel/>
+      </div>
     </div>
   );
 };

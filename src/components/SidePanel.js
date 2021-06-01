@@ -1,5 +1,5 @@
 import React from 'react'
-import CloudIcon from '@material-ui/icons/Cloud';
+import WarningIcon from '@material-ui/icons/Warning';
 import LayersIcon from '@material-ui/icons/Layers';
 import EcoIcon from '@material-ui/icons/Eco';
 const SidePanel = ({ changeVisibility }) => {
@@ -16,8 +16,8 @@ const SidePanel = ({ changeVisibility }) => {
                 </li>
                 <hr>
                 </hr>
-                <li key={3} onClick={() => changeVisibility('Vegetation')} >< EcoIcon />
-                    <span align="center">Admin</span>
+                <li key={3} onClick={() => changeVisibility('Alert')} >< WarningIcon />
+                    <span align="center">Alert</span>
                 </li>
                 <hr>
                 </hr>

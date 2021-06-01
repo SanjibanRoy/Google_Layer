@@ -31,7 +31,7 @@ function AddAnalytics({ test, showAnalytics }) {
   console.log(test);
 
   test = test.filter((state) => state.show)[0];
-  console.log(test);
+  // console.log(test);
   test =
     test.operation === "visu"
       ? { ...test }
@@ -52,7 +52,7 @@ function AddAnalytics({ test, showAnalytics }) {
     }
   }
   const map = useMap();
-  console.log(test);
+  // console.log(test);
 
   if (analyticslayer != null) {
     map.removeLayer(analyticslayer);
@@ -91,7 +91,7 @@ const Map = ({ visibility }) => {
             overlays: overlayLayers.filter((overlay) => overlay.show === true),
           })
         );
-        console.log(e);
+        // console.log(e);
       },
     });
     return null;
@@ -100,8 +100,8 @@ const Map = ({ visibility }) => {
   const baseLayers = useSelector(selectBaseDataSet);
   const analyticsvisualise = useSelector(selectLayerData);
   const overlayLayers = useSelector(selectLayerDataSet);
-  console.log(analyticsLayer);
-  console.log(visibility.filter((themes) => themes.id === "Layer"));
+  // console.log(analyticsLayer);
+  // console.log(visibility.filter((themes) => themes.id === "Layer"));
   const [showAnalytics, setVisibility] = useState(
     visibility.filter((themes) => themes.id === "Layer")[0].show
   );
@@ -143,7 +143,7 @@ const Map = ({ visibility }) => {
               key={index}
               format="image/png"
               layers={overlayer.layer}
-              url="https://apps.nesdr.gov.in:442/geoserver/wms"
+              url={overlayer.link}
               transparent="true"
               zIndex="10"
             />

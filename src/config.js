@@ -1,18 +1,29 @@
 export const layer = [
   //Administrator boundary start
+  // {
+  //   id: 1,
+  //   text: "State Boundary",
+  //   show: true,
+  //   class: "Administrative",
+  //   layer: "NEC:ner_states",
+
+  //   link: "https://apps.nesdr.gov.in:442/geoserver/wms"
+  // },
   {
     id: 1,
-    text: "State Boundary",
+    text: "District Boundary",
     show: true,
     class: "Administrative",
-    layer: "NEC:ner_states",
+    layer: "NEC:assam_dist",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
   },
   {
     id: 2,
-    text: "District Boundary",
+    text: "Revenue Circle",
     show: false,
     class: "Administrative",
-    layer: "analytic:ner_boundary",
+    layer: "NEC:assam_dist",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
   },
   // Administrator boundary end
 
@@ -23,6 +34,7 @@ export const layer = [
     show: false,
     class: "Land Use/Land Cover",
     layer: "analytic:ner_landuse_landcover_50k_1st_cycle",
+    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
   },
   {
     id: 4,
@@ -30,6 +42,7 @@ export const layer = [
     show: false,
     class: "Land Use/Land Cover",
     layer: "analytic:lulc2ndcycle",
+    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
   },
   {
     id: 5,
@@ -37,6 +50,7 @@ export const layer = [
     show: false,
     class: "Land Use/Land Cover",
     layer: "analytic:lulc3rdcycle",
+    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
   },
   // Land Use and Land Cover end
 
@@ -47,8 +61,87 @@ export const layer = [
     show: false,
     class: "Census",
     layer: "analytic:ner_census",
+    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
   },
+  {
+    id: 7,
+    text: "Embankment",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "NEWRM:ne_embankments",
+    link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
+  },
+  {
+    id: 8,
+    text: "Breach Locations",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "NEWRM:ne_breach_total_locations",
+    link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
+  },
+  {
+    id: 9,
+    text: "Erosion Deposition",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "NEWRM:NE_ErosionDeposition",
+    link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
+  },
+  {
+    id: 10,
+    text: "Landslide",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "disaster:AS_SLIM_2014_GCS",
+    link: "https://bhuvan-vec2.nrsc.gov.in/bhuvan/wms",
+  },
+  {
+    id: 11,
+    text: "Flood Inundation",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "FLEWS:1august20",
+    options: [
+      { value: "FLEWS:1august20", text: "FLEWS:1august20" },
+      { value: "FLEWS:1august20", text: "FLEWS:1august20" },
+      { value: "FLEWS:1august20", text: "FLEWS:1august20" },
+      { value: "FLEWS:1august20", text: "FLEWS:1august20" },
+    ],
+    link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
+  },
+  {
+    id: 12,
+    text: "Flood Alerts",
+    show: false,
+    class: "Alerts and Early Warning",
+    layer: "FLEWS:assam_rc_utm",
+    link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
+  },
+  {
+    id: 13,
+    text: "Lightning Alerts",
+    show: false,
+    class: "Alerts and Early Warning",
+    layer:"FLEWS:1august20",
 
+    link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
+  },
+  {
+    id: 14,
+    text: "Thunderstorm",
+    show: false,
+    class: "Alerts and Early Warning",
+    layer: "FLEWS:1august20",
+    link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
+  },
+  {
+    id: 15,
+    text: "Earthquake",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "NEWRM:ne_earthquake",
+    link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
+  },
   // census end
 ];
 
@@ -132,7 +225,7 @@ export const analyticoper = [
     text: "modisndvi",
     wmsname: "modis_ndvi",
     state: "modis_ndvi",
-    wmsname_op:"modis_ndvi",
+    wmsname_op: "modis_ndvi",
     show: false,
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
@@ -159,7 +252,7 @@ export const analyticoper = [
     text: "smap",
     wmsname: "soil",
     state: "soil_date",
-    wmsname_op:"soil",
+    wmsname_op: "soil",
 
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
@@ -181,7 +274,7 @@ export const analyticoper = [
     text: "et",
     wmsname: "et",
     state: "et",
-    wmsname_op:"et",
+    wmsname_op: "et",
 
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
@@ -203,7 +296,7 @@ export const analyticoper = [
     text: "INSAT Rainfall",
     wmsname: "insat_rain",
     state: "insat_rainfall",
-    wmsname_op:"insat_rain",
+    wmsname_op: "insat_rain",
 
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
@@ -222,7 +315,7 @@ export const analyticoper = [
     text: "Air Quality AOD",
     wmsname: "aod",
     state: "aod_date",
-    wmsname_op:"aod",
+    wmsname_op: "aod",
 
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
@@ -241,7 +334,7 @@ export const analyticoper = [
     text: "Land Surface Temperature",
     wmsname: "lst",
     state: "lst_date",
-    wmsname_op:"lst",
+    wmsname_op: "lst",
 
     yearrange: [
       2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
@@ -288,51 +381,46 @@ export const analyticoper = [
       { value: "Maximum", text: "Maximum", legend: "" },
     ],
     category: "weather",
-  }
+  },
 ];
 
 // side pannel visibility
 export const panelVisibilty = [
   {
-    id: "Vegetation",
-    text: "Vegetation",
+    id: "Alert",
+    text: "Alert",
     show: false,
-    panel: false
+    panel: false,
   },
   {
     id: "Layer",
     text: "Layer",
     show: true,
-    panel: true
-
+    panel: true,
   },
   {
     id: "Weather",
     text: "Weather",
     show: false,
-    panel: false
-
+    panel: false,
   },
   {
     id: "Satellite_Imagery",
     text: "Satellite_Imagery",
     show: false,
-    panel: false
-
+    panel: false,
   },
   {
     id: "Vedas_Services",
     text: "Vedas_Services",
     show: false,
-    panel: false
-
+    panel: false,
   },
   {
     id: "Water_Resources",
     text: "Water_Resources",
     show: false,
-    panel: false
-
+    panel: false,
   },
 ];
 
