@@ -1,9 +1,9 @@
 import Checkbox from "@material-ui/core/Checkbox";
 import InfoIcon from "@material-ui/icons/Info";
 import { useDispatch } from "react-redux";
-import { setAnalyticsDetails } from "../features/layers/overlaylayerslice";
+import { setAnalyticsDetails, selectLayerDataSet } from "../features/layers/overlaylayerslice";
 import { useSelector } from "react-redux";
-import { selectLayerDataSet } from "../features/layers/overlaylayerslice";
+import { setInfoDetails, selectInfo } from "../features/layers/infoboxslice";
 import styled from "styled-components";
 
 const Layer = ({ task, showLayer }) => {
@@ -13,13 +13,18 @@ const Layer = ({ task, showLayer }) => {
   const toggleLayer = (id, e) => {
     dispatch(setAnalyticsDetails({ ...state, id: id - 1, show: e }));
   };
+  const showInfo = (data,info) => {
+    dispatch(setInfoDetails({ dataset: data, info:info, show: true }));
 
+  };
   const changeDate = (date, id) => {
-    console.log("Here")
-    dispatch(setAnalyticsDetails({ ...state, id: id - 1 , show: false}));
+    console.log("Here");
+    dispatch(setAnalyticsDetails({ ...state, id: id - 1, show: false }));
     setTimeout(console.log(""), 10000);
 
-    dispatch(setAnalyticsDetails({ ...state, id: id - 1 , show: true, layer: date }));
+    dispatch(
+      setAnalyticsDetails({ ...state, id: id - 1, show: true, layer: date })
+    );
   };
 
   return (
@@ -29,7 +34,8 @@ const Layer = ({ task, showLayer }) => {
         defaultChecked={task.show && true}
         onClick={(e) => toggleLayer(task.id, e.target.checked)}
       />
-      {task.text} <InfoIcon className="info" />
+      {task.text}{" "}
+      <InfoIcon className="info" onClick={(e) => showInfo(task.text, task.info)} />
       {task.options !== undefined && (
         <>
           {" "}

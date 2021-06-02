@@ -16,6 +16,7 @@ export const layer = [
     class: "Administrative",
     layer: "NEC:assam_dist",
     link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
+    info: "District Boundary",
   },
   {
     id: 2,
@@ -24,6 +25,8 @@ export const layer = [
     class: "Administrative",
     layer: "NEC:assam_dist",
     link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
+    info: "Revenue Circle",
+
   },
   // Administrator boundary end
 
@@ -35,6 +38,8 @@ export const layer = [
     class: "Land Use/Land Cover",
     layer: "analytic:ner_landuse_landcover_50k_1st_cycle",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
+    info: "Revenue Circle",
+
   },
   {
     id: 4,
@@ -43,6 +48,8 @@ export const layer = [
     class: "Land Use/Land Cover",
     layer: "analytic:lulc2ndcycle",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
+    info: "Revenue Circle",
+
   },
   {
     id: 5,
@@ -51,6 +58,8 @@ export const layer = [
     class: "Land Use/Land Cover",
     layer: "AS_LULC_3RD_CYCLE",
     link: "https://www.nesdr.gov.in/igistile/State_QC_passed_LULC_1516WS/wms",
+    info: "LULC(2015-16)",
+
   },
   // Land Use and Land Cover end
 

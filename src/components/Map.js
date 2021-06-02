@@ -117,8 +117,8 @@ const Map = ({ visibility }) => {
   }, [overlayLayers]);
   return (
     <MapContainer
-      center={[26.2006, 92.9376]}
-      zoom={6}
+      center={[26.2006, 92.5376]}
+      zoom={7}
       zoomControl={false}
       attributionControl={false}
     >

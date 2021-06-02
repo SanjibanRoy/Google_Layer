@@ -4,6 +4,7 @@ import layervisualiseReducer from "../features/layers/layervisualiseslice";
 import overlaylayerReducer from "../features/layers/overlaylayerslice";
 import baselayerReducer from "../features/layers/baselayerslice"
 import mapStateReducer from "../features/maps/mapStateSlice"
+import infoReducer from "../features/layers/infoboxslice"
 
 export default configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export default configureStore({
     layervisualise: layervisualiseReducer,
     overlaylayer:overlaylayerReducer,
     baselayer:baselayerReducer,
+    info:infoReducer,
     mapstate: mapStateReducer
   },
   middleware: getDefaultMiddleware({
