@@ -102,18 +102,19 @@ const Map = ({ visibility }) => {
   const overlayLayers = useSelector(selectLayerDataSet);
   // console.log(analyticsLayer);
   // console.log(visibility.filter((themes) => themes.id === "Layer"));
+  const [overlays,setOverlays]= useState(overlayLayers)
   const [showAnalytics, setVisibility] = useState(
     visibility.filter((themes) => themes.id === "Layer")[0].show
   );
-  useEffect(() => {
-    //AddAnalytics()
-    setVisibility(visibility.filter((themes) => themes.id === "Layer")[0].show);
-  }, [visibility]);
+  // useEffect(() => {
+  //   //AddAnalytics()
+  //   setVisibility(visibility.filter((themes) => themes.id === "Layer")[0].show);
+  // }, [visibility]);
 
   useEffect(() => {
-    //AddAnalytics()
+   // AddAnalytics()
     console.log("Analyticcs Changed");
-  }, [analyticsLayer]);
+  }, [overlayLayers]);
   return (
     <MapContainer
       center={[26.2006, 92.9376]}
@@ -138,7 +139,7 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.show && (
+          overlayer.show & overlayer.text!== "Flood Inundation" && (
             <WMSTileLayer
               key={index}
               format="image/png"

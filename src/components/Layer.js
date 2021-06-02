@@ -16,7 +16,10 @@ const Layer = ({ task, showLayer }) => {
 
   const changeDate = (date, id) => {
     console.log("Here")
-    dispatch(setAnalyticsDetails({ ...state, id: id - 1 , layer: date }));
+    dispatch(setAnalyticsDetails({ ...state, id: id - 1 , show: false}));
+    setTimeout(console.log(""), 10000);
+
+    dispatch(setAnalyticsDetails({ ...state, id: id - 1 , show: true, layer: date }));
   };
 
   return (
@@ -37,17 +40,17 @@ const Layer = ({ task, showLayer }) => {
             }}
           >
             <option value="floodalert">RC Flood Alert</option>
-            <option value="sixaugust">6 August 2020</option>
+            <option value="FLEWS:8july2020">6 August 2020</option>
             <option value="oneaugust">1 August 2020</option>
             <option value="twentyfifthjuly">25 July 2020</option>
             <option value="twentytwojuly">22 July 2020</option>
-            <option value="nineteenjuly">19 July 2020</option>
-            <option value="seventeenjuly">17 July 2020</option>
-            <option value="sixteenjuly">16 July 2020</option>
-            <option value="fifteenjuly">15 July 2020</option>
-            <option value="tenjuly">10 July 2020</option>
-            <option value="eightjuly">8 July 2020</option>
-            <option value="threejuly">3 July 2020</option>
+            <option value="FLEWS:19_july">19 July 2020</option>
+            <option value="FLEWS:17July">17 July 2020</option>
+            <option value="FLEWS:16_july">16 July 2020</option>
+            <option value="FLEWS:15july2020">15 July 2020</option>
+            <option value="FLEWS:10july2020">10 July 2020</option>
+            <option value="FLEWS:8july2020">8 July 2020</option>
+            <option value="FLEWS:3july2020">3 July 2020</option>
             <option value="onejuly">1 July 2020</option>
             <option value="twentyeightjune">28 June 2020</option>
             <option value="twentysixjune">26 June 2020</option>

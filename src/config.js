@@ -49,8 +49,8 @@ export const layer = [
     text: "LULC(2015-16)",
     show: false,
     class: "Land Use/Land Cover",
-    layer: "analytic:lulc3rdcycle",
-    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
+    layer: "AS_LULC_3RD_CYCLE",
+    link: "https://www.nesdr.gov.in/igistile/State_QC_passed_LULC_1516WS/wms",
   },
   // Land Use and Land Cover end
 
@@ -60,8 +60,8 @@ export const layer = [
     text: "Census",
     show: false,
     class: "Census",
-    layer: "analytic:ner_census",
-    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
+    layer: "NEC:assam_census",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
   },
   {
     id: 7,
