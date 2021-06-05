@@ -9,12 +9,13 @@ const InfoBox = () => {
     const state = useSelector(selectMapstate)
     console.log(state)
     const  info = state.overlays
+    
     return (
         <InfoBoxx>
         {
             info!==undefined?(
                info.map((task, index) => (
-                    <Info key={index} info={task}  />
+                    <Info key={index} info={task} state ={state} />
                   ))
             
             
@@ -27,9 +28,8 @@ const InfoBox = () => {
 export default InfoBox
 
 const InfoBoxx = styled.div`
-width: 15%;
   top: 8px;
-  right: 16px;
+  right: 0px;
   position: absolute;
   background-color: #fff;
   z-index: 10000;

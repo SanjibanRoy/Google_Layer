@@ -14,7 +14,6 @@ import { selectLayerData } from "../features/layers/layervisualiseslice";
 import { setMapState } from "../features/maps/mapStateSlice";
 import React from "react";
 import L from "leaflet";
-import { analyticoper } from "../config";
 
 function HandleHover() {
   const map = useMapEvents({
@@ -28,51 +27,22 @@ let analyticslayer = null;
 
 function AddAnalytics({ test, showAnalytics }) {
   let data = null;
-  console.log(test);
+  console.log(analyticslayer);
+  console.log(showAnalytics);
 
-  test = test.filter((state) => state.show)[0];
-  // console.log(test);
-  test =
-    test.operation === "visu"
-      ? { ...test }
-      : { ...test, dates: test.dates.join() };
-  if (
-    analyticoper.filter(
-      (operations) => operations.state === test.dataset
-    )[0] !== undefined
-  ) {
-    if (test.operation === "visu") {
-      data = analyticoper.filter(
-        (operations) => operations.state === test.dataset
-      )[0].wmsname;
-    } else {
-      data = analyticoper.filter(
-        (operations) => operations.state === test.dataset
-      )[0].wmsname_op;
-    }
-  }
   const map = useMap();
-  // console.log(test);
 
   if (analyticslayer != null) {
     map.removeLayer(analyticslayer);
   }
-  analyticslayer = L.tileLayer.wms(
-    "https://analytics.nesdr.gov.in/" +
-      data +
-      "/" +
-      test.operation +
-      "?date=" +
-      test.dates,
-    {
-      // layers: this.props.tasks[e].layer,
-      format: "image/png",
-      transparent: true,
-      zIndex: 100,
-    }
-  );
+  analyticslayer = L.tileLayer.wms(test[1], {
+    layers: test[0],
+    format: "image/png",
+    transparent: true,
+    zIndex: 100,
+  });
   map.addLayer(analyticslayer);
-  if (showAnalytics) {
+  if (!showAnalytics) {
     map.removeLayer(analyticslayer);
   }
   return null;
@@ -89,30 +59,27 @@ const Map = ({ visibility }) => {
             lon: e.latlng.lng,
             zoom: map.getZoom(),
             overlays: overlayLayers.filter((overlay) => overlay.show === true),
+            bbox: map.getBounds().toBBoxString(),
+            shape: map.getSize(),
+            point:map.latLngToContainerPoint(e.latlng, map.getZoom())
           })
         );
+        console.log(map.getBounds().toBBoxString())
+        console.log("point:"+map.latLngToContainerPoint(e.latlng, map.getZoom()))
+        console.log("size:"+map.getSize())
+
         // console.log(e);
       },
     });
     return null;
   }
-  const analyticsLayer = useSelector(selectDataSet);
   const baseLayers = useSelector(selectBaseDataSet);
-  const analyticsvisualise = useSelector(selectLayerData);
   const overlayLayers = useSelector(selectLayerDataSet);
-  // console.log(analyticsLayer);
-  // console.log(visibility.filter((themes) => themes.id === "Layer"));
-  const [overlays,setOverlays]= useState(overlayLayers)
-  const [showAnalytics, setVisibility] = useState(
-    visibility.filter((themes) => themes.id === "Layer")[0].show
-  );
-  // useEffect(() => {
-  //   //AddAnalytics()
-  //   setVisibility(visibility.filter((themes) => themes.id === "Layer")[0].show);
-  // }, [visibility]);
+
+
 
   useEffect(() => {
-   // AddAnalytics()
+    // AddAnalytics()
     console.log("Analyticcs Changed");
   }, [overlayLayers]);
   return (
@@ -139,7 +106,7 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.show & overlayer.text!== "Flood Inundation" && (
+          overlayer.show & (overlayer.text !== "Flood Inundation") && (
             <WMSTileLayer
               key={index}
               format="image/png"
@@ -151,12 +118,15 @@ const Map = ({ visibility }) => {
           )
       )}
 
-      {
-        <AddAnalytics
-          test={[analyticsvisualise, analyticsLayer]}
-          showAnalytics={showAnalytics}
-        />
-      }
+      {overlayLayers.map(
+        (overlayer, index) =>
+          overlayer.text === "Flood Inundation" && (
+            <AddAnalytics
+              test={[overlayer.layer, overlayer.link]}
+              showAnalytics={overlayer.show}
+            />
+          )
+      )}
       <HandleClick />
       <HandleHover />
     </MapContainer>

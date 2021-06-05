@@ -1,10 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  lat: "Test",
+  lat: "",
   lon: "",
   zoom: "",
-  overlays:[]
+  overlays:[],
+  bounds :"",
+  shape:"",
+  point:"",
 };
 
 const mapSlice = createSlice({
@@ -15,7 +18,10 @@ const mapSlice = createSlice({
       state.lat = action.payload.lat;
       state.lon = action.payload.lon;
       state.zoom = action.payload.zoom;
-      state.overlays = action.payload.overlays
+      state.overlays = action.payload.overlays;
+      state.bounds =action.payload.bbox;
+      state.shape=action.payload.shape;
+      state.point=action.payload.point;
     },
   },
 });

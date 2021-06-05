@@ -46,7 +46,7 @@ const SideBarWrapper = ({
   return (
     <div className="SideBarWrapper">
       {/* load of side panel start */}
-      <SidePanel changeVisibility={changeVisibility} />
+      <SidePanel changeVisibility={changeVisibility} visibility ={visibility}/>
       {/* load of side panel start */}
 
       {/* *************Layer Tab start*************** */}
