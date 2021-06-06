@@ -8,7 +8,6 @@ const Info = ({ info, state }) => {
     data: [],
     isFetching: false,
   });
-  console.log(info);
   const getInfo = async () => {
     try {
       setFeatureInfo({ data: [], isFetching: true });
@@ -57,28 +56,33 @@ const Info = ({ info, state }) => {
       {featureInfo.isFetching ? (
         <CircularProgress />
       ) : (
-        <table border={2} cellPadding={5}>
-          <thead>
-            <tr>
-              <td>Key</td>
-              <td>Value</td>
-            </tr>
-          </thead>
-          <tbody>
-            {featureInfo.data[0] !== undefined &&
-              Object.keys(featureInfo.data[0].properties).map(function (
-                element,
-                index
-              ) {
-                return (
-                  <tr key={index}>
-                    <td>{element}</td>
-                    <td>{featureInfo.data[0].properties[element]}</td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
+        featureInfo.data.length > 0 && (
+          <React.Fragment>
+            <p>{info.text}</p>
+            <table >
+              <thead>
+                <tr>
+                  <td>Attribute</td>
+                  <td>Value</td>
+                </tr>
+              </thead>
+              <tbody>
+                {featureInfo.data[0] !== undefined &&
+                  Object.keys(featureInfo.data[0].properties).map(function (
+                    element,
+                    index
+                  ) {
+                    return (
+                      <tr key={index}>
+                        <td>{element}</td>
+                        <td>{featureInfo.data[0].properties[element]}</td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </React.Fragment>
+        )
       )}
     </INFO>
   );
@@ -87,5 +91,37 @@ const Info = ({ info, state }) => {
 export default Info;
 
 export const INFO = styled.div`
-  width: 10%;
+  /* width: 10%; */
+  color: white;
+  /* table-layout: fixed; */
+  
+  p{
+  background: #171e26;
+  align-items: center;
+  width: 20rem;
+  padding: 8px 10px;
+  }
+  table {
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-right: 5%;
+    /* max-width: 20%; */
+    table-layout: fixed;
+    width: 90%;
+
+    /* border: none; */
+    border-collapse: collapse;
+    border: 1px solid #DADADA ;
+
+    background-color: #222222;
+    
+  }
+  table tr{
+    margin-bottom: 1px;
+    border-bottom: 0.5px solid #DADADA;
+    word-break: break-all;
+
+  }
+  
 `;

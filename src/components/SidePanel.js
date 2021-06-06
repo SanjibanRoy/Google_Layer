@@ -1,7 +1,5 @@
 import React from "react";
-import WarningIcon from "@material-ui/icons/Warning";
 import LayersIcon from "@material-ui/icons/Layers";
-import EcoIcon from "@material-ui/icons/Eco";
 import AppsIcon from "@material-ui/icons/Apps";
 import HomeIcon from "@material-ui/icons/Home";
 import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
@@ -41,7 +39,7 @@ const SidePanel = ({ changeVisibility, visibility }) => {
       <ul class="legend">
         <li key={3} onClick={() => changeVisibility("Alert")}>
           <MapIcon />
-          <span align="center">Swipe</span>
+          <span align="center">Legend</span>
         </li>
       </ul>
     </SIDEPANEL>

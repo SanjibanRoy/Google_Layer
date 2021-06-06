@@ -151,6 +151,38 @@ export const layer = [
     layer: "NEWRM:ne_earthquake",
     link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
   },
+  {
+    id: 16,
+    text: "PulseRad",
+    show: false,
+    class: "Lightning",
+    layer: "NEWRM:ne_earthquake",
+    link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=pulserad&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
+  },
+  {
+    id: 17,
+    text: "Storm ETA",
+    show: false,
+    class: "Lightning",
+    layer: "NEWRM:ne_earthquake",
+    link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=eta&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
+  },
+  {
+    id: 18,
+    text: "Lightning Alert Polygons",
+    show: false,
+    class: "Lightning",
+    layer: "NEWRM:ne_earthquake",
+    link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Total.Lightning.Polygons:::1:2:3&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
+  },
+  {
+    id: 19,
+    text: "Lightning Cell Tracks",
+    show: false,
+    class: "Lightning",
+    layer: "NEWRM:ne_earthquake",
+    link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Cell.Tracks&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
+  },
   // census end
 ];
 

@@ -15,6 +15,7 @@ const SideBarWrapper = ({
   //   analyticsLayers,
   changeVisibility,
   visibility,
+  showPanel,
 }) => {
   //Tab view start
   const [value, setValue] = React.useState(0);
@@ -46,44 +47,46 @@ const SideBarWrapper = ({
   return (
     <div className="SideBarWrapper">
       {/* load of side panel start */}
-      <SidePanel changeVisibility={changeVisibility} visibility ={visibility}/>
+      <SidePanel changeVisibility={changeVisibility} visibility={visibility} />
       {/* load of side panel start */}
 
       {/* *************Layer Tab start*************** */}
+      {showPanel && (
+        <React.Fragment>
+          <div className={type === "Layer" ? "LayerContainer" : "hidden"}>
+            {/* List of map layers */}
+            <Paper square>
+              <Tabs
+                value={value}
+                indicatorColor="primary"
+                textColor="primary"
+                onChange={handleChange}
+                aria-label="disabled tabs example"
+              >
+                <Tab label="Base Layers" />
+                <Tab label="Overlays" />
+              </Tabs>
+            </Paper>
+            <div className={value === 0 ? " " : "hidden"}>
+              <BaseSwitcher />
+            </div>
+            <div className={value === 1 ? " " : "hidden"}>
+              <LayerTree category="Administrative" />
+              <LayerTree category="Land Use/Land Cover" />
+              <LayerTree category="Census" />
+              <LayerTree category="Disaster Mitigation" />
+              <LayerTree category="Lightning" />
+              <LayerTree category="Alerts and Early Warning" />
+            </div>
+          </div>
+          {/* *************Layer Tab end*************** */}
 
-      <div className={type === "Layer" ? "LayerContainer" : "hidden"}>
-        {/* List of map layers */}
-        <Paper square>
-          <Tabs
-            value={value}
-            indicatorColor="primary"
-            textColor="primary"
-            onChange={handleChange}
-            aria-label="disabled tabs example"
-          >
-            <Tab label="Base Layers" />
-            <Tab label="Overlays" />
-          </Tabs>
-        </Paper>
-        <div className={value === 0 ? " " : "hidden"}>
-          <BaseSwitcher />
-        </div>
-        <div className={value === 1 ? " " : "hidden"}>
-          <LayerTree category="Administrative" />
-          <LayerTree category="Land Use/Land Cover" />
-          <LayerTree category="Census" />
-          <LayerTree category="Disaster Mitigation" />
-          <LayerTree category="Alerts and Early Warning" />
-          
-
-        </div>
-      </div>
-      {/* *************Layer Tab end*************** */}
-
-      {/* *************Vegetation Tab start*************** */}
-      <div className={type === "Alert" ? "LayerContainer" : "hidden"}>
-          <AlertPanel/>
-      </div>
+          {/* *************Vegetation Tab start*************** */}
+          <div className={type === "Alert" ? "LayerContainer" : "hidden"}>
+            <AlertPanel />
+          </div>
+        </React.Fragment>
+      )}
     </div>
   );
 };

@@ -67,7 +67,7 @@ const Map = ({ visibility }) => {
         console.log(map.getBounds().toBBoxString())
         console.log("point:"+map.latLngToContainerPoint(e.latlng, map.getZoom()))
         console.log("size:"+map.getSize())
-
+        console.log(+ new Date()/1000)
         // console.log(e);
       },
     });
@@ -106,7 +106,7 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.show & (overlayer.text !== "Flood Inundation") && (
+          overlayer.show & (overlayer.text !== "Flood Inundation" & overlayer.class!=="Lightning" ) && (
             <WMSTileLayer
               key={index}
               format="image/png"
@@ -125,6 +125,22 @@ const Map = ({ visibility }) => {
               test={[overlayer.layer, overlayer.link]}
               showAnalytics={overlayer.show}
             />
+          )
+      )}
+      {overlayLayers.map(
+        (overlayer, index) =>
+        overlayer.show & overlayer.class === "Lightning" && (
+            // <WMSTileLayer
+            //   key={index}
+            //   format="image/png"
+            //   layers={overlayer.layer}
+            //   url={overlayer.link}
+            //   transparent="true"
+            //   zIndex="10"
+            // />
+
+            <TileLayer key={index} url={overlayer.link+"&t="+ Math.floor(+ new Date()/1000)} zIndex="10" />
+
           )
       )}
       <HandleClick />
