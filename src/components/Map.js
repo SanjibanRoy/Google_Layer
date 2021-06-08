@@ -5,15 +5,14 @@ import {
   useMapEvents,
   useMap,
 } from "react-leaflet";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectDataSet } from "../features/layers/layerslice";
 import { selectLayerDataSet } from "../features/layers/overlaylayerslice";
 import { selectBaseDataSet } from "../features/layers/baselayerslice";
-import { selectLayerData } from "../features/layers/layervisualiseslice";
 import { setMapState } from "../features/maps/mapStateSlice";
 import React from "react";
 import L from "leaflet";
+import Draw from "leaflet-draw";
 
 function HandleHover() {
   const map = useMapEvents({
@@ -23,13 +22,25 @@ function HandleHover() {
   });
   return null;
 }
+
+const Toolbar = () => {
+  console.log("Hell");
+  var drawControl = new L.Control.Draw({ position: "bottomright" });
+  const map = useMap();
+  if (drawControl._map === undefined) {
+    map.addControl(drawControl);
+  }
+  else{
+    map.removeControl(drawControl)
+  }
+  console.log(drawControl._map);
+  return null;
+};
+
 let analyticslayer = null;
 
 function AddAnalytics({ test, showAnalytics }) {
   let data = null;
-  console.log(analyticslayer);
-  console.log(showAnalytics);
-
   const map = useMap();
 
   if (analyticslayer != null) {
@@ -49,6 +60,7 @@ function AddAnalytics({ test, showAnalytics }) {
 }
 
 const Map = ({ visibility }) => {
+  console.log(visibility);
   const dispatch = useDispatch();
   function HandleClick() {
     const map = useMapEvents({
@@ -61,14 +73,9 @@ const Map = ({ visibility }) => {
             overlays: overlayLayers.filter((overlay) => overlay.show === true),
             bbox: map.getBounds().toBBoxString(),
             shape: map.getSize(),
-            point:map.latLngToContainerPoint(e.latlng, map.getZoom())
+            point: map.latLngToContainerPoint(e.latlng, map.getZoom()),
           })
         );
-        console.log(map.getBounds().toBBoxString())
-        console.log("point:"+map.latLngToContainerPoint(e.latlng, map.getZoom()))
-        console.log("size:"+map.getSize())
-        console.log(+ new Date()/1000)
-        // console.log(e);
       },
     });
     return null;
@@ -76,12 +83,7 @@ const Map = ({ visibility }) => {
   const baseLayers = useSelector(selectBaseDataSet);
   const overlayLayers = useSelector(selectLayerDataSet);
 
-
-
-  useEffect(() => {
-    // AddAnalytics()
-    console.log("Analyticcs Changed");
-  }, [overlayLayers]);
+  useEffect(() => {}, []);
   return (
     <MapContainer
       center={[26.2006, 92.5376]}
@@ -106,7 +108,9 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.show & (overlayer.text !== "Flood Inundation" & overlayer.class!=="Lightning" ) && (
+          overlayer.show &
+            ((overlayer.text !== "Flood Inundation") &
+              (overlayer.class !== "Lightning")) && (
             <WMSTileLayer
               key={index}
               format="image/png"
@@ -129,20 +133,15 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-        overlayer.show & overlayer.class === "Lightning" && (
-            // <WMSTileLayer
-            //   key={index}
-            //   format="image/png"
-            //   layers={overlayer.layer}
-            //   url={overlayer.link}
-            //   transparent="true"
-            //   zIndex="10"
-            // />
-
-            <TileLayer key={index} url={overlayer.link+"&t="+ Math.floor(+ new Date()/1000)} zIndex="10" />
-
+          overlayer.show & (overlayer.class === "Lightning") && (
+            <TileLayer
+              key={index}
+              url={overlayer.link + "&t=" + Math.floor(+new Date() / 1000)}
+              zIndex="10"
+            />
           )
       )}
+      {true && <Toolbar />}
       <HandleClick />
       <HandleHover />
     </MapContainer>

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { selectMapstate } from "../features/maps/mapStateSlice";
 const InfoBox = () => {
   const state = useSelector(selectMapstate);
-  const info = state.overlays.filter((layers)=>layers.class!="Lightning");
+  const info = state.overlays.filter((layers)=>layers.class!=="Lightning");
 
   return (
     <InfoBoxx>

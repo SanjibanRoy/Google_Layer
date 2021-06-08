@@ -452,7 +452,7 @@ export const panelVisibilty = [
     panel: false,
   },
   {
-    id: "Vedas_Services",
+    id: "Tools",
     text: "Vedas_Services",
     show: false,
     panel: false,

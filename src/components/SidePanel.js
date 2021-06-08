@@ -27,7 +27,7 @@ const SidePanel = ({ changeVisibility, visibility }) => {
           <span align="center">Apps</span>
         </li>
 
-        <li key={5} onClick={() => changeVisibility("Alert")}>
+        <li key={5} onClick={() => changeVisibility("Tools")}>
           <SwapHorizIcon />
           <span align="center">Swipe</span>
         </li>

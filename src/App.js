@@ -5,7 +5,6 @@ import Legend from "./components/Legend";
 import SideBarWrapper from "./components/SideBarWrapper";
 import { panelVisibilty } from "./config";
 import LayerInfo from "./components/LayerInfo";
-
 const App = () => {
   const [visibility, setVisibility] = useState(panelVisibilty);
   const [panel, setPanel] = useState(false);
@@ -23,12 +22,11 @@ const App = () => {
 
     visibility.map(
       (task) => (
-        console.log(task.show),
-        (task.id==id&task.show)&& setPanel(!panel)
+        (task.id===id&task.show)&& setPanel(!panel)
       )
     );
     //changeVisibility: false
-    console.log(visibility);
+    // console.log(visibility);
     //content
   };
   return (
