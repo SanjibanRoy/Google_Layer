@@ -1,4 +1,4 @@
-# ASDMA Mass Alert Management System
+# NERDRR
 
 
 ## Usage
