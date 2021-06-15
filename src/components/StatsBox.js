@@ -1,5 +1,5 @@
 import React from "react";
-import Info from "./Info";
+import Stats from "./Stats";
 import styled from "styled-components";
 
 import { useSelector } from "react-redux";
@@ -11,12 +11,12 @@ const InfoBox = () => {
   return (
     <InfoBoxx>
       <React.Fragment>
-        {info !== undefined &&
-         info.map((task, index) => (
-          task.stats&& <Info key={index} info={task} state={state} />
+        {info[info.length-1] !== undefined &&
+          
+          info[info.length-1].stats&&<Stats info={info[info.length-1]} state={state} />
             
            
-          ))}
+          }
         
       </React.Fragment>
     </InfoBoxx>

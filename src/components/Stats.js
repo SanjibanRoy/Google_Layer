@@ -2,10 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-const Info = ({ info, state }) => {
+import { render } from 'react-dom';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
+
+const Stats = ({ info, state }) => {
   const [featureInfo, setFeatureInfo] = useState({
     data: [],
     isFetching: false,
@@ -51,6 +53,19 @@ const Info = ({ info, state }) => {
     }
   };
 
+  const options = {
+    chart: {
+      type: info.stats.charttype
+    },
+    title: {
+      text: 'My chart'
+    },
+    series: [
+      {
+        data: [1, 2, 1, 4, 3, 6,1, 2, 1, 4, 3, 6,1, 2, 1, 4, 3, 6,1, 2, 1, 4, 3, 6,1, 2, 1, 4, 3, 6]
+      }
+    ]
+  };
   useEffect(() => {
     // AddAnalytics()
     getInfo();
@@ -66,51 +81,12 @@ const Info = ({ info, state }) => {
             <React.Fragment>
               <p onClick={() => setShowLayer(!showLayer)}>
                 {info.text}
-                {showLayer ? (
-                  <KeyboardArrowDownIcon />
-                ) : (
-                  <KeyboardArrowUpIcon />
-                )}
+                
               </p>
+              <HighchartsReact highcharts={Highcharts} options={options} />
 
               {/* <p>{info.text}</p> */}
-              <table className={`${showLayer ? "" : "visibility"}`}>
-                <thead>
-                  <tr>
-                    <td>Attribute</td>
-                    <td>Value</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {featureInfo.data[0] !== undefined &&
-                  info.attributes 
-                    ? info.attributes.map((attribute) =>
-                        Object.keys(featureInfo.data[0].properties)
-                          .filter((e) => e === attribute.value)
-                          .map(function (element, index) {
-                            return (
-                              <tr key={index}>
-                                <td>{attribute.text}</td>
-                                <td>
-                                  {featureInfo.data[0].properties[element]}
-                                </td>
-                              </tr>
-                            );
-                          })
-                      )
-                    : Object.keys(featureInfo.data[0].properties).map(function (
-                        element,
-                        index
-                      ) {
-                        return (
-                          <tr key={index}>
-                            <td>{element}</td>
-                            <td>{featureInfo.data[0].properties[element]}</td>
-                          </tr>
-                        );
-                      })}
-                </tbody>
-              </table>
+
             </React.Fragment>
           )
         )}
@@ -119,7 +95,7 @@ const Info = ({ info, state }) => {
   );
 };
 
-export default Info;
+export default Stats;
 
 export const INFO = styled.div`
   /* width: 10%; */

@@ -1,32 +1,35 @@
 export const layer = [
   //Administrator boundary start
-  // {
-  //   id: 1,
-  //   text: "State Boundary",
-  //   show: true,
-  //   class: "Administrative",
-  //   layer: "NEC:ner_states",
-
-  //   link: "https://apps.nesdr.gov.in:442/geoserver/wms"
-  // },
   {
     id: 1,
-    text: "District Boundary",
+    text: "State Boundary",
     show: true,
     class: "Administrative",
-    layer: "NEC:assam_dist",
-    link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
+    layer: "NEC:ner_states",
+
+    link: "https://apps.nesdr.gov.in:442/geoserver/wms"
+  },
+  {
+    id: 2,
+    text: "District Boundary",
+    show: false,
+    class: "Administrative",
+    layer: "analytic:ner_boundary",
+    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "District Boundary",
     attributes: [
       { value: "dtname", text: "District Name" },
       { value: "area", text: "Area" },
       // { value: "diff", text: "Change"},
     ],
-    stats: true
+    stats: {
+      api:"",
+      charttype:"column"
+    }
 
   },
   {
-    id: 2,
+    id: 3,
     text: "Revenue Circle",
     show: false,
     class: "Administrative",
@@ -43,7 +46,7 @@ export const layer = [
 
   // Land Use and Land Cover Start
   {
-    id: 3,
+    id: 4,
     text: "LULC (2005-06)",
     show: false,
     class: "Land Use/Land Cover",
@@ -53,7 +56,7 @@ export const layer = [
     stats: true
   },
   {
-    id: 4,
+    id: 5,
     text: "LULC(2011-12)",
     show: false,
     class: "Land Use/Land Cover",
@@ -62,19 +65,19 @@ export const layer = [
     info: "Revenue Circle",
   },
   {
-    id: 5,
+    id: 6,
     text: "LULC(2015-16)",
     show: false,
     class: "Land Use/Land Cover",
-    layer: "AS_LULC_3RD_CYCLE",
-    link: "https://www.nesdr.gov.in/igistile/State_QC_passed_LULC_1516WS/wms",
+    layer: "analytic:lulc3rdcycle",
+    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "LULC(2015-16)",
   },
   // Land Use and Land Cover end
 
   // Census strat
   {
-    id: 6,
+    id: 7,
     text: "Census",
     show: false,
     class: "Census",
@@ -82,7 +85,7 @@ export const layer = [
     link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
   },
   {
-    id: 7,
+    id: 8,
     text: "Embankment",
     show: false,
     class: "Disaster Mitigation",
@@ -90,7 +93,7 @@ export const layer = [
     link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
   },
   {
-    id: 8,
+    id: 9,
     text: "Breach Locations",
     show: false,
     class: "Disaster Mitigation",
@@ -98,7 +101,7 @@ export const layer = [
     link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
   },
   {
-    id: 9,
+    id: 10,
     text: "Erosion Deposition",
     show: false,
     class: "Disaster Mitigation",
@@ -106,7 +109,7 @@ export const layer = [
     link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
   },
   {
-    id: 10,
+    id: 11,
     text: "Landslide",
     show: false,
     class: "Disaster Mitigation",
@@ -114,7 +117,7 @@ export const layer = [
     link: "https://bhuvan-vec2.nrsc.gov.in/bhuvan/wms",
   },
   {
-    id: 11,
+    id: 12,
     text: "Flood Inundation",
     show: false,
     class: "Disaster Mitigation",
@@ -128,7 +131,7 @@ export const layer = [
     link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
   },
   {
-    id: 12,
+    id: 13,
     text: "Flood Alerts",
     show: false,
     class: "Alerts and Early Warning",
@@ -136,7 +139,7 @@ export const layer = [
     link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
   },
   {
-    id: 13,
+    id: 14,
     text: "Lightning Alerts",
     show: false,
     class: "Alerts and Early Warning",
@@ -145,7 +148,7 @@ export const layer = [
     link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
   },
   {
-    id: 14,
+    id: 15,
     text: "Thunderstorm",
     show: false,
     class: "Alerts and Early Warning",
@@ -153,7 +156,7 @@ export const layer = [
     link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
   },
   {
-    id: 15,
+    id: 16,
     text: "Earthquake",
     show: false,
     class: "Disaster Mitigation",
@@ -161,7 +164,7 @@ export const layer = [
     link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
   },
   {
-    id: 16,
+    id: 17,
     text: "PulseRad",
     show: false,
     class: "Lightning",
@@ -169,7 +172,7 @@ export const layer = [
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=pulserad&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
   },
   {
-    id: 17,
+    id: 18,
     text: "Storm ETA",
     show: false,
     class: "Lightning",
@@ -177,7 +180,7 @@ export const layer = [
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=eta&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
   },
   {
-    id: 18,
+    id: 19,
     text: "Lightning Alert Polygons",
     show: false,
     class: "Lightning",
@@ -185,7 +188,7 @@ export const layer = [
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Total.Lightning.Polygons:::1:2:3&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
   },
   {
-    id: 19,
+    id: 20,
     text: "Lightning Cell Tracks",
     show: false,
     class: "Lightning",
