@@ -282,171 +282,33 @@ export const maps = [
   //maps end
 ];
 
-// analytics layer
-export const analyticoper = [
+export const apps =[
   {
-    id: 2,
-    text: "modisndvi",
-    wmsname: "modis_ndvi",
-    state: "modis_ndvi",
-    wmsname_op: "modis_ndvi",
-    show: false,
-    yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
-    ],
-    operations: [
-      { value: "diff", text: "Change", legend: "" },
-      { value: "mean", text: "Mean", legend: "" },
-      { value: "max", text: "Maximum", legend: "" },
-      { value: "min", text: "Minimum", legend: "" },
-      { value: "std", text: "Standard Deviation", legend: "" },
-      { value: "range", text: "Range", legend: "" },
-      { value: "vci", text: "Vegetation Condition Index", legend: "" },
-      { value: "trend", text: "Trend", legend: "" },
-      { value: "anomaly", text: "Anomaly", legend: "" },
-
-      { value: "rgb", text: "RGB", legend: "" },
-    ],
-    // legends: [],
-    category: "vegetation",
+    id:1,
+    app:"GeoPortal",
+    show:true
   },
   {
-    id: 3,
-    text: "smap",
-    wmsname: "soil",
-    state: "soil_date",
-    wmsname_op: "soil",
-
-    yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
-    ],
-    show: false,
-    operations: [
-      { value: "difference", text: "Change", legend: "" },
-      { value: "Mean", text: "Mean", legend: "" },
-      { value: "Maximum", text: "Maximum", legend: "" },
-      { value: "Minimum", text: "Minimum", legend: "" },
-      { value: "sd", text: "Standard Deviation", legend: "" },
-      { value: "cv", text: "Coefficient of Variance", legend: "" },
-    ],
-    category: "vegetation",
+    id:2,
+    app:"Flood",
+    show:false
   },
   {
-    id: 4,
-    text: "et",
-    wmsname: "et",
-    state: "et",
-    wmsname_op: "et",
-
-    yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
-    ],
-    show: false,
-    operations: [
-      { value: "diff", text: "Change", legend: "" },
-      { value: "mean", text: "Mean", legend: "" },
-      { value: "max", text: "Maximum", legend: "" },
-      { value: "min", text: "Minimum", legend: "" },
-      { value: "std", text: "Standard Deviation", legend: "" },
-      // { value: "cv", text: "Coefficient of Variance", legend: "" },
-    ],
-    category: "vegetation",
+    id:3,
+    app:"Agriculture",
+    show:false
   },
   {
-    id: 4,
-    text: "INSAT Rainfall",
-    wmsname: "insat_rain",
-    state: "insat_rainfall",
-    wmsname_op: "insat_rain",
-
-    yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
-    ],
-    show: false,
-    operations: [
-      { value: "sum", text: "Sum", legend: "" },
-      { value: "mean", text: "Mean", legend: "" },
-      { value: "max", text: "Maximum", legend: "" },
-    ],
-    category: "weather",
+    id:4,
+    app:"Atmospheric Sciences",
+    show:false
   },
   {
-    id: 5,
-    text: "Air Quality AOD",
-    wmsname: "aod",
-    state: "aod_date",
-    wmsname_op: "aod",
-
-    yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
-    ],
-    show: false,
-    operations: [
-      { value: "sum", text: "Change", legend: "" },
-      { value: "Mean", text: "Mean", legend: "" },
-      { value: "Maximum", text: "Maximum", legend: "" },
-    ],
-    category: "weather",
+    id:5,
+    app:"Geosciences",
+    show:false
   },
-  {
-    id: 5,
-    text: "Land Surface Temperature",
-    wmsname: "lst",
-    state: "lst_date",
-    wmsname_op: "lst",
-
-    yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
-    ],
-    show: false,
-    operations: [
-      { value: "diff", text: "Change", legend: "" },
-      { value: "mean", text: "Mean", legend: "" },
-      { value: "max", text: "Maximum", legend: "" },
-    ],
-    category: "weather",
-  },
-  {
-    id: 6,
-    text: "MODIS NRT FLood",
-    wmsname: "modis_flood",
-    state: "modis_flood",
-    yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
-    ],
-    show: false,
-    operations: [
-      { value: "sum", text: "Change", legend: "" },
-      { value: "mean", text: "Mean", legend: "" },
-      { value: "Maximum", text: "Maximum", legend: "" },
-    ],
-    category: "weather",
-  },
-  {
-    id: 6,
-    text: "Sentinel",
-    wmsname: "Sentinal",
-    state: "Sentinal",
-    yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
-    ],
-    show: false,
-    operations: [
-      { value: "sum", text: "Change", legend: "" },
-      { value: "mean", text: "Mean", legend: "" },
-      { value: "Maximum", text: "Maximum", legend: "" },
-    ],
-    category: "weather",
-  },
-];
+]
 
 // side pannel visibility
 export const panelVisibilty = [
