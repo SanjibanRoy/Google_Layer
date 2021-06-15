@@ -141,7 +141,7 @@ const Map = ({ visibility }) => {
             />
           )
       )}
-      {true && <Toolbar />}
+      {false && <Toolbar />}
       <HandleClick />
       <HandleHover />
     </MapContainer>

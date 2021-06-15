@@ -13,7 +13,7 @@ const InfoBox = () => {
       <React.Fragment>
         {info !== undefined &&
          info.map((task, index) => (
-           <Info key={index} info={task} state={state} />
+          task.stats&& <Info key={index} info={task} state={state} />
             
            
           ))}
@@ -25,7 +25,7 @@ const InfoBox = () => {
 export default InfoBox;
 
 const InfoBoxx = styled.div`
-  top: 8px;
+  top: 200px;
   right: 0px;
   position: absolute;
   background: rgba(0, 0, 0, 0.74);

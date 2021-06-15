@@ -8,6 +8,8 @@ import Tab from "@material-ui/core/Tab";
 import { makeStyles } from "@material-ui/core/styles";
 import BaseSwitcher from "./BaseSwitcher";
 import AlertPanel from "./AlertPanel";
+import AppsPanel from "./AppsPanel";
+
 // import CreatableSelect from 'react-select/creatable';
 //end of import
 
@@ -82,6 +84,9 @@ const SideBarWrapper = ({
           {/* *************Layer Tab end*************** */}
 
           {/* *************Vegetation Tab start*************** */}
+          <div className={type === "Apps" ? "LayerContainer" : "hidden"}>
+            <AppsPanel />
+          </div>
           <div className={type === "Alert" ? "LayerContainer" : "hidden"}>
             <AlertPanel />
           </div>

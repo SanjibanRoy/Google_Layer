@@ -5,6 +5,7 @@ import Legend from "./components/Legend";
 import SideBarWrapper from "./components/SideBarWrapper";
 import { panelVisibilty } from "./config";
 import LayerInfo from "./components/LayerInfo";
+import StatsBox from "./components/StatsBox"
 const App = () => {
   const [visibility, setVisibility] = useState(panelVisibilty);
   const [panel, setPanel] = useState(false);
@@ -39,6 +40,7 @@ const App = () => {
 
       <Map visibility={visibility} />
       <InfoBox />
+      <StatsBox/>
       <LayerInfo />
       <Legend />
     </div>

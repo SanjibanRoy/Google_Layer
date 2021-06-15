@@ -17,6 +17,13 @@ export const layer = [
     layer: "NEC:assam_dist",
     link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
     info: "District Boundary",
+    attributes: [
+      { value: "dtname", text: "District Name" },
+      { value: "area", text: "Area" },
+      // { value: "diff", text: "Change"},
+    ],
+    stats: true
+
   },
   {
     id: 2,
@@ -26,7 +33,11 @@ export const layer = [
     layer: "NEC:assam_dist",
     link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
     info: "Revenue Circle",
-
+    attributes: [
+      { value: "dtname", text: "District Name" },
+      { value: "area", text: "Area" },
+      // { value: "diff", text: "Change"},
+    ],
   },
   // Administrator boundary end
 
@@ -39,7 +50,7 @@ export const layer = [
     layer: "analytic:ner_landuse_landcover_50k_1st_cycle",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "Revenue Circle",
-
+    stats: true
   },
   {
     id: 4,
@@ -49,7 +60,6 @@ export const layer = [
     layer: "analytic:lulc2ndcycle",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "Revenue Circle",
-
   },
   {
     id: 5,
@@ -59,7 +69,6 @@ export const layer = [
     layer: "AS_LULC_3RD_CYCLE",
     link: "https://www.nesdr.gov.in/igistile/State_QC_passed_LULC_1516WS/wms",
     info: "LULC(2015-16)",
-
   },
   // Land Use and Land Cover end
 
@@ -131,7 +140,7 @@ export const layer = [
     text: "Lightning Alerts",
     show: false,
     class: "Alerts and Early Warning",
-    layer:"FLEWS:1august20",
+    layer: "FLEWS:1august20",
 
     link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
   },
@@ -254,6 +263,17 @@ export const maps = [
     link: "http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
     format: "image/png",
     domain: ["mt0", "mt1", "mt2", "mt3"],
+    image: "google.png",
+  },
+  {
+    id: 7,
+    text: " Satellite",
+    show: false,
+    class: "Maps",
+    layer: "analytic:ner_boundary",
+    link: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    format: "image/png",
+    // domain: ["mt0", "mt1", "mt2", "mt3"],
     image: "google.png",
   },
   //maps end
@@ -453,6 +473,12 @@ export const panelVisibilty = [
   },
   {
     id: "Tools",
+    text: "Vedas_Services",
+    show: false,
+    panel: false,
+  },
+  {
+    id: "Apps",
     text: "Vedas_Services",
     show: false,
     panel: false,
