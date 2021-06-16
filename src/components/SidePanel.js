@@ -13,18 +13,21 @@ const SidePanel = ({ changeVisibility, visibility }) => {
         <li key={1}>
           <img src="./ASDMA.png" alt="nesdr-logo" />
         </li>
-        <li className="activetab" key={4} onClick={() => changeVisibility("Alert")}>
+        <li
+          className="activetab"
+          key={4}
+          onClick={() => changeVisibility("Alert")}
+        >
           <HomeIcon />
           <span align="center">Home</span>
+        </li>
+        <li key={3} onClick={() => changeVisibility("Apps")}>
+          <AppsIcon />
+          <span align="center">Apps</span>
         </li>
         <li key={2} onClick={() => changeVisibility("Layer")}>
           <LayersIcon />
           <span align="center">Layers</span>
-        </li>
-
-        <li key={3} onClick={() => changeVisibility("Apps")}>
-          <AppsIcon />
-          <span align="center">Apps</span>
         </li>
 
         <li key={5} onClick={() => changeVisibility("Tools")}>
@@ -54,7 +57,7 @@ export const SIDEPANEL = styled.div`
     bottom: 5%;
     left: 5%;
   }
-  .activetab{
+  .activetab {
     background-color: #313a43;
     border-left: 3px solid blue;
     border-color: blue;

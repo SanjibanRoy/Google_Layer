@@ -18,7 +18,6 @@ const Layer = ({ task, showLayer }) => {
 
   };
   const changeDate = (date, id) => {
-    console.log("Here");
     dispatch(setAnalyticsDetails({ ...state, id: id - 1, show: false }));
     setTimeout(console.log(""), 10000);
 

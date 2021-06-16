@@ -9,7 +9,7 @@ const appSlice = createSlice({
     setAppDetails: (state, action) => {
       console.log(action.payload.data);
       state.map((st) => {
-        st.id === action.payload.data ? (st.show = true) : (st.show = false);
+        st.app === action.payload.data ? (st.show = true) : (st.show = false);
       });
     },
   },

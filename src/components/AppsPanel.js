@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { setBaseDetails } from "../features/layers/baselayerslice";
-import { selectAppDataSet } from "../features/layers/appslice";
+import { setAppDetails } from "../features/layers/appslice";
 const AppsPanel = () => {
 
   const dispatch = useDispatch();
   // const basedata = useSelector(selectBaseDataSet);
   const ChangeMap = (e) => {
     dispatch(
-      selectAppDataSet({
+      setAppDetails({
         data: e,
         show: true,
       })
@@ -21,11 +21,11 @@ const AppsPanel = () => {
     <VEGANALYSIS>
       <p className="heads">Applications</p>
 
-      <div className="apps"  onClick={() => ChangeMap("geoportal")}>
+      <div className="apps"  onClick={() => ChangeMap("GeoPortal")}>
         <p>Geo Portal</p>
       </div>
 
-      <div className=" apps" onClick={() => ChangeMap("flood")}>
+      <div className=" apps" onClick={() => ChangeMap("Flood")}>
         <p>Flood</p>
       </div>
 
@@ -33,11 +33,11 @@ const AppsPanel = () => {
         <p>Lightning/Thunderstrom</p>
       </div>
 
-      <div className=" apps" onClick={() => ChangeMap("agriculture")}>
+      <div className=" apps" onClick={() => ChangeMap("Agriculture")}>
         <p>Agriculture</p>
       </div>
 
-      <div className=" apps" onClick={() => ChangeMap("geosciences")}>
+      <div className=" apps" onClick={() => ChangeMap("Geosciences")}>
         <p>Geosciences</p>
       </div>
     </VEGANALYSIS>

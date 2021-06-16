@@ -9,10 +9,10 @@ const overlayLayerSlice = createSlice({
   reducers: {
     setAnalyticsDetails: (state, action) => {
       if (action.payload.layer !== undefined) {
-        state[action.payload.id].show = false;
+        // state[action.payload.id].show = false;
         
         state[action.payload.id].show = true;
-        state[action.payload.id].layer = action.payload.layer;
+        // state[action.payload.id].layer = action.payload.layer;
       } else {
         state[action.payload.id].show = action.payload.show;
       }

@@ -195,6 +195,174 @@ export const layer = [
     layer: "NEWRM:ne_earthquake",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Cell.Tracks&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
   },
+  {
+    id: 21,
+    text: "Flood Hazard",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "as_hz",
+    link: "https://bhuvan-ras2.nrsc.gov.in/mapcache",
+  },
+  // census end
+];
+
+
+export const Flood = [
+  //Administrator boundary start
+  {
+    id: 1,
+    text: "State Boundary",
+    show: true,
+    class: "Administrative",
+    layer: "NEC:ner_states",
+
+    link: "https://apps.nesdr.gov.in:442/geoserver/wms"
+  },
+  {
+    id: 2,
+    text: "District Boundary",
+    show: false,
+    class: "Administrative",
+    layer: "analytic:ner_boundary",
+    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
+    info: "District Boundary",
+    attributes: [
+      { value: "dtname", text: "District Name" },
+      { value: "area", text: "Area" },
+      // { value: "diff", text: "Change"},
+    ],
+    stats: {
+      api:"",
+      charttype:"column"
+    }
+
+  },
+  {
+    id: 3,
+    text: "Revenue Circle",
+    show: false,
+    class: "Administrative",
+    layer: "NEC:assam_dist",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
+    info: "Revenue Circle",
+    attributes: [
+      { value: "dtname", text: "District Name" },
+      { value: "area", text: "Area" },
+      // { value: "diff", text: "Change"},
+    ],
+  },
+  // Administrator boundary end
+
+  // Land Use and Land Cover Start
+  {
+    id: 4,
+    text: "LULC (2005-06)",
+    show: false,
+    class: "Land Use/Land Cover",
+    layer: "analytic:ner_landuse_landcover_50k_1st_cycle",
+    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
+    info: "Revenue Circle",
+    stats: true
+  },
+  {
+    id: 5,
+    text: "LULC(2011-12)",
+    show: false,
+    class: "Land Use/Land Cover",
+    layer: "analytic:lulc2ndcycle",
+    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
+    info: "Revenue Circle",
+  },
+  {
+    id: 6,
+    text: "LULC(2015-16)",
+    show: false,
+    class: "Land Use/Land Cover",
+    layer: "analytic:lulc3rdcycle",
+    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
+    info: "LULC(2015-16)",
+  },
+  // Land Use and Land Cover end
+
+  // Census strat
+  {
+    id: 7,
+    text: "Census",
+    show: false,
+    class: "Census",
+    layer: "NEC:assam_census",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
+  },
+  {
+    id: 8,
+    text: "Embankment",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "NEWRM:ne_embankments",
+    link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
+  },
+  {
+    id: 9,
+    text: "Breach Locations",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "NEWRM:ne_breach_total_locations",
+    link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
+  },
+  {
+    id: 10,
+    text: "Erosion Deposition",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "NEWRM:NE_ErosionDeposition",
+    link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
+  },
+  {
+    id: 11,
+    text: "Landslide",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "disaster:AS_SLIM_2014_GCS",
+    link: "https://bhuvan-vec2.nrsc.gov.in/bhuvan/wms",
+  },
+  {
+    id: 12,
+    text: "Flood Inundation",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "FLEWS:1august20",
+    options: [
+      { value: "FLEWS:1august20", text: "FLEWS:1august20" },
+      { value: "FLEWS:1august20", text: "FLEWS:1august20" },
+      { value: "FLEWS:1august20", text: "FLEWS:1august20" },
+      { value: "FLEWS:1august20", text: "FLEWS:1august20" },
+    ],
+    link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
+  },
+  {
+    id: 13,
+    text: "Flood Alerts",
+    show: false,
+    class: "Alerts and Early Warning",
+    layer: "FLEWS:assam_rc_utm",
+    link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
+  },
+  {
+    id: 14,
+    text: "Flood Hazard",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "as_hz",
+    link: "https://bhuvan-ras2.nrsc.gov.in/mapcache",
+  },
+  {
+    id: 16,
+    text: "Earthquake",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "NEWRM:ne_earthquake",
+    link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
+  }
   // census end
 ];
 
