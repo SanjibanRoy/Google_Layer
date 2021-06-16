@@ -117,7 +117,7 @@ const Map = ({ visibility }) => {
               layers={overlayer.layer}
               url={overlayer.link}
               transparent="true"
-              zIndex="10"
+              zIndex={overlayer.class==="Administrative"?"15":"10"}
             />
           )
       )}

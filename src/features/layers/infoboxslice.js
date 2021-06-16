@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  dataset: "modis_ndvi",
-  info: "",
-  show: false,
+  statename: "modis_ndvi",
+  districtname: "",
+  // show: false,
 };
 
 const infoSlice = createSlice({
@@ -11,9 +11,9 @@ const infoSlice = createSlice({
   initialState,
   reducers: {
     setInfoDetails: (state, action) => {
-      state.dataset = action.payload.dataset;
-      state.info = action.payload.info;
-      state.show = action.payload.show;
+      state.statename = action.payload.statename;
+      state.districtname = action.payload.distname;
+      // state.show = action.payload.show;
     },
   },
 });

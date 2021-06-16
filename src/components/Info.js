@@ -1,17 +1,22 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setInfoDetails } from "../features/layers/infoboxslice";
 import styled from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import { selectLayerDataSet } from "../features/layers/overlaylayerslice";
 const Info = ({ info, state }) => {
   const [featureInfo, setFeatureInfo] = useState({
     data: [],
     isFetching: false,
   });
-  const [showLayer, setShowLayer] = useState(false)
+  const [showLayer, setShowLayer] = useState(false);
+  const dispatch = useDispatch();
 
+  const overlayLayers = useSelector(selectLayerDataSet);
+  const activelayers = overlayLayers.filter((e) => e.show).map((e) => e.text);
   const getInfo = async () => {
     try {
       setFeatureInfo({ data: [], isFetching: true });
@@ -39,6 +44,29 @@ const Info = ({ info, state }) => {
       )
         .then((response) => response.json())
         .then((result) => {
+          if (
+            activelayers.includes("State Boundary") &
+            activelayers.includes("District Boundary")
+          ) {
+            result.features[0].properties.dtname !== undefined &&
+              dispatch(
+                setInfoDetails({
+                  statename: result.features[0].properties.stname,
+                  distname: result.features[0].properties.dtname,
+                })
+              );
+          } else {
+            dispatch(
+              // result.features[0].properties.dtname !== undefined &&
+              setInfoDetails({
+                statename: result.features[0].properties.stname,
+                // distname: result.features[0].properties.dtname,
+              })
+            );
+          }
+          // );
+          // result.features[0].properties.dtname !== undefined;
+
           setFeatureInfo({ data: result.features, isFetching: false });
         })
         .catch((error) => {
@@ -47,7 +75,6 @@ const Info = ({ info, state }) => {
       setFeatureInfo({ ...featureInfo, isFetching: true });
     } catch (exception) {
       console.log(exception);
-      //     setFeatureInfo({ featureInfo: featureInfo.data, isFetching: false });
     }
   };
 
@@ -82,8 +109,7 @@ const Info = ({ info, state }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {featureInfo.data[0] !== undefined &&
-                  info.attributes 
+                  {featureInfo.data[0] !== undefined && info.attributes
                     ? info.attributes.map((attribute) =>
                         Object.keys(featureInfo.data[0].properties)
                           .filter((e) => e === attribute.value)
@@ -133,10 +159,10 @@ export const INFO = styled.div`
     padding: 8px 10px;
     border-bottom: 1px solid #ccc;
   }
-  p>.MuiSvgIcon-root{
-  float: right;
-  color: gray;
-}
+  p > .MuiSvgIcon-root {
+    float: right;
+    color: gray;
+  }
   .visibility {
     display: none;
   }
