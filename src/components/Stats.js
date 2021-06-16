@@ -12,6 +12,7 @@ const Stats = ({ info, state }) => {
     data: [],
     isFetching: false,
   });
+  const [options, setOptions] = useState([])
   const [showLayer, setShowLayer] = useState(false)
 
   const getInfo = async () => {
@@ -20,28 +21,32 @@ const Stats = ({ info, state }) => {
 
       // console.log(formData);
       fetch(
-        info.link +
-          "?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&QUERY_LAYERS=" +
-          info.layer +
-          "&LAYERS=" +
-          info.layer +
-          "&INFO_FORMAT=application/json&FEATURE_COUNT=50&X=" +
-          state.point.x +
-          "&Y=" +
-          state.point.y +
-          "&WIDTH=" +
-          state.shape.x +
-          "&HEIGHT=" +
-          state.shape.y +
-          "&BBOX=" +
-          state.bounds,
+        'https://apps.nesdr.gov.in/api.php',
+        // 'https://bhuvan-app1.nrsc.gov.in/api/lulc/curljson.php?year=1112&statcode=AN&token=fcf34bdc33825b99a5eab3d56ec8b7619c4d75f1&distcode=2301',
         {
           method: "GET",
         }
       )
         .then((response) => response.json())
         .then((result) => {
-          setFeatureInfo({ data: result.features, isFetching: false });
+          let stringarray = (result.map((e=>e.area)))
+          stringarray.map((e=>parseInt(stringarray)))
+          console.log(...(result.map((e=>e.area))))
+          setFeatureInfo({ data: [...result], isFetching: false });
+          setOptions({
+            chart: {
+              type: info.stats.charttype
+            },
+            title: {
+              text: 'My chart'
+            },
+            series: [
+              {
+
+                data: result.map((e=>e.area))
+              }
+            ]
+          })
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -53,19 +58,19 @@ const Stats = ({ info, state }) => {
     }
   };
 
-  const options = {
-    chart: {
-      type: info.stats.charttype
-    },
-    title: {
-      text: 'My chart'
-    },
-    series: [
-      {
-        data: [1, 2, 1, 4, 3, 6,1, 2, 1, 4, 3, 6,1, 2, 1, 4, 3, 6,1, 2, 1, 4, 3, 6,1, 2, 1, 4, 3, 6]
-      }
-    ]
-  };
+  // const options = {
+  //   chart: {
+  //     type: info.stats.charttype
+  //   },
+  //   title: {
+  //     text: 'My chart'
+  //   },
+  //   series: [
+  //     {
+  //       data: [1, 2, 1, 4, 3, 6,1, 2, 1, 4, 3, 6,1, 2, 1, 4, 3, 6,1, 2, 1, 4, 3, 6,1, 2, 1, 4, 3, 6]
+  //     }
+  //   ]
+  // };
   useEffect(() => {
     // AddAnalytics()
     getInfo();
