@@ -9,7 +9,6 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 const Stats = ({ info, state }) => {
-  console.log(state);
   const [featureInfo, setFeatureInfo] = useState({
     data: [],
     isFetching: false,
@@ -17,9 +16,9 @@ const Stats = ({ info, state }) => {
   const [options, setOptions] = useState([]);
   const [showLayer, setShowLayer] = useState(false);
   const infodata = useSelector(selectInfo);
-  console.log(infodata);
+  console.log(info)
   const getInfo = async (e) => {
-    console.log(e.districtname.toUpperCase());
+    console.log(e.districtname)
     try {
       setFeatureInfo({ data: [], isFetching: true });
       fetch(
@@ -48,7 +47,7 @@ const Stats = ({ info, state }) => {
                   [1, "#3e3e40"],
                 ],
               },
-              type: "column",
+              type: info.stats.charttype,
             },
             credits: {
               enabled: false,
@@ -139,7 +138,7 @@ const Stats = ({ info, state }) => {
   useEffect(() => {
     // AddAnalytics()
     getInfo(infodata);
-  }, [state]);
+  }, [infodata]);
   return (
     <INFO>
       {featureInfo.isFetching ? (

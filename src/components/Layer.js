@@ -3,7 +3,7 @@ import InfoIcon from "@material-ui/icons/Info";
 import { useDispatch } from "react-redux";
 import { setAnalyticsDetails, selectLayerDataSet } from "../features/layers/overlaylayerslice";
 import { useSelector } from "react-redux";
-import { setInfoDetails } from "../features/layers/infoboxslice";
+import { setLayerInfoDetails } from "../features/layers/layerinfoslice";
 import styled from "styled-components";
 
 const Layer = ({ task, showLayer }) => {
@@ -14,7 +14,7 @@ const Layer = ({ task, showLayer }) => {
     dispatch(setAnalyticsDetails({ ...state, id: id - 1, show: e }));
   };
   const showInfo = (data,info) => {
-    dispatch(setInfoDetails({ dataset: data, info:info, show: true }));
+    dispatch(setLayerInfoDetails({ dataset: data, info:info, show: true }));
 
   };
   const changeDate = (date, id) => {

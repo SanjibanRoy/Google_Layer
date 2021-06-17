@@ -44,7 +44,6 @@ const Info = ({ info, state }) => {
       )
         .then((response) => response.json())
         .then((result) => {
-          console.log(result)
           if (
             activelayers.includes("State Boundary") &
             activelayers.includes("District Boundary")
@@ -86,7 +85,6 @@ const Info = ({ info, state }) => {
     getInfo();
   }, [state]);
   return (
-    console.log(info),
     (
       <INFO>
         {featureInfo.isFetching ? (

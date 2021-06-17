@@ -509,26 +509,22 @@ export const panelVisibilty = [
     panel: true,
   },
   {
-    id: "Weather",
-    text: "Weather",
+    id: "Legend",
     show: false,
     panel: false,
   },
   {
-    id: "Satellite_Imagery",
-    text: "Satellite_Imagery",
+    id: "Stats",
     show: false,
     panel: false,
   },
   {
     id: "Tools",
-    text: "Vedas_Services",
     show: false,
     panel: false,
   },
   {
     id: "Apps",
-    text: "Vedas_Services",
     show: false,
     panel: false,
   },

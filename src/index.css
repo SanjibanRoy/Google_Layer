@@ -51,7 +51,7 @@ body {
   left: 0px;
   top: 0px;
   
-  background: #171e26;
+  background: #014B96;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -135,6 +135,7 @@ display:none;
 
 
 .LayerTree p{
+  
   background: #3a3a3a;
   align-items: flex-end;
   width: 20rem;
@@ -152,19 +153,20 @@ display:none;
 }
 
 .LayerContainer{
+  transition: width 2s;
   height: 100%;
   margin-left: 51px;
-  background-color: #212b35;
+  background-color: rgba(255, 255, 255, 0.527);
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   max-height: 100%;
+  transition:right 1s;
+
+
   /* overflow-y: auto; */
 
 }
-.LayerContainer > p{
-  /* background: #bbb8b8; */
 
-}
 
 .hidden { display:none !important; }
 

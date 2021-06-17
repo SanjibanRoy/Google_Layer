@@ -6,6 +6,7 @@ import baselayerReducer from "../features/layers/baselayerslice"
 import appReducer from "../features/layers/appslice"
 import mapStateReducer from "../features/maps/mapStateSlice"
 import infoReducer from "../features/layers/infoboxslice"
+import layerInfoReducer from "../features/layers/layerinfoslice"
 
 export default configureStore({
   reducer: {
@@ -15,7 +16,8 @@ export default configureStore({
     baselayer:baselayerReducer,
     apps:appReducer,
     info:infoReducer,
-    mapstate: mapStateReducer
+    mapstate: mapStateReducer,
+    layerinfo:layerInfoReducer
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

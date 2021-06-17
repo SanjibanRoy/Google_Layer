@@ -6,6 +6,8 @@ import SideBarWrapper from "./components/SideBarWrapper";
 import { panelVisibilty } from "./config";
 import LayerInfo from "./components/LayerInfo";
 import StatsBox from "./components/StatsBox"
+import FocusBox from "./components/FocusBox"
+
 const App = () => {
   const [visibility, setVisibility] = useState(panelVisibilty);
   const [panel, setPanel] = useState(false);
@@ -39,6 +41,8 @@ const App = () => {
       />
 
       <Map visibility={visibility} />
+      <FocusBox />
+
       <InfoBox />
       <StatsBox/>
       <LayerInfo />

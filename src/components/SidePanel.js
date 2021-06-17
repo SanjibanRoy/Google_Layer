@@ -6,6 +6,7 @@ import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
 import InsertChartIcon from "@material-ui/icons/InsertChart";
 import MapIcon from "@material-ui/icons/Map";
 import styled from "styled-components";
+import InfoIcon from '@material-ui/icons/Info';
 const SidePanel = ({ changeVisibility, visibility }) => {
   return (
     <SIDEPANEL className="SidePanel">
@@ -31,12 +32,12 @@ const SidePanel = ({ changeVisibility, visibility }) => {
         </li>
 
         <li key={5} onClick={() => changeVisibility("Tools")}>
-          <SwapHorizIcon />
-          <span align="center">Swipe</span>
+          <InfoIcon />
+          <span align="center">Info</span>
         </li>
-        <li key={6} onClick={() => changeVisibility("Alert")}>
+        <li key={6} onClick={() => changeVisibility("Stats")}>
           <InsertChartIcon />
-          <span align="center">Analytics</span>
+          <span align="center">Stats</span>
         </li>
       </ul>
       <ul class="legend">
