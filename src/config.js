@@ -203,6 +203,22 @@ export const layer = [
     layer: "as_hz",
     link: "https://bhuvan-ras2.nrsc.gov.in/mapcache",
   },
+  {
+    id: 22,
+    text: "Forest Hazard",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "as_hz",
+    link: "https://analytics.nesdr.gov.in/forest_fire/visu?date=1",
+  },
+  {
+    id: 23,
+    text: "Crop DAMS",
+    show: false,
+    class: "Disaster Mitigation",
+    layer: "as_hz",
+    link: "https://analytics.nesdr.gov.in/crop_dams/visu?date=1",
+  },
   // census end
 ];
 

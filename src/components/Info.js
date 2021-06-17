@@ -44,6 +44,7 @@ const Info = ({ info, state }) => {
       )
         .then((response) => response.json())
         .then((result) => {
+          console.log(result)
           if (
             activelayers.includes("State Boundary") &
             activelayers.includes("District Boundary")
@@ -56,7 +57,7 @@ const Info = ({ info, state }) => {
                 })
               );
           } else {
-            dispatch(
+            result.features.length>0&&dispatch(
               // result.features[0].properties.dtname !== undefined &&
               setInfoDetails({
                 statename: result.features[0].properties.stname,
@@ -71,6 +72,8 @@ const Info = ({ info, state }) => {
         })
         .catch((error) => {
           console.error("Error:", error);
+          setFeatureInfo({ ...featureInfo, isFetching: false });
+
         });
       setFeatureInfo({ ...featureInfo, isFetching: true });
     } catch (exception) {
