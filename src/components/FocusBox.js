@@ -3,15 +3,26 @@ import Stats from "./Stats";
 import styled from "styled-components";
 
 import { useSelector } from "react-redux";
-import { selectMapstate } from "../features/maps/mapStateSlice";
-const FocusBox = () => {
-  const state = useSelector(selectMapstate);
-  const info = state.overlays.filter((layers)=>layers.class!=="Lightning");
+import { selectInfo } from "../features/layers/infoboxslice";
+import InfoIcon from "@material-ui/icons/Info";
 
+const FocusBox = () => {
+  const state = useSelector(selectInfo);
+  console.log(state);
   return (
     <InfoBoxx>
       <React.Fragment>
-        <p>Test</p>
+        {state.districtname !== undefined ? (
+          <p>
+            <InfoIcon />
+            Area of Focus: {state.districtname} (District)
+          </p>
+        ) : (
+          <p>
+            <InfoIcon />
+            Area of Focus: {state.statename} (State)
+          </p>
+        )}
       </React.Fragment>
     </InfoBoxx>
   );
@@ -33,11 +44,15 @@ const InfoBoxx = styled.div`
   margin-right: auto;
   /* width: 20rem; */
   p {
-    background: #171e26;
+    background: white;
     align-items: center;
     width: 20rem;
     padding: 8px 10px;
     border-bottom: 1px solid #ccc;
-    color:white;
+    color: black;
+  }
+  .MuiSvgIcon-root {
+    font-size: 16px;
+    cursor: pointer;
   }
 `;

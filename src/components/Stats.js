@@ -16,22 +16,18 @@ const Stats = ({ info, state }) => {
   const [options, setOptions] = useState([]);
   const [showLayer, setShowLayer] = useState(false);
   const infodata = useSelector(selectInfo);
-  console.log(info)
+  console.log(info);
   const getInfo = async (e) => {
-    console.log(e.districtname)
+    console.log(e.districtname);
     try {
       setFeatureInfo({ data: [], isFetching: true });
-      fetch(
-        "https://apps.nesdr.gov.in/api.php?district=" +
-          e.districtname.toUpperCase(),
-        {
-          method: "GET",
-        }
-      )
+      fetch(info.stats.api + e.districtname.toUpperCase(), {
+        method: "GET",
+      })
         .then((response) => response.json())
         .then((result) => {
           var date = result.map((e) => e.date);
-          var chartarea = result.map((e) => Number(e.area)/10000);
+          var chartarea = result.map((e) => Number(e.area) / 10000);
           setFeatureInfo({ data: [result], isFetching: false });
           setOptions({
             chart: {
@@ -52,14 +48,7 @@ const Stats = ({ info, state }) => {
             credits: {
               enabled: false,
             },
-            title: {
-              style: {
-                color: "#E0E0E3",
-                textTransform: "uppercase",
-                fontSize: "20px",
-              },
-              text: "Area",
-            },
+            
             xAxis: {
               labels: {
                 style: {
@@ -165,7 +154,7 @@ export const INFO = styled.div`
   /* table-layout: fixed; */
 
   p {
-    background: #171e26;
+    background: #014B96;
     align-items: center;
     width: 20rem;
     padding: 8px 10px;

@@ -23,7 +23,7 @@ export const layer = [
       // { value: "diff", text: "Change"},
     ],
     stats: {
-      api:"",
+      api:"https://apps.nesdr.gov.in/api.php?district=",
       charttype:"column"
     }
 

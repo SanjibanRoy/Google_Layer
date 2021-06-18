@@ -154,7 +154,7 @@ export const INFO = styled.div`
   /* table-layout: fixed; */
 
   p {
-    background: #171e26;
+    background: #014B96;
     align-items: center;
     width: 20rem;
     padding: 8px 10px;
