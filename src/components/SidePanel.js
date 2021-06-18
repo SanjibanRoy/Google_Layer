@@ -7,6 +7,11 @@ import InsertChartIcon from "@material-ui/icons/InsertChart";
 import MapIcon from "@material-ui/icons/Map";
 import styled from "styled-components";
 import InfoIcon from '@material-ui/icons/Info';
+import $ from "jquery";
+$(document).on("click", 'ul li', function(){
+  $('ul li').removeClass('activetab');
+  $(this).addClass('activetab');
+});
 const SidePanel = ({ changeVisibility, visibility }) => {
   return (
     <SIDEPANEL className="SidePanel">

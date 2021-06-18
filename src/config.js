@@ -22,10 +22,10 @@ export const layer = [
       { value: "area", text: "Area" },
       // { value: "diff", text: "Change"},
     ],
-    stats: {
-      api:"https://apps.nesdr.gov.in/api.php?district=",
-      charttype:"column"
-    }
+    // stats: {
+    //   api:"https://apps.nesdr.gov.in/nerdrrapi/flood.php?district=",
+    //   charttype:"column"
+    // }
 
   },
   {
@@ -123,11 +123,27 @@ export const layer = [
     class: "Disaster Mitigation",
     layer: "FLEWS:1august20",
     options: [
-      { value: "FLEWS:1august20", text: "FLEWS:1august20" },
-      { value: "FLEWS:1august20", text: "FLEWS:1august20" },
-      { value: "FLEWS:1august20", text: "FLEWS:1august20" },
-      { value: "FLEWS:1august20", text: "FLEWS:1august20" },
+      { value: "FLEWS:1august20", text: "1 August 2020" },
+      { value: "FLEWS:8july2020", text: "8 July 2020" },
+      { value: "FLEWS:25july2020", text: "25 July 2020" },
+      { value: "FLEWS:22july2020", text: "22 July 2020" },
+      { value: "FLEWS:19_july", text: "19 July 2020" },
+      { value: "FLEWS:17July", text: "17 July 2020" },
+      { value: "FLEWS:16_july", text: "16 July 2020" },
+      { value: "FLEWS:10july2020", text: "10 July 2020" },
+      { value: "FLEWS:3july2020", text: "3 July 2020" },
+      { value: "FLEWS:onejuly", text: "1 July 2020" },
+      { value: "FLEWS:28june2020", text: "28 June 2020" },
+      { value: "FLEWS:26june2020", text: "26 June 2020" },
+      { value: "FLEWS:24june20", text: "24 June 2020" },
+      { value: "FLEWS:21june", text: "21 June 2020" },
+      { value: "FLEWS:2june", text: "2 June 2020" },
+      { value: "FLEWS:may28", text: "28 May 2020" },
     ],
+    stats: {
+      api:"https://api.nesdr.gov.in/nerdrr/flood.php?district=",
+      charttype:"column"
+    },
     link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
   },
   {

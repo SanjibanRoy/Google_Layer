@@ -16,16 +16,19 @@ const Stats = ({ info, state }) => {
   const [options, setOptions] = useState([]);
   const [showLayer, setShowLayer] = useState(false);
   const infodata = useSelector(selectInfo);
-  console.log(info);
+  //console.log(info);
   const getInfo = async (e) => {
-    console.log(e.districtname);
+    // if(e.districtname)
     try {
       setFeatureInfo({ data: [], isFetching: true });
-      fetch(info.stats.api + e.districtname.toUpperCase(), {
+      fetch(
+        //  console.log( info.stats.api+''+(e.districtname!==undefined?e.districtname.toUpperCase():"")),
+         info.stats.api+''+(e.districtname!==undefined?e.districtname.toUpperCase():""), {
         method: "GET",
       })
         .then((response) => response.json())
         .then((result) => {
+          console.log(result)
           var date = result.map((e) => e.date);
           var chartarea = result.map((e) => Number(e.area) / 10000);
           setFeatureInfo({ data: [result], isFetching: false });
@@ -119,7 +122,7 @@ const Stats = ({ info, state }) => {
         });
       setFeatureInfo({ ...featureInfo, isFetching: true });
     } catch (exception) {
-      console.log(exception);
+      // console.log(exception);
       //     setFeatureInfo({ featureInfo: featureInfo.data, isFetching: false });
     }
   };
