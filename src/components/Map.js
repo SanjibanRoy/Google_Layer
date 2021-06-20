@@ -3,6 +3,7 @@ import {
   TileLayer,
   WMSTileLayer,
   useMapEvents,
+  FeatureGroup,
   useMap,
 } from "react-leaflet";
 import { useEffect } from "react";
@@ -13,6 +14,8 @@ import { setMapState } from "../features/maps/mapStateSlice";
 import React from "react";
 import L from "leaflet";
 import Draw from "leaflet-draw";
+import { EditControl } from "react-leaflet-draw";
+import "leaflet.vectorgrid";
 
 function HandleHover() {
   const map = useMapEvents({
@@ -23,19 +26,38 @@ function HandleHover() {
   return null;
 }
 
-const Toolbar = () => {
-  console.log("Hell");
-  var drawControl = new L.Control.Draw({ position: "bottomright" });
-  const map = useMap();
-  if (drawControl._map === undefined) {
-    map.addControl(drawControl);
-  }
-  else{
-    map.removeControl(drawControl)
-  }
-  console.log(drawControl._map);
-  return null;
-};
+const VectorTile = ()=>{
+  const map = useMapEvents({
+    zoomend:(e)=>{
+      console.log(map.getZoom())
+      let village = L.vectorGrid.protobuf(
+        "http://geoserver.vassarlabs.com/geoserver/gwc/service/wmts?layer=VASSARLABS:AP_VILLAGE_V2&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=application/x-protobuf;type=mapbox-vector&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}",
+         vectorTileOptions
+      );
+
+      map.getZoom()<10?map.removeLayer(village):village.addTo(map)
+      
+    }
+    }
+  );
+
+  const vectorTileOptions = {
+    vectorTileLayerStyles: {
+      landuse: {
+        fillColor: "transparent",
+        color: "yellow",
+        weight: .5
+      }
+    },
+    interactive: true ,
+    maxZoom: 22,
+	  indexMaxZoom: 7,// Make sure that this VectorGrid fires mouse/pointer events
+  };
+
+
+  
+  return null
+}
 
 let analyticslayer = null;
 
@@ -95,7 +117,7 @@ const Map = ({ visibility }) => {
         (baselayer, index) =>
           baselayer.show &&
           (baselayer.type === "tile" ? (
-            <TileLayer key={index} url={baselayer.link} zIndex="1" />
+            <TileLayer key={index} url={baselayer.link} domain={baselayer.domain} zIndex="1" />
           ) : (
             <WMSTileLayer
               key={index}
@@ -117,11 +139,10 @@ const Map = ({ visibility }) => {
               layers={overlayer.layer}
               url={overlayer.link}
               transparent="true"
-              zIndex={overlayer.class==="Administrative"?"15":"10"}
+              zIndex={overlayer.class === "Administrative" ? "15" : "10"}
             />
           )
       )}
-
       {overlayLayers.map(
         (overlayer, index) =>
           overlayer.text === "Flood Inundation" && (
@@ -141,7 +162,15 @@ const Map = ({ visibility }) => {
             />
           )
       )}
-      {false && <Toolbar />}
+      <FeatureGroup>
+        <EditControl
+          position="bottomleft"
+          draw={{
+            rectangle: false,
+          }}
+        />
+      </FeatureGroup>
+      <VectorTile/>
       <HandleClick />
       <HandleHover />
     </MapContainer>

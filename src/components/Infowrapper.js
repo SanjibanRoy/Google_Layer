@@ -1,25 +1,25 @@
 import React from "react";
-import LayerInfo from "./components/LayerInfo";
-import StatsBox from "./components/StatsBox"
-import FocusBox from "./components/FocusBox"
-import styled from "styled-components"
+import LayerInfo from "./LayerInfo";
+import StatsBox from "./StatsBox";
+import FocusBox from "./FocusBox";
+import styled from "styled-components";
+import InfoBox from "./InfoBox";
 
-
-const Infowrapper = () => {
+const Infowrapper = ({ visibility }) => {
+  console.log(visibility);
   return (
     <Wrapper>
-      <FocusBox />
-      <InfoBox />
-      <StatsBox />
-      <LayerInfo />
+      {visibility.filter((e) => e.show)[0].id === "Stats" && <FocusBox />}
+      {true && <InfoBox />}
+      {visibility.filter((e) => e.show)[0].id === "Stats" && <StatsBox />}
     </Wrapper>
   );
 };
 
 export default Infowrapper;
 
-export const Wrapper = styled.div`
-top: 80px;
+const Wrapper = styled.div`
+  /* top: 80px;
 right: 0px;
-position: absolute;
-`
+position: absolute; */
+`;

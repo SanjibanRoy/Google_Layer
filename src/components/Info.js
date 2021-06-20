@@ -91,53 +91,54 @@ const Info = ({ info, state }) => {
           <CircularProgress />
         ) : (
           featureInfo.data.length > 0 && (
-            <React.Fragment>
-              <p onClick={() => setShowLayer(!showLayer)}>
-                {info.text}
-                {showLayer ? (
-                  <KeyboardArrowDownIcon />
-                ) : (
-                  <KeyboardArrowUpIcon />
-                )}
-              </p>
-
-              {/* <p>{info.text}</p> */}
-              <table className={`${showLayer ? "" : "visibility"}`}>
-                <thead>
-                  <tr>
-                    <td>Attribute</td>
-                    <td>Value</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {featureInfo.data[0] !== undefined && info.attributes
-                    ? info.attributes.map((attribute) =>
-                        Object.keys(featureInfo.data[0].properties)
-                          .filter((e) => e === attribute.value)
-                          .map(function (element, index) {
-                            return (
-                              <tr key={index}>
-                                <td>{attribute.text}</td>
-                                <td>
-                                  {featureInfo.data[0].properties[element]}
-                                </td>
-                              </tr>
-                            );
-                          })
-                      )
-                    : Object.keys(featureInfo.data[0].properties).map(function (
-                        element,
-                        index
-                      ) {
-                        return (
-                          <tr key={index}>
-                            <td>{element}</td>
-                            <td>{featureInfo.data[0].properties[element]}</td>
-                          </tr>
-                        );
-                      })}
-                </tbody>
-              </table>
+            <React.Fragment ><div className="InfoBox">
+              
+                <p onClick={() => setShowLayer(!showLayer)}>
+                  {info.text}
+                  {showLayer ? (
+                    <KeyboardArrowDownIcon />
+                  ) : (
+                    <KeyboardArrowUpIcon />
+                  )}
+                </p>
+                {/* <p>{info.text}</p> */}
+                <table className={`${showLayer ? "" : "visibility"}`}>
+                  <thead>
+                    <tr>
+                      <td>Attribute</td>
+                      <td>Value</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {featureInfo.data[0] !== undefined && info.attributes
+                      ? info.attributes.map((attribute) =>
+                          Object.keys(featureInfo.data[0].properties)
+                            .filter((e) => e === attribute.value)
+                            .map(function (element, index) {
+                              return (
+                                <tr key={index}>
+                                  <td>{attribute.text}</td>
+                                  <td>
+                                    {featureInfo.data[0].properties[element]}
+                                  </td>
+                                </tr>
+                              );
+                            })
+                        )
+                      : Object.keys(featureInfo.data[0].properties).map(function (
+                          element,
+                          index
+                        ) {
+                          return (
+                            <tr key={index}>
+                              <td>{element}</td>
+                              <td>{featureInfo.data[0].properties[element]}</td>
+                            </tr>
+                          );
+                        })}
+                  </tbody>
+                </table>
+            </div>
             </React.Fragment>
           )
         )}
@@ -150,15 +151,19 @@ export default Info;
 
 export const INFO = styled.div`
   /* width: 10%; */
-  color: white;
   /* table-layout: fixed; */
+  .Infobox{
 
+    border-radius: 10px;
+
+  }
   p {
     background: #014B96;
     align-items: center;
     width: 20rem;
     padding: 8px 10px;
     border-bottom: 1px solid #ccc;
+    
   }
   p > .MuiSvgIcon-root {
     float: right;
