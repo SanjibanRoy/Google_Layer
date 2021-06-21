@@ -5,8 +5,9 @@ import Legend from "./components/Legend";
 import SideBarWrapper from "./components/SideBarWrapper";
 import { panelVisibilty } from "./config";
 import LayerInfo from "./components/LayerInfo";
-import StatsBox from "./components/StatsBox"
-import FocusBox from "./components/FocusBox"
+import StatsBox from "./components/StatsBox";
+import FocusBox from "./components/FocusBox";
+import Infowrapper from "./components/Infowrapper";
 
 const App = () => {
   const [visibility, setVisibility] = useState(panelVisibilty);
@@ -23,11 +24,7 @@ const App = () => {
       )
     );
 
-    visibility.map(
-      (task) => (
-        (task.id===id&task.show)&& setPanel(!panel)
-      )
-    );
+    visibility.map((task) => (task.id === id) & task.show && setPanel(!panel));
     //changeVisibility: false
     // console.log(visibility);
     //content
@@ -41,11 +38,11 @@ const App = () => {
       />
 
       <Map visibility={visibility} />
-      <FocusBox />
-
-      <InfoBox />
-      <StatsBox/>
-      <LayerInfo />
+      {/* <FocusBox /> */}
+      <Infowrapper visibility={visibility} />
+      {/* <InfoBox />
+      <StatsBox/>*/}
+      <LayerInfo /> 
       <Legend />
     </div>
   );

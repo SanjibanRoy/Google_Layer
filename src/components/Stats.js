@@ -25,10 +25,12 @@ const Stats = ({ info, state }) => {
       setFeatureInfo({ data: [], isFetching: true });
       fetch(
         info.stats.api + '' + (e.districtname !== undefined ? e.districtname.toUpperCase() : ""), {
+
         method: "GET",
       })
         .then((response) => response.json())
         .then((result) => {
+          console.log(result)
           var date = result.map((e) => e.date);
           var chartarea = result.map((e) => Number(e.area) / 10000);
           setFeatureInfo({ data: [result], isFetching: false });

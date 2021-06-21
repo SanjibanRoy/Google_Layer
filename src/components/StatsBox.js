@@ -25,7 +25,7 @@ const InfoBox = () => {
 export default InfoBox;
 
 const InfoBoxx = styled.div`
-  top: 200px;
+  top: 40px;
   right: 0px;
   position: absolute;
   background: rgba(0, 0, 0, 0.74);

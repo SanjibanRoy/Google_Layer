@@ -404,11 +404,11 @@ export const maps = [
   //maps start
   {
     id: 1,
-    text: "Cartodb",
+    text: "Mapbox Light",
     show: true,
     class: "Maps",
     layer: "analytic:ner_boundary",
-    link: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+    link: "https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGluZXNoa2N1YmUiLCJhIjoiY2p2Z2Jzc3pyMDVwajN5bWowdjA1YTAyMSJ9.TcJaEwi-qTQqBPqTh0Kt2g",
     format: "image/png",
     domain: " ",
     type: "tile",
