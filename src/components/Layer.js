@@ -5,7 +5,11 @@ import { setAnalyticsDetails, selectLayerDataSet } from "../features/layers/over
 import { useSelector } from "react-redux";
 import { setLayerInfoDetails } from "../features/layers/layerinfoslice";
 import styled from "styled-components";
-
+function getdrop() {
+  var vall = document.getElementById("date");
+  var value=vall.options[vall.selectedIndex].value;
+  var text=vall.options[vall.selectedIndex].text;
+}
 const Layer = ({ task, showLayer }) => {
   const dispatch = useDispatch();
   const state = useSelector(selectLayerDataSet);
@@ -18,14 +22,18 @@ const Layer = ({ task, showLayer }) => {
 
   };
   const changeDate = (date, id) => {
+    var vall = document.getElementById("date");
+    var value=vall.options[vall.selectedIndex].value;
+    var text=vall.options[vall.selectedIndex].text;
     dispatch(setAnalyticsDetails({ ...state, id: id - 1, show: false }));
     setTimeout(console.log(""), 10000);
 
     dispatch(
-      setAnalyticsDetails({ ...state, id: id - 1, show: true, layer: date })
+      setAnalyticsDetails({ ...state, id: id - 1, show: true, layer: date, layer_date:text })
     );
   };
-
+  // task.options.map((data) => {})
+//  var date = task.options.map((e) => e);
   return (
     <LAYER className={`${showLayer ? "active" : "task"}`}>
       <Checkbox
@@ -40,29 +48,15 @@ const Layer = ({ task, showLayer }) => {
           {" "}
           <select
             id="date"
+            onClick={getdrop}
             onChange={(event) => {
               changeDate(event.target.value, task.id);
             }}
-          >
-            <option value="floodalert">RC Flood Alert</option>
-            <option value="FLEWS:8july2020">6 August 2020</option>
-            <option value="oneaugust">1 August 2020</option>
-            <option value="twentyfifthjuly">25 July 2020</option>
-            <option value="twentytwojuly">22 July 2020</option>
-            <option value="FLEWS:19_july">19 July 2020</option>
-            <option value="FLEWS:17July">17 July 2020</option>
-            <option value="FLEWS:16_july">16 July 2020</option>
-            <option value="FLEWS:15july2020">15 July 2020</option>
-            <option value="FLEWS:10july2020">10 July 2020</option>
-            <option value="FLEWS:8july2020">8 July 2020</option>
-            <option value="FLEWS:3july2020">3 July 2020</option>
-            <option value="onejuly">1 July 2020</option>
-            <option value="twentyeightjune">28 June 2020</option>
-            <option value="twentysixjune">26 June 2020</option>
-            <option value="twofourjune">24 June 2020</option>
-            <option value="twoonejune">21 June 2020</option>
-            <option value="twojune">2 June 2020</option>
-            <option value="temay">28 May 2020</option>
+          >       
+          {
+          task.options.map((data) => (
+            <option value={data.value}> {data.text}</option>   
+          ))}
           </select>
         </>
       )}

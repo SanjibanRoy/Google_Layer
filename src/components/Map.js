@@ -3,6 +3,7 @@ import {
   TileLayer,
   WMSTileLayer,
   useMapEvents,
+  FeatureGroup,
   useMap,
 } from "react-leaflet";
 import { useEffect } from "react";
@@ -12,7 +13,7 @@ import { selectBaseDataSet } from "../features/layers/baselayerslice";
 import { setMapState } from "../features/maps/mapStateSlice";
 import React from "react";
 import L from "leaflet";
-import Draw from "leaflet-draw";
+import { EditControl } from "react-leaflet-draw"
 
 function HandleHover() {
   const map = useMapEvents({
@@ -23,19 +24,13 @@ function HandleHover() {
   return null;
 }
 
-const Toolbar = () => {
-  console.log("Hell");
-  var drawControl = new L.Control.Draw({ position: "bottomright" });
-  const map = useMap();
-  if (drawControl._map === undefined) {
-    map.addControl(drawControl);
-  }
-  else{
-    map.removeControl(drawControl)
-  }
-  console.log(drawControl._map);
-  return null;
-};
+const Toolbar = () => (
+  <FeatureGroup>
+     <EditControl
+      position='bottomright'
+    />
+  </FeatureGroup>
+);
 
 let analyticslayer = null;
 
@@ -141,7 +136,7 @@ const Map = ({ visibility }) => {
             />
           )
       )}
-      {false && <Toolbar />}
+      <Toolbar />
       <HandleClick />
       <HandleHover />
     </MapContainer>
