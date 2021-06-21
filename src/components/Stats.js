@@ -168,8 +168,9 @@ const Stats = ({ info, state }) => {
         .then((response) => response.json())
         .then((mydata) => {
           mydata.map((e) => {
+            var sko=e.district.toLowerCase();
             ar.push({
-              district: e.district,
+              district:sko.charAt(0).toUpperCase() + sko.slice(1),
               area: e.area / 10000
             })
           })
