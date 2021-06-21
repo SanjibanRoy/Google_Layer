@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { selectInfo } from "../features/layers/infoboxslice";
+import { selectLayerDataSet } from "../features/layers/overlaylayerslice";
 import { useDispatch, useSelector } from "react-redux";
-
+import { MDBDataTableV5 } from 'mdbreact';
+import { MDBDataTable } from 'mdbreact';
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-
 const Stats = ({ info, state }) => {
   const [featureInfo, setFeatureInfo] = useState({
     data: [],
@@ -16,14 +17,15 @@ const Stats = ({ info, state }) => {
   const [options, setOptions] = useState([]);
   const [showLayer, setShowLayer] = useState(false);
   const infodata = useSelector(selectInfo);
-  //console.log(info);
+  const layerdata = useSelector(selectLayerDataSet);
+  // var dateapi=layerdata[11].layer_date;
+  // console.log(dateapi)
   const getInfo = async (e) => {
-    // if(e.districtname)
     try {
       setFeatureInfo({ data: [], isFetching: true });
       fetch(
-        //  console.log( info.stats.api+''+(e.districtname!==undefined?e.districtname.toUpperCase():"")),
-         info.stats.api+''+(e.districtname!==undefined?e.districtname.toUpperCase():""), {
+        info.stats.api + '' + (e.districtname !== undefined ? e.districtname.toUpperCase() : ""), {
+
         method: "GET",
       })
         .then((response) => response.json())
@@ -51,7 +53,7 @@ const Stats = ({ info, state }) => {
             credits: {
               enabled: false,
             },
-            
+
             xAxis: {
               labels: {
                 style: {
@@ -126,26 +128,118 @@ const Stats = ({ info, state }) => {
       //     setFeatureInfo({ featureInfo: featureInfo.data, isFetching: false });
     }
   };
-
+  const [datatable, setDatatable] = useState({
+    dataa: [],
+    isFetching: false,
+  });
+  var dateapi
+  const [test, setTest] = useState([]);
   useEffect(() => {
-    // AddAnalytics()
+    dateapi = layerdata[11].layer_date;
+    tabledata(dateapi)
+  }, [layerdata]);
+  const tabledata = async (e) => {
+    var hayeram = String(e);
+    var str;
+    if (hayeram === "") {
+      str = "1 August 2020";
+    } else
+      if (hayeram == "undefined") {
+        str = "1 August 2020";
+      } else {
+        str = hayeram;
+      }
+    var res = str.split(" ");
+    var month = String(res[1])
+    var year = String(res[2])
+    var finaldate;
+    if (res[0].length == 1) {
+      let str1 = '0';
+      let str2 = String(res[0]);
+      finaldate = str1.concat(str2)
+    } else {
+      finaldate = res[0];
+    }
+    var finallyphew = finaldate + '-' + month.substring(0, 3) + '-' + year.substring(0, 2);
+    try {
+      var ar = []
+      setDatatable({ dataa: [], isFetching: true });
+      fetch("https://api.nesdr.gov.in/nerdrr/flood.php?date=" + finallyphew, {
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((mydata) => {
+          mydata.map((e) => {
+            var sko=e.district.toLowerCase();
+            ar.push({
+              district:sko.charAt(0).toUpperCase() + sko.slice(1),
+              area: e.area / 10000
+            })
+          })
+          setDatatable({ dataa: [mydata], isFetching: false });
+          setTest({
+            columns: [
+              {
+                label: 'District',
+                field: 'district',
+                width: 270,
+                attributes: {
+                  'aria-controls': 'DataTable',
+                  'aria-label': 'District',
+                },
+              },
+              {
+                label: 'Area (Hectare)',
+                field: 'area',
+                width: 150,
+              },
+            ],
+            rows: ar,
+          })
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      setDatatable({ ...datatable, isFetching: true });
+    }
+    catch (exception) {
+      console.log(exception);
+    }
+  };
+  useEffect(() => {
+    tabledata();
+  }, []);
+  useEffect(() => {
     getInfo(infodata);
   }, [infodata]);
   return (
-    <INFO>
-      {featureInfo.isFetching ? (
-        <CircularProgress />
-      ) : (
-        featureInfo.data.length > 0 && (
-          <React.Fragment>
-            <p onClick={() => setShowLayer(!showLayer)}>{info.text}</p>
-            <HighchartsReact highcharts={Highcharts} options={options} />
-
-            {/* <p>{info.text}</p> */}
-          </React.Fragment>
-        )
-      )}
-    </INFO>
+    <>
+      <INFO>
+        {featureInfo.isFetching ? (
+          <CircularProgress />
+        ) : (
+          featureInfo.data.length > 0 && (
+            <React.Fragment>
+              <p onClick={() => setShowLayer(!showLayer)}>{info.text}</p>
+              <HighchartsReact highcharts={Highcharts} options={options} />
+              {/* <Test/> */}
+            </React.Fragment>
+          )
+        )}
+        {datatable.isFetching ? (
+          <CircularProgress />
+        ) : (
+          datatable.dataa.length > 0 && (
+            <React.Fragment>
+              <p>Data Table</p>
+              <br></br>
+              <MDBDataTableV5 hover entriesOptions={[5, 20, 25]} entries={5} pagesAmount={4} data={test} searchTop searchBottom={false}
+              />
+            </React.Fragment>
+          )
+        )}
+      </INFO>
+    </>
   );
 };
 

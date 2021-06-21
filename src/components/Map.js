@@ -13,6 +13,7 @@ import { selectBaseDataSet } from "../features/layers/baselayerslice";
 import { setMapState } from "../features/maps/mapStateSlice";
 import React from "react";
 import L from "leaflet";
+
 import Draw from "leaflet-draw";
 import { EditControl } from "react-leaflet-draw";
 import "leaflet.vectorgrid";
@@ -26,6 +27,13 @@ function HandleHover() {
   return null;
 }
 
+const Toolbar = () => (
+  <FeatureGroup>
+     <EditControl
+      position='bottomright'
+    />
+  </FeatureGroup>
+);
 const VectorTile = ()=>{
   const map = useMapEvents({
     zoomend:(e)=>{
@@ -162,6 +170,7 @@ const Map = ({ visibility }) => {
             />
           )
       )}
+      <Toolbar />
       <FeatureGroup>
         <EditControl
           position="bottomleft"
@@ -171,6 +180,7 @@ const Map = ({ visibility }) => {
         />
       </FeatureGroup>
       <VectorTile/>
+
       <HandleClick />
       <HandleHover />
     </MapContainer>

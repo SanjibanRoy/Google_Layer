@@ -122,6 +122,7 @@ export const layer = [
     show: false,
     class: "Disaster Mitigation",
     layer: "FLEWS:1august20",
+    layer_date:"",
     options: [
       { value: "FLEWS:1august20", text: "1 August 2020" },
       { value: "FLEWS:8july2020", text: "8 July 2020" },
