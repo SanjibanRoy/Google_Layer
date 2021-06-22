@@ -102,7 +102,7 @@ const Info = ({ info, state }) => {
                   )}
                 </p>
                 {/* <p>{info.text}</p> */}
-                <table className={`${showLayer ? "" : "visibility"}`}>
+                <table className={`${showLayer ? "showtable" : "visibility"}`}>
                   <thead>
                     <tr>
                       <td>Attribute</td>
@@ -191,5 +191,8 @@ export const INFO = styled.div`
     margin-bottom: 1px;
     border-bottom: 0.5px solid #dadada;
     word-break: break-all;
+  }
+  .showtable{
+    height:20%;
   }
 `;

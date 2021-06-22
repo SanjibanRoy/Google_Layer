@@ -9,6 +9,7 @@ import { MDBDataTableV5 } from 'mdbreact';
 import { MDBDataTable } from 'mdbreact';
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import Cbutton from "./collapsebutton";
 const Stats = ({ info, state }) => {
   const [featureInfo, setFeatureInfo] = useState({
     data: [],

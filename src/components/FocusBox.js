@@ -30,9 +30,7 @@ const FocusBox = () => {
 export default FocusBox;
 
 const InfoBoxx = styled.div`
-  top: 0px;
   right: 0px;
-  position: absolute;
   background: rgba(0, 0, 0, 0.74);
   z-index: 10000;
   max-height: 80%;
