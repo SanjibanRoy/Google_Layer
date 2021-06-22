@@ -13,10 +13,11 @@ import { selectBaseDataSet } from "../features/layers/baselayerslice";
 import { setMapState } from "../features/maps/mapStateSlice";
 import React from "react";
 import L from "leaflet";
-
-import Draw from "leaflet-draw";
+// import Draw from "leaflet-draw";
 import { EditControl } from "react-leaflet-draw";
 import "leaflet.vectorgrid";
+import "leaflet-side-by-side";
+
 
 function HandleHover() {
   const map = useMapEvents({
@@ -35,32 +36,54 @@ const Toolbar = () => (
   </FeatureGroup>
 );
 const VectorTile = ()=>{
-  const map = useMapEvents({
-    zoomend:(e)=>{
-      console.log(map.getZoom())
-      let village = L.vectorGrid.protobuf(
-        "http://geoserver.vassarlabs.com/geoserver/gwc/service/wmts?layer=VASSARLABS:AP_VILLAGE_V2&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=application/x-protobuf;type=mapbox-vector&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}",
-         vectorTileOptions
-      );
+  
+  const map = useMap({
+    // zoomend:(e)=>{
+    //   console.log(map.getZoom())
+    //   let village = L.vectorGrid.protobuf(
+    //     "http://geoserver.vassarlabs.com/geoserver/gwc/service/wmts?layer=VASSARLABS:AP_VILLAGE_V2&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=application/x-protobuf;type=mapbox-vector&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}",
+    //      vectorTileOptions
+    //   );
 
-      map.getZoom()<10?map.removeLayer(village):village.addTo(map)
+    //   map.getZoom()<10?map.removeLayer(village):village.addTo(map)
       
+    // }
     }
-    }
-  );
 
-  const vectorTileOptions = {
-    vectorTileLayerStyles: {
-      landuse: {
-        fillColor: "transparent",
-        color: "yellow",
-        weight: .5
+
+  );
+  useEffect(()=>{
+    const osmLayer = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var stamenLayer = L.tileLayer(
+      "https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png",
+      {
+        attribution:
+          'Map tiles by <a href="http://stamen.com">Stamen Design</a>, ' +
+          '<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; ' +
+          "Map data {attribution.OpenStreetMap}",
+        minZoom: 1,
+        maxZoom: 16
       }
-    },
-    interactive: true ,
-    maxZoom: 22,
-	  indexMaxZoom: 7,// Make sure that this VectorGrid fires mouse/pointer events
-  };
+    ).addTo(map);
+
+    L.control.sideBySide(stamenLayer, osmLayer).addTo(map);
+  },[])
+  // const vectorTileOptions = {
+  //   vectorTileLayerStyles: {
+  //     landuse: {
+  //       fillColor: "transparent",
+  //       color: "yellow",
+  //       weight: .5
+  //     }
+  //   },
+  //   interactive: true ,
+  //   maxZoom: 22,
+	//   indexMaxZoom: 7,// Make sure that this VectorGrid fires mouse/pointer events
+  // };
 
 
   

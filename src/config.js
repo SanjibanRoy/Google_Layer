@@ -122,7 +122,6 @@ export const layer = [
     show: false,
     class: "Disaster Mitigation",
     layer: "FLEWS:1august20",
-    layer_date:"",
     options: [
       { value: "FLEWS:1august20", text: "1 August 2020" },
       { value: "FLEWS:8july2020", text: "8 July 2020" },
@@ -234,7 +233,7 @@ export const layer = [
     show: false,
     class: "Disaster Mitigation",
     layer: "as_hz",
-    link: "https://analytics.nesdr.gov.in/crop_dams/visu?date=1",
+    link: "https://analytics.nesdr.gov.in/nerdrr_sentinel_1/visu?band=1",
   },
   // census end
 ];
