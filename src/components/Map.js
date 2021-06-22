@@ -170,7 +170,7 @@ const Map = ({ visibility }) => {
             />
           )
       )}
-      <Toolbar />
+      {/* <Toolbar /> */}
       <FeatureGroup>
         <EditControl
           position="bottomleft"
