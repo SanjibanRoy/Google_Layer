@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from "jquery";
 import { Grid } from '@material-ui/core'
 import "../cbutton.css"
 import PropTypes from 'prop-types';
@@ -9,7 +8,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { MDBContainer, MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink } from "mdbreact";
 import StatsBox from "./StatsBox";
 import FocusBox from "./FocusBox";
 import InfoBox from "./InfoBox";
