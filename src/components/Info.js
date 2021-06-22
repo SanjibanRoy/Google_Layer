@@ -12,7 +12,7 @@ const Info = ({ info, state }) => {
     data: [],
     isFetching: false,
   });
-  const [showLayer, setShowLayer] = useState(false);
+  const [showLayer, setShowLayer] = useState(true);
   const dispatch = useDispatch();
 
   const overlayLayers = useSelector(selectLayerDataSet);
