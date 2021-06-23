@@ -6,7 +6,7 @@ import {
   FeatureGroup,
   useMap,
 } from "react-leaflet";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectLayerDataSet } from "../features/layers/overlaylayerslice";
 import { selectBaseDataSet } from "../features/layers/baselayerslice";
@@ -17,8 +17,9 @@ import L from "leaflet";
 import { EditControl } from "react-leaflet-draw";
 import "leaflet.vectorgrid";
 import "leaflet-side-by-side";
-
-
+let sbs = null;
+let rightlayer = null;
+let leftlayer = null;
 function HandleHover() {
   const map = useMapEvents({
     mousemove: (e) => {
@@ -27,16 +28,13 @@ function HandleHover() {
   });
   return null;
 }
-
 const Toolbar = () => (
   <FeatureGroup>
-     <EditControl
-      position='bottomright'
-    />
+    <EditControl position="bottomright" />
   </FeatureGroup>
 );
-const VectorTile = ()=>{
-  
+const VectorTile = ({ show }) => {
+  console.log(show);
   const map = useMap({
     // zoomend:(e)=>{
     //   console.log(map.getZoom())
@@ -44,34 +42,38 @@ const VectorTile = ()=>{
     //     "http://geoserver.vassarlabs.com/geoserver/gwc/service/wmts?layer=VASSARLABS:AP_VILLAGE_V2&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=application/x-protobuf;type=mapbox-vector&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}",
     //      vectorTileOptions
     //   );
-
     //   map.getZoom()<10?map.removeLayer(village):village.addTo(map)
-      
     // }
-    }
-
-
-  );
-  useEffect(()=>{
-    const osmLayer = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-      attribution:
-        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    var stamenLayer = L.tileLayer(
-      "https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png",
-      {
+  });
+  useEffect(() => {
+    if (show) {
+      rightlayer = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
         attribution:
-          'Map tiles by <a href="http://stamen.com">Stamen Design</a>, ' +
-          '<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; ' +
-          "Map data {attribution.OpenStreetMap}",
-        minZoom: 1,
-        maxZoom: 16
-      }
-    ).addTo(map);
+          '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
 
-    L.control.sideBySide(stamenLayer, osmLayer).addTo(map);
-  },[])
+      leftlayer = L.tileLayer(
+        "https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png",
+        {
+          attribution:
+            'Map tiles by <a href="http://stamen.com">Stamen Design</a>, ' +
+            '<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; ' +
+            "Map data {attribution.OpenStreetMap}",
+          minZoom: 1,
+          maxZoom: 16,
+        }
+      ).addTo(map);
+
+      sbs = L.control.sideBySide(rightlayer, leftlayer);
+      show && sbs.addTo(map);
+    } else {
+      if (sbs !== null) {
+        map.removeControl(sbs);
+        map.removeLayer(rightlayer);
+        map.removeLayer(leftlayer);
+      }
+    }
+  }, [show]);
   // const vectorTileOptions = {
   //   vectorTileLayerStyles: {
   //     landuse: {
@@ -82,13 +84,11 @@ const VectorTile = ()=>{
   //   },
   //   interactive: true ,
   //   maxZoom: 22,
-	//   indexMaxZoom: 7,// Make sure that this VectorGrid fires mouse/pointer events
+  //   indexMaxZoom: 7,// Make sure that this VectorGrid fires mouse/pointer events
   // };
 
-
-  
-  return null
-}
+  return null;
+};
 
 let analyticslayer = null;
 
@@ -148,7 +148,12 @@ const Map = ({ visibility }) => {
         (baselayer, index) =>
           baselayer.show &&
           (baselayer.type === "tile" ? (
-            <TileLayer key={index} url={baselayer.link} domain={baselayer.domain} zIndex="1" />
+            <TileLayer
+              key={index}
+              url={baselayer.link}
+              domain={baselayer.domain}
+              zIndex="1"
+            />
           ) : (
             <WMSTileLayer
               key={index}
@@ -202,7 +207,7 @@ const Map = ({ visibility }) => {
           }}
         />
       </FeatureGroup>
-      <VectorTile/>
+      {<VectorTile show={visibility.filter((e) => e.id === "Tools")[0].show} />}
 
       <HandleClick />
       <HandleHover />

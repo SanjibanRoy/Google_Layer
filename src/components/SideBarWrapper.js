@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import BaseSwitcher from "./BaseSwitcher";
 import AlertPanel from "./AlertPanel";
 import AppsPanel from "./AppsPanel";
+import SwipePanel from "./SwipePanel";
 
 // import CreatableSelect from 'react-select/creatable';
 //end of import
@@ -88,6 +89,12 @@ const SideBarWrapper = ({
             <AppsPanel />
           </div>
           <div className={type === "Alert" ? "LayerContainer" : "hidden"}>
+            <AlertPanel />
+          </div>
+          <div className={type === "Tools" ? "LayerContainer" : "hidden"}>
+            <SwipePanel />
+          </div>
+          <div className={type === "Stats" ? "LayerContainer" : "hidden"}>
             <AlertPanel />
           </div>
         </React.Fragment>

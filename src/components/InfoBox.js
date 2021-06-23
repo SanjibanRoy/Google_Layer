@@ -44,7 +44,7 @@ const InfoBoxx = styled.div`
     background: #014B96;
     align-items: center;
     width: 20rem;
-    padding: 8px 10px;
+    /* padding: 8px 10px; */
     border-bottom: 1px solid #ccc;
   }
 `;
