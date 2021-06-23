@@ -45,7 +45,7 @@ const SidePanel = ({ changeVisibility, visibility }) => {
           <span align="center">Stats</span>
         </li>
       </ul>
-      <ul class="legend">
+      <ul className="legend">
         <li key={3} onClick={() => changeVisibility("Alert")}>
           <MapIcon />
           <span align="center">Legend</span>

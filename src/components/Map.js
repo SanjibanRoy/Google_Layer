@@ -17,6 +17,7 @@ import L from "leaflet";
 import { EditControl } from "react-leaflet-draw";
 import "leaflet.vectorgrid";
 import "leaflet-side-by-side";
+import SwpieMapControl from "../components/SwpieMapControl"
 let sbs = null;
 let rightlayer = null;
 let leftlayer = null;
@@ -45,35 +46,7 @@ const VectorTile = ({ show }) => {
     //   map.getZoom()<10?map.removeLayer(village):village.addTo(map)
     // }
   });
-  useEffect(() => {
-    if (show) {
-      rightlayer = L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-        attribution:
-          '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      }).addTo(map);
-
-      leftlayer = L.tileLayer(
-        "https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png",
-        {
-          attribution:
-            'Map tiles by <a href="http://stamen.com">Stamen Design</a>, ' +
-            '<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; ' +
-            "Map data {attribution.OpenStreetMap}",
-          minZoom: 1,
-          maxZoom: 16,
-        }
-      ).addTo(map);
-
-      sbs = L.control.sideBySide(rightlayer, leftlayer);
-      show && sbs.addTo(map);
-    } else {
-      if (sbs !== null) {
-        map.removeControl(sbs);
-        map.removeLayer(rightlayer);
-        map.removeLayer(leftlayer);
-      }
-    }
-  }, [show]);
+  
   // const vectorTileOptions = {
   //   vectorTileLayerStyles: {
   //     landuse: {
@@ -181,9 +154,9 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.text === "Flood Inundation" && (
+          overlayer.options !== undefined && (
             <AddAnalytics
-              test={[overlayer.layer, overlayer.link]}
+              key= {index} test={[overlayer.layer, overlayer.link]}
               showAnalytics={overlayer.show}
             />
           )
@@ -207,7 +180,7 @@ const Map = ({ visibility }) => {
           }}
         />
       </FeatureGroup>
-      {<VectorTile show={visibility.filter((e) => e.id === "Tools")[0].show} />}
+      {<SwpieMapControl show={visibility.filter((e) => e.id === "Tools")[0].show} />}
 
       <HandleClick />
       <HandleHover />

@@ -5,6 +5,7 @@ import { setAnalyticsDetails, selectLayerDataSet } from "../features/layers/over
 import { useSelector } from "react-redux";
 import { setLayerInfoDetails } from "../features/layers/layerinfoslice";
 import styled from "styled-components";
+import TimeSlider from "./TimeSlider"
 function getdrop() {
   var vall = document.getElementById("date");
   var value=vall.options[vall.selectedIndex].value;
@@ -43,7 +44,7 @@ const Layer = ({ task, showLayer }) => {
       />
       {task.text}{" "}
       <InfoIcon className="info" onClick={(e) => showInfo(task.text, task.info)} />
-      {task.options !== undefined && (
+      {task.show?task.options !== undefined && (
         <>
           {" "}
           <select
@@ -58,8 +59,9 @@ const Layer = ({ task, showLayer }) => {
             <option value={data.value}> {data.text}</option>   
           ))}
           </select>
+          <TimeSlider/>
         </>
-      )}
+      ):""}
     </LAYER>
   );
 };

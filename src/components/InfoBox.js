@@ -8,9 +8,7 @@ const InfoBox = () => {
   const info = state.overlays.filter((layers)=>layers.class!=="Lightning");
 
   return (
-  <>
     <InfoBoxx>
-      <React.Fragment>
       {/* <p>Info Box</p> */}
 
         {info !== undefined &&
@@ -19,9 +17,7 @@ const InfoBox = () => {
            <Info key={index} info={task} state={state} />           
           ))}
         
-      </React.Fragment>
     </InfoBoxx>
-    </>
   );
 };
 export default InfoBox;
