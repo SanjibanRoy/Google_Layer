@@ -45,8 +45,8 @@ const Stats = ({ info, state }) => {
                   y2: 1,
                 },
                 stops: [
-                  [0, "#2a2a2b"],
-                  [1, "#3e3e40"],
+                  [0, "white"],
+                  [1, "white"],
                 ],
               },
               type: info.stats.charttype,
@@ -56,9 +56,13 @@ const Stats = ({ info, state }) => {
             },
 
             xAxis: {
+              title: {
+                // color: "#E0E0E3",
+                text: "Date",
+              },
               labels: {
                 style: {
-                  color: "#E0E0E3",
+                //   color: "#E0E0E3",
                 },
               },
               categories: date,
@@ -66,12 +70,12 @@ const Stats = ({ info, state }) => {
             yAxis: {
               crosshair: false,
               title: {
-                color: "#E0E0E3",
+                // color: "#E0E0E3",
                 text: "Area",
               },
               labels: {
                 style: {
-                  color: "#E0E0E3",
+                  // color: "#E0E0E3",
                 },
                 formatter: function () {
                   return this.value;
@@ -89,7 +93,7 @@ const Stats = ({ info, state }) => {
               spline: {
                 marker: {
                   radius: 4,
-                  lineColor: "#666666",
+                  // lineColor: "#666666",
                   lineWidth: 1,
                 },
               },
@@ -107,7 +111,7 @@ const Stats = ({ info, state }) => {
               },
               title: {
                 style: {
-                  color: "#C0C0C0",
+                  // color: "#C0C0C0",
                 },
               },
             },
@@ -234,7 +238,7 @@ const Stats = ({ info, state }) => {
             <React.Fragment>
               <p>Data Table</p>
               <br></br>
-              <MDBDataTableV5 hover entriesOptions={[5, 20, 25]} entries={5} pagesAmount={4} data={test} searchTop searchBottom={false}
+              <MDBDataTableV5 hover entriesOptions={[5, 20, 25,100]} entries={5} pagesAmount={4} data={test} searchTop searchBottom={false}
               />
             </React.Fragment>
           )
@@ -285,4 +289,29 @@ export const INFO = styled.div`
     border-bottom: 0.5px solid #dadada;
     word-break: break-all;
   }
+  table td {
+    padding: 6px !important;
+    text-align: center !important;
+    background-color:white;
+    color:black !important;
+    font-weight:bold !important;
+}
+table th {
+  padding: 6px !important;
+  text-align: center !important;
+  background-color:orange !important;
+  font-weight:bold !important;
+  color:black !important;
+}
+div.mdb-datatable div.mdb-datatable-info {
+  display: none !important;
+}
+div.mdb-datatable div.mdb-datatable-info, div.mdb-datatable div.mdb-dataTables_paginate, div.mdb-datatable div.mdb-datatable-entries {
+  padding-top: 0rem !important;
+  padding-bottom: 0rem !important;
+  padding-left: 0rem !important;
+}
+.pagination .page-item .page-link {
+  text-align:center !important;
+}
 `;

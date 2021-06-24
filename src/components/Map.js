@@ -17,7 +17,7 @@ import L from "leaflet";
 import { EditControl } from "react-leaflet-draw";
 import "leaflet.vectorgrid";
 import "leaflet-side-by-side";
-import SwpieMapControl from "../components/SwpieMapControl"
+import SwpieMapControl from "../components/SwpieMapControl";
 let sbs = null;
 let rightlayer = null;
 let leftlayer = null;
@@ -46,7 +46,7 @@ const VectorTile = ({ show }) => {
     //   map.getZoom()<10?map.removeLayer(village):village.addTo(map)
     // }
   });
-  
+
   // const vectorTileOptions = {
   //   vectorTileLayerStyles: {
   //     landuse: {
@@ -66,6 +66,7 @@ const VectorTile = ({ show }) => {
 let analyticslayer = null;
 
 function AddAnalytics({ test, showAnalytics }) {
+  console.log(test);
   let data = null;
   const map = useMap();
 
@@ -154,9 +155,10 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.options !== undefined && (
+          overlayer.show & (overlayer.options !== undefined) && (
             <AddAnalytics
-              key= {index} test={[overlayer.layer, overlayer.link]}
+              key={index}
+              test={[overlayer.layer, overlayer.link]}
               showAnalytics={overlayer.show}
             />
           )
@@ -180,7 +182,11 @@ const Map = ({ visibility }) => {
           }}
         />
       </FeatureGroup>
-      {<SwpieMapControl show={visibility.filter((e) => e.id === "Tools")[0].show} />}
+      {
+        <SwpieMapControl
+          show={visibility.filter((e) => e.id === "Tools")[0].show}
+        />
+      }
 
       <HandleClick />
       <HandleHover />

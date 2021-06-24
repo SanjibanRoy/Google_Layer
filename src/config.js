@@ -7,7 +7,7 @@ export const layer = [
     class: "Administrative",
     layer: "NEC:ner_states",
 
-    link: "https://apps.nesdr.gov.in:442/geoserver/wms"
+    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
   },
   {
     id: 2,
@@ -26,7 +26,6 @@ export const layer = [
     //   api:"https://apps.nesdr.gov.in/nerdrrapi/flood.php?district=",
     //   charttype:"column"
     // }
-
   },
   {
     id: 3,
@@ -53,7 +52,7 @@ export const layer = [
     layer: "analytic:ner_landuse_landcover_50k_1st_cycle",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "Revenue Circle",
-    stats: true
+    stats: true,
   },
   {
     id: 5,
@@ -88,7 +87,7 @@ export const layer = [
     id: 8,
     text: "Embankment",
     show: false,
-    class: "Disaster Mitigation",
+    class: "Water Resources",
     layer: "NEWRM:ne_embankments",
     link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
   },
@@ -96,7 +95,7 @@ export const layer = [
     id: 9,
     text: "Breach Locations",
     show: false,
-    class: "Disaster Mitigation",
+    class: "Water Resources",
     layer: "NEWRM:ne_breach_total_locations",
     link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
   },
@@ -104,7 +103,7 @@ export const layer = [
     id: 10,
     text: "Erosion Deposition",
     show: false,
-    class: "Disaster Mitigation",
+    class: "Water Resources",
     layer: "NEWRM:NE_ErosionDeposition",
     link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
   },
@@ -112,7 +111,7 @@ export const layer = [
     id: 11,
     text: "Landslide",
     show: false,
-    class: "Disaster Mitigation",
+    class: "Geosciences",
     layer: "disaster:AS_SLIM_2014_GCS",
     link: "https://bhuvan-vec2.nrsc.gov.in/bhuvan/wms",
   },
@@ -120,7 +119,7 @@ export const layer = [
     id: 12,
     text: "Flood Inundation",
     show: false,
-    class: "Disaster Mitigation",
+    class: "Water Resources",
     layer: "FLEWS:1august20",
     options: [
       { value: "FLEWS:1august20", text: "1 August 2020" },
@@ -141,8 +140,8 @@ export const layer = [
       { value: "FLEWS:may28", text: "28 May 2020" },
     ],
     stats: {
-      api:"https://api.nesdr.gov.in/nerdrr/flood.php?district=",
-      charttype:"column"
+      api: "https://api.nesdr.gov.in/nerdrr/flood.php?district=",
+      charttype: "column",
     },
     link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
   },
@@ -175,7 +174,7 @@ export const layer = [
     id: 16,
     text: "Earthquake",
     show: false,
-    class: "Disaster Mitigation",
+    class: "Geosciences",
     layer: "NEWRM:ne_earthquake",
     link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
   },
@@ -213,33 +212,101 @@ export const layer = [
   },
   {
     id: 21,
-    text: "Flood Hazard",
-    show: false,
-    class: "Disaster Mitigation",
-    layer: "as_hz",
-    link: "https://bhuvan-ras2.nrsc.gov.in/mapcache",
-  },
-  {
-    id: 22,
-    text: "Forest Hazard",
-    show: false,
-    class: "Disaster Mitigation",
-    layer: "as_hz",
-    link: "https://analytics.nesdr.gov.in/forest_fire/visu?date=1",
-  },
-  {
-    id: 23,
     text: "Crop DAMS",
     show: false,
-    class: "Disaster Mitigation",
+    class: "CropDAMS",
     layer: "as_hz",
     link: "https://analytics.nesdr.gov.in/nerdrr_sentinel_1/visu?band=1",
   },
+  {
+    id: 22,
+    text: "Mizoram Fire Vunalarability",
+    show: false,
+    class: "Forestry",
+    layer: "NERDRR_NEW:mizoram_fire_vul_4326",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+  },
+
+  {
+    id: 23,
+    text: "Mizoram Fire Vunalarability",
+    show: false,
+    class: "Forestry",
+    layer: "NERDRR_NEW:mizoram_dist_ff_vul_stats",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+  },
+  {
+    id: 24,
+    text: "Meghalaya Fire Vunalarability District",
+    show: false,
+    class: "Forestry",
+    layer: "NERDRR_NEW:megh_dist_ff_vul_stats",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+  },
+  {
+    id: 25,
+    text: "Meghalaya Fire Vunalarability",
+    show: false,
+    class: "Forestry",
+    layer: "  NERDRR_NEW:megh_fire_vul_4326",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+  },
+  {
+    id: 26,
+    text: "Burn Patches",
+    show: false,
+    class: "Forestry",
+    layer: "NERDRR_NEW:churachandpur_patchwise_4326",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+  },
+  {
+    id: 27,
+    text: "Bankline",
+    show: false,
+    class: "CropDAMS",
+    layer: "NERDRR_NEW:2015_streamline_4326",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    options: [
+      {
+        value: "NERDRR_NEW:2015_streamline_4326",
+        text: "2015",
+      },
+      {
+        value: "NERDRR_NEW:2011_streamline_4326",
+        text: "2011",
+      },
+      {
+        value: "NERDRR_NEW:2005_streamline_4326",
+        text: "2005",
+      },
+      	
+    ],
+  },
+  {
+    id: 28,
+    text: "Crop Damage",
+    show: false,
+    class: "CropDAMS",
+    layer: "NERDRR_NEW:2005-11-6_districts_cropdam_due_to_bankline_erosion",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    options: [
+      {
+        value: "NERDRR_NEW:2005-11-6_districts_cropdam_due_to_bankline_erosion",
+        text: "2005-2011",
+      },
+      {
+        value: "NERDRR_NEW:2005-15-6_districts_cropdam_due_to_bankline_erosion",
+        text: "2005-2015",
+      },
+      {
+        value: "NERDRR_NEW:2011-15-6_districts_cropdam_due_to_bankline_erosion",
+        text: "2011-2015",
+      },
+      	
+    ],
+  },
   // census end
 ];
-
-
-
 
 // maps configuration
 export const maps = [
@@ -325,33 +392,33 @@ export const maps = [
   //maps end
 ];
 
-export const apps =[
+export const apps = [
   {
-    id:1,
-    app:"GeoPortal",
-    show:true
+    id: 1,
+    app: "GeoPortal",
+    show: true,
   },
   {
-    id:2,
-    app:"Flood",
-    show:false
+    id: 2,
+    app: "Flood",
+    show: false,
   },
   {
-    id:3,
-    app:"Agriculture",
-    show:false
+    id: 3,
+    app: "Agriculture",
+    show: false,
   },
   {
-    id:4,
-    app:"Atmospheric Sciences",
-    show:false
+    id: 4,
+    app: "Atmospheric Sciences",
+    show: false,
   },
   {
-    id:5,
-    app:"Geosciences",
-    show:false
+    id: 5,
+    app: "Geosciences",
+    show: false,
   },
-]
+];
 
 // side pannel visibility
 export const panelVisibilty = [

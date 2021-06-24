@@ -103,13 +103,13 @@ const Info = ({ info, state }) => {
                 </p>
                 {/* <p>{info.text}</p> */}
                 <table className={`${showLayer ? "showtable" : "visibility"}`}>
-                  <thead>
-                    <tr>
-                      <td>Attribute</td>
-                      <td>Value</td>
+                  <thead >
+                    <tr >
+                      <td style={{backgroundColor:"orange"}}>Attribute</td>
+                      <td style={{backgroundColor:"orange"}}>Value</td>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody >
                     {featureInfo.data[0] !== undefined && info.attributes
                       ? info.attributes.map((attribute) =>
                           Object.keys(featureInfo.data[0].properties)
@@ -117,8 +117,8 @@ const Info = ({ info, state }) => {
                             .map(function (element, index) {
                               return (
                                 <tr key={index}>
-                                  <td>{attribute.text}</td>
-                                  <td>
+                                  <td >{attribute.text}</td>
+                                  <td >
                                     {featureInfo.data[0].properties[element]}
                                   </td>
                                 </tr>
@@ -153,17 +153,16 @@ export const INFO = styled.div`
   /* width: 10%; */
   /* table-layout: fixed; */
   .Infobox{
-
-    border-radius: 10px;
+    
+    /* border-radius: 10px; */
 
   }
   p {
-    background: #014B96;
+    background: #294da1;
     align-items: center;
-    width: 20rem;
+    width: 100%;
     padding: 8px 10px;
-    border-bottom: 1px solid #ccc;
-    
+    border-bottom: 1px solid #ccc; 
   }
   p > .MuiSvgIcon-root {
     float: right;
@@ -173,13 +172,13 @@ export const INFO = styled.div`
     display: none;
   }
   table {
-    margin-left: 5%;
+    /* margin-left: 1%; */
     margin-top: 2%;
     margin-bottom: 2%;
-    margin-right: 5%;
+    /* margin-right: 18%; */
     /* max-width: 20%; */
     table-layout: fixed;
-    width: 90%;
+    width: 100%;
 
     /* border: none; */
     border-collapse: collapse;
@@ -195,4 +194,11 @@ export const INFO = styled.div`
   .showtable{
     height:20%;
   }
+  table td {
+    padding: 6px !important;
+    text-align: center !important;
+    background-color:white;
+    color:black !important;
+    font-weight:bold !important;
+}
 `;

@@ -26,7 +26,7 @@ export default InfoBox;
 
 const InfoBoxx = styled.div`
   right: 0px;
-  background: rgba(0, 0, 0, 0.74);
+  background: white;
   z-index: 10000;
   max-height: 80%;
   max-width: 20rem;

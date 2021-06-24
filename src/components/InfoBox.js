@@ -9,6 +9,7 @@ const InfoBox = () => {
 
   return (
     <InfoBoxx>
+      <React.Fragment>
       {/* <p>Info Box</p> */}
 
         {info !== undefined &&
@@ -17,6 +18,7 @@ const InfoBox = () => {
            <Info key={index} info={task} state={state} />           
           ))}
         
+      </React.Fragment>
     </InfoBoxx>
   );
 };
@@ -24,20 +26,22 @@ export default InfoBox;
 
 const InfoBoxx = styled.div`
   right: 0px;
-  background: rgba(0, 0, 0, 0.74);
+  background: white;
   z-index: 10000;
   max-height: 80%;
   max-width: 20rem;
   width:100%;
   height:100%;
-  overflow-y: auto;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-left: 10px;
-  margin-right: auto;
+  padding-left: 10px;
+
+  /* overflow-y: auto; */
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  /* margin-left: 10px;  */
+  margin-right: 15px;
   /* width: 20rem; */
   p {
-    background: #014B96;
+    background: #215a93;
     align-items: center;
     width: 20rem;
     /* padding: 8px 10px; */

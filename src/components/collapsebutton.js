@@ -12,6 +12,7 @@ import StatsBox from "./StatsBox";
 import FocusBox from "./FocusBox";
 import InfoBox from "./InfoBox";
 function TabPanel(props) {
+    console.log(props)
     const { children, value, index, ...other } = props;
 
     return (
@@ -57,7 +58,7 @@ export default function Cbutton() {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-    return (
+    return (     
         <>
             <Grid item xs={12} container>
                 <Grid item lg={12} sm={12} xs={12}>
@@ -99,8 +100,8 @@ function openNav() {
     toggle1 = !toggle1;
 }
 function openNav1() {
-    document.getElementById("mySidebar").style.width = "25rem";
-    document.getElementById("main").style.right = "25rem";
+    document.getElementById("mySidebar").style.width = "20rem";
+    document.getElementById("main").style.right = "20rem";
 }
 function closeNav() {
     document.getElementById("mySidebar").style.width = "0";

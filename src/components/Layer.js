@@ -6,11 +6,11 @@ import { useSelector } from "react-redux";
 import { setLayerInfoDetails } from "../features/layers/layerinfoslice";
 import styled from "styled-components";
 import TimeSlider from "./TimeSlider"
-function getdrop() {
-  var vall = document.getElementById("date");
-  var value=vall.options[vall.selectedIndex].value;
-  var text=vall.options[vall.selectedIndex].text;
-}
+// function getdrop() {
+//   var vall = document.getElementById("date");
+//   var value=vall.options[vall.selectedIndex].value;
+//   var text=vall.options[vall.selectedIndex].text;
+// }
 const Layer = ({ task, showLayer }) => {
   const dispatch = useDispatch();
   const state = useSelector(selectLayerDataSet);
@@ -23,14 +23,14 @@ const Layer = ({ task, showLayer }) => {
 
   };
   const changeDate = (date, id) => {
-    var vall = document.getElementById("date");
-    var value=vall.options[vall.selectedIndex].value;
-    var text=vall.options[vall.selectedIndex].text;
+    // var vall = document.getElementById("date");
+    // var value=vall.options[vall.selectedIndex].value;
+    // var text=vall.options[vall.selectedIndex].text;
     dispatch(setAnalyticsDetails({ ...state, id: id - 1, show: false }));
     setTimeout(console.log(""), 10000);
 
     dispatch(
-      setAnalyticsDetails({ ...state, id: id - 1, show: true, layer: date, layer_date:text })
+      setAnalyticsDetails({ ...state, id: id - 1, show: true, layer: date })
     );
   };
   // task.options.map((data) => {})
@@ -48,8 +48,8 @@ const Layer = ({ task, showLayer }) => {
         <>
           {" "}
           <select
-            id="date"
-            onClick={getdrop}
+            // id="date"
+            // onClick={getdrop}
             onChange={(event) => {
               changeDate(event.target.value, task.id);
             }}

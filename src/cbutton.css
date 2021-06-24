@@ -1,6 +1,15 @@
+.MuiBox-root-11 {
+  padding: 0px !important;
+  padding-top: 2px !important;
+  padding-left: 0px  !important;
+  margin-left: -10px  !important;
+}
+.MuiBox-root{
+padding: 0px;
+}
 .MuiAppBar-colorPrimary {
-  color: #fff;
-  background-color: #044f99 !important;
+  color: white !important;
+  background-color: #215a93 !important;
 }
 .sidebar {
   max-height: 80%;
@@ -9,7 +18,7 @@
   z-index: 1;
   top: 0;
   right: 0;
-  background-color: rgba(255, 255, 255);
+  background-color: rgb(33, 211, 42) !important;
   overflow-x: hidden;
   transition: 0s;
   padding-top: 0px;
