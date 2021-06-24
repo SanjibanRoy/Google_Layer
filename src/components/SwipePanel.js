@@ -6,6 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import {selectSwipeDataSet,setSwipeLayers} from "../features/layers/swipemapslice"
+import styled from "styled-components";
 const SwipePanel = () => {
   const dispatch = useDispatch();
 
@@ -34,9 +35,9 @@ const SwipePanel = () => {
     }));
   }, [])
   return (
-    <div className="LayerTree">
+    <Swipe >
 
-      <select
+      <select id="left"
         onChange={(event) => {
           changeLeft(event.target.value);
         }}
@@ -47,7 +48,7 @@ const SwipePanel = () => {
         )}
       </select>
 
-      <select
+      <select id="right"
         onChange={(event) => {
           changeRight(event.target.value);
         }}
@@ -57,8 +58,35 @@ const SwipePanel = () => {
             data.show && <option value={data.id}> {data.text}</option>
         )}
       </select>
-    </div>
+    </Swipe>
   );
 };
 
 export default SwipePanel;
+
+const Swipe = styled.div`
+  z-index: 100000000;
+  width: 25%;
+  display:flex;
+  top:0;
+  position: absolute;
+  background-color: #fff;
+  z-index: 10000;
+  align-items: center;
+  left:30%;
+  padding-right: 10%;
+#left{
+  /* position:absolute; */
+  /* left:30%;
+  top:0; */
+}
+
+#right{
+  /* position:absolute;
+  left:60%;
+  top:0; */
+  margin-left: 50%;
+
+}
+
+`

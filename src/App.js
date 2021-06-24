@@ -8,7 +8,7 @@ import LayerInfo from "./components/LayerInfo";
 import StatsBox from "./components/StatsBox";
 import FocusBox from "./components/FocusBox";
 import Infowrapper from "./components/Infowrapper";
-
+import SwipePanel from "./components/SwipePanel";
 const App = () => {
   const [visibility, setVisibility] = useState(panelVisibilty);
   const [panel, setPanel] = useState(false);
@@ -36,13 +36,16 @@ const App = () => {
         changeVisibility={changeVisibility}
         showPanel={panel}
       />
-
+     
       <Map visibility={visibility} />
+      {visibility.filter((e) => e.id === "Tools")[0].show && (
+        <SwipePanel />
+      )}
       {/* <FocusBox /> */}
       <Infowrapper visibility={visibility} />
       {/* <InfoBox />
       <StatsBox/>*/}
-      <LayerInfo /> 
+      <LayerInfo />
       <Legend />
     </div>
   );

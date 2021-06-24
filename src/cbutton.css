@@ -12,21 +12,7 @@
   margin-left: 0px  !important;
   margin-right: 0px  !important;
 }
-.MuiBox-root-16 {
-  padding: 0px !important;
-  padding-top: 0px !important;
-  padding-left: 0px  !important;
-  margin-left: 0px  !important;
-  margin-right: 0px  !important;
-}
 
-.MuiBox-root-20 {
-  padding: 0px !important;
-  padding-top: 0px !important;
-  padding-left: 0px  !important;
-  margin-left: 0px  !important;
-  margin-right: 0px  !important;
-}
 .MuiBox-root{
 padding: 0px;
 }
@@ -48,6 +34,9 @@ div.mdb-datatable div.mdb-datatable-filter input {
 }
 .highcharts-title{
   display: none;
+}
+.Visible{
+  display:none;
 }
 .dataTables_scrollHeadInner{
   padding-right: 0px !important;

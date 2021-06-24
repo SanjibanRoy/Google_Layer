@@ -94,9 +94,9 @@ const SideBarWrapper = ({
           <div className={type === "Alert" ? "LayerContainer" : "hidden"}>
             <AlertPanel />
           </div>
-          <div className={type === "Tools" ? "LayerContainer" : "hidden"}>
+          {/* <div className={type === "Tools" ? "LayerContainer" : "hidden"}>
             <SwipePanel />
-          </div>
+          </div> */}
           <div className={type === "Stats" ? "LayerContainer" : "hidden"}>
             <AlertPanel />
           </div>

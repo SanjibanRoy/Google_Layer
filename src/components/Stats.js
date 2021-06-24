@@ -15,6 +15,7 @@ const Stats = ({ info, state }) => {
     data: [],
     isFetching: false,
   });
+
   const [options, setOptions] = useState([]);
   const [showLayer, setShowLayer] = useState(false);
   const infodata = useSelector(selectInfo);
@@ -22,6 +23,7 @@ const Stats = ({ info, state }) => {
   // var dateapi=layerdata[11].layer_date;
   // console.log(dateapi)
   const getInfo = async (e) => {
+    console.log("hi")
     try {
       setFeatureInfo({ data: [], isFetching: true });
       fetch(
@@ -134,6 +136,12 @@ const Stats = ({ info, state }) => {
       //     setFeatureInfo({ featureInfo: featureInfo.data, isFetching: false });
     }
   };
+
+  useEffect(() => {
+    getInfo(infodata);
+    console.log(infodata)
+  }, [infodata, info]);
+
   const [datatable, setDatatable] = useState({
     dataa: [],
     isFetching: false,
@@ -213,9 +221,7 @@ const Stats = ({ info, state }) => {
   useEffect(() => {
     tabledata();
   }, []);
-  useEffect(() => {
-    getInfo(infodata);
-  }, [infodata]);
+
   return (
     <>
       <INFO>

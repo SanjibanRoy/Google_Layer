@@ -1,13 +1,13 @@
 import React from "react";
 import Stats from "./Stats";
 import styled from "styled-components";
-
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectMapstate } from "../features/maps/mapStateSlice";
-const InfoBox = () => {
+const StatsBox = () => {
   const state = useSelector(selectMapstate);
   const info = state.overlays.filter((layers)=>layers.class!=="Lightning");
-
+  useEffect(()=>{console.log("HIHIHI")},[state])
   return (
     <InfoBoxx>
       <React.Fragment>
@@ -22,7 +22,7 @@ const InfoBox = () => {
     </InfoBoxx>
   );
 };
-export default InfoBox;
+export default StatsBox;
 
 const InfoBoxx = styled.div`
   right: 0px;

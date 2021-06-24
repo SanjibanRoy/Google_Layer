@@ -44,26 +44,26 @@ const Info = ({ info, state }) => {
       )
         .then((response) => response.json())
         .then((result) => {
-          if (
-            activelayers.includes("State Boundary") &
-            activelayers.includes("District Boundary")
-          ) {
-            result.features[0].properties.dtname !== undefined &&
-              dispatch(
-                setInfoDetails({
-                  statename: result.features[0].properties.stname,
-                  distname: result.features[0].properties.dtname,
-                })
-              );
-          } else {
-            result.features.length>0&&dispatch(
-              // result.features[0].properties.dtname !== undefined &&
-              setInfoDetails({
-                statename: result.features[0].properties.stname,
-                // distname: result.features[0].properties.dtname,
-              })
-            );
-          }
+          // if (
+          //   activelayers.includes("State Boundary") &
+          //   activelayers.includes("District Boundary")
+          // ) {
+          //   result.features[0].properties.dtname !== undefined &&
+          //     dispatch(
+          //       setInfoDetails({
+          //         statename: result.features[0].properties.stname,
+          //         distname: result.features[0].properties.dtname,
+          //       })
+          //     );
+          // } else {
+          //   result.features.length>0&&dispatch(
+          //     // result.features[0].properties.dtname !== undefined &&
+          //     setInfoDetails({
+          //       statename: result.features[0].properties.stname,
+          //       // distname: result.features[0].properties.dtname,
+          //     })
+          //   );
+          // }
           // );
           // result.features[0].properties.dtname !== undefined;
 
