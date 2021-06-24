@@ -10,14 +10,10 @@ const InfoBox = () => {
   return (
     <InfoBoxx>
       <React.Fragment>
-      {/* <p>Info Box</p> */}
-
-        {info !== undefined &&
-        
+        {info !== undefined &&       
          info.map((task, index) => (
            <Info key={index} info={task} state={state} />           
           ))}
-        
       </React.Fragment>
     </InfoBoxx>
   );
@@ -34,7 +30,7 @@ const InfoBoxx = styled.div`
   height:100%;
   padding-left: 10px;
 
-  /* overflow-y: auto; */
+   overflow-y: none; 
   /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
     inset 0px 4px 4px rgba(0, 0, 0, 0.25); */
   /* margin-left: 10px;  */

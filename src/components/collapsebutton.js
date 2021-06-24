@@ -11,6 +11,9 @@ import Box from '@material-ui/core/Box';
 import StatsBox from "./StatsBox";
 import FocusBox from "./FocusBox";
 import InfoBox from "./InfoBox";
+import {useEffect} from "react"
+import { useSelector } from "react-redux";
+import { selectMapstate } from "../features/maps/mapStateSlice";
 function TabPanel(props) {
     console.log(props)
     const { children, value, index, ...other } = props;
@@ -52,12 +55,23 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 export default function Cbutton() {
+    const state = useSelector(selectMapstate);
+
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
+        console.log(value)
         setValue(newValue);
     };
+    useEffect(() => {
+        // AddAnalytics()
+        openNav1();
+      }, [state]);
+      useEffect(() => {
+        // AddAnalytics()
+        closeNav();
+      }, []);
     return (     
         <>
             <Grid item xs={12} container>
@@ -71,8 +85,8 @@ export default function Cbutton() {
                         <div className={classes.root}>
                             <AppBar position="static">
                                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                                    <Tab label="Info" {...a11yProps(0)} />
-                                    <Tab label="Stats" {...a11yProps(1)} />
+                                    <Tab label="Info"  />
+                                    <Tab label="Stats"  />
                                 </Tabs>
                             </AppBar>
                             <TabPanel value={value} index={0}>

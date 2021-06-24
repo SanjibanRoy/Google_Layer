@@ -30,10 +30,13 @@ const InfoBoxx = styled.div`
   z-index: 10000;
   max-height: 80%;
   max-width: 20rem;
-  overflow-y: auto;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-left: 10px;
-  margin-right: auto;
+  width:100%;
+  height:100%;
+  padding-left: 10px;
+  overflow-y: none;
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0px 4px 4px rgba(0, 0, 0, 0.25);*/
+    /* margin-left: 10px;  */
+    margin-right: 15px;
   /* width: 20rem; */
 `;

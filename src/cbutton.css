@@ -1,8 +1,31 @@
+.ilrXHg {
+  padding-left: 0px  !important;
+}
+.ilrXHg p {
+  background-color: white  !important;
+  color: black  !important;
+}
 .MuiBox-root-11 {
   padding: 0px !important;
-  padding-top: 2px !important;
+  padding-top: 0px !important;
   padding-left: 0px  !important;
-  margin-left: -10px  !important;
+  margin-left: 0px  !important;
+  margin-right: 0px  !important;
+}
+.MuiBox-root-16 {
+  padding: 0px !important;
+  padding-top: 0px !important;
+  padding-left: 0px  !important;
+  margin-left: 0px  !important;
+  margin-right: 0px  !important;
+}
+
+.MuiBox-root-20 {
+  padding: 0px !important;
+  padding-top: 0px !important;
+  padding-left: 0px  !important;
+  margin-left: 0px  !important;
+  margin-right: 0px  !important;
 }
 .MuiBox-root{
 padding: 0px;
@@ -11,6 +34,33 @@ padding: 0px;
   color: white !important;
   background-color: #215a93 !important;
 }
+.MuiBox-root-33 {
+   padding: 0px !important;
+}
+.kGmXDC {
+  padding-left: 0px !important;
+}
+div.mdb-datatable div.mdb-datatable-filter input {
+  text-align: center;
+}
+.cDPNYS {
+  margin-left: 0px !important;
+}
+.highcharts-title{
+  display: none;
+}
+.dataTables_scrollHeadInner{
+  padding-right: 0px !important;
+}
+.bs-select{
+  color:black !important;
+}
+.pagination .page-item .page-link{
+  display:none !important;
+}
+table.dataTable thead .sorting:before, table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:before, table.dataTable thead .sorting_desc_disabled:after {
+  opacity: 0 !important;
+}
 .sidebar {
   max-height: 80%;
   width: 0%;
@@ -18,7 +68,7 @@ padding: 0px;
   z-index: 1;
   top: 0;
   right: 0;
-  background-color: rgb(33, 211, 42) !important;
+  background-color:rgb(244 255 244 / 0%) !important;
   overflow-x: hidden;
   transition: 0s;
   padding-top: 0px;

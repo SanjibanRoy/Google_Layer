@@ -37,6 +37,7 @@ const Stats = ({ info, state }) => {
           setFeatureInfo({ data: [result], isFetching: false });
           setOptions({
             chart: {
+              width:300,
               backgroundColor: {
                 linearGradient: {
                   x1: 0,
@@ -98,26 +99,26 @@ const Stats = ({ info, state }) => {
                 },
               },
             },
-            legend: {
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-              itemStyle: {
-                color: "#E0E0E3",
-              },
-              itemHoverStyle: {
-                color: "#FFF",
-              },
-              itemHiddenStyle: {
-                color: "#606063",
-              },
-              title: {
-                style: {
-                  // color: "#C0C0C0",
-                },
-              },
-            },
+            // legend: {
+            //   backgroundColor: "white",
+            //   itemStyle: {
+            //     color: "black",
+            //   },
+            //   itemHoverStyle: {
+            //     color: "black",
+            //   },
+            //   itemHiddenStyle: {
+            //     color: "#606063",
+            //   },
+            //   title: {
+            //     style: {
+            //        color: "#C0C0C0",
+            //     },
+            //   },
+            // },
             series: [
               {
-                // showInLegend: false,
+                showInLegend: false,
                 name: "Area",
                 data: chartarea,
               },
@@ -187,7 +188,6 @@ const Stats = ({ info, state }) => {
               {
                 label: 'District',
                 field: 'district',
-                width: 270,
                 attributes: {
                   'aria-controls': 'DataTable',
                   'aria-label': 'District',
@@ -196,7 +196,6 @@ const Stats = ({ info, state }) => {
               {
                 label: 'Area (Hectare)',
                 field: 'area',
-                width: 150,
               },
             ],
             rows: ar,
@@ -238,7 +237,7 @@ const Stats = ({ info, state }) => {
             <React.Fragment>
               <p>Data Table</p>
               <br></br>
-              <MDBDataTableV5 hover entriesOptions={[5, 20, 25,100]} entries={5} pagesAmount={4} data={test} searchTop searchBottom={false}
+              <MDBDataTableV5 scrollY maxHeight="300px" hover entriesOptions={[8, 20, 25,100]} entries={8} pagesAmount={4} data={test} searchTop searchBottom={false}
               />
             </React.Fragment>
           )
@@ -254,13 +253,13 @@ export const INFO = styled.div`
   /* width: 10%; */
   color: white;
   /* table-layout: fixed; */
-
   p {
-    background: #014B96;
+    background: white;
     align-items: center;
-    width: 20rem;
+    width: 100%;
     padding: 8px 10px;
     border-bottom: 1px solid #ccc;
+    color:black;
   }
   p > .MuiSvgIcon-root {
     float: right;
@@ -270,13 +269,12 @@ export const INFO = styled.div`
     display: none;
   }
   table {
-    margin-left: 5%;
+    margin-left: 0%;
     margin-top: 2%;
     margin-bottom: 2%;
-    margin-right: 5%;
     /* max-width: 20%; */
     table-layout: fixed;
-    width: 90%;
+    width: 100%;
 
     /* border: none; */
     border-collapse: collapse;
@@ -294,7 +292,7 @@ export const INFO = styled.div`
     text-align: center !important;
     background-color:white;
     color:black !important;
-    font-weight:bold !important;
+    font-weight: 400;
 }
 table th {
   padding: 6px !important;
@@ -302,6 +300,7 @@ table th {
   background-color:orange !important;
   font-weight:bold !important;
   color:black !important;
+  font-weight:"bold";
 }
 div.mdb-datatable div.mdb-datatable-info {
   display: none !important;

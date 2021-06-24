@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setInfoDetails } from "../features/layers/infoboxslice";
 import styled from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { selectLayerDataSet } from "../features/layers/overlaylayerslice";
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 const Info = ({ info, state }) => {
   const [featureInfo, setFeatureInfo] = useState({
     data: [],
@@ -91,22 +91,21 @@ const Info = ({ info, state }) => {
           <CircularProgress />
         ) : (
           featureInfo.data.length > 0 && (
-            <React.Fragment ><div className="InfoBox">
-              
+            <React.Fragment ><div className="InfoBox">         
                 <p onClick={() => setShowLayer(!showLayer)}>
-                  {info.text}
-                  {showLayer ? (
-                    <KeyboardArrowDownIcon />
+                {showLayer ? (
+                    <RemoveIcon />
                   ) : (
-                    <KeyboardArrowUpIcon />
+                    <AddIcon />
                   )}
+                  {info.text}
                 </p>
                 {/* <p>{info.text}</p> */}
                 <table className={`${showLayer ? "showtable" : "visibility"}`}>
                   <thead >
                     <tr >
-                      <td style={{backgroundColor:"orange"}}>Attribute</td>
-                      <td style={{backgroundColor:"orange"}}>Value</td>
+                      <td style={{backgroundColor:"orange", fontWeight:"bold"}}>Attribute</td>
+                      <td style={{backgroundColor:"orange", fontWeight:"bold"}}>Value</td>
                     </tr>
                   </thead>
                   <tbody >
@@ -165,7 +164,7 @@ export const INFO = styled.div`
     border-bottom: 1px solid #ccc; 
   }
   p > .MuiSvgIcon-root {
-    float: right;
+    float: left;
     color: gray;
   }
   .visibility {
@@ -199,6 +198,6 @@ export const INFO = styled.div`
     text-align: center !important;
     background-color:white;
     color:black !important;
-    font-weight:bold !important;
+    font-weight: 400;
 }
 `;

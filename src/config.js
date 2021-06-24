@@ -226,25 +226,8 @@ export const layer = [
     layer: "NERDRR_NEW:mizoram_fire_vul_4326",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
   },
-
   {
     id: 23,
-    text: "Mizoram Fire Vunalarability",
-    show: false,
-    class: "Forestry",
-    layer: "NERDRR_NEW:mizoram_dist_ff_vul_stats",
-    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
-  },
-  {
-    id: 24,
-    text: "Meghalaya Fire Vunalarability District",
-    show: false,
-    class: "Forestry",
-    layer: "NERDRR_NEW:megh_dist_ff_vul_stats",
-    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
-  },
-  {
-    id: 25,
     text: "Meghalaya Fire Vunalarability",
     show: false,
     class: "Forestry",
@@ -252,7 +235,7 @@ export const layer = [
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
   },
   {
-    id: 26,
+    id: 24,
     text: "Burn Patches",
     show: false,
     class: "Forestry",
@@ -260,7 +243,7 @@ export const layer = [
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
   },
   {
-    id: 27,
+    id: 25,
     text: "Bankline",
     show: false,
     class: "CropDAMS",
@@ -283,7 +266,7 @@ export const layer = [
     ],
   },
   {
-    id: 28,
+    id: 26,
     text: "Crop Damage",
     show: false,
     class: "CropDAMS",
@@ -304,6 +287,14 @@ export const layer = [
       },
       	
     ],
+  },
+  {
+    id: 27,
+    text: "Lightning Hazard Map",
+    show: false,
+    class: "Lightning",
+    layer: "NERDRR_NEW:Light_Hazards_Map",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
   },
   // census end
 ];
