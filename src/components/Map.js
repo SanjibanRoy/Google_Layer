@@ -87,7 +87,7 @@ function AddAnalytics({ test, showAnalytics }) {
 }
 
 const Map = ({ visibility }) => {
-  console.log(visibility);
+  // console.log(visibility);
   const dispatch = useDispatch();
   function HandleClick() {
     const map = useMapEvents({

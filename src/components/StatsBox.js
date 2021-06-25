@@ -7,7 +7,7 @@ import { selectMapstate } from "../features/maps/mapStateSlice";
 const StatsBox = () => {
   const state = useSelector(selectMapstate);
   const info = state.overlays.filter((layers)=>layers.class!=="Lightning");
-  useEffect(()=>{console.log("HIHIHI")},[state])
+  useEffect(()=>{},[state])
   return (
     <InfoBoxx>
       <React.Fragment>
@@ -29,7 +29,7 @@ const InfoBoxx = styled.div`
   background: white;
   z-index: 10000;
   max-height: 80%;
-  max-width: 20rem;
+  max-width: 25rem;
   width:100%;
   height:100%;
   padding-left: 10px;
