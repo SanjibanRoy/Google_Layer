@@ -35,30 +35,60 @@ const Toolbar = () => (
   </FeatureGroup>
 );
 const VectorTile = ({ show }) => {
-  console.log(show);
-  const map = useMap({
-    // zoomend:(e)=>{
-    //   console.log(map.getZoom())
-    //   let village = L.vectorGrid.protobuf(
-    //     "http://geoserver.vassarlabs.com/geoserver/gwc/service/wmts?layer=VASSARLABS:AP_VILLAGE_V2&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=application/x-protobuf;type=mapbox-vector&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}",
-    //      vectorTileOptions
-    //   );
-    //   map.getZoom()<10?map.removeLayer(village):village.addTo(map)
-    // }
-  });
+  console.log("Hi");
+  const map = useMap();
+  // useEffect(() => {
+  var vectorTileOptions = {
+    interactive: true,
+    pane: "OverlayPane",
+    vectorTileLayerStyles: {
+      AP_VILLAGE_V2: {
+        weight: 0,
+        fillColor: "#9bc2c4",
+        fillOpacity: 1,
+        fill: true,
+      },
+    },
+  };
 
+  let village = L.vectorGrid.protobuf(
+    "http://geoserver.vassarlabs.com/geoserver/gwc/service/wmts?layer=VASSARLABS:AP_VILLAGE_V2&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=application/x-protobuf;type=mapbox-vector&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}",
+    {
+      interactive: true,
+      minZoom:8,
+      maxZoom: 12,
+      vectorTileLayerStyles: {
+        AP_VILLAGE_V2: function (properties, zoom) {
+          return {
+            weight: 2,
+            color: "green",
+            opacity: 1,
+            fillColor: "yellow",
+            fill: true,
+
+						fillOpacity: 0.3,
+          };
+        },
+      },
+    }
+  );
+  village
+    .on("click", function (e) {
+      console.log(e.layer);
+      L.DomEvent.stop(e);
+    })
+    .addTo(map);
   // const vectorTileOptions = {
-  //   vectorTileLayerStyles: {
-  //     landuse: {
-  //       fillColor: "transparent",
-  //       color: "yellow",
-  //       weight: .5
-  //     }
+  //   AP_VILLAGE_V2: {
+  //     weight: 0,
+  //     fillColor: "#9bc2c4",
+  //     fillOpacity: 1,
+  //     fill: true,
   //   },
-  //   interactive: true ,
-  //   maxZoom: 22,
-  //   indexMaxZoom: 7,// Make sure that this VectorGrid fires mouse/pointer events
+  //   interactive: true,
+  //   pane: "OverlayPane",
   // };
+  // }, []);
 
   return null;
 };
@@ -92,6 +122,7 @@ const Map = ({ visibility }) => {
   function HandleClick() {
     const map = useMapEvents({
       click: (e) => {
+        console.log(e);
         dispatch(
           setMapState({
             lat: e.latlng.lat,
@@ -127,6 +158,14 @@ const Map = ({ visibility }) => {
               url={baselayer.link}
               domain={baselayer.domain}
               zIndex="1"
+            />
+          ) : baselayer.type === "vectortile" ? (
+            <VectorTile
+            // key={index}
+            // url={baselayer.link}
+            // layers={baselayer.layer}
+            // format="image/png"
+            // zIndex="1"
             />
           ) : (
             <WMSTileLayer
@@ -187,7 +226,7 @@ const Map = ({ visibility }) => {
           show={visibility.filter((e) => e.id === "Tools")[0].show}
         />
       }
-
+      {/* <VectorTile /> */}
       <HandleClick />
       <HandleHover />
     </MapContainer>
