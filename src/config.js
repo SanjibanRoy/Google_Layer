@@ -55,6 +55,7 @@ export const layer = [
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "Revenue Circle",
     stats: true,
+    legend:"https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:ner_landuse_landcover_50k_1st_cycle"
   },
   {
     id: 5,
@@ -64,6 +65,8 @@ export const layer = [
     layer: "analytic:lulc2ndcycle",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "Revenue Circle",
+    legend:"https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:lulc2ndcycle"
+
   },
   {
     id: 6,
@@ -73,6 +76,8 @@ export const layer = [
     layer: "analytic:lulc3rdcycle",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "LULC(2015-16)",
+    legend:"https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:lulc3rdcycle"
+
   },
   // Land Use and Land Cover end
 
@@ -84,6 +89,8 @@ export const layer = [
     class: "Census",
     layer: "NEC:assam_census",
     link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
+    legend:"https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NEC:assam_census"
+
   },
   {
     id: 8,
@@ -220,6 +227,8 @@ export const layer = [
     class: "CropDAMS",
     layer: "NERDRR_NEW:cropdam_flood_4326",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:cropdam_flood_4326"
+
   },
   {
     id: 22,
@@ -234,6 +243,8 @@ export const layer = [
       charttype: "pie",
       val:"firev",
     },
+    legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:mizoram_fire_vul_4326"
+
   },
   {
     id: 23,
@@ -248,6 +259,8 @@ export const layer = [
       charttype: "pie",
       val:"firev",
     },
+    legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:mizoram_fire_vul_4326"
+
   },
   {
     id: 24,
