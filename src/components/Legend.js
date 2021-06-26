@@ -17,10 +17,12 @@ const Legend = () => {
       {tasks
         .filter((task) => task.show === true)
         .map((task) => (
+
           //console.log(task.layer),
           sanju="https://geoserver.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=" + task.layer,
                arr.includes(task.layer)?<img src={sanju}/>:""
       // <p key={task.id}>{task.text}</p>
+
         ))}
     </div>
   );
