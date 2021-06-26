@@ -1,3 +1,5 @@
+import { FolderOpenRounded } from "@material-ui/icons";
+
 export const layer = [
   //Administrator boundary start
   {
@@ -142,6 +144,7 @@ export const layer = [
     stats: {
       api: "https://api.nesdr.gov.in/nerdrr/flood.php?district=",
       charttype: "column",
+      val:"flood",
     },
     link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
   },
@@ -225,6 +228,12 @@ export const layer = [
     class: "Forestry",
     layer: "NERDRR_NEW:mizoram_fire_vul_4326",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    stats: {
+      api: "https://api.nesdr.gov.in/nerdrr/firevunalarability.php?state=mizoram&district=",
+      apitable: "https://api.nesdr.gov.in/nerdrr/datatable.php?state=mizoram",
+      charttype: "pie",
+      val:"firev",
+    },
   },
   {
     id: 23,
@@ -233,6 +242,12 @@ export const layer = [
     class: "Forestry",
     layer: "  NERDRR_NEW:megh_fire_vul_4326",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    stats: {
+      api: "https://api.nesdr.gov.in/nerdrr/firevunalarability.php?state=meghalaya&district=",
+      apitable: "https://api.nesdr.gov.in/nerdrr/datatable.php?state=meghalaya",
+      charttype: "pie",
+      val:"firev",
+    },
   },
   {
     id: 24,

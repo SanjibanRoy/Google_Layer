@@ -6,16 +6,17 @@ import { selectInfo } from "../features/layers/infoboxslice";
 import { selectLayerDataSet } from "../features/layers/overlaylayerslice";
 import { useDispatch, useSelector } from "react-redux";
 import { MDBDataTableV5 } from 'mdbreact';
-import { MDBDataTable } from 'mdbreact';
+import { MDBDataTable, MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import Cbutton from "./collapsebutton";
+import { ContactsOutlined } from "@material-ui/icons";
+///////////////////////////////////////////////Chart////////////////////////////////////////////////////
 const Stats = ({ info, state }) => {
   const [featureInfo, setFeatureInfo] = useState({
     data: [],
     isFetching: false,
   });
-
   const [options, setOptions] = useState([]);
   const [showLayer, setShowLayer] = useState(false);
   const infodata = useSelector(selectInfo);
@@ -26,20 +27,55 @@ const Stats = ({ info, state }) => {
     console.log("hi")
     try {
       setFeatureInfo({ data: [], isFetching: true });
+      console.log(e.districtname)
+      if (info.stats.val == "flood") {
+        var urlapi = info.stats.api + '' + (e.districtname !== undefined ? e.districtname.toUpperCase() : "")
+      }
+      if (info.stats.val == "firev") {
+        var urlapi = info.stats.api + '' + (e.districtname !== undefined ? e.districtname : "")
+      }
+      console.log(urlapi)
       fetch(
-        info.stats.api + '' + (e.districtname !== undefined ? e.districtname.toUpperCase() : ""), {
-
+        urlapi, {
         method: "GET",
       })
         .then((response) => response.json())
         .then((result) => {
           console.log(result)
-          var date = result.map((e) => e.date);
-          var chartarea = result.map((e) => Number(e.area) / 10000);
+          if (info.stats.val == "flood") {
+            var date = result.map((e) => e.date);
+            var chartarea = result.map((e) => Number(e.area) / 1000000);
+          }
+          if (info.stats.val == "firev") {
+            var a1 = result.map((e) => Number(e.area1) / 1000000);
+            var a2 = result.map((e) => Number(e.area2) / 1000000);
+            var a3 = result.map((e) => Number(e.area3) / 1000000);
+            var a4 = result.map((e) => Number(e.area4) / 1000000);
+            var a5 = result.map((e) => Number(e.area5) / 1000000);
+            var chartarea = [{
+              name: 'Category 1',
+              y: a1[0],
+              sliced: true,
+              selected: true
+            }, {
+              name: 'Category 2',
+              y: a2[0],
+            }, {
+              name: 'Category 3',
+              y: a3[0],
+            }, {
+              name: 'Category 4',
+              y: a4[0],
+            }, {
+              name: 'Category 5',
+              y: a5[0],
+            }]
+            var date = "";
+          }
           setFeatureInfo({ data: [result], isFetching: false });
           setOptions({
             chart: {
-              width:300,
+              width: 300,
               backgroundColor: {
                 linearGradient: {
                   x1: 0,
@@ -61,11 +97,11 @@ const Stats = ({ info, state }) => {
             xAxis: {
               title: {
                 // color: "#E0E0E3",
-                text: "Date",
+                text: "",
               },
               labels: {
                 style: {
-                //   color: "#E0E0E3",
+                  //   color: "#E0E0E3",
                 },
               },
               categories: date,
@@ -74,7 +110,7 @@ const Stats = ({ info, state }) => {
               crosshair: false,
               title: {
                 // color: "#E0E0E3",
-                text: "Area",
+                text: "Area (sq. km)",
               },
               labels: {
                 style: {
@@ -88,11 +124,18 @@ const Stats = ({ info, state }) => {
             tooltip: {
               formatter: function () {
                 return (
-                  "Total Area on <b>" + this.x + "</b> is <b>" + this.y + "</b>"
+                  "Total Area is <b>" + this.y + "</b>"
                 );
               },
             },
             plotOptions: {
+              pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                  enabled: false,
+                }
+              },
               spline: {
                 marker: {
                   radius: 4,
@@ -101,26 +144,26 @@ const Stats = ({ info, state }) => {
                 },
               },
             },
-            // legend: {
-            //   backgroundColor: "white",
-            //   itemStyle: {
-            //     color: "black",
-            //   },
-            //   itemHoverStyle: {
-            //     color: "black",
-            //   },
-            //   itemHiddenStyle: {
-            //     color: "#606063",
-            //   },
-            //   title: {
-            //     style: {
-            //        color: "#C0C0C0",
-            //     },
-            //   },
-            // },
+            legend: {
+              backgroundColor: "white",
+              itemStyle: {
+                color: "black",
+              },
+              itemHoverStyle: {
+                color: "black",
+              },
+              itemHiddenStyle: {
+                color: "#606063",
+              },
+              title: {
+                style: {
+                  color: "#C0C0C0",
+                },
+              },
+            },
             series: [
               {
-                showInLegend: false,
+                showInLegend: true,
                 name: "Area",
                 data: chartarea,
               },
@@ -136,12 +179,12 @@ const Stats = ({ info, state }) => {
       //     setFeatureInfo({ featureInfo: featureInfo.data, isFetching: false });
     }
   };
-
   useEffect(() => {
     getInfo(infodata);
     console.log(infodata)
   }, [infodata, info]);
-
+///////////////////////////////////////////////Chart////////////////////////////////////////////////////
+///////////////////////////////////////////////Datatable////////////////////////////////////////////////
   const [datatable, setDatatable] = useState({
     dataa: [],
     isFetching: false,
@@ -178,36 +221,91 @@ const Stats = ({ info, state }) => {
     try {
       var ar = []
       setDatatable({ dataa: [], isFetching: true });
-      fetch("https://api.nesdr.gov.in/nerdrr/flood.php?date=" + finallyphew, {
+      if (info.stats.val == "flood") {
+        var urlapi = "https://api.nesdr.gov.in/nerdrr/flood.php?date=" + finallyphew
+      }
+      if (info.stats.val == "firev") {
+        var urlapi = info.stats.apitable
+      }
+      fetch(urlapi, {
         method: "GET",
       })
         .then((response) => response.json())
         .then((mydata) => {
-          mydata.map((e) => {
-            var sko=e.district.toLowerCase();
-            ar.push({
-              district:sko.charAt(0).toUpperCase() + sko.slice(1),
-              area: e.area / 10000
+          if (info.stats.val == "flood") {
+            mydata.map((e) => {
+              var sko = e.district.toLowerCase();
+              ar.push({
+                district: sko.charAt(0).toUpperCase() + sko.slice(1),
+                area: (e.area / 10000).toFixed(2)
+              })
             })
-          })
-          setDatatable({ dataa: [mydata], isFetching: false });
-          setTest({
-            columns: [
-              {
-                label: 'District',
-                field: 'district',
-                attributes: {
-                  'aria-controls': 'DataTable',
-                  'aria-label': 'District',
+            setDatatable({ dataa: [mydata], isFetching: false });
+            setTest({
+              columns: [
+                {
+                  label: 'District',
+                  field: 'district',
+                  attributes: {
+                    'aria-controls': 'DataTable',
+                    'aria-label': 'District',
+                  },
                 },
-              },
-              {
-                label: 'Area (Hectare)',
-                field: 'area',
-              },
-            ],
-            rows: ar,
-          })
+                {
+                  label: 'Area (Hectare)',
+                  field: 'area',
+                },
+              ],
+              rows: ar,
+            })
+          }
+          if (info.stats.val == "firev") {
+            console.log(mydata)
+            mydata.map((e) => {
+              ar.push({
+                district: e.dtname,
+                area1: (e.area1 / 10000).toFixed(2),
+                area2: (e.area2 / 10000).toFixed(2),
+                area3: (e.area3 / 10000).toFixed(2),
+                area4: (e.area4 / 10000).toFixed(2),
+                area5: (e.area5 / 10000).toFixed(2)
+              })
+            })
+            setDatatable({ dataa: [mydata], isFetching: false });
+            setTest({
+              columns: [
+                {
+                  label: 'District',
+                  field: 'district',
+                  attributes: {
+                    'aria-controls': 'DataTable',
+                    'aria-label': 'District',
+                  },
+                },
+                {
+                  label: 'Area1 (Hectare)',
+                  field: 'area1',
+                },
+                {
+                  label: 'Area2 (Hectare)',
+                  field: 'area2',
+                },
+                {
+                  label: 'Area3 (Hectare)',
+                  field: 'area3',
+                },
+                {
+                  label: 'Area4 (Hectare)',
+                  field: 'area4',
+                },
+                {
+                  label: 'Area5 (Hectare)',
+                  field: 'area5',
+                },
+              ],
+              rows: ar,
+            })
+          }
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -221,7 +319,7 @@ const Stats = ({ info, state }) => {
   useEffect(() => {
     tabledata();
   }, []);
-
+///////////////////////////////////////////////Datatable////////////////////////////////////////////////
   return (
     <>
       <INFO>
@@ -243,7 +341,7 @@ const Stats = ({ info, state }) => {
             <React.Fragment>
               <p>Data Table</p>
               <br></br>
-              <MDBDataTableV5 scrollY maxHeight="300px" hover entriesOptions={[8, 20, 25,100]} entries={8} pagesAmount={4} data={test} searchTop searchBottom={false}
+              <MDBDataTableV5 scrollY maxHeight="300px" hover entriesOptions={[8, 20, 25, 100]} entries={8} pagesAmount={4} data={test} searchTop searchBottom={false}
               />
             </React.Fragment>
           )
@@ -281,17 +379,16 @@ export const INFO = styled.div`
     /* max-width: 20%; */
     table-layout: fixed;
     width: 100%;
-
     /* border: none; */
     border-collapse: collapse;
     border: 1px solid #dadada;
-
     background-color: #222222;
   }
   table tr {
     margin-bottom: 1px;
     border-bottom: 0.5px solid #dadada;
     word-break: break-all;
+    width:80%;
   }
   table td {
     padding: 6px !important;

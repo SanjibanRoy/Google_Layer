@@ -9,7 +9,11 @@ const Legend = () => {
       {tasks
         .filter((task) => task.show === true)
         .map((task) => (
-          <p key={task.id}>{task.text}</p>
+          console.log( task.layer),
+          task.layer == "NERDRR_NEW:mizoram_fire_vul_4326" ? 
+          <img src="https://geoserver.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:mizoram_fire_vul_4326"/>:""
+       
+          // <p key={task.id}>{task.text}</p>
         ))}
     </div>
   );
