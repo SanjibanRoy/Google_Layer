@@ -17,7 +17,13 @@ import L from "leaflet";
 import { EditControl } from "react-leaflet-draw";
 import "leaflet.vectorgrid";
 import "leaflet-side-by-side";
-import SwpieMapControl from "../components/SwpieMapControl";
+import SwpieMapControl from "./SwpieMapControl";
+import AddAnalyticsLayer from "./AddAnalyticsLayer"
+import { selectLayerData } from "../features/layers/layervisualiseslice";
+import { selectDataSet } from "../features/layers/layerslice";
+
+
+
 let sbs = null;
 let rightlayer = null;
 let leftlayer = null;
@@ -95,7 +101,7 @@ const VectorTile = ({ show }) => {
 
 let analyticslayer = null;
 
-function AddAnalytics({ test, showAnalytics }) {
+function AddTimeseries({ test, showAnalytics }) {
   console.log(test);
   let data = null;
   const map = useMap();
@@ -117,8 +123,18 @@ function AddAnalytics({ test, showAnalytics }) {
 }
 
 const Map = ({ visibility }) => {
-  console.log(visibility);
+
+  // console.log(visibility);
   const dispatch = useDispatch();
+  const [showAnalytics, setVisibility] = useState(
+    visibility.filter((themes) => themes.id === "Layer")[0].show
+  );
+    const analyticsvisualise = useSelector(selectLayerData);
+
+  useEffect(() => {
+    //AddAnalytics()
+    setVisibility(visibility.filter((themes) => themes.id === "Layer")[0].show);
+  }, [visibility]);
   function HandleClick() {
     const map = useMapEvents({
       click: (e) => {
@@ -140,6 +156,7 @@ const Map = ({ visibility }) => {
   }
   const baseLayers = useSelector(selectBaseDataSet);
   const overlayLayers = useSelector(selectLayerDataSet);
+  const analyticsLayer = useSelector(selectDataSet);
 
   useEffect(() => {}, []);
   return (
@@ -188,6 +205,7 @@ const Map = ({ visibility }) => {
               layers={overlayer.layer}
               url={overlayer.link}
               transparent="true"
+              minZoom={overlayer.minZoom !== undefined ? overlayer.minZoom : ""}
               zIndex={overlayer.class === "Administrative" ? "15" : "10"}
             />
           )
@@ -195,7 +213,7 @@ const Map = ({ visibility }) => {
       {overlayLayers.map(
         (overlayer, index) =>
           overlayer.show & (overlayer.options !== undefined) && (
-            <AddAnalytics
+            <AddTimeseries
               key={index}
               test={[overlayer.layer, overlayer.link]}
               showAnalytics={overlayer.show}
@@ -226,7 +244,12 @@ const Map = ({ visibility }) => {
           show={visibility.filter((e) => e.id === "Tools")[0].show}
         />
       }
-      {/* <VectorTile /> */}
+      {
+        <AddAnalyticsLayer
+          test={[analyticsvisualise, analyticsLayer]}
+          showAnalytics={showAnalytics}
+        />
+      }
       <HandleClick />
       <HandleHover />
     </MapContainer>

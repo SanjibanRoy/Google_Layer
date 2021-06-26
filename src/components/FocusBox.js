@@ -8,7 +8,7 @@ import InfoIcon from "@material-ui/icons/Info";
 
 const FocusBox = () => {
   const state = useSelector(selectInfo);
-  console.log(state);
+ // console.log(state);
   return (
     <InfoBoxx>
       <React.Fragment>
