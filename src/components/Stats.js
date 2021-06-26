@@ -11,9 +11,6 @@ import Cbutton from "./collapsebutton";
 import { ContactsOutlined } from "@material-ui/icons";
 import Statsdatatable from "./Statdatatable";
 const Stats = ({ info, state }) => {
-  console.log({selectInfo})
-  console.log({state})
-  console.log(info)
   const [featureInfo, setFeatureInfo] = useState({
     data: [],
     isFetching: false,

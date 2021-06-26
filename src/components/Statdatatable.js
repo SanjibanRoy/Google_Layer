@@ -10,9 +10,6 @@ import { MDBDataTable, MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import Cbutton from "./collapsebutton";
 import { ContactsOutlined } from "@material-ui/icons";
 const Statsdatatable = ({ info, state }) => {
-  console.log({selectInfo})
-  console.log({state})
-  console.log(info)
 const [datatable, setDatatable] = useState({
     dataa: [],
     isFetching: false,
