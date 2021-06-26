@@ -10,6 +10,7 @@ import BaseSwitcher from "./BaseSwitcher";
 import AlertPanel from "./AlertPanel";
 import AppsPanel from "./AppsPanel";
 import SwipePanel from "./SwipePanel";
+import AnalyticsPanel from "./AnalyticsPanel";
 
 // import CreatableSelect from 'react-select/creatable';
 //end of import
@@ -98,7 +99,7 @@ const SideBarWrapper = ({
             <SwipePanel />
           </div> */}
           <div className={type === "Stats" ? "LayerContainer" : "hidden"}>
-            <AlertPanel />
+            <AnalyticsPanel />
           </div>
         </React.Fragment>
       )}

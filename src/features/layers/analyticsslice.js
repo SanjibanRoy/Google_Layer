@@ -8,8 +8,8 @@ const initialState = {
   show: true
 };
 
-const layerVisualiseSlice = createSlice({
-  name: "layervisualise",
+const analyticsslice = createSlice({
+  name: "analysticsvisualise",
   initialState,
   reducers: {
     setAnalyticsVisual: (state, action) => {
@@ -25,5 +25,6 @@ const layerVisualiseSlice = createSlice({
 export const { setAnalyticsVisual } = layerVisualiseSlice.actions;
 
 export const selectLayerData = (state) => state.layervisualise;
+
 
 export default layerVisualiseSlice.reducer;

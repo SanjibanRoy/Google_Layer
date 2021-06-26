@@ -14,7 +14,7 @@ export const layer = [
   {
     id: 2,
     text: "District Boundary",
-    show: false,
+    show: true,
     class: "Administrative",
     layer: "analytic:ner_boundary",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
@@ -24,6 +24,7 @@ export const layer = [
       { value: "area", text: "Area" },
       // { value: "diff", text: "Change"},
     ],
+    minZoom:10
     // stats: {
     //   api:"https://apps.nesdr.gov.in/nerdrrapi/flood.php?district=",
     //   charttype:"column"
@@ -55,6 +56,7 @@ export const layer = [
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "Revenue Circle",
     stats: true,
+    legend:"https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:ner_landuse_landcover_50k_1st_cycle"
   },
   {
     id: 5,
@@ -64,6 +66,8 @@ export const layer = [
     layer: "analytic:lulc2ndcycle",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "Revenue Circle",
+    legend:"https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:lulc2ndcycle"
+
   },
   {
     id: 6,
@@ -73,6 +77,8 @@ export const layer = [
     layer: "analytic:lulc3rdcycle",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "LULC(2015-16)",
+    legend:"https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:lulc3rdcycle"
+
   },
   // Land Use and Land Cover end
 
@@ -84,6 +90,8 @@ export const layer = [
     class: "Census",
     layer: "NEC:assam_census",
     link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
+    legend:"https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NEC:assam_census"
+
   },
   {
     id: 8,
@@ -218,8 +226,10 @@ export const layer = [
     text: "Crop DAMS",
     show: false,
     class: "CropDAMS",
-    layer: "as_hz",
-    link: "https://analytics.nesdr.gov.in/nerdrr_sentinel_1/visu?band=1",
+    layer: "NERDRR_NEW:cropdam_flood_4326",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:cropdam_flood_4326"
+
   },
   {
     id: 22,
@@ -234,6 +244,8 @@ export const layer = [
       charttype: "pie",
       val:"firev",
     },
+    legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:mizoram_fire_vul_4326"
+
   },
   {
     id: 23,
@@ -248,6 +260,8 @@ export const layer = [
       charttype: "pie",
       val:"firev",
     },
+    legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:mizoram_fire_vul_4326"
+
   },
   {
     id: 24,
@@ -315,6 +329,15 @@ export const layer = [
     show: false,
     class: "Lightning",
     layer: "NERDRR_NEW:Light_Hazards_Map",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+  },
+
+  {
+    id: 28,
+    text: "Forest Vulnarability Map",
+    show: false,
+    class: "Forestry",
+    layer: "NERDRR_NEW:ner_forest_fire_prone_area_map",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
   },
   // census end
@@ -401,6 +424,18 @@ export const maps = [
     // domain: ["mt0", "mt1", "mt2", "mt3"],
     image: "google.png",
   },
+  {
+    id: 8,
+    text: " Map My India",
+    show: false,
+    class: "Maps",
+    layer: "analytic:ner_boundary",
+    link: "https://mt3.mapmyindia.com/advancedmaps/v1/493dfe9d040ca1e0f2c7d1a5c7bc5f5a/base_hybrid/{z}/{x}/{y}.png",
+    format: "image/png",
+    // domain: ["mt0", "mt1", "mt2", "mt3"],
+    type: "tile",
+    image: "google.png",
+  },
   //maps end
 ];
 
@@ -472,6 +507,176 @@ export const panelVisibilty = [
     show: false,
     panel: false,
   },
+];
+
+
+// analytics layer
+export const analyticoper = [
+  {
+    id: 2,
+    text: "modisndvi",
+    wmsname: "modis_ndvi",
+    state: "modis_ndvi",
+    wmsname_op:"modis_ndvi",
+    show: false,
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
+    operations: [
+      { value: "diff", text: "Change", legend: "" },
+      { value: "mean", text: "Mean", legend: "" },
+      { value: "max", text: "Maximum", legend: "" },
+      { value: "min", text: "Minimum", legend: "" },
+      { value: "std", text: "Standard Deviation", legend: "" },
+      { value: "range", text: "Range", legend: "" },
+      { value: "vci", text: "Vegetation Condition Index", legend: "" },
+      { value: "trend", text: "Trend", legend: "" },
+      { value: "anomaly", text: "Anomaly", legend: "" },
+
+      { value: "rgb", text: "RGB", legend: "" },
+    ],
+    // legends: [],
+    category: "vegetation",
+  },
+  {
+    id: 3,
+    text: "smap",
+    wmsname: "soil",
+    state: "soil_date",
+    wmsname_op:"soil",
+
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
+    show: false,
+    operations: [
+      { value: "difference", text: "Change", legend: "" },
+      { value: "Mean", text: "Mean", legend: "" },
+      { value: "Maximum", text: "Maximum", legend: "" },
+      { value: "Minimum", text: "Minimum", legend: "" },
+      { value: "sd", text: "Standard Deviation", legend: "" },
+      { value: "cv", text: "Coefficient of Variance", legend: "" },
+    ],
+    category: "vegetation",
+  },
+  {
+    id: 4,
+    text: "et",
+    wmsname: "et",
+    state: "et",
+    wmsname_op:"et",
+
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
+    show: false,
+    operations: [
+      { value: "diff", text: "Change", legend: "" },
+      { value: "mean", text: "Mean", legend: "" },
+      { value: "max", text: "Maximum", legend: "" },
+      { value: "min", text: "Minimum", legend: "" },
+      { value: "std", text: "Standard Deviation", legend: "" },
+      // { value: "cv", text: "Coefficient of Variance", legend: "" },
+    ],
+    category: "vegetation",
+  },
+  {
+    id: 4,
+    text: "INSAT Rainfall",
+    wmsname: "insat_rain",
+    state: "insat_rainfall",
+    wmsname_op:"insat_rain",
+
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
+    show: false,
+    operations: [
+      { value: "sum", text: "Sum", legend: "" },
+      { value: "mean", text: "Mean", legend: "" },
+      { value: "max", text: "Maximum", legend: "" },
+    ],
+    category: "weather",
+  },
+  {
+    id: 5,
+    text: "Air Quality AOD",
+    wmsname: "aod",
+    state: "aod_date",
+    wmsname_op:"aod",
+
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
+    show: false,
+    operations: [
+      { value: "sum", text: "Change", legend: "" },
+      { value: "Mean", text: "Mean", legend: "" },
+      { value: "Maximum", text: "Maximum", legend: "" },
+    ],
+    category: "weather",
+  },
+  {
+    id: 5,
+    text: "Land Surface Temperature",
+    wmsname: "lst",
+    state: "lst_date",
+    wmsname_op:"lst",
+
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
+    show: false,
+    operations: [
+      { value: "diff", text: "Change", legend: "" },
+      { value: "mean", text: "Mean", legend: "" },
+      { value: "max", text: "Maximum", legend: "" },
+    ],
+    category: "weather",
+  },
+  {
+    id: 6,
+    text: "MODIS NRT FLood",
+    wmsname: "modis_flood",
+    state: "modis_flood",
+    wmsname_op: "modis_flood",
+    yearrange: [
+      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
+      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+    ],
+    show: false,
+    operations: [
+      { value: "min", text: "Minimum", legend: "" },
+      { value: "mean", text: "Mean", legend: "" },
+      { value: "max", text: "Maximum", legend: "" },
+      { value: "range", text: "Flood Statistical Analysis", legend: "" },
+
+    ],
+    category: "weather",
+  },
+  {
+    id: 6,
+    text: "Sentinel",
+    wmsname: "sentinal",
+    state: "sentinal",
+    show: false,
+    operations: [
+      { value: "NDVI", text: "NDVI"},
+      { value: "NDWI", text: "NDWI" },
+      { value: "NBR" , text: "NBR"},
+      { value: "Deforestation", text: "Deforestation"},
+      { value: "Fire Detection Index", text: "Fire Detection Index" },
+      { value: "EVI", text: "EVI"},
+      { value: "Custom", text: "Custom"}
+    ],
+    category: "Satellite",
+  }
 ];
 
 //list of dates
