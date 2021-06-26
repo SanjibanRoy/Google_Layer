@@ -291,14 +291,20 @@ export const layer = [
       {
         value: "NERDRR_NEW:2005-11-6_districts_cropdam_due_to_bankline_erosion",
         text: "2005-2011",
+        api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2005-2011",
+        charttype: "pie",
       },
       {
         value: "NERDRR_NEW:2005-15-6_districts_cropdam_due_to_bankline_erosion",
         text: "2005-2015",
+        api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2005-2015",
+        charttype: "pie",
       },
       {
         value: "NERDRR_NEW:2011-15-6_districts_cropdam_due_to_bankline_erosion",
         text: "2011-2015",
+        api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2011-2015",
+        charttype: "pie",
       },
       	
     ],
