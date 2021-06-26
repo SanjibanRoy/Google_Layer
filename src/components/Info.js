@@ -18,6 +18,7 @@ const Info = ({ info, state }) => {
   const overlayLayers = useSelector(selectLayerDataSet);
   const activelayers = overlayLayers.filter((e) => e.show).map((e) => e.text);
   const getInfo = async () => {
+    console.log(info)
     try {
       setFeatureInfo({ data: [], isFetching: true });
 
