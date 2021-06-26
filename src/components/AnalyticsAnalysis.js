@@ -122,9 +122,8 @@ const AnalyticsAnalysis = () => {
         className="SelectMenu"
         onChange={(event) => setDataset(event.target.value)}
       >
-        <option value="modis_ndvi">Landsat</option>
+        <option value="modis_ndvi">Sentinel 1</option>
         <option value="sentinal">Sentinel 2</option>
-        <option value="night_light">Night light</option>
       </select>
       <div className="LayerTree">
         <p className="heads">Date</p>
@@ -161,13 +160,14 @@ const AnalyticsAnalysis = () => {
         {/* {analyticoper
           .filter((operations) => operations.state === state.dataset)[0]
           .operations.map((ops) => ( */}
-            <option value="NDVI">NDVI</option>
-            <option value="SAVI">SAVI</option>
-            <option value="NBR">NBR</option>
-            <option value="NDWI">NDWI</option>
-            <option value="EVI">EVI</option>
+        <option value="NDVI">NDVI</option>
+        <option value="SAVI">SAVI</option>
+        <option value="NBR">NBR</option>
+        <option value="NDWI">NDWI</option>
+        <option value="EVI">EVI</option>
+        <option value="Custom">Custom</option>
 
-          {/* ))} */}
+        {/* ))} */}
       </select>
     </VEGANALYSIS>
   );

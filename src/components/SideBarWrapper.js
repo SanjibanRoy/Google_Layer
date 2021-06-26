@@ -78,10 +78,10 @@ const SideBarWrapper = ({
               <LayerTree category="Administrative" />
               <LayerTree category="Land Use/Land Cover" />
               <LayerTree category="Census" />
-              <LayerTree category="Water Resources" />
+              <LayerTree category="Flood" />
               <LayerTree category="Forestry" />
               <LayerTree category="CropDAMS" />
-              <LayerTree category="Geosciences" />
+              <LayerTree category="Earthquake/Landslides" />
               <LayerTree category="Lightning" />
               <LayerTree category="Alerts and Early Warning" />
             </div>
