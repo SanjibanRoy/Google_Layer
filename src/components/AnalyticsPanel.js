@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import AnalyticsVisualise from './AnalyticsVisualise'
+import AnalyticsAnalysis from "./AnalyticsAnalysis";
 const AnalyticsPanel = () => {
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
@@ -28,7 +29,7 @@ const AnalyticsPanel = () => {
               <AnalyticsVisualise/>
             </div>
             <div className={value === 1 ? " " : "hidden"}>
-
+              <AnalyticsAnalysis/>
             </div>
     </Analytics>
   );
