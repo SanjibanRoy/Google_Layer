@@ -1,5 +1,6 @@
 import React from "react";
 import Stats from "./Stats";
+import Statsdatatable from "./Statdatatable";
 import styled from "styled-components";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -11,11 +12,11 @@ const StatsBox = () => {
   return (
     <InfoBoxx>
       <React.Fragment>
-        {info[info.length-1] !== undefined &&
-          
-          info[info.length-1].stats&&<Stats info={info[info.length-1]} state={state} />
-            
-           
+        {info[info.length-1] !== undefined &&   
+          info[info.length-1].stats&&<Stats info={info[info.length-1]} state={state} />                         
+          }
+          {info[info.length-1] !== undefined &&
+            info[info.length-1].stats&&<Statsdatatable info={info[info.length-1]} state={state} />          
           }
         
       </React.Fragment>

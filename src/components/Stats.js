@@ -5,14 +5,15 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { selectInfo } from "../features/layers/infoboxslice";
 import { selectLayerDataSet } from "../features/layers/overlaylayerslice";
 import { useDispatch, useSelector } from "react-redux";
-import { MDBDataTableV5 } from 'mdbreact';
-import { MDBDataTable, MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import Cbutton from "./collapsebutton";
 import { ContactsOutlined } from "@material-ui/icons";
-///////////////////////////////////////////////Chart////////////////////////////////////////////////////
+import Statsdatatable from "./Statdatatable";
 const Stats = ({ info, state }) => {
+  console.log({selectInfo})
+  console.log({state})
+  console.log(info)
   const [featureInfo, setFeatureInfo] = useState({
     data: [],
     isFetching: false,
@@ -22,12 +23,11 @@ const Stats = ({ info, state }) => {
   const infodata = useSelector(selectInfo);
   const layerdata = useSelector(selectLayerDataSet);
   // var dateapi=layerdata[11].layer_date;
-  // console.log(dateapi)
+  console.log(info.options)
   const getInfo = async (e) => {
-    console.log("hi")
     try {
       setFeatureInfo({ data: [], isFetching: true });
-      console.log(e.districtname)
+      console.log(info.options)
       if (info.stats.val == "flood") {
         var urlapi = info.stats.api + '' + (e.districtname !== undefined ? e.districtname.toUpperCase() : "")
       }
@@ -183,143 +183,6 @@ const Stats = ({ info, state }) => {
     getInfo(infodata);
     console.log(infodata)
   }, [infodata, info]);
-///////////////////////////////////////////////Chart////////////////////////////////////////////////////
-///////////////////////////////////////////////Datatable////////////////////////////////////////////////
-  const [datatable, setDatatable] = useState({
-    dataa: [],
-    isFetching: false,
-  });
-  var dateapi
-  const [test, setTest] = useState([]);
-  useEffect(() => {
-    dateapi = layerdata[11].layer_date;
-    tabledata(dateapi)
-  }, [layerdata]);
-  const tabledata = async (e) => {
-    var hayeram = String(e);
-    var str;
-    if (hayeram === "") {
-      str = "1 August 2020";
-    } else
-      if (hayeram == "undefined") {
-        str = "1 August 2020";
-      } else {
-        str = hayeram;
-      }
-    var res = str.split(" ");
-    var month = String(res[1])
-    var year = String(res[2])
-    var finaldate;
-    if (res[0].length == 1) {
-      let str1 = '0';
-      let str2 = String(res[0]);
-      finaldate = str1.concat(str2)
-    } else {
-      finaldate = res[0];
-    }
-    var finallyphew = finaldate + '-' + month.substring(0, 3) + '-' + year.substring(0, 2);
-    try {
-      var ar = []
-      setDatatable({ dataa: [], isFetching: true });
-      if (info.stats.val == "flood") {
-        var urlapi = "https://api.nesdr.gov.in/nerdrr/flood.php?date=" + finallyphew
-      }
-      if (info.stats.val == "firev") {
-        var urlapi = info.stats.apitable
-      }
-      fetch(urlapi, {
-        method: "GET",
-      })
-        .then((response) => response.json())
-        .then((mydata) => {
-          if (info.stats.val == "flood") {
-            mydata.map((e) => {
-              var sko = e.district.toLowerCase();
-              ar.push({
-                district: sko.charAt(0).toUpperCase() + sko.slice(1),
-                area: (e.area / 10000).toFixed(2)
-              })
-            })
-            setDatatable({ dataa: [mydata], isFetching: false });
-            setTest({
-              columns: [
-                {
-                  label: 'District',
-                  field: 'district',
-                  attributes: {
-                    'aria-controls': 'DataTable',
-                    'aria-label': 'District',
-                  },
-                },
-                {
-                  label: 'Area (Hectare)',
-                  field: 'area',
-                },
-              ],
-              rows: ar,
-            })
-          }
-          if (info.stats.val == "firev") {
-            console.log(mydata)
-            mydata.map((e) => {
-              ar.push({
-                district: e.dtname,
-                area1: (e.area1 / 10000).toFixed(2),
-                area2: (e.area2 / 10000).toFixed(2),
-                area3: (e.area3 / 10000).toFixed(2),
-                area4: (e.area4 / 10000).toFixed(2),
-                area5: (e.area5 / 10000).toFixed(2)
-              })
-            })
-            setDatatable({ dataa: [mydata], isFetching: false });
-            setTest({
-              columns: [
-                {
-                  label: 'District',
-                  field: 'district',
-                  attributes: {
-                    'aria-controls': 'DataTable',
-                    'aria-label': 'District',
-                  },
-                },
-                {
-                  label: 'Area1 (Hectare)',
-                  field: 'area1',
-                },
-                {
-                  label: 'Area2 (Hectare)',
-                  field: 'area2',
-                },
-                {
-                  label: 'Area3 (Hectare)',
-                  field: 'area3',
-                },
-                {
-                  label: 'Area4 (Hectare)',
-                  field: 'area4',
-                },
-                {
-                  label: 'Area5 (Hectare)',
-                  field: 'area5',
-                },
-              ],
-              rows: ar,
-            })
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-      setDatatable({ ...datatable, isFetching: true });
-    }
-    catch (exception) {
-      console.log(exception);
-    }
-  };
-  useEffect(() => {
-    tabledata();
-  }, []);
-///////////////////////////////////////////////Datatable////////////////////////////////////////////////
   return (
     <>
       <INFO>
@@ -334,18 +197,7 @@ const Stats = ({ info, state }) => {
             </React.Fragment>
           )
         )}
-        {datatable.isFetching ? (
-          <CircularProgress />
-        ) : (
-          datatable.dataa.length > 0 && (
-            <React.Fragment>
-              <p>Data Table</p>
-              <br></br>
-              <MDBDataTableV5 scrollY maxHeight="300px" hover entriesOptions={[8, 20, 25, 100]} entries={8} pagesAmount={4} data={test} searchTop searchBottom={false}
-              />
-            </React.Fragment>
-          )
-        )}
+        <Statsdatatable/>
       </INFO>
     </>
   );
