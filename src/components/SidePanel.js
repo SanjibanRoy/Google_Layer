@@ -42,7 +42,7 @@ const SidePanel = ({ changeVisibility, visibility }) => {
         </li>
         <li key={6} onClick={() => changeVisibility("Stats")}>
           <InsertChartIcon />
-          <span align="center">Stats</span>
+          <span align="center">Analytics</span>
         </li>
       </ul>
       <ul className="legend">

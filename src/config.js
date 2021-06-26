@@ -215,8 +215,8 @@ export const layer = [
     text: "Crop DAMS",
     show: false,
     class: "CropDAMS",
-    layer: "as_hz",
-    link: "https://analytics.nesdr.gov.in/nerdrr_sentinel_1/visu?band=1",
+    layer: "NERDRR_NEW:cropdam_flood_4326",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
   },
   {
     id: 22,
@@ -294,6 +294,15 @@ export const layer = [
     show: false,
     class: "Lightning",
     layer: "NERDRR_NEW:Light_Hazards_Map",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+  },
+
+  {
+    id: 28,
+    text: "Forest Vulnarability Map",
+    show: false,
+    class: "Forestry",
+    layer: "NERDRR_NEW:ner_forest_fire_prone_area_map",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
   },
   // census end
@@ -378,6 +387,18 @@ export const maps = [
     link: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
     format: "image/png",
     // domain: ["mt0", "mt1", "mt2", "mt3"],
+    image: "google.png",
+  },
+  {
+    id: 8,
+    text: " Map My India",
+    show: false,
+    class: "Maps",
+    layer: "analytic:ner_boundary",
+    link: "https://mt3.mapmyindia.com/advancedmaps/v1/493dfe9d040ca1e0f2c7d1a5c7bc5f5a/base_hybrid/{z}/{x}/{y}.png",
+    format: "image/png",
+    // domain: ["mt0", "mt1", "mt2", "mt3"],
+    type: "tile",
     image: "google.png",
   },
   //maps end
