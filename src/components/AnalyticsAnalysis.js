@@ -165,7 +165,7 @@ const AnalyticsAnalysis = () => {
         <option value="NBR">NBR</option>
         <option value="NDWI">NDWI</option>
         <option value="EVI">EVI</option>
-        <option value="Custom">Custom</option>
+        <option value="custom">Custom</option>
 
         {/* ))} */}
       </select>

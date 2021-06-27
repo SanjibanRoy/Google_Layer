@@ -124,13 +124,14 @@ export const layer = [
     class: "Earthquake/Landslides",
     layer: "NERDRR_NEW:ladslide_points",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    info:"This is an inventory of all landslide incidents that have occurred in the NER in 2020 and 2021 (till date). This seasonal landslide inventory is small-medium in scale and archival in nature. The inventory is sourced from Newspapers, Social Media, GSI Reports, SDMA reports and Field Visits. The inventory has a 3-Tier classification for all landslide incidents. Type 1 incidents have accurate geolocation, Type 2 incidents have some degree of locational uncertainty while Type 3 incidents are collapsed/blocked road sections along National/State Highways and other important roads. Those landside incidents which have been verified are mentioned. The preceding '24 hours' rainfall for each landslide is derived from NASA's Global Precipitation Measurement (GPM) mission using the 'NASA/GPM_L3/IMERG_V06' product. If the landslide was fatal in nature then the number of deaths caused are also mentioned."
   },
   {
     id: 12,
     text: "Flood Inundation",
     show: false,
     class: "Flood",
-    layer: "FLEWS:1august20",
+    // layer: "FLEWS:1august20",
     options: [
       { value: "FLEWS:1august20", text: "1 August 2020" },
       { value: "FLEWS:8july2020", text: "8 July 2020" },
@@ -244,8 +245,8 @@ export const layer = [
       charttype: "pie",
       val:"firev",
     },
-    legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:mizoram_fire_vul_4326"
-
+    legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:mizoram_fire_vul_4326",
+    info:"A forest fire vulnerability map provides information about the likelihood of forest fire in a specific region. The vulnerability of forest fire depends on many factors, the important factors being forest types, forest density, elevation above mean sea level, the slope of the terrain, hill’s aspect, and proximity. This information is useful in the forest fire early warning and is beneficial for decision-making policies of mitigating forest fire. "
   },
   {
     id: 23,
@@ -260,8 +261,8 @@ export const layer = [
       charttype: "pie",
       val:"firev",
     },
-    legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:mizoram_fire_vul_4326"
-
+    legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:mizoram_fire_vul_4326",
+    info:"A forest fire vulnerability map provides information about the likelihood of forest fire in a specific region. The vulnerability of forest fire depends on many factors, the important factors being forest types, forest density, elevation above mean sea level, the slope of the terrain, hill’s aspect, and proximity. This information is useful in the forest fire early warning and is beneficial for decision-making policies of mitigating forest fire. "
   },
   {
     id: 24,
@@ -330,6 +331,7 @@ export const layer = [
     class: "Lightning",
     layer: "NERDRR_NEW:Light_Hazards_Map",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    info:"LIS DATA (Lightnign Hazards map is prepared by the TRMM- Lightning Imaging Sensor (LIS) available data . The spatial resulution is 0.1 degee X 0.1 degree."
   },
 
   {

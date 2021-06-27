@@ -18,12 +18,10 @@ import { EditControl } from "react-leaflet-draw";
 import "leaflet.vectorgrid";
 import "leaflet-side-by-side";
 import SwpieMapControl from "./SwpieMapControl";
-import AddAnalyticsLayer from "./AddAnalyticsLayer"
+import AddAnalyticsLayer from "./AddAnalyticsLayer";
 import { selectLayerData } from "../features/layers/layervisualiseslice";
 import { selectDataSet } from "../features/layers/layerslice";
-
-
-
+import AddTimeseries from './AddTimeseries'
 let sbs = null;
 let rightlayer = null;
 let leftlayer = null;
@@ -61,7 +59,7 @@ const VectorTile = ({ show }) => {
     "http://geoserver.vassarlabs.com/geoserver/gwc/service/wmts?layer=VASSARLABS:AP_VILLAGE_V2&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=application/x-protobuf;type=mapbox-vector&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}",
     {
       interactive: true,
-      minZoom:8,
+      minZoom: 8,
       maxZoom: 12,
       vectorTileLayerStyles: {
         AP_VILLAGE_V2: function (properties, zoom) {
@@ -72,7 +70,7 @@ const VectorTile = ({ show }) => {
             fillColor: "yellow",
             fill: true,
 
-						fillOpacity: 0.3,
+            fillOpacity: 0.3,
           };
         },
       },
@@ -99,37 +97,13 @@ const VectorTile = ({ show }) => {
   return null;
 };
 
-let analyticslayer = null;
-
-function AddTimeseries({ test, showAnalytics }) {
-  console.log(test);
-  let data = null;
-  const map = useMap();
-
-  if (analyticslayer != null) {
-    map.removeLayer(analyticslayer);
-  }
-  analyticslayer = L.tileLayer.wms(test[1], {
-    layers: test[0],
-    format: "image/png",
-    transparent: true,
-    zIndex: 100,
-  });
-  map.addLayer(analyticslayer);
-  if (!showAnalytics) {
-    map.removeLayer(analyticslayer);
-  }
-  return null;
-}
-
 const Map = ({ visibility }) => {
-
   // console.log(visibility);
   const dispatch = useDispatch();
   const [showAnalytics, setVisibility] = useState(
     visibility.filter((themes) => themes.id === "Layer")[0].show
   );
-    const analyticsvisualise = useSelector(selectLayerData);
+  const analyticsvisualise = useSelector(selectLayerData);
 
   useEffect(() => {
     //AddAnalytics()
@@ -177,13 +151,7 @@ const Map = ({ visibility }) => {
               zIndex="1"
             />
           ) : baselayer.type === "vectortile" ? (
-            <VectorTile
-            // key={index}
-            // url={baselayer.link}
-            // layers={baselayer.layer}
-            // format="image/png"
-            // zIndex="1"
-            />
+            <VectorTile/>
           ) : (
             <WMSTileLayer
               key={index}
@@ -196,9 +164,7 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.show &
-            ((overlayer.text !== "Flood Inundation") &
-              (overlayer.class !== "Lightning")) && (
+          overlayer.show & (overlayer.options === undefined) && (
             <WMSTileLayer
               key={index}
               format="image/png"
@@ -212,7 +178,9 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.show & (overlayer.options !== undefined) && (
+          overlayer.show & (
+            overlayer.options !== undefined) && (
+              
             <AddTimeseries
               key={index}
               test={[overlayer.layer, overlayer.link]}
