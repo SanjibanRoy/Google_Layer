@@ -129,23 +129,23 @@ const Statsdatatable = ({ info, state }) => {
                   },
                 },
                 {
-                  label: 'Area1 (Hectare)',
+                  label: 'Very Low',
                   field: 'area1',
                 },
                 {
-                  label: 'Area2 (Hectare)',
+                  label: 'Low',
                   field: 'area2',
                 },
                 {
-                  label: 'Area3 (Hectare)',
+                  label: 'Moderate',
                   field: 'area3',
                 },
                 {
-                  label: 'Area4 (Hectare)',
+                  label: 'High',
                   field: 'area4',
                 },
                 {
-                  label: 'Area5 (Hectare)',
+                  label: 'Very High',
                   field: 'area5',
                 },
               ],

@@ -67,21 +67,21 @@ const Stats = ({ info, state }) => {
             var a4 = result.map((e) => Number(e.area4) / 1000000);
             var a5 = result.map((e) => Number(e.area5) / 1000000);
             var chartarea = [{
-              name: 'Category 1',
+              name: 'Very Low',
               y: a1[0],
               sliced: true,
               selected: true
             }, {
-              name: 'Category 2',
+              name: 'Low',
               y: a2[0],
             }, {
-              name: 'Category 3',
+              name: 'Moderate',
               y: a3[0],
             }, {
-              name: 'Category 4',
+              name: 'High',
               y: a4[0],
             }, {
-              name: 'Category 5',
+              name: 'Very High',
               y: a5[0],
             }]
             var date = "";
@@ -148,6 +148,13 @@ const Stats = ({ info, state }) => {
             },
             plotOptions: {
               pie: {
+                colors: [
+                  'green', 
+                  'rgb(100, 229, 114)', 
+                  '#DDDF00', 
+                  'orange', 
+                  'red'
+                ],
                 allowPointSelect: true,
                 cursor: 'pointer',
                 dataLabels: {
