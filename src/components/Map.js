@@ -2,6 +2,7 @@ import {
   MapContainer,
   TileLayer,
   WMSTileLayer,
+  GeoJSON,
   useMapEvents,
   FeatureGroup,
   useMap,
@@ -11,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectLayerDataSet } from "../features/layers/overlaylayerslice";
 import { selectBaseDataSet } from "../features/layers/baselayerslice";
 import { setMapState } from "../features/maps/mapStateSlice";
+import { selectMapZoomstate } from "../features/maps/mapZoomSlice";
 import React from "react";
 import L from "leaflet";
 // import Draw from "leaflet-draw";
@@ -21,10 +23,37 @@ import SwpieMapControl from "./SwpieMapControl";
 import AddAnalyticsLayer from "./AddAnalyticsLayer";
 import { selectLayerData } from "../features/layers/layervisualiseslice";
 import { selectDataSet } from "../features/layers/layerslice";
-import AddTimeseries from './AddTimeseries'
+import AddTimeseries from "./AddTimeseries";
 let sbs = null;
 let rightlayer = null;
 let leftlayer = null;
+const ZoomtoLocation = ({ bounds }) => {
+  console.log(bounds);
+  const map = useMap();
+  // map.fitBounds([40.712, -74.227],
+  //   [40.774, -74.125])
+  useEffect(() => {
+    if (bounds.length > 1) {
+      map.fitBounds([
+        // 88.0130594750001478,21.9401104670001814 : 97.4115970890000540,29.4616322430000537
+
+        [bounds.bounds[0], bounds.bounds[3]],
+        [bounds.bounds[1], bounds.bounds[2]],
+      ]);
+    }
+  }, [bounds]);
+  useEffect(() => {
+    map.fitBounds([
+      // 88.0130594750001478,21.9401104670001814 : 97.4115970890000540,29.4616322430000537
+
+      [21.9401104670001814, 97.411597089000054],
+      [29.4616322430000537, 88.0130594750001478],
+    ]);
+  }, []);
+
+  return null;
+};
+
 function HandleHover() {
   const map = useMapEvents({
     mousemove: (e) => {
@@ -104,7 +133,7 @@ const Map = ({ visibility }) => {
     visibility.filter((themes) => themes.id === "Layer")[0].show
   );
   const analyticsvisualise = useSelector(selectLayerData);
-
+  const mapZoomState = useSelector(selectMapZoomstate);
   useEffect(() => {
     //AddAnalytics()
     setVisibility(visibility.filter((themes) => themes.id === "Layer")[0].show);
@@ -131,8 +160,11 @@ const Map = ({ visibility }) => {
   const baseLayers = useSelector(selectBaseDataSet);
   const overlayLayers = useSelector(selectLayerDataSet);
   const analyticsLayer = useSelector(selectDataSet);
-
-  useEffect(() => {}, []);
+  const [navigation, setNavigation] = useState(false);
+  useEffect(() => {
+    console.log(navigation)
+    setNavigation(true);
+  }, [mapZoomState.path]);
   return (
     <MapContainer
       center={[26.2006, 92.5376]}
@@ -151,7 +183,7 @@ const Map = ({ visibility }) => {
               zIndex="1"
             />
           ) : baselayer.type === "vectortile" ? (
-            <VectorTile/>
+            <VectorTile />
           ) : (
             <WMSTileLayer
               key={index}
@@ -178,9 +210,7 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.show & (
-            overlayer.options !== undefined) && (
-              
+          overlayer.show & (overlayer.options !== undefined) && (
             <AddTimeseries
               key={index}
               test={[overlayer.layer, overlayer.link]}
@@ -218,6 +248,13 @@ const Map = ({ visibility }) => {
           showAnalytics={showAnalytics}
         />
       }
+      <ZoomtoLocation bounds={mapZoomState} />
+      {true && (
+        <GeoJSON
+          // attribution="Capa de Hospitales de ESRI"
+          data={mapZoomState.path}
+        />
+      )}
       <HandleClick />
       <HandleHover />
     </MapContainer>

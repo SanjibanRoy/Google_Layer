@@ -17,8 +17,7 @@ const StatsBox = () => {
           }
           {info[info.length-1] !== undefined &&
             info[info.length-1].stats&&<Statsdatatable info={info[info.length-1]} state={state} />          
-          }
-        
+          }       
       </React.Fragment>
     </InfoBoxx>
   );

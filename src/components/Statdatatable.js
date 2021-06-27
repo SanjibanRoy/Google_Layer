@@ -10,10 +10,8 @@ import { MDBDataTable, MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import Cbutton from "./collapsebutton";
 import { ContactsOutlined } from "@material-ui/icons";
 const Statsdatatable = ({ info, state }) => {
-  console.log({selectInfo})
-  console.log({state})
-  console.log(info)
-const [datatable, setDatatable] = useState({
+  // console.log(info)
+  const [datatable, setDatatable] = useState({
     dataa: [],
     isFetching: false,
   });
@@ -28,39 +26,40 @@ const [datatable, setDatatable] = useState({
     tabledata(dateapi)
   }, [layerdata]);
   const tabledata = async (e) => {
-    var hayeram = String(e);
-    var str;
-    if (hayeram === "") {
-      str = "1 August 2020";
-    } else
-      if (hayeram == "undefined") {
-        str = "1 August 2020";
-      } else {
-        str = hayeram;
-      }
-    var res = str.split(" ");
-    var month = String(res[1])
-    var year = String(res[2])
-    var finaldate;
-    if (res[0].length == 1) {
-      let str1 = '0';
-      let str2 = String(res[0]);
-      finaldate = str1.concat(str2)
-    } else {
-      finaldate = res[0];
-    }
-    var finallyphew = finaldate + '-' + month.substring(0, 3) + '-' + year.substring(0, 2);
     try {
       var ar = []
       setDatatable({ dataa: [], isFetching: true });
+      console.log(info.stats.val)
       if (info.stats.val == "flood") {
-        var urlapi = "https://api.nesdr.gov.in/nerdrr/flood.php?date=" + finallyphew
+        var hayeram = String(e);
+        var str;
+        if (hayeram === "") {
+          str = "1 August 2020";
+        } else
+          if (hayeram == "undefined") {
+            str = "1 August 2020";
+          } else {
+            str = hayeram;
+          }
+        var res = str.split(" ");
+        var month = String(res[1])
+        var year = String(res[2])
+        var finaldate;
+        if (res[0].length == 1) {
+          let str1 = '0';
+          let str2 = String(res[0]);
+          finaldate = str1.concat(str2)
+        } else {
+          finaldate = res[0];
+        }
+        var finallyphew = finaldate + '-' + month.substring(0, 3) + '-' + year.substring(0, 2);
+        var dataurlapi = "https://api.nesdr.gov.in/nerdrr/flood.php?date=" + finallyphew
       }
-      console.log(urlapi)
-      if (info.stats.val == "firev") {
-        var urlapi = info.stats.apitable
+      else if (info.stats.val == "firev") {
+        var dataurlapi = info.stats.apitable
+        // console.log(dataurlapi)
       }
-      fetch(urlapi, {
+      fetch(dataurlapi, {
         method: "GET",
       })
         .then((response) => response.json())
@@ -93,7 +92,7 @@ const [datatable, setDatatable] = useState({
             })
           }
           if (info.stats.val == "firev") {
-            console.log(mydata)
+          //  console.log(mydata)
             mydata.map((e) => {
               ar.push({
                 district: e.dtname,

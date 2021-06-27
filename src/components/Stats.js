@@ -11,9 +11,6 @@ import Cbutton from "./collapsebutton";
 import { ContactsOutlined } from "@material-ui/icons";
 import Statsdatatable from "./Statdatatable";
 const Stats = ({ info, state }) => {
-  console.log({selectInfo})
-  console.log({state})
-  console.log(info)
   const [featureInfo, setFeatureInfo] = useState({
     data: [],
     isFetching: false,
@@ -22,17 +19,32 @@ const Stats = ({ info, state }) => {
   const [showLayer, setShowLayer] = useState(false);
   const infodata = useSelector(selectInfo);
   const layerdata = useSelector(selectLayerDataSet);
-  // var dateapi=layerdata[11].layer_date;
-  console.log(info.options)
+  // var dateapi=layerdata[25].layer_date;
+  // console.log(dateapi)
+  var dateapi;
+  useEffect(() => {
+    dateapi = layerdata[25].layer_date;
+    getInfo(dateapi)
+  }, [layerdata]);
   const getInfo = async (e) => {
+    var cropdamsyear=e;
     try {
       setFeatureInfo({ data: [], isFetching: true });
-      console.log(info.options)
+      console.log(info.stats.val)
       if (info.stats.val == "flood") {
         var urlapi = info.stats.api + '' + (e.districtname !== undefined ? e.districtname.toUpperCase() : "")
-      }
+      }else
       if (info.stats.val == "firev") {
         var urlapi = info.stats.api + '' + (e.districtname !== undefined ? e.districtname : "")
+      }else
+      if (info.stats.val == "cropyear") {
+        if(cropdamsyear=='2005-2011'){
+          var urlapi=info.options[0].api
+        }else if(cropdamsyear=='2005-2015'){
+          var urlapi=info.options[1].api
+        }else if(cropdamsyear=='2011-2015'){
+          var urlapi=info.options[2].api
+        }
       }
       console.log(urlapi)
       fetch(
@@ -41,7 +53,7 @@ const Stats = ({ info, state }) => {
       })
         .then((response) => response.json())
         .then((result) => {
-          console.log(result)
+         // console.log(result)
           if (info.stats.val == "flood") {
             var date = result.map((e) => e.date);
             var chartarea = result.map((e) => Number(e.area) / 1000000);
@@ -71,6 +83,10 @@ const Stats = ({ info, state }) => {
               y: a5[0],
             }]
             var date = "";
+          }
+          if (info.stats.val == "cropyear") {
+            var date = result.map((e) => e.district);
+            var chartarea = result.map((e) => Number(e.area) / 1000000);
           }
           setFeatureInfo({ data: [result], isFetching: false });
           setOptions({
@@ -181,7 +197,7 @@ const Stats = ({ info, state }) => {
   };
   useEffect(() => {
     getInfo(infodata);
-    console.log(infodata)
+    //console.log(infodata)
   }, [infodata, info]);
   return (
     <>

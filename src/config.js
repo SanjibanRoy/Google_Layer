@@ -155,6 +155,7 @@ export const layer = [
       charttype: "column",
       val:"flood",
     },
+    layer_date:'',
     link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
   },
   {
@@ -302,24 +303,28 @@ export const layer = [
     class: "CropDAMS",
     layer: "NERDRR_NEW:2005-11-6_districts_cropdam_due_to_bankline_erosion",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    layer_date:'',
+    stats: {
+      val:"cropyear",
+    },
     options: [
       {
         value: "NERDRR_NEW:2005-11-6_districts_cropdam_due_to_bankline_erosion",
         text: "2005-2011",
         api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2005-2011",
-        charttype: "pie",
+        charttype: "column",
       },
       {
         value: "NERDRR_NEW:2005-15-6_districts_cropdam_due_to_bankline_erosion",
         text: "2005-2015",
         api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2005-2015",
-        charttype: "pie",
+        charttype: "column",
       },
       {
         value: "NERDRR_NEW:2011-15-6_districts_cropdam_due_to_bankline_erosion",
         text: "2011-2015",
         api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2011-2015",
-        charttype: "pie",
+        charttype: "column",
       },
       	
     ],
@@ -341,6 +346,27 @@ export const layer = [
     class: "Forestry",
     layer: "NERDRR_NEW:ner_forest_fire_prone_area_map",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+  },
+  {
+    id: 29,
+    text: "Thunderstorm Probable Index",
+    show: false,
+    class: "Lightning",
+    layer: "NERDRR_NEW:2021_06_15tp1",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    options: [
+      {
+        value: "NERDRR_NEW:2021_06_15tp1",
+        text: "2005-2011",
+      },
+      {
+        value: "NERDRR_NEW:2021_06_15tp2",
+        text: "2005-2015",
+      },
+      {
+        value: "NERDRR_NEW:2021_06_15tp3",
+        text: "2011-2015",
+      }]
   },
   // {
   //   id: 29,

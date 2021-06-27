@@ -11,17 +11,28 @@ import {
 import styled from "styled-components";
 import { analyticoper } from "../config";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import TextField from '@material-ui/core/TextField';
 
 const AnalyticsAnalysis = () => {
   const [analytics, setanalytics] = useState("Change");
   const dispatch = useDispatch();
   // const dispatch1 = useDispatch();
-
+  const [showtext, setshowtext]= useState(false)
   const state = useSelector(selectDataSet);
   // const [data, setData] = useState("modis_ndvi");
   const visualise = useSelector(selectLayerData);
   const setOperation = (e) => {
+    e==="custom"?(setshowtext(true)):setshowtext(false)
+    console.log(showtext)
     dispatch(setAnalyticsDetails({ ...state, operation: e, show: true }));
+    dispatch(setAnalyticsVisual({ ...visualise, show: false }));
+  };
+
+
+  const setCustomOperation = (e) => {
+    // e==="custom"?(setshowtext(true)):setshowtext(false)
+    console.log(e)
+    //dispatch(setAnalyticsDetails({ ...state, operation: e, show: true }));
     dispatch(setAnalyticsVisual({ ...visualise, show: false }));
   };
 
@@ -169,6 +180,11 @@ const AnalyticsAnalysis = () => {
 
         {/* ))} */}
       </select>
+{    showtext&&    <input className="input" type="text" id="lname" name="lname"  onBlur={(event) => {
+          setCustomOperation(event.target.value);
+        }}/>
+
+}
     </VEGANALYSIS>
   );
 };
@@ -189,6 +205,28 @@ const VEGANALYSIS = styled.div`
     border-bottom: black;
   }
   .SelectMenu {
+    border: 1px solid #555;
+    border-radius: 4px;
+    box-shadow: none;
+    font-size: 12px;
+    font-weight: 400;
+    /* width: 5000px; */
+    display: block;
+    width: 70%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 40px;
+    margin-right: 10px;
+  }
+
+  .input {
     border: 1px solid #555;
     border-radius: 4px;
     box-shadow: none;
