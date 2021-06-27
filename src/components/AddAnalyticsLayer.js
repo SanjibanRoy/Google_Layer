@@ -66,9 +66,9 @@ const AddAnalyticsLayer = ({ test, showAnalytics }) => {
         //   }),
       }
     );
-  } else if (test.operation === "custom") {
+  } else if (test.operation === "Custom") {
     analyticslayer = L.tileLayer.wms(
-      "https://analytics.nesdr.gov.in/nerdrr_sentinel_2/custom?exp=(b8-b4)%2F(b8%2Bb4)&color=default&from=-1.0&to=1.0",
+      "https://analytics.nesdr.gov.in/nerdrr_sentinel_2/custom?exp="+encodeURIComponent(test.custom)+"&color=default&from=-1.0&to=1.0",
       {
         date: test.dates,
         format: "image/png",

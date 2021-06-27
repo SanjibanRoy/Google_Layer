@@ -5,7 +5,8 @@ const initialState = {
   operation: "diff",
   dates: [111,2222,333],
   mask:"",
-  show:false
+  show:false,
+  custom:""
 };
 
 const userSlice = createSlice({
@@ -18,6 +19,7 @@ const userSlice = createSlice({
       state.dates = action.payload.dates;
       state.mask =  action.payload.mask;
       state.show = action.payload.show;
+      state.custom =action.payload.custom
     }
   },
 });

@@ -32,7 +32,7 @@ const AnalyticsAnalysis = () => {
   const setCustomOperation = (e) => {
     // e==="custom"?(setshowtext(true)):setshowtext(false)
     console.log(e)
-    //dispatch(setAnalyticsDetails({ ...state, operation: e, show: true }));
+    dispatch(setAnalyticsDetails({ ...state, operation: "Custom", custom:e, show: true }));
     dispatch(setAnalyticsVisual({ ...visualise, show: false }));
   };
 
