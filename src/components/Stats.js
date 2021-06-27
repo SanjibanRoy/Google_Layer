@@ -39,11 +39,13 @@ const Stats = ({ info, state }) => {
       }else
       if (info.stats.val == "cropyear") {
         if(cropdamsyear=='2005-2011'){
-          var urlapi=info.options[0].api
+          var urlapi=info.options[0].api+ '' + (e.districtname !== undefined ? e.districtname.toLowerCase() : "")
         }else if(cropdamsyear=='2005-2015'){
-          var urlapi=info.options[1].api
+          var urlapi=info.options[1].api+ '' + (e.districtname !== undefined ? e.districtname.toLowerCase() : "")
         }else if(cropdamsyear=='2011-2015'){
-          var urlapi=info.options[2].api
+          var urlapi=info.options[2].api+ '' + (e.districtname !== undefined ? e.districtname.toLowerCase() : "")
+        }else{
+          var urlapi=info.options[0].api+ '' + (e.districtname !== undefined ? e.districtname.toLowerCase() : "")
         }
       }
       console.log(urlapi)
