@@ -23,14 +23,14 @@ const Layer = ({ task, showLayer }) => {
 
   };
   const changeDate = (date, id) => {
-    // var vall = document.getElementById("date");
-    // var value=vall.options[vall.selectedIndex].value;
-    // var text=vall.options[vall.selectedIndex].text;
+    var vall = document.getElementById("date");
+    var text=vall.options[vall.selectedIndex].text;
+    console.log(text)
     dispatch(setAnalyticsDetails({ ...state, id: id - 1, show: false }));
     setTimeout(console.log(""), 10000);
 
     dispatch(
-      setAnalyticsDetails({ ...state, id: id - 1, show: true, layer: date })
+      setAnalyticsDetails({ ...state, id: id - 1, show: true, layer: date, layer_date:text })
     );
   };
   // task.options.map((data) => {})
@@ -48,7 +48,7 @@ const Layer = ({ task, showLayer }) => {
         <>
           {" "}
           <select
-            // id="date"
+            id="date"
             // onClick={getdrop}
             onChange={(event) => {
               changeDate(event.target.value, task.id);

@@ -154,6 +154,7 @@ export const layer = [
       charttype: "column",
       val:"flood",
     },
+    layer_date:'',
     link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
   },
   {
@@ -301,24 +302,28 @@ export const layer = [
     class: "CropDAMS",
     layer: "NERDRR_NEW:2005-11-6_districts_cropdam_due_to_bankline_erosion",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    layer_date:'',
+    stats: {
+      val:"cropyear",
+    },
     options: [
       {
         value: "NERDRR_NEW:2005-11-6_districts_cropdam_due_to_bankline_erosion",
         text: "2005-2011",
         api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2005-2011",
-        charttype: "pie",
+        charttype: "column",
       },
       {
         value: "NERDRR_NEW:2005-15-6_districts_cropdam_due_to_bankline_erosion",
         text: "2005-2015",
         api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2005-2015",
-        charttype: "pie",
+        charttype: "column",
       },
       {
         value: "NERDRR_NEW:2011-15-6_districts_cropdam_due_to_bankline_erosion",
         text: "2011-2015",
         api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2011-2015",
-        charttype: "pie",
+        charttype: "column",
       },
       	
     ],

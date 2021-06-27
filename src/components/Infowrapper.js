@@ -60,7 +60,7 @@ const Infowrapper = () => {
       )
         .then((response) => response.json())
         .then((result) => {
-          console.log(result);
+          // console.log(result);
           if (
             activelayers.includes("State Boundary") &
             activelayers.includes("District Boundary")
@@ -98,8 +98,8 @@ const Infowrapper = () => {
   };
 
   useEffect(() => {
-    console.log(state);
-    console.log(info);
+    // console.log(state);
+    // console.log(info);
     // AddAnalytics()
     getInfo();
   }, [state, info]);
