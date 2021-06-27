@@ -538,8 +538,7 @@ export const panelVisibilty = [
     panel: false,
   },
   {
-    id: "Water_Resources",
-    text: "Water_Resources",
+    id: "Search",
     show: false,
     panel: false,
   },

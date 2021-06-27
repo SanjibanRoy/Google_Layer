@@ -38,8 +38,8 @@ const App = () => {
         changeVisibility={changeVisibility}
         showPanel={panel}
       />
-     {false&&<Searchbox/>}
-     <NavigationBox/>
+     {/* {<Searchbox/>} */}
+     {false && <NavigationBox/>}
       <Map visibility={visibility} />
       {visibility.filter((e) => e.id === "Tools")[0].show && (
         <SwipePanel />

@@ -167,7 +167,7 @@ const NavigationBox = () => {
         <input
           id="Destination"
           className="input"
-          placeholder="Source..."
+          placeholder="Epicenter..."
           // value={sourcevalue}
           onChange={(event) => {
             suggestLocation(event.target.value);
@@ -184,35 +184,22 @@ const NavigationBox = () => {
               {e.label}
             </li>
           ))}
-      </Search>
-      <Search>
+
         <input
           id="Source"
+          type="number"
           className="input"
-          placeholder="Destination..."
+          placeholder="BufferDistance"
           // value={destvalue}
-          onChange={(event) => {
-            suggestLocation1(event.target.value);
-          }}
         />
-        {showsuggestions1 &&
-          suggestions1.map((e) => (
-            <li
-              className="Locations"
-              onClick={(event) => {
-                handleClick1(event.target.innerHTML);
-              }}
-            >
-              {e.label}
-            </li>
-          ))}
+ 
         <Button
           className="Button"
           onClick={() => {
             navigate();
           }}
         >
-          Navigate
+          Submit
         </Button>
       </Search>
     </>

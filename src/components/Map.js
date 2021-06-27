@@ -33,7 +33,7 @@ const ZoomtoLocation = ({ bounds }) => {
   // map.fitBounds([40.712, -74.227],
   //   [40.774, -74.125])
   useEffect(() => {
-    if (bounds.length > 1) {
+    if (bounds.bounds !== undefined) {
       map.fitBounds([
         // 88.0130594750001478,21.9401104670001814 : 97.4115970890000540,29.4616322430000537
 
@@ -62,11 +62,7 @@ function HandleHover() {
   });
   return null;
 }
-const Toolbar = () => (
-  <FeatureGroup>
-    <EditControl position="bottomright" />
-  </FeatureGroup>
-);
+
 const VectorTile = ({ show }) => {
   console.log("Hi");
   const map = useMap();
@@ -162,7 +158,7 @@ const Map = ({ visibility }) => {
   const analyticsLayer = useSelector(selectDataSet);
   const [navigation, setNavigation] = useState(false);
   useEffect(() => {
-    console.log(navigation)
+    console.log(navigation);
     setNavigation(true);
   }, [mapZoomState.path]);
   return (

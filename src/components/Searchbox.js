@@ -12,6 +12,7 @@ const Searchbox = () => {
   const [showsuggestions, setshowsuggestions] = useState(false)
   const handleClick = (event) => {
     setvalue(event);
+    setshowsuggestions(false)
   };
   const suggestLocation = (event) => {
     setshowsuggestions(true)
@@ -75,7 +76,7 @@ const Searchbox = () => {
       <input
         id="Location"
         className="input"
-
+        placeholder="Search Location..."
         value={value}
         onChange={(event) => {
           suggestLocation(event.target.value);
@@ -83,11 +84,13 @@ const Searchbox = () => {
         onKeyDown={(event) => {
           searchLocation(event);
         }}
+        // onBlur ={()=>setshowsuggestions(false)}
       />
       {showsuggestions&& suggestions.map((e) => (
-        <li
+        <li className ="Locations"
           onClick={(event) => {
             handleClick(event.target.innerHTML);
+            // searchLocation(event.target.innerHTML);
           }}
         >
           {e.label}
@@ -100,26 +103,39 @@ const Searchbox = () => {
 export default Searchbox;
 
 const Search = styled.div`
-  z-index: 100000000;
-  width: 5%;
-  /* display: flex; */
-  top: 0;
-  position: absolute;
-  background-color: #fff;
-  z-index: 10000;
-  align-items: center;
-  left: 20%;
-  padding-right: 10%;
-  #left {
-    /* position:absolute; */
-    /* left:30%;
-  top:0; */
+  .input {
+    border: 1px solid #555;
+    border-radius: 4px;
+    box-shadow: none;
+    font-size: 12px;
+    font-weight: 400;
+    /* width: 5000px; */
+    display: block;
+    width: 70%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-right: 10px;
   }
+  .Locations{
+    list-style: none;
 
-  #right {
-    /* position:absolute;
-  left:60%;
-  top:0; */
-    margin-left: 50%;
+    background-color: #fff;
+    width: 70%;
+    height: 2.5rem;
+    padding: 6px 12px;
+    margin-left: 40px;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  .Locations:hover{
+    background-color: grey;
+    border-left: 2px solid orange;
+
   }
 `;
