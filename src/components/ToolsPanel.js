@@ -6,7 +6,10 @@ import { setBaseDetails } from "../features/layers/baselayerslice";
 import { setAppDetails } from "../features/layers/appslice";
 import Searchbox from "./Searchbox";
 import NavigationBox from "./NavigationBox";
-import ProximityTool from "./ProximityTool"
+import ProximityTool from "./ProximityTool";
+import SearchIcon from "@material-ui/icons/Search";
+import DirectionsIcon from "@material-ui/icons/Directions";
+import MyLocationIcon from "@material-ui/icons/MyLocation";
 const AppsPanel = () => {
   const dispatch = useDispatch();
   // const basedata = useSelector(selectBaseDataSet);
@@ -30,34 +33,42 @@ const AppsPanel = () => {
   ]);
   const ChangeMap = (id) => {
     //   tools.map((e)=>(e.name==id?{e.show=true:e.show=false),...tools})
-     setTools([tools.filter((e)=>e.name==id?e.show=true:e.show=false),...tools])
+    setTools([
+      tools.filter((e) => (e.name == id ? (e.show = true) : (e.show = false))),
+      ...tools,
+    ]);
   };
-//   console.log(tools.filter((e) => e.name === "Search"))
+  //   console.log(tools.filter((e) => e.name === "Search"))
   return (
-    <>
+    <Toolpanel>
       <p className="heads">Applications</p>
 
       <VEGANALYSIS>
         <div className="apps" onClick={() => ChangeMap("Search")}>
-          <p>Search</p>
+          <SearchIcon color="primary" />
         </div>
 
         <div className=" apps" onClick={() => ChangeMap("Navigation")}>
-          <p>Navigate</p>
+          <DirectionsIcon color="primary" />
         </div>
 
         <div className=" apps" onClick={() => ChangeMap("Proximity")}>
-          <p>Proximity</p>
+          <MyLocationIcon color="primary" />
         </div>
-
-
       </VEGANALYSIS>
-      
-      {tools.filter((e) => e.name === "Search")[0].show? <Searchbox />:""}
-      {tools.filter((e) => e.name === "Navigation")[0].show ?<NavigationBox />:""}
-      {tools.filter((e) => e.name === "Proximity")[0].show ?<ProximityTool />:""}
 
-    </>
+      {tools.filter((e) => e.name === "Search")[0].show ? <Searchbox /> : ""}
+      {tools.filter((e) => e.name === "Navigation")[0].show ? (
+        <NavigationBox />
+      ) : (
+        ""
+      )}
+      {tools.filter((e) => e.name === "Proximity")[0].show ? (
+        <ProximityTool />
+      ) : (
+        ""
+      )}
+    </Toolpanel>
   );
 };
 
@@ -67,8 +78,9 @@ const VEGANALYSIS = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 20rem;
-  background-color: palevioletred;
+  background-color: white;
   border-radius: 0 0 15px 15px;
+  border-bottom: 2px solid black;
   .heads {
     background: #bdbdbd;
     align-items: flex-end;
@@ -80,26 +92,46 @@ const VEGANALYSIS = styled.div`
     color: #fff;
   }
   .apps {
-    -webkit-flex: 1 0 5%;
-    -ms-flex: 1 0 5%;
+    position:relative;
+    top:10%;
+    flex-basis:100%;
     flex: 1 0 5%;
     /* padding: 10px; */
-    margin: 5px;
-    border-radius: 15px;
-    background: #ffffff;
-    border: 2px solid rgb(2 75 150);
+    // margin: 5px;
+    // border-radius: 15px;
+    // background: #ffffff;
+    // border: 2px solid rgb(2 75 150);
     width: 0rem;
-    height: 50px;
-    padding: 14px 10px;
     cursor: pointer;
     /* border-bottom: 1px solid rgb(131,130,130); */
     font-size: 12px;
     color: #171616;
     font-family: "Poppins";
+    text-align: center;
+
   }
   .apps:hover {
     background-color: #bdbdbd;
     border: black;
     color: #fff;
   }
+  .MuiSvgIcon-colorPrimary {
+    color: #ffffff;
+    border-radius: 5px;
+    background: #004b96;
+    padding: 5px;
+    font-size: 40px;
+  }
+`;
+const Toolpanel = styled.div`
+.heads {
+  background: #004b96bd;
+  text-align: center;
+  width: 100%;
+  padding: 8px 10px;
+  cursor: pointer;
+  border-bottom: 1px solid rgb(131, 130, 130);
+  font-size: 14px;
+  color: #fff;
+}
 `;

@@ -48,7 +48,7 @@ export default AppsPanel;
 
 const VEGANALYSIS = styled.div`
   .heads {
-    background: #bdbdbd;
+    background: #004b96bd;
     align-items: flex-end;
     width: 100%;
     padding: 8px 10px;

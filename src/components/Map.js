@@ -26,6 +26,8 @@ import { selectLayerData } from "../features/layers/layervisualiseslice";
 import { selectDataSet } from "../features/layers/layerslice";
 import AddTimeseries from "./AddTimeseries";
 import { setMapBounds } from "../features/maps/mapZoomSlice";
+import VectorTile from "./VectorTile"
+
 let sbs = null;
 let rightlayer = null;
 let leftlayer = null;
@@ -67,64 +69,7 @@ function HandleHover() {
   return null;
 }
 
-const VectorTile = ({ show }) => {
-  console.log("Hi");
-  const map = useMap();
-  // useEffect(() => {
-  var vectorTileOptions = {
-    interactive: true,
-    pane: "OverlayPane",
-    vectorTileLayerStyles: {
-      AP_VILLAGE_V2: {
-        weight: 0,
-        fillColor: "#9bc2c4",
-        fillOpacity: 1,
-        fill: true,
-      },
-    },
-  };
 
-  let village = L.vectorGrid.protobuf(
-    "http://geoserver.vassarlabs.com/geoserver/gwc/service/wmts?layer=VASSARLABS:AP_VILLAGE_V2&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=application/x-protobuf;type=mapbox-vector&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}",
-    {
-      interactive: true,
-      minZoom: 8,
-      maxZoom: 12,
-      vectorTileLayerStyles: {
-        AP_VILLAGE_V2: function (properties, zoom) {
-          return {
-            weight: 2,
-            color: "green",
-            opacity: 1,
-            fillColor: "yellow",
-            fill: true,
-
-            fillOpacity: 0.3,
-          };
-        },
-      },
-    }
-  );
-  village
-    .on("click", function (e) {
-      console.log(e.layer);
-      L.DomEvent.stop(e);
-    })
-    .addTo(map);
-  // const vectorTileOptions = {
-  //   AP_VILLAGE_V2: {
-  //     weight: 0,
-  //     fillColor: "#9bc2c4",
-  //     fillOpacity: 1,
-  //     fill: true,
-  //   },
-  //   interactive: true,
-  //   pane: "OverlayPane",
-  // };
-  // }, []);
-
-  return null;
-};
 
 const Map = ({ visibility }) => {
   // console.log(visibility);
@@ -140,13 +85,11 @@ const Map = ({ visibility }) => {
   const mapZoomState = useSelector(selectMapZoomstate);
 
   useEffect(() => {
-    //AddAnalytics()
     setVisibility(visibility.filter((themes) => themes.id === "Layer")[0].show);
   }, [visibility]);
 
   useEffect(() => {
     setNavigation(false);
-
     if (mapZoomState.path != "") {
       setNavigation(true);
     } else {
@@ -176,8 +119,6 @@ const Map = ({ visibility }) => {
   }
 
   const drawing = (e) => {
-    // if (e.layerType === "circle") {
-    console.log(e);
     let json = e.sourceTarget._layers;
     setTimeout(1000);
     Object.keys(json).forEach(function (key) {
@@ -192,14 +133,6 @@ const Map = ({ visibility }) => {
         );
       }
     });
-    //  dispatch(
-    //     setMapBounds({
-    //        lat:json._latlng.lat,
-    //        lon:json._latlng.lng,
-    //        radius: json._mRadius,
-    //     })
-    //   )
-    //}
   };
 
   return (
@@ -283,7 +216,7 @@ const Map = ({ visibility }) => {
           show={visibility.filter((e) => e.id === "Tools")[0].show}
         />
       }
-      {false && (
+      {visibility.filter((e) => e.id === "Stats")[0].show && (
         <AddAnalyticsLayer
           test={[analyticsvisualise, analyticsLayer]}
           showAnalytics={showAnalytics}

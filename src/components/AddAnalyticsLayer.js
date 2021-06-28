@@ -36,7 +36,7 @@ const AddAnalyticsLayer = ({ test, showAnalytics }) => {
   }
   if (test.dataset == "sentinel1") {
     analyticslayer = L.tileLayer.wms(
-      "https://analytics.nesdr.gov.in/nerdrr_sentinel_1/visu?band=0",
+      "https://analytics.nesdr.gov.in/nerdrr_sentinel_1/visu?band=1",
       {
         // date: test.dates,
         format: "image/png",
