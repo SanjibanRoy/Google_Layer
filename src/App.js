@@ -9,6 +9,8 @@ import StatsBox from "./components/StatsBox";
 import FocusBox from "./components/FocusBox";
 import Infowrapper from "./components/Infowrapper";
 import SwipePanel from "./components/SwipePanel";
+import Searchbox from "./components/Searchbox";
+import NavigationBox from "./components/NavigationBox";
 const App = () => {
   const [visibility, setVisibility] = useState(panelVisibilty);
   const [panel, setPanel] = useState(false);
@@ -36,7 +38,8 @@ const App = () => {
         changeVisibility={changeVisibility}
         showPanel={panel}
       />
-     
+     {/* {<Searchbox/>} */}
+     {false && <NavigationBox/>}
       <Map visibility={visibility} />
       {visibility.filter((e) => e.id === "Tools")[0].show && (
         <SwipePanel />

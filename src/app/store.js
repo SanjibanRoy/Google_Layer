@@ -8,6 +8,7 @@ import mapStateReducer from "../features/maps/mapStateSlice"
 import infoReducer from "../features/layers/infoboxslice"
 import layerInfoReducer from "../features/layers/layerinfoslice"
 import swipelayerReducer from "../features/layers/swipemapslice"
+import mapzoomReucer from "../features/maps/mapZoomSlice"
 
 export default configureStore({
   reducer: {
@@ -19,7 +20,9 @@ export default configureStore({
     info:infoReducer,
     mapstate: mapStateReducer,
     layerinfo:layerInfoReducer,
-    swipelayer:swipelayerReducer
+    swipelayer:swipelayerReducer,
+    mapzoom: mapzoomReucer,
+
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

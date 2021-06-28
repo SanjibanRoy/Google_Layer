@@ -11,7 +11,7 @@ import AlertPanel from "./AlertPanel";
 import AppsPanel from "./AppsPanel";
 import SwipePanel from "./SwipePanel";
 import AnalyticsPanel from "./AnalyticsPanel";
-
+import ToolsPanel from "./ToolsPanel"
 // import CreatableSelect from 'react-select/creatable';
 //end of import
 
@@ -78,10 +78,10 @@ const SideBarWrapper = ({
               <LayerTree category="Administrative" />
               <LayerTree category="Land Use/Land Cover" />
               <LayerTree category="Census" />
-              <LayerTree category="Water Resources" />
+              <LayerTree category="Flood" />
               <LayerTree category="Forestry" />
               <LayerTree category="CropDAMS" />
-              <LayerTree category="Geosciences" />
+              <LayerTree category="Earthquake/Landslides" />
               <LayerTree category="Lightning" />
               <LayerTree category="Alerts and Early Warning" />
             </div>
@@ -100,6 +100,9 @@ const SideBarWrapper = ({
           </div> */}
           <div className={type === "Stats" ? "LayerContainer" : "hidden"}>
             <AnalyticsPanel />
+          </div>
+          <div className={type === "Search" ? "LayerContainer" : "hidden"}>
+            <ToolsPanel />
           </div>
         </React.Fragment>
       )}

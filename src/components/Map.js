@@ -2,6 +2,7 @@ import {
   MapContainer,
   TileLayer,
   WMSTileLayer,
+  GeoJSON,
   useMapEvents,
   FeatureGroup,
   useMap,
@@ -11,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectLayerDataSet } from "../features/layers/overlaylayerslice";
 import { selectBaseDataSet } from "../features/layers/baselayerslice";
 import { setMapState } from "../features/maps/mapStateSlice";
+import { selectMapZoomstate } from "../features/maps/mapZoomSlice";
 import React from "react";
 import L from "leaflet";
 // import Draw from "leaflet-draw";
@@ -18,15 +20,40 @@ import { EditControl } from "react-leaflet-draw";
 import "leaflet.vectorgrid";
 import "leaflet-side-by-side";
 import SwpieMapControl from "./SwpieMapControl";
-import AddAnalyticsLayer from "./AddAnalyticsLayer"
+import AddAnalyticsLayer from "./AddAnalyticsLayer";
 import { selectLayerData } from "../features/layers/layervisualiseslice";
 import { selectDataSet } from "../features/layers/layerslice";
-
-
-
+import AddTimeseries from "./AddTimeseries";
 let sbs = null;
 let rightlayer = null;
 let leftlayer = null;
+const ZoomtoLocation = ({ bounds }) => {
+  console.log(bounds);
+  const map = useMap();
+  // map.fitBounds([40.712, -74.227],
+  //   [40.774, -74.125])
+  useEffect(() => {
+    if (bounds.bounds !== undefined) {
+      map.fitBounds([
+        // 88.0130594750001478,21.9401104670001814 : 97.4115970890000540,29.4616322430000537
+
+        [bounds.bounds[0], bounds.bounds[3]],
+        [bounds.bounds[1], bounds.bounds[2]],
+      ]);
+    }
+  }, [bounds]);
+  useEffect(() => {
+    map.fitBounds([
+      // 88.0130594750001478,21.9401104670001814 : 97.4115970890000540,29.4616322430000537
+
+      [21.9401104670001814, 97.411597089000054],
+      [29.4616322430000537, 88.0130594750001478],
+    ]);
+  }, []);
+
+  return null;
+};
+
 function HandleHover() {
   const map = useMapEvents({
     mousemove: (e) => {
@@ -35,72 +62,74 @@ function HandleHover() {
   });
   return null;
 }
-const Toolbar = () => (
-  <FeatureGroup>
-    <EditControl position="bottomright" />
-  </FeatureGroup>
-);
-const VectorTile = ({ show }) => {
-  console.log(show);
-  const map = useMap({
-    // zoomend:(e)=>{
-    //   console.log(map.getZoom())
-    //   let village = L.vectorGrid.protobuf(
-    //     "http://geoserver.vassarlabs.com/geoserver/gwc/service/wmts?layer=VASSARLABS:AP_VILLAGE_V2&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=application/x-protobuf;type=mapbox-vector&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}",
-    //      vectorTileOptions
-    //   );
-    //   map.getZoom()<10?map.removeLayer(village):village.addTo(map)
-    // }
-  });
 
+const VectorTile = ({ show }) => {
+  console.log("Hi");
+  const map = useMap();
+  // useEffect(() => {
+  var vectorTileOptions = {
+    interactive: true,
+    pane: "OverlayPane",
+    vectorTileLayerStyles: {
+      AP_VILLAGE_V2: {
+        weight: 0,
+        fillColor: "#9bc2c4",
+        fillOpacity: 1,
+        fill: true,
+      },
+    },
+  };
+
+  let village = L.vectorGrid.protobuf(
+    "http://geoserver.vassarlabs.com/geoserver/gwc/service/wmts?layer=VASSARLABS:AP_VILLAGE_V2&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=application/x-protobuf;type=mapbox-vector&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}",
+    {
+      interactive: true,
+      minZoom: 8,
+      maxZoom: 12,
+      vectorTileLayerStyles: {
+        AP_VILLAGE_V2: function (properties, zoom) {
+          return {
+            weight: 2,
+            color: "green",
+            opacity: 1,
+            fillColor: "yellow",
+            fill: true,
+
+            fillOpacity: 0.3,
+          };
+        },
+      },
+    }
+  );
+  village
+    .on("click", function (e) {
+      console.log(e.layer);
+      L.DomEvent.stop(e);
+    })
+    .addTo(map);
   // const vectorTileOptions = {
-  //   vectorTileLayerStyles: {
-  //     landuse: {
-  //       fillColor: "transparent",
-  //       color: "yellow",
-  //       weight: .5
-  //     }
+  //   AP_VILLAGE_V2: {
+  //     weight: 0,
+  //     fillColor: "#9bc2c4",
+  //     fillOpacity: 1,
+  //     fill: true,
   //   },
-  //   interactive: true ,
-  //   maxZoom: 22,
-  //   indexMaxZoom: 7,// Make sure that this VectorGrid fires mouse/pointer events
+  //   interactive: true,
+  //   pane: "OverlayPane",
   // };
+  // }, []);
 
   return null;
 };
 
-let analyticslayer = null;
-
-function AddTimeseries({ test, showAnalytics }) {
-  console.log(test);
-  let data = null;
-  const map = useMap();
-
-  if (analyticslayer != null) {
-    map.removeLayer(analyticslayer);
-  }
-  analyticslayer = L.tileLayer.wms(test[1], {
-    layers: test[0],
-    format: "image/png",
-    transparent: true,
-    zIndex: 100,
-  });
-  map.addLayer(analyticslayer);
-  if (!showAnalytics) {
-    map.removeLayer(analyticslayer);
-  }
-  return null;
-}
-
 const Map = ({ visibility }) => {
-
   // console.log(visibility);
   const dispatch = useDispatch();
   const [showAnalytics, setVisibility] = useState(
     visibility.filter((themes) => themes.id === "Layer")[0].show
   );
-    const analyticsvisualise = useSelector(selectLayerData);
-
+  const analyticsvisualise = useSelector(selectLayerData);
+  const mapZoomState = useSelector(selectMapZoomstate);
   useEffect(() => {
     //AddAnalytics()
     setVisibility(visibility.filter((themes) => themes.id === "Layer")[0].show);
@@ -108,6 +137,7 @@ const Map = ({ visibility }) => {
   function HandleClick() {
     const map = useMapEvents({
       click: (e) => {
+        console.log(e);
         dispatch(
           setMapState({
             lat: e.latlng.lat,
@@ -126,8 +156,11 @@ const Map = ({ visibility }) => {
   const baseLayers = useSelector(selectBaseDataSet);
   const overlayLayers = useSelector(selectLayerDataSet);
   const analyticsLayer = useSelector(selectDataSet);
-
-  useEffect(() => {}, []);
+  const [navigation, setNavigation] = useState(false);
+  useEffect(() => {
+    console.log(navigation);
+    setNavigation(true);
+  }, [mapZoomState.path]);
   return (
     <MapContainer
       center={[26.2006, 92.5376]}
@@ -145,6 +178,8 @@ const Map = ({ visibility }) => {
               domain={baselayer.domain}
               zIndex="1"
             />
+          ) : baselayer.type === "vectortile" ? (
+            <VectorTile />
           ) : (
             <WMSTileLayer
               key={index}
@@ -157,9 +192,7 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.show &
-            ((overlayer.text !== "Flood Inundation") &
-              (overlayer.class !== "Lightning")) && (
+          overlayer.show & (overlayer.options === undefined) && (
             <WMSTileLayer
               key={index}
               format="image/png"
@@ -211,6 +244,13 @@ const Map = ({ visibility }) => {
           showAnalytics={showAnalytics}
         />
       }
+      <ZoomtoLocation bounds={mapZoomState} />
+      {true && (
+        <GeoJSON
+          // attribution="Capa de Hospitales de ESRI"
+          data={mapZoomState.path}
+        />
+      )}
       <HandleClick />
       <HandleHover />
     </MapContainer>
