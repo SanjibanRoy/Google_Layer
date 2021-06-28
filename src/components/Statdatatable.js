@@ -19,13 +19,16 @@ const Statsdatatable = ({ info, state }) => {
   const [showLayer, setShowLayer] = useState(false);
   const infodata = useSelector(selectInfo);
   const layerdata = useSelector(selectLayerDataSet);
-  var dateapi
+  var dateapi;
+  var cropyeardataapi;
   const [test, setTest] = useState([]);
   useEffect(() => {
     dateapi = layerdata[11].layer_date;
-    tabledata(dateapi)
+    cropyeardataapi=layerdata[25].layer_date;
+    tabledata(dateapi,cropyeardataapi)
   }, [layerdata]);
-  const tabledata = async (e) => {
+  const tabledata = async (e,cropyeardataapi) => {
+    var cropdamsyear=cropyeardataapi;
     try {
       var ar = []
       setDatatable({ dataa: [], isFetching: true });
@@ -59,6 +62,18 @@ const Statsdatatable = ({ info, state }) => {
         var dataurlapi = info.stats.apitable
         // console.log(dataurlapi)
       }
+      else if (info.stats.val == "cropyear") {
+        if(cropdamsyear=='2005-2011'){
+          var dataurlapi=info.options[0].api
+        }else if(cropdamsyear=='2005-2015'){
+          var dataurlapi=info.options[1].api
+        }else if(cropdamsyear=='2011-2015'){
+          var dataurlapi=info.options[2].api
+        }else{
+          var dataurlapi=info.options[0].api
+        }
+      }
+      console.log(dataurlapi)
       fetch(dataurlapi, {
         method: "GET",
       })
@@ -92,7 +107,6 @@ const Statsdatatable = ({ info, state }) => {
             })
           }
           if (info.stats.val == "firev") {
-          //  console.log(mydata)
             mydata.map((e) => {
               ar.push({
                 district: e.dtname,
@@ -115,24 +129,51 @@ const Statsdatatable = ({ info, state }) => {
                   },
                 },
                 {
-                  label: 'Area1 (Hectare)',
+                  label: 'Very Low',
                   field: 'area1',
                 },
                 {
-                  label: 'Area2 (Hectare)',
+                  label: 'Low',
                   field: 'area2',
                 },
                 {
-                  label: 'Area3 (Hectare)',
+                  label: 'Moderate',
                   field: 'area3',
                 },
                 {
-                  label: 'Area4 (Hectare)',
+                  label: 'High',
                   field: 'area4',
                 },
                 {
-                  label: 'Area5 (Hectare)',
+                  label: 'Very High',
                   field: 'area5',
+                },
+              ],
+              rows: ar,
+            })
+          }
+          if (info.stats.val == "cropyear") {
+            mydata.map((e) => {
+              var sko = e.district.toLowerCase();
+              ar.push({
+                district: sko.charAt(0).toUpperCase() + sko.slice(1),
+                area: (e.area / 10000).toFixed(2)
+              })
+            })
+            setDatatable({ dataa: [mydata], isFetching: false });
+            setTest({
+              columns: [
+                {
+                  label: 'District',
+                  field: 'district',
+                  attributes: {
+                    'aria-controls': 'DataTable',
+                    'aria-label': 'District',
+                  },
+                },
+                {
+                  label: 'Area (Hectare)',
+                  field: 'area',
                 },
               ],
               rows: ar,
