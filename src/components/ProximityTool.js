@@ -1,140 +1,45 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { setMapBounds } from "../features/maps/mapZoomSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setMapBounds,
+  selectMapZoomstate,
+} from "../features/maps/mapZoomSlice";
 import { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
 import polyline from "@mapbox/polyline";
 var axios = require("axios");
 
-const NavigationBox = () => {
+const ProximityTool = () => {
   const dispatch = useDispatch();
   const [suggestions, setsuggestions] = useState([]);
   const [suggestions1, setsuggestions1] = useState([]);
 
   const [sourcevalue, setSourceValue] = useState();
   const [destvalue, setDestValue] = useState();
-  const [showsuggestions, setshowsuggestions] = useState(false);
-  const [showsuggestions1, setshowsuggestions1] = useState(false);
   const [source, setSource] = useState([]);
-  const [destination, setDestination] = useState([]);
+  const epicenter = useSelector(selectMapZoomstate);
 
-  const handleClick = (event) => {
-    setSourceValue(event);
-    searchLocation(event);
-    setshowsuggestions(false);
-  };
-  const handleClick1 = (event) => {
-    setDestValue(event);
-    searchLocation1(event);
-    setshowsuggestions1(false);
-  };
-  const suggestLocation = (event) => {
-    setshowsuggestions(true);
-    // setvalue(event);
-    var config = {
-      method: "get",
-      url:
-        "https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?apiKey=ArsBpOEL5bGUOCLre5UdBeFKCNgahMq1AfywBFhfgY4&query=" +
-        event,
-      // url: 'https://nominatim.openstreetmap.org/search/'+event+'?format=json&addressdetails=1&limit=1&polygon_svg=1',
-      headers: {},
-    };
+  const [villages, setVillages] = useState()
 
-    axios(config)
-      .then(function (response) {
-        response.data.suggestions !== undefined
-          ? setsuggestions(response.data.suggestions)
-          : setsuggestions([]);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-  const suggestLocation1 = (event) => {
-    setshowsuggestions1(true);
-    // setvalue(event);
-    var config = {
-      method: "get",
-      url:
-        "https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?apiKey=ArsBpOEL5bGUOCLre5UdBeFKCNgahMq1AfywBFhfgY4&query=" +
-        event,
-      // url: 'https://nominatim.openstreetmap.org/search/'+event+'?format=json&addressdetails=1&limit=1&polygon_svg=1',
-      headers: {},
-    };
+  console.log(epicenter)
+  useEffect(()=>{
+    console.log(epicenter)
+    setSourceValue([epicenter.lat,epicenter.lon])
+    setDestValue(epicenter.radius)
+  },[epicenter])
 
-    axios(config)
-      .then(function (response) {
-        console.log(response);
-        response.data.suggestions !== undefined
-          ? setsuggestions1(response.data.suggestions)
-          : setsuggestions1([]);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-  const searchLocation1 = (event) => {
-    var config = {
-      method: "get",
+  useEffect(()=>{
+    console.log(villages)
 
-      url:
-        "https://geocode.search.hereapi.com/v1/geocode?apiKey=ArsBpOEL5bGUOCLre5UdBeFKCNgahMq1AfywBFhfgY4&q=" +
-        event,
-      //   "?format=json&addressdetails=1&limit=1&polygon_svg=1",
-      headers: {},
-    };
+  },[villages])
 
-    axios(config)
-      .then(function (response) {
-        console.log(response);
-        setSource([
-          response.data.items[0].position.lat,
-          response.data.items[0].position.lng,
-        ]);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    // setshowsuggestions(false);
-  };
-  const searchLocation = (event) => {
-    var config = {
-      method: "get",
-
-      url:
-        "https://geocode.search.hereapi.com/v1/geocode?apiKey=ArsBpOEL5bGUOCLre5UdBeFKCNgahMq1AfywBFhfgY4&q=" +
-        event,
-      //   "?format=json&addressdetails=1&limit=1&polygon_svg=1",
-      headers: {},
-    };
-
-    axios(config)
-      .then(function (response) {
-        console.log(response.data.items[0].position.lat);
-        setDestination([
-          response.data.items[0].position.lat,
-          response.data.items[0].position.lng,
-        ]);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    // setshowsuggestions(false);
-  };
   const navigate = () => {
     console.log(source);
     var config = {
       method: "get",
       url:
-        "https://apis.mapmyindia.com/advancedmaps/v1/493dfe9d040ca1e0f2c7d1a5c7bc5f5a/route_adv/driving/" +
-        source[1] +
-        "," +
-        source[0] +
-        ";" +
-        destination[1] +
-        "," +
-        destination[0],
+        "https://api.nesdr.gov.in/nerdrr/village.php?lat="+sourcevalue[0]+"&lon="+sourcevalue[1]+"&distance="+destvalue/1000,
       // url:
       //   "https://router.hereapi.com/v8/routes?transportMode=car&origin=26.1445,91.7362&destination=25.6768,91.9270&return=polyline&apiKey=ArsBpOEL5bGUOCLre5UdBeFKCNgahMq1AfywBFhfgY4",
       // //   "?format=json&addressdetails=1&limit=1&polygon_svg=1",
@@ -143,22 +48,23 @@ const NavigationBox = () => {
 
     axios(config)
       .then(function (response) {
-        let poly = response.data.routes[0].geometry;
-        let geojson = polyline.toGeoJSON(poly);
-        console.log(geojson);
-        // let box = response.data.items[0].mapView;
+        // let poly = response.data.routes[0].geometry;
+        // let geojson = polyline.toGeoJSON(poly);
+        console.log(response);
+        let villages         = (response.data.map((e)=>({"name":e.name,"tot_p":e.tot_p, "lat":e.ycoord, "lng":e.xcoord,})))
+        setVillages(villages)
         dispatch(
           setMapBounds({
             // lat:"22",
             // lon:"22",
-            path: geojson,
+            villages: villages,
           })
         );
       })
       .catch(function (error) {
         console.log(error);
       });
-    setshowsuggestions(false);
+    // setshowsuggestions(false);
   };
 
   return (
@@ -168,31 +74,19 @@ const NavigationBox = () => {
           id="Destination"
           className="input"
           placeholder="Epicenter..."
-          // value={sourcevalue}
-          onChange={(event) => {
-            suggestLocation(event.target.value);
-          }}
+           value={sourcevalue!==null?sourcevalue:""}
         />
-        {showsuggestions &&
-          suggestions.map((e) => (
-            <li
-              className="Locations"
-              onClick={(event) => {
-                handleClick(event.target.innerHTML);
-              }}
-            >
-              {e.label}
-            </li>
-          ))}
 
         <input
           id="Source"
           type="number"
           className="input"
           placeholder="BufferDistance"
-          // value={destvalue}
+          min={0}
+          max={10}
+          value={destvalue!==null?destvalue:""}
         />
- 
+
         <Button
           className="Button"
           onClick={() => {
@@ -206,7 +100,7 @@ const NavigationBox = () => {
   );
 };
 
-export default NavigationBox;
+export default ProximityTool;
 
 const Search = styled.div`
   .input {

@@ -6,6 +6,7 @@ import {
   useMapEvents,
   FeatureGroup,
   useMap,
+  Marker,
 } from "react-leaflet";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -24,9 +25,12 @@ import AddAnalyticsLayer from "./AddAnalyticsLayer";
 import { selectLayerData } from "../features/layers/layervisualiseslice";
 import { selectDataSet } from "../features/layers/layerslice";
 import AddTimeseries from "./AddTimeseries";
+import { setMapBounds } from "../features/maps/mapZoomSlice";
 let sbs = null;
 let rightlayer = null;
 let leftlayer = null;
+
+//**************Map Controls***********/
 const ZoomtoLocation = ({ bounds }) => {
   console.log(bounds);
   const map = useMap();
@@ -128,12 +132,29 @@ const Map = ({ visibility }) => {
   const [showAnalytics, setVisibility] = useState(
     visibility.filter((themes) => themes.id === "Layer")[0].show
   );
+  const baseLayers = useSelector(selectBaseDataSet);
+  const overlayLayers = useSelector(selectLayerDataSet);
+  const analyticsLayer = useSelector(selectDataSet);
+  const [navigation, setNavigation] = useState(false);
   const analyticsvisualise = useSelector(selectLayerData);
   const mapZoomState = useSelector(selectMapZoomstate);
+
   useEffect(() => {
     //AddAnalytics()
     setVisibility(visibility.filter((themes) => themes.id === "Layer")[0].show);
   }, [visibility]);
+
+  useEffect(() => {
+    setNavigation(false);
+
+    if (mapZoomState.path != "") {
+      setNavigation(true);
+    } else {
+      setNavigation(false);
+    }
+    console.log(navigation);
+  }, [mapZoomState.path]);
+
   function HandleClick() {
     const map = useMapEvents({
       click: (e) => {
@@ -153,14 +174,34 @@ const Map = ({ visibility }) => {
     });
     return null;
   }
-  const baseLayers = useSelector(selectBaseDataSet);
-  const overlayLayers = useSelector(selectLayerDataSet);
-  const analyticsLayer = useSelector(selectDataSet);
-  const [navigation, setNavigation] = useState(false);
-  useEffect(() => {
-    console.log(navigation);
-    setNavigation(true);
-  }, [mapZoomState.path]);
+
+  const drawing = (e) => {
+    // if (e.layerType === "circle") {
+    console.log(e);
+    let json = e.sourceTarget._layers;
+    setTimeout(1000);
+    Object.keys(json).forEach(function (key) {
+      if (json[key]._mRadius !== undefined) {
+        console.log(json[key]);
+        dispatch(
+          setMapBounds({
+            lat: json[key]._latlng.lat,
+            lon: json[key]._latlng.lng,
+            radius: json[key]._mRadius,
+          })
+        );
+      }
+    });
+    //  dispatch(
+    //     setMapBounds({
+    //        lat:json._latlng.lat,
+    //        lon:json._latlng.lng,
+    //        radius: json._mRadius,
+    //     })
+    //   )
+    //}
+  };
+
   return (
     <MapContainer
       center={[26.2006, 92.5376]}
@@ -230,6 +271,10 @@ const Map = ({ visibility }) => {
           position="bottomleft"
           draw={{
             rectangle: false,
+            circlemarker: false,
+          }}
+          onDrawStop={(e) => {
+            drawing(e);
           }}
         />
       </FeatureGroup>
@@ -238,19 +283,21 @@ const Map = ({ visibility }) => {
           show={visibility.filter((e) => e.id === "Tools")[0].show}
         />
       }
-      {
+      {false && (
         <AddAnalyticsLayer
           test={[analyticsvisualise, analyticsLayer]}
           showAnalytics={showAnalytics}
         />
-      }
-      <ZoomtoLocation bounds={mapZoomState} />
-      {true && (
-        <GeoJSON
-          // attribution="Capa de Hospitales de ESRI"
-          data={mapZoomState.path}
-        />
       )}
+      <ZoomtoLocation bounds={mapZoomState} />
+      {mapZoomState.path != "" && <GeoJSON data={mapZoomState.path} />}
+      {mapZoomState.villages != "" & mapZoomState.villages != undefined && (
+        <FeatureGroup>
+      {  mapZoomState.villages.map((e)=>(  <Marker position={[e.lat,e.lng]}>
+          </Marker>))}
+        </FeatureGroup>
+      )}
+
       <HandleClick />
       <HandleHover />
     </MapContainer>

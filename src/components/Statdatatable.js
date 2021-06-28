@@ -9,6 +9,7 @@ import { MDBDataTableV5 } from 'mdbreact';
 import { MDBDataTable, MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import Cbutton from "./collapsebutton";
 import { ContactsOutlined } from "@material-ui/icons";
+import {selectMapZoomstate} from "../features/maps/mapZoomSlice"
 const Statsdatatable = ({ info, state }) => {
   // console.log(info)
   const [datatable, setDatatable] = useState({
@@ -19,6 +20,8 @@ const Statsdatatable = ({ info, state }) => {
   const [showLayer, setShowLayer] = useState(false);
   const infodata = useSelector(selectInfo);
   const layerdata = useSelector(selectLayerDataSet);
+  const toolsState = useSelector(selectMapZoomstate);
+  console.log(toolsState)
   var dateapi;
   var cropyeardataapi;
   const [test, setTest] = useState([]);
@@ -27,6 +30,12 @@ const Statsdatatable = ({ info, state }) => {
     cropyeardataapi=layerdata[25].layer_date;
     tabledata(dateapi,cropyeardataapi)
   }, [layerdata]);
+
+  useEffect(() => {
+    console.log(toolsState)
+
+  }, [toolsState]);
+
   const tabledata = async (e,cropyeardataapi) => {
     var cropdamsyear=cropyeardataapi;
     try {

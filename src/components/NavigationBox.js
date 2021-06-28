@@ -116,6 +116,7 @@ const NavigationBox = () => {
           response.data.items[0].position.lat,
           response.data.items[0].position.lng,
         ]);
+
       })
       .catch(function (error) {
         console.log(error);
@@ -123,6 +124,13 @@ const NavigationBox = () => {
     // setshowsuggestions(false);
   };
   const navigate = () => {
+    dispatch(
+      setMapBounds({
+        // lat:"22",
+        // lon:"22",
+        path: "",
+      })
+    )
     console.log(source);
     var config = {
       method: "get",
@@ -147,6 +155,7 @@ const NavigationBox = () => {
         let geojson = polyline.toGeoJSON(poly);
         console.log(geojson);
         // let box = response.data.items[0].mapView;
+
         dispatch(
           setMapBounds({
             // lat:"22",
