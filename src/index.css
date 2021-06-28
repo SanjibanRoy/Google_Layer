@@ -35,6 +35,8 @@ body {
   position: absolute;
   background-color: #fff;
   z-index: 10000;
+  max-Height: 50%; 
+  overflow-y: auto; 
 }
 .header {
   display: grid;

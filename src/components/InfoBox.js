@@ -13,7 +13,7 @@ const InfoBox = () => {
       <React.Fragment>
         {info !== undefined &&       
          info.map((task, index) => (
-           <Info key={index} info={task} state={state} />           
+           <Info key={index} info={task} state={state} />
           ))}
       </React.Fragment>
     </InfoBoxx>

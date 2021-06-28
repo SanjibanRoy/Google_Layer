@@ -36,7 +36,7 @@ const Legend = () => {
                 (sanju =
                   "https://geoserver.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=" +
                   task.layer),
-                arr.includes(task.layer) && (
+                  arr.includes(task.layer) && (
                   <>
                     <Legen sanju={sanju} task={task} />
                   </>
