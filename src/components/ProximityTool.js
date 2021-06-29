@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { MDBDataTableV5 } from 'mdbreact';
 import Button from "@material-ui/core/Button";
 import polyline from "@mapbox/polyline";
-var ar=[]
+var ar = []
 var axios = require("axios");
 const ProximityTool = () => {
   const dispatch = useDispatch();
@@ -24,22 +24,22 @@ const ProximityTool = () => {
   const [villages, setVillages] = useState()
 
   console.log(epicenter)
-  useEffect(()=>{
+  useEffect(() => {
     console.log(epicenter)
-    setSourceValue([epicenter.lat,epicenter.lon])
+    setSourceValue([epicenter.lat, epicenter.lon])
     setDestValue(epicenter.radius)
-  },[epicenter])
+  }, [epicenter])
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(villages)
-  },[villages])
+  }, [villages])
   const [test, setTest] = useState([]);
   const navigate = () => {
     // var ar=[]
     var config = {
       method: "get",
       url:
-        "https://api.nesdr.gov.in/nerdrr/village.php?lat="+sourcevalue[0]+"&lon="+sourcevalue[1]+"&distance="+destvalue/1000,
+        "https://api.nesdr.gov.in/nerdrr/village.php?lat=" + sourcevalue[0] + "&lon=" + sourcevalue[1] + "&distance=" + destvalue / 1000,
       // url:
       //   "https://router.hereapi.com/v8/routes?transportMode=car&origin=26.1445,91.7362&destination=25.6768,91.9270&return=polyline&apiKey=ArsBpOEL5bGUOCLre5UdBeFKCNgahMq1AfywBFhfgY4",
       // //   "?format=json&addressdetails=1&limit=1&polygon_svg=1",
@@ -50,7 +50,7 @@ const ProximityTool = () => {
       .then(function (response) {
         // let poly = response.data.routes[0].geometry;
         // let geojson = polyline.toGeoJSON(poly);
-        let villages = (response.data.map((e)=>({"name":e.name,"tot_p":e.tot_p, "lat":e.ycoord, "lng":e.xcoord,})))
+        let villages = (response.data.map((e) => ({ "name": e.name, "tot_p": e.tot_p, "lat": e.ycoord, "lng": e.xcoord, })))
         setVillages(villages)
         dispatch(
           setMapBounds({
@@ -61,12 +61,12 @@ const ProximityTool = () => {
         );
         villages.map((e) => {
           ar.push({
-            name:e.name,
-            population:  e.tot_p
+            name: e.name,
+            population: e.tot_p
           })
         })
-         
-         console.log(ar)
+
+        console.log(ar)
         setTest({
           columns: [
             {
@@ -98,7 +98,7 @@ const ProximityTool = () => {
           id="Destination"
           className="input"
           placeholder="Epicenter..."
-           value={sourcevalue!==null?sourcevalue:""}
+          value={sourcevalue !== null ? sourcevalue : ""}
         />
 
         <input
@@ -108,7 +108,7 @@ const ProximityTool = () => {
           placeholder="BufferDistance"
           min={0}
           max={10}
-          value={destvalue!==null?destvalue:""}
+          value={destvalue !== null ? destvalue : ""}
         />
 
         <Button
@@ -121,11 +121,12 @@ const ProximityTool = () => {
         </Button><br></br>
         <br></br>
         {console.log(ar.length),
-        (ar.length<1) ? "":
-        <>
-        <p>LIst of villages</p><br></br>
-         <MDBDataTableV5 scrollY maxHeight="500px" hover entriesOptions={[8, 20, 25, 100]} entries={8} pagesAmount={4} data={test} searchTop searchBottom={false} 
-         /> </>
+          (ar.length < 1) ? "" :
+            <>
+              <p>LIst of villages</p><br></br>
+              <MDBDataTableV5 scrollY maxHeight="500px" hover entriesOptions={[8, 20, 25, 100]} entries={8} pagesAmount={4} data={test} searchTop searchBottom={false}
+                fullPagination />
+            </>
         }
       </Search>
     </>

@@ -39,7 +39,7 @@ const SwipePanel = () => {
 
       <select id="left"
         onChange={(event) => {
-          changeLeft(event.target.value);
+          changeRight(event.target.value);
         }}
       >
         {overlayLayers.map(
@@ -50,7 +50,7 @@ const SwipePanel = () => {
 
       <select id="right"
         onChange={(event) => {
-          changeRight(event.target.value);
+          changeLeft(event.target.value);
         }}
       >
         {overlayLayers.map(
@@ -66,27 +66,32 @@ export default SwipePanel;
 
 const Swipe = styled.div`
   z-index: 100000000;
-  width: 25%;
+  width: 20%;
   display:flex;
   top:0;
   position: absolute;
-  background-color: #fff;
   z-index: 10000;
   align-items: center;
-  left:30%;
-  padding-right: 10%;
+  left:40%;
+  padding-right: 0%;
+  padding-left: 0%;
+  margin-top: 4px; 
 #left{
+  border-color:#014B96;
   /* position:absolute; */
   /* left:30%;
   top:0; */
+  border-style: solid;
+  border-width: 2px 2px 2px 2px;
 }
 
 #right{
   /* position:absolute;
-  left:60%;
-  top:0; */
+  left:60%;*/
   margin-left: 50%;
-
+  border-color:#014B96;
+  border-style: solid;
+  border-width: 2px 2px 2px 2px;
 }
 
 `
