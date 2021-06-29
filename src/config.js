@@ -259,8 +259,7 @@ export const layer = [
       "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:cropdam_flood_4326",
     stats: {
       api: "https://api.nesdr.gov.in/nerdrr/cropdamsassam.php?district=",
-      apitable:
-        "https://api.nesdr.gov.in/nerdrr/datatable.php?state=kharifcropassam",
+      apitable:"https://api.nesdr.gov.in/nerdrr/datatable.php?state=kharifcropassam",
       charttype: "pie",
       val: "kharifcrop",
     },
@@ -385,6 +384,11 @@ export const layer = [
     class: "Forestry",
     layer: "NERDRR_NEW:ner_forest_fire_prone_area_map",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    stats: {
+      api: "https://api.nesdr.gov.in/nerdrr/nerff.php?state=",
+      // charttype: "bar",
+      val: "nerff",
+    },
   },
   {
     id: 29,

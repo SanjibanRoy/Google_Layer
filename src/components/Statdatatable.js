@@ -27,7 +27,7 @@ const Statsdatatable = ({ info, state }) => {
   var kharifcropdataapi;
   const [test, setTest] = useState([]);
   useEffect(() => {
-    console.log(layerdata)
+    //console.log(layerdata)
     dateapi = layerdata[11].layer_date;
     cropyeardataapi=layerdata[25].layer_date;
     kharifcropdataapi=layerdata[20].layer_date;
@@ -35,7 +35,7 @@ const Statsdatatable = ({ info, state }) => {
   }, [layerdata]);
 
   useEffect(() => {
-    console.log(toolsState)
+    //console.log(toolsState)
 
   }, []);
 
@@ -86,6 +86,9 @@ const Statsdatatable = ({ info, state }) => {
       }
       else if (info.stats.val == "kharifcrop") {
         var dataurlapi = info.stats.apitable
+      }
+      else if (info.stats.val == "nerff") {
+        var dataurlapi = "https://api.nesdr.gov.in/nerdrr/datatable.php?state=all"
       }
      // console.log(dataurlapi)
       fetch(dataurlapi, {
@@ -188,6 +191,53 @@ const Statsdatatable = ({ info, state }) => {
                 {
                   label: 'Area (Hectare)',
                   field: 'area',
+                },
+              ],
+              rows: ar,
+            })
+          }
+          if (info.stats.val == "nerff") {
+            mydata.map((e) => {
+             // console.log(mydata)
+              ar.push({
+                district: e.dtname,
+                area1: (e.very_low==null?"0":e.very_low ),
+                area2: (e.low_count==null?"0":e.low_count),
+                area3: (e.mod_count==null?"0":e.mod_count),
+                area4: (e.high_count==null?"0":e.high_count),
+                area5: (e.very_high==null?"0":e.very_high)
+              })
+            })
+            setDatatable({ dataa: [mydata], isFetching: false });
+            setTest({
+              columns: [
+                {
+                  label: 'District',
+                  field: 'district',
+                  attributes: {
+                    'aria-controls': 'DataTable',
+                    'aria-label': 'District',
+                  },
+                },
+                {
+                  label: 'Very Low',
+                  field: 'area1',
+                },
+                {
+                  label: 'Low',
+                  field: 'area2',
+                },
+                {
+                  label: 'Moderate',
+                  field: 'area3',
+                },
+                {
+                  label: 'High',
+                  field: 'area4',
+                },
+                {
+                  label: 'Very High',
+                  field: 'area5',
                 },
               ],
               rows: ar,

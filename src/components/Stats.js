@@ -23,6 +23,7 @@ const Stats = ({ info, state }) => {
   // console.log(dateapi)
   var dateapi;
   useEffect(() => {
+    // console.log(layerdata)
     dateapi = layerdata[25].layer_date;
     getInfo(dateapi)
   }, [layerdata]);
@@ -50,6 +51,23 @@ const Stats = ({ info, state }) => {
       }
       if (info.stats.val == "kharifcrop") {
         var urlapi = info.stats.api + '' + (e.districtname !== undefined ? e.districtname : "")
+      }
+      if (info.stats.val == "nerff") {
+        console.log(e.districtname)
+        var nso;
+        var snr;
+        if (e.statename=="Arunachal Pradesh"){
+          snr="Arunachal"
+        }else{
+          snr=e.statename
+        }
+        if(e.districtname==undefined){
+          nso="";
+        }else{
+          nso=e.districtname;
+        }
+        // console.log(nso)
+        var urlapi= "https://api.nesdr.gov.in/nerdrr/nerff.php?state="+snr+"&district="+nso;
       }
       console.log(urlapi)
       fetch(
@@ -119,6 +137,43 @@ const Stats = ({ info, state }) => {
             var date = result.map((e) => e.district);
             var chartarea = result.map((e) => Number(e.area) / 1000000);
           }
+          if (info.stats.val == "nerff") {
+            var areas="Fire Forest Count"
+            if (nso !== ""){
+            var ctype="pie";
+            var a1 = result.map((e) => Number(e.very_low));
+            var a2 = result.map((e) => Number(e.low_count));
+            var a3 = result.map((e) => Number(e.mod_count));
+            var a4 = result.map((e) => Number(e.high_count));
+            var a5 = result.map((e) => Number(e.very_high));
+            var chartarea = [{
+              name: 'Very Low',
+              y: a1[0],
+              sliced: true,
+              selected: true,
+            }, {
+              name: 'Low',
+              y: a2[0],
+            }, {
+              name: 'Moderate',
+              y: a3[0],
+            }, {
+              name: 'High',
+              y: a4[0],
+            }, {
+              name: 'Very High',
+              y: a5[0],
+            }]
+            var date = "";
+            }else{
+              var date = result.map((e) => e.dtname);
+              var chartarea = result.map((e) => Number(e.ff_count));
+              var ctype="bar"
+            }
+          }else{
+            var areas="Area (sq. km)"
+            var ctype=info.stats.charttype
+          }
           setFeatureInfo({ data: [result], isFetching: false });
           setOptions({
             chart: {
@@ -135,7 +190,7 @@ const Stats = ({ info, state }) => {
                   [1, "white"],
                 ],
               },
-              type: info.stats.charttype,
+              type: ctype,
             },
             credits: {
               enabled: false,
@@ -157,7 +212,7 @@ const Stats = ({ info, state }) => {
               crosshair: false,
               title: {
                 // color: "#E0E0E3",
-                text: "Area (sq. km)",
+                text: areas,
               },
               labels: {
                 style: {
@@ -218,7 +273,7 @@ const Stats = ({ info, state }) => {
             series: [
               {
                 showInLegend: true,
-                name: "Area",
+                name: areas,
                 data: chartarea,
               },
             ],
