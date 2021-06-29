@@ -4,20 +4,29 @@ import L from "leaflet";
 
 let analyticslayer = null;
 
-function AddTimeseries({ test, showAnalytics }) {
-  console.log(test);
+function AddTimeseries({ test, showAnalytics, subclass, slide }) {
+  console.log(subclass);
   let data = null;
   const map = useMap();
   useEffect(() => {
     if (analyticslayer != null) {
       map.removeLayer(analyticslayer);
     }
-    analyticslayer = L.tileLayer.wms(test[1], {
-      layers: test[0],
-      format: "image/png",
-      transparent: true,
-      zIndex: 100,
-    });
+    if (subclass == "WRF") {
+      analyticslayer = L.tileLayer.wms(test[1], {
+        format: "image/png",
+        transparent: true,
+        slide: test[0],
+        zIndex: 10,
+      });
+    } else {
+      analyticslayer = L.tileLayer.wms(test[1], {
+        layers: test[0],
+        format: "image/png",
+        transparent: true,
+        zIndex: 10,
+      });
+    }
     map.addLayer(analyticslayer);
     if (!showAnalytics) {
       map.removeLayer(analyticslayer);
@@ -26,17 +35,11 @@ function AddTimeseries({ test, showAnalytics }) {
 
   useEffect(() => {
     return () => {
-    //    if (!showAnalytics) {
-            map.removeLayer(analyticslayer);
-    //      }  
-        //   else{
-        //     map.addLayer(analyticslayer);
-
-        //   }
+      map.removeLayer(analyticslayer);
     };
   }, []);
 
   return null;
 }
 
-export default AddTimeseries
+export default AddTimeseries;

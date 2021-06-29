@@ -28,10 +28,10 @@ const SidePanel = ({ changeVisibility, visibility }) => {
           <HomeIcon />
           <span align="center">Home</span>
         </li>
-        <li key={3} onClick={() => changeVisibility("Apps")}>
+        {/* <li key={3} onClick={() => changeVisibility("Apps")}>
           <AppsIcon />
           <span align="center">Apps</span>
-        </li>
+        </li> */}
         <li key={3} onClick={() => changeVisibility("Alert")}>
           <WarningIcon />
           <span align="center">Alerts</span>

@@ -36,12 +36,14 @@ const Overlays = ({ overlayer }, { index }) => {
       />
     );
   } else if (overlayer.subclass === "WRF") {
-    console.log("Inside WRF");
     layers = (
-      <WMSTileLayer
+      <AddTimeseries
         key={index}
-        url={overlayer.link  + "rh?slide=4"}
-        zIndex="10"
+        test={[overlayer.layer, overlayer.link]}
+        showAnalytics={overlayer.show}
+        subclass = "WRF"
+        slide = {5}
+
       />
     );
   } else if (overlayer.options !== "undefined") {
@@ -50,6 +52,7 @@ const Overlays = ({ overlayer }, { index }) => {
         key={index}
         test={[overlayer.layer, overlayer.link]}
         showAnalytics={overlayer.show}
+        subclass = {overlayer.subclass}
       />
     );
   }
