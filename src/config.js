@@ -177,11 +177,24 @@ export const layer = [
   },
   {
     id: 15,
-    text: "Thunderstorm",
+    text: "Thunderstorm Probable Index",
     show: false,
     class: "Alerts and Early Warning",
-    layer: "FLEWS:1august20",
-    link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
+    layer: "NERDRR_NEW:2021_06_15tp1",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    options: [
+      {
+        value: "NERDRR_NEW:2021_06_15tp1",
+        text: "11:30-14:30",
+      },
+      {
+        value: "NERDRR_NEW:2021_06_15tp2",
+        text: "14:30-17:30",
+      },
+      {
+        value: "NERDRR_NEW:2021_06_15tp3",
+        text: "17:30-12:30",
+      }]
   },
   {
     id: 16,
@@ -195,7 +208,8 @@ export const layer = [
     id: 17,
     text: "PulseRad",
     show: false,
-    class: "Lightning",
+    class:"Alerts and Early Warning",
+    subclass: "Lightning",
     layer: "NEWRM:ne_earthquake",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=pulserad&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
   },
@@ -203,7 +217,8 @@ export const layer = [
     id: 18,
     text: "Storm ETA",
     show: false,
-    class: "Lightning",
+    class:"Alerts and Early Warning",
+    subclass: "Lightning",
     layer: "NEWRM:ne_earthquake",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=eta&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
   },
@@ -211,7 +226,8 @@ export const layer = [
     id: 19,
     text: "Lightning Alert Polygons",
     show: false,
-    class: "Lightning",
+    class:"Alerts and Early Warning",
+    subclass: "Lightning",
     layer: "NEWRM:ne_earthquake",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Total.Lightning.Polygons:::1:2:3&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
   },
@@ -219,7 +235,8 @@ export const layer = [
     id: 20,
     text: "Lightning Cell Tracks",
     show: false,
-    class: "Lightning",
+    class:"Alerts and Early Warning",
+    subclass: "Lightning",
     layer: "NEWRM:ne_earthquake",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Cell.Tracks&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
   },
@@ -356,16 +373,37 @@ export const layer = [
     options: [
       {
         value: "NERDRR_NEW:2021_06_15tp1",
-        text: "2005-2011",
+        text: "11:30-14:30",
       },
       {
         value: "NERDRR_NEW:2021_06_15tp2",
-        text: "2005-2015",
+        text: "14:30-17:30",
       },
       {
         value: "NERDRR_NEW:2021_06_15tp3",
-        text: "2011-2015",
+        text: "17:30-12:30",
       }]
+  },
+  {
+    id: 30,
+    text: "WRF Rainfall",
+    show: false,
+    class: "Alerts and Early Warning",
+    layer: "NERDRR_NEW:2021_06_15tp1",
+    link: "https://analytics.nesdr.gov.in/wrf/rain?slide=4",
+    // options: [
+    //   {
+    //     value: "NERDRR_NEW:2021_06_15tp1",
+    //     text: "11:30-14:30",
+    //   },
+    //   {
+    //     value: "NERDRR_NEW:2021_06_15tp2",
+    //     text: "14:30-17:30",
+    //   },
+    //   {
+    //     value: "NERDRR_NEW:2021_06_15tp3",
+    //     text: "17:30-12:30",
+    //   }]
   },
   // {
   //   id: 29,

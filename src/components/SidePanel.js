@@ -7,6 +7,7 @@ import InsertChartIcon from "@material-ui/icons/InsertChart";
 import MapIcon from "@material-ui/icons/Map";
 import styled from "styled-components";
 import BuildIcon from '@material-ui/icons/Build';
+import WarningIcon from '@material-ui/icons/Warning';
 import $ from "jquery";
 $(document).on("click", 'ul li', function(){
   $('ul li').removeClass('activetab');
@@ -31,6 +32,10 @@ const SidePanel = ({ changeVisibility, visibility }) => {
           <AppsIcon />
           <span align="center">Apps</span>
         </li>
+        <li key={3} onClick={() => changeVisibility("Alert")}>
+          <WarningIcon />
+          <span align="center">Alerts</span>
+        </li>
         <li key={2} onClick={() => changeVisibility("Layer")}>
           <LayersIcon />
           <span align="center">Layers</span>
@@ -50,7 +55,7 @@ const SidePanel = ({ changeVisibility, visibility }) => {
         </li>
       </ul>
       <ul className="legend">
-        <li key={3} onClick={() => changeVisibility("Alert")}>
+        <li key={3} onClick={() => changeVisibility("")}>
           <MapIcon />
           <span align="center">Legend</span>
         </li>
