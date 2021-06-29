@@ -31,11 +31,11 @@ body {
 .Legend{
   width: 15%;
   bottom: 8px;
-  right: 16px;
+  right: 60px;
   position: absolute;
   background-color: #fff;
   z-index: 10000;
-  max-Height: 50%; 
+  max-Height: 30%; 
   overflow-y: auto; 
 }
 .header {
