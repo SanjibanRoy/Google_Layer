@@ -59,7 +59,7 @@ const Layer = ({ task, showLayer }) => {
             <option value={data.value}> {data.text}</option>   
           ))}
           </select>
-          <TimeSlider/>
+          {/* <TimeSlider/> */}
         </>
       ):""}
     </LAYER>

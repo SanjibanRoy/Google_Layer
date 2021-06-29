@@ -428,6 +428,28 @@ export const layer = [
         text: "Wind",
       },
     ],
+    submenu: [
+      {
+        value: 1,
+        text: "1",
+      },
+      {
+        value: 2,
+        text: "2",
+      },
+      {
+        value: 3,
+        text: "4",
+      },
+      {
+        value: 4,
+        text: "5",
+      },
+      {
+        value: "wind",
+        text: "Wind",
+      },
+    ],
   },
   {
     id: 31,

@@ -27,10 +27,8 @@ import { selectDataSet } from "../features/layers/layerslice";
 import AddTimeseries from "./AddTimeseries";
 import { setMapBounds } from "../features/maps/mapZoomSlice";
 import VectorTile from "./VectorTile";
-import Overlays from "./Overlays"
-let sbs = null;
-let rightlayer = null;
-let leftlayer = null;
+import Overlays from "./Overlays";
+
 
 //**************Map Controls***********/
 const ZoomtoLocation = ({ bounds }) => {
@@ -164,51 +162,9 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.show && (
-            <Overlays overlayer= {overlayer}  index ={index}/>
-            // <WMSTileLayer
-            //   key={index}
-            //   format="image/png"
-            //   layers={overlayer.layer}
-            //   url={overlayer.link}
-            //   transparent="true"
-            //   minZoom={overlayer.minZoom !== undefined ? overlayer.minZoom : ""}
-            //   zIndex={overlayer.class === "Administrative" ? "15" : "10"}
-            // />
-          )
+          overlayer.show && <Overlays overlayer={overlayer} index={index} />
       )}
-      {/* {overlayLayers.map(
-        (overlayer, index) =>
-          overlayer.show & (overlayer.options !== undefined) && (
-            <AddTimeseries
-              key={index}
-              test={[overlayer.layer, overlayer.link]}
-              showAnalytics={overlayer.show}
-            />
-          )
-      )} */}
-      {/* {overlayLayers.map(
-        (overlayer, index) =>
-          overlayer.show & (overlayer.subclass === "Lightning") && (
-            <TileLayer
-              key={index}
-              url={overlayer.link + "&t=" + Math.floor(+new Date() / 1000)}
-              zIndex="10"
-            />
-          )
-      )} */}
-      {/* {overlayLayers.map(
-        (overlayer, index) =>
-          overlayer.show & (overlayer.subclass === "WRF") && (
-            console.log(overlayer.link+overlayer.layer+'?slide=4'),
-            
-            <WMSTileLayer
-              key={index}
-              url={overlayer.link+overlayer.layer+'?slide=4'}
-              zIndex="10"
-            />
-          )
-      )} */}
+
       {/* <Toolbar /> */}
       <FeatureGroup>
         <EditControl
