@@ -11,7 +11,7 @@ const InfoBox = () => {
   return (
     <InfoBoxx>
       <React.Fragment>
-      {(info.length<1) ?<h1 style={{color:"black"}}>No Data</h1> : 
+      {(info.length<1) ?<h1 style={{ color: "black" }}>Data not available</h1> :
         info !== undefined &&
           info.map((task, index) => (
             <Info key={index} info={task} state={state} />
