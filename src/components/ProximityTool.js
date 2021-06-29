@@ -6,10 +6,11 @@ import {
   selectMapZoomstate,
 } from "../features/maps/mapZoomSlice";
 import { useEffect, useState } from "react";
+import { MDBDataTableV5 } from 'mdbreact';
 import Button from "@material-ui/core/Button";
 import polyline from "@mapbox/polyline";
+var ar=[]
 var axios = require("axios");
-
 const ProximityTool = () => {
   const dispatch = useDispatch();
   const [suggestions, setsuggestions] = useState([]);
@@ -31,11 +32,10 @@ const ProximityTool = () => {
 
   useEffect(()=>{
     console.log(villages)
-
   },[villages])
-
+  const [test, setTest] = useState([]);
   const navigate = () => {
-    console.log(source);
+    // var ar=[]
     var config = {
       method: "get",
       url:
@@ -50,8 +50,7 @@ const ProximityTool = () => {
       .then(function (response) {
         // let poly = response.data.routes[0].geometry;
         // let geojson = polyline.toGeoJSON(poly);
-        console.log(response);
-        let villages         = (response.data.map((e)=>({"name":e.name,"tot_p":e.tot_p, "lat":e.ycoord, "lng":e.xcoord,})))
+        let villages = (response.data.map((e)=>({"name":e.name,"tot_p":e.tot_p, "lat":e.ycoord, "lng":e.xcoord,})))
         setVillages(villages)
         dispatch(
           setMapBounds({
@@ -60,6 +59,31 @@ const ProximityTool = () => {
             villages: villages,
           })
         );
+        villages.map((e) => {
+          ar.push({
+            name:e.name,
+            population:  e.tot_p
+          })
+        })
+         
+         console.log(ar)
+        setTest({
+          columns: [
+            {
+              label: 'Name',
+              field: 'name',
+              attributes: {
+                'aria-controls': 'DataTable',
+                'aria-label': 'District',
+              },
+            },
+            {
+              label: 'Poulation',
+              field: 'population',
+            },
+          ],
+          rows: ar,
+        })
       })
       .catch(function (error) {
         console.log(error);
@@ -94,7 +118,15 @@ const ProximityTool = () => {
           }}
         >
           Submit
-        </Button>
+        </Button><br></br>
+        <br></br>
+        {console.log(ar.length),
+        (ar.length<1) ? "":
+        <>
+        <p>LIst of villages</p><br></br>
+         <MDBDataTableV5 scrollY maxHeight="500px" hover entriesOptions={[8, 20, 25, 100]} entries={8} pagesAmount={4} data={test} searchTop searchBottom={false} 
+         /> </>
+        }
       </Search>
     </>
   );
@@ -146,4 +178,45 @@ const Search = styled.div`
     background-color: grey;
     border-left: 2px solid orange;
   }
+  table {
+    margin-left: 0%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    /* max-width: 20%; */
+    table-layout: fixed;
+    width: 100%;
+    /* border: none; */
+    border-collapse: collapse;
+    border: 1px solid #dadada;
+    background-color: #222222;
+  }
+  table tr {
+    margin-bottom: 1px;
+    border-bottom: 0.5px solid #dadada;
+    word-break: break-all;
+    width:80%;
+  }
+  table td {
+    padding: 6px !important;
+    text-align: center !important;
+    background-color:white;
+    color:black !important;
+    font-weight: 400;
+}
+table th {
+  padding: 6px !important;
+  text-align: center !important;
+  background-color:orange !important;
+  font-weight:bold !important;
+  color:black !important;
+  font-weight:"bold";
+}
+p{
+  margin:top:20%;
+  font-weight:bold;
+  background-color:#004b96bd;
+  text-align:center;
+  color:white;
+  padding:6px;
+}
 `;

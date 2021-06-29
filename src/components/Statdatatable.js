@@ -34,7 +34,7 @@ const Statsdatatable = ({ info, state }) => {
   useEffect(() => {
     console.log(toolsState)
 
-  }, [toolsState]);
+  }, []);
 
   const tabledata = async (e,cropyeardataapi) => {
     var cropdamsyear=cropyeardataapi;

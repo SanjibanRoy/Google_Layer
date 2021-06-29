@@ -201,7 +201,7 @@ const Map = ({ visibility }) => {
       {/* <Toolbar /> */}
       <FeatureGroup>
         <EditControl
-          position="bottomleft"
+          position="bottomright"
           draw={{
             rectangle: false,
             circlemarker: false,

@@ -46,14 +46,17 @@ const AppsPanel = () => {
       <VEGANALYSIS>
         <div className="apps" onClick={() => ChangeMap("Search")}>
           <SearchIcon color="primary" />
+          <p>Search Location</p>
         </div>
 
         <div className=" apps" onClick={() => ChangeMap("Navigation")}>
           <DirectionsIcon color="primary" />
+          <p>Navigation</p>
         </div>
 
         <div className=" apps" onClick={() => ChangeMap("Proximity")}>
           <MyLocationIcon color="primary" />
+          <p>Proximity Analysis</p>
         </div>
       </VEGANALYSIS>
 

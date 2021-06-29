@@ -94,7 +94,11 @@ export default function Cbutton() {
                   <Tab label="Stats" />
                 </Tabs>
               </AppBar>
-              {value === 0 && <InfoBox />}
+              {value === 0 &&
+                <>
+                  <InfoBox />
+                </>
+              }
               {value === 1 && (
                 <>
                   {" "}
@@ -103,12 +107,11 @@ export default function Cbutton() {
                 </>
               )}
               {/* <TabPanel value={value} index={0}>
-                                <InfoBox />
-                            </TabPanel>
-                            <TabPanel value={value} index={1}>
-                                <FocusBox />
-                                <StatsBox />
-                            </TabPanel> */}
+                <><h1 style={{color:"black"}}>hiiii</h1></>
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                <><h1  style={{color:"black"}}>hiiii</h1></>
+              </TabPanel> */}
             </div>
           </div>
         </Grid>

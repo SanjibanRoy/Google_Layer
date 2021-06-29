@@ -1,20 +1,22 @@
 import React from "react";
 import Info from "./Info";
 import styled from "styled-components";
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectMapstate } from "../features/maps/mapStateSlice";
 const InfoBox = () => {
   const state = useSelector(selectMapstate);
-  const info = state.overlays.filter((layers)=>layers.class!=="Lightning");
-  
+  const info = state.overlays.filter((layers) => layers.class !== "Lightning");
+  console.log(info)
   return (
     <InfoBoxx>
       <React.Fragment>
-        {info !== undefined &&       
-         info.map((task, index) => (
-           <Info key={index} info={task} state={state} />
-          ))}
+      {(info.length<1) ?<h1 style={{color:"black"}}>No Data</h1> : 
+        info !== undefined &&
+          info.map((task, index) => (
+            <Info key={index} info={task} state={state} />
+          ))
+        }
       </React.Fragment>
     </InfoBoxx>
   );
