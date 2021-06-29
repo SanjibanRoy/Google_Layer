@@ -10,6 +10,7 @@ import {
   Marker,
 } from "react-leaflet";
 import AddTimeseries from "./AddTimeseries";
+import MarkersAdd from "./MarkersAdd";
 
 const Overlays = ({ overlayer }, { index }) => {
   let layers;
@@ -35,15 +36,16 @@ const Overlays = ({ overlayer }, { index }) => {
         zIndex="10"
       />
     );
+  } else if (overlayer.subclass === "GeoJSON") {
+    layers = <MarkersAdd url ={overlayer.link}/>;
   } else if (overlayer.subclass === "WRF") {
     layers = (
       <AddTimeseries
         key={index}
         test={[overlayer.layer, overlayer.link]}
         showAnalytics={overlayer.show}
-        subclass = "WRF"
-        slide = {5}
-
+        subclass="WRF"
+        slide={5}
       />
     );
   } else if (overlayer.options !== "undefined") {
@@ -52,7 +54,7 @@ const Overlays = ({ overlayer }, { index }) => {
         key={index}
         test={[overlayer.layer, overlayer.link]}
         showAnalytics={overlayer.show}
-        subclass = {overlayer.subclass}
+        subclass={overlayer.subclass}
       />
     );
   }

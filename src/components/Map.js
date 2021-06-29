@@ -28,6 +28,7 @@ import AddTimeseries from "./AddTimeseries";
 import { setMapBounds } from "../features/maps/mapZoomSlice";
 import VectorTile from "./VectorTile";
 import Overlays from "./Overlays";
+import MarkersAdd from "./MarkersAdd";
 
 
 //**************Map Controls***********/
@@ -198,6 +199,7 @@ const Map = ({ visibility }) => {
           ))}
         </FeatureGroup>
       )}
+      {/* <MarkersAdd/> */}
 
       <HandleClick />
       <HandleHover />

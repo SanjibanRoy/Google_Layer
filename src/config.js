@@ -255,19 +255,16 @@ export const layer = [
     class: "CropDAMS",
     layer: "NERDRR_NEW:cropdam_flood_4326",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
-<<<<<<< HEAD
-    legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:cropdam_flood_4326",
-    stats: {
-      api: "https://api.nesdr.gov.in/nerdrr/cropdamsassam.php?district=",
-       apitable: "https://api.nesdr.gov.in/nerdrr/datatable.php?state=kharifcropassam",
-      charttype: "pie",
-      val:"kharifcrop",
-    },
-    layer_date:'',
-=======
     legend:
       "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:cropdam_flood_4326",
->>>>>>> cf00397dac223ef910bcbf46d6721b843fb19296
+    stats: {
+      api: "https://api.nesdr.gov.in/nerdrr/cropdamsassam.php?district=",
+      apitable:
+        "https://api.nesdr.gov.in/nerdrr/datatable.php?state=kharifcropassam",
+      charttype: "pie",
+      val: "kharifcrop",
+    },
+    layer_date: "",
   },
   {
     id: 22,
@@ -381,7 +378,6 @@ export const layer = [
     info:
       "LIS DATA (Lightnign Hazards map is prepared by the TRMM- Lightning Imaging Sensor (LIS) available data . The spatial resulution is 0.1 degee X 0.1 degree.",
   },
-
   {
     id: 28,
     text: "Forest Vulnarability Map",
@@ -1004,6 +1000,22 @@ export const layer = [
         text: "04:30-05:30",
       },
     ],
+  },
+  {
+    id: 33,
+    text: "Recent Earthquakes",
+    show: false,
+    class: "Alerts and Early Warning",
+    subclass: "GeoJSON",
+    link: "https://nerdrr.gov.in/tempdbacc/getLastDayEqs.php",
+  },
+  {
+    id: 34,
+    text: "Forest Fire (2021)",
+    show: false,
+    class: "Forestry",
+    subclass: "GeoJSON",
+    link: "https://nerdrr.gov.in/tempdbacc/getForestFirePoints_2021.php",
   },
 ];
 
