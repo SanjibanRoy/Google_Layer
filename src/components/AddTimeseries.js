@@ -13,18 +13,18 @@ function AddTimeseries({ test, showAnalytics, subclass, slide }) {
       map.removeLayer(analyticslayer);
     }
     if (subclass == "WRF") {
-      analyticslayer = L.tileLayer.wms(test[1]+test[0], {
+      analyticslayer = L.tileLayer.wms(test[1], {
         format: "image/png",
         transparent: true,
-        slide: slide,
-        zIndex: 100,
+        slide: test[0],
+        zIndex: 10,
       });
     } else {
       analyticslayer = L.tileLayer.wms(test[1], {
         layers: test[0],
         format: "image/png",
         transparent: true,
-        zIndex: 100,
+        zIndex: 10,
       });
     }
     map.addLayer(analyticslayer);

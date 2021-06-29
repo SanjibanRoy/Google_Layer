@@ -133,7 +133,7 @@ export const layer = [
     text: "Flood Inundation",
     show: false,
     class: "Flood",
-    subclass:"Flood",
+    subclass: "Flood",
     // layer: "FLEWS:1august20",
     options: [
       { value: "FLEWS:1august20", text: "1 August 2020" },
@@ -331,7 +331,7 @@ export const layer = [
     text: "Crop Damage (River Bank Erosion)",
     show: false,
     class: "CropDAMS",
-    subclass:"cropDAMS",
+    subclass: "cropDAMS",
     layer: "NERDRR_NEW:2005-11-6_districts_cropdam_due_to_bankline_erosion",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
     layer_date: "",
@@ -407,103 +407,593 @@ export const layer = [
     show: false,
     class: "Alerts and Early Warning",
     subclass: "WRF",
-    layer: "NERDRR_NEW:2021_06_15tp1",
-    link: "https://analytics.nesdr.gov.in/wrf/",
+    layer: "",
+    link: "https://analytics.nesdr.gov.in/wrf/rain",
     options: [
       {
-        value: "rain",
-        text: "Rainfall",
-      },
-      {
-        value: "rh",
-        text: "Relative humidity",
-      },
-      {
-        value: "temperature",
-        text: "Temperature",
-      },
-
-      {
-        value: "wind",
-        text: "Wind",
-      },
-    ],
-    submenu: [
-      {
         value: 1,
-        text: "1",
+        text: "05:30-6:30",
       },
       {
         value: 2,
-        text: "2",
+        text: "06:30-7:30",
       },
       {
         value: 3,
-        text: "4",
+        text: "07:30-8:30",
       },
       {
         value: 4,
-        text: "5",
+        text: "08:30-9:30",
       },
       {
-        value: "wind",
-        text: "Wind",
+        value: 5,
+        text: "09:30-10:30",
+      },
+      {
+        value: 6,
+        text: "10:30-11:30",
+      },
+      {
+        value: 7,
+        text: "11:30-12:30",
+      },
+      {
+        value: 8,
+        text: "12:30-13:30",
+      },
+      {
+        value: 9,
+        text: "13:30-14:30",
+      },
+      {
+        value: 10,
+        text: "14:30-15:30",
+      },
+      {
+        value: 11,
+        text: "15:30-16:30",
+      },
+
+      {
+        value: 12,
+        text: "16:30-17:30",
+      },
+      {
+        value: 13,
+        text: "17:30-18:30",
+      },
+      {
+        value: 14,
+        text: "19:30-20:30",
+      },
+      {
+        value: 15,
+        text: "20:30-21:30",
+      },
+      {
+        value: 16,
+        text: "21:30-22:30",
+      },
+      {
+        value: 17,
+        text: "22:30-23:30",
+      },
+      {
+        value: 18,
+        text: "23:30-00:30",
+      },
+      {
+        value: 19,
+        text: "00:30-01:30",
+      },
+      {
+        value: 20,
+        text: "01:30-02:30",
+      },
+      {
+        value: 21,
+        text: "02:30-03:30",
+      },
+      {
+        value: 22,
+        text: "03:30-04:30",
+      },
+      {
+        value: 23,
+        text: "04:30-05:30",
+      },
+      {
+        value: 24,
+        text: "05:30-6:30",
+      },
+      {
+        value: 25,
+        text: "06:30-7:30",
+      },
+      {
+        value: 26,
+        text: "07:30-8:30",
+      },
+      {
+        value: 27,
+        text: "08:30-9:30",
+      },
+      {
+        value: 28,
+        text: "09:30-10:30",
+      },
+      {
+        value: 29,
+        text: "10:30-11:30",
+      },
+      {
+        value: 30,
+        text: "11:30-12:30",
+      },
+      {
+        value: 31,
+        text: "12:30-13:30",
+      },
+      {
+        value: 32,
+        text: "13:30-14:30",
+      },
+      {
+        value: 33,
+        text: "14:30-15:30",
+      },
+      {
+        value: 34,
+        text: "15:30-16:30",
+      },
+
+      {
+        value: 35,
+        text: "16:30-17:30",
+      },
+      {
+        value: 36,
+        text: "17:30-18:30",
+      },
+      {
+        value: 37,
+        text: "19:30-20:30",
+      },
+      {
+        value: 38,
+        text: "20:30-21:30",
+      },
+      {
+        value: 39,
+        text: "21:30-22:30",
+      },
+      {
+        value: 40,
+        text: "22:30-23:30",
+      },
+      {
+        value: 41,
+        text: "23:30-00:30",
+      },
+      {
+        value: 42,
+        text: "00:30-01:30",
+      },
+      {
+        value: 43,
+        text: "01:30-02:30",
+      },
+      {
+        value: 44,
+        text: "02:30-03:30",
+      },
+      {
+        value: 45,
+        text: "03:30-04:30",
+      },
+      {
+        value: 46,
+        text: "04:30-05:30",
       },
     ],
   },
+
   {
     id: 31,
-    text: "Relative Humidity",
+    text: "WRF Temperature",
     show: false,
     class: "Alerts and Early Warning",
     subclass: "WRF",
-    layer: "NERDRR_NEW:2021_06_15tp1",
-    link: "https://analytics.nesdr.gov.in/wrf/rh?slide=4",
-    // options: [
-    //   {
-    //     value: "NERDRR_NEW:2021_06_15tp1",
-    //     text: "11:30-14:30",
-    //   },
-    //   {
-    //     value: "NERDRR_NEW:2021_06_15tp2",
-    //     text: "14:30-17:30",
-    //   },
-    //   {
-    //     value: "NERDRR_NEW:2021_06_15tp3",
-    //     text: "17:30-12:30",
-    //   }]
+    layer: "",
+    link: "https://analytics.nesdr.gov.in/wrf/temperature",
+    options: [
+      {
+        value: 1,
+        text: "05:30-6:30",
+      },
+      {
+        value: 2,
+        text: "06:30-7:30",
+      },
+      {
+        value: 3,
+        text: "07:30-8:30",
+      },
+      {
+        value: 4,
+        text: "08:30-9:30",
+      },
+      {
+        value: 5,
+        text: "09:30-10:30",
+      },
+      {
+        value: 6,
+        text: "10:30-11:30",
+      },
+      {
+        value: 7,
+        text: "11:30-12:30",
+      },
+      {
+        value: 8,
+        text: "12:30-13:30",
+      },
+      {
+        value: 9,
+        text: "13:30-14:30",
+      },
+      {
+        value: 10,
+        text: "14:30-15:30",
+      },
+      {
+        value: 11,
+        text: "15:30-16:30",
+      },
+
+      {
+        value: 12,
+        text: "16:30-17:30",
+      },
+      {
+        value: 13,
+        text: "17:30-18:30",
+      },
+      {
+        value: 14,
+        text: "19:30-20:30",
+      },
+      {
+        value: 15,
+        text: "20:30-21:30",
+      },
+      {
+        value: 16,
+        text: "21:30-22:30",
+      },
+      {
+        value: 17,
+        text: "22:30-23:30",
+      },
+      {
+        value: 18,
+        text: "23:30-00:30",
+      },
+      {
+        value: 19,
+        text: "00:30-01:30",
+      },
+      {
+        value: 20,
+        text: "01:30-02:30",
+      },
+      {
+        value: 21,
+        text: "02:30-03:30",
+      },
+      {
+        value: 22,
+        text: "03:30-04:30",
+      },
+      {
+        value: 23,
+        text: "04:30-05:30",
+      },
+      {
+        value: 24,
+        text: "05:30-6:30",
+      },
+      {
+        value: 25,
+        text: "06:30-7:30",
+      },
+      {
+        value: 26,
+        text: "07:30-8:30",
+      },
+      {
+        value: 27,
+        text: "08:30-9:30",
+      },
+      {
+        value: 28,
+        text: "09:30-10:30",
+      },
+      {
+        value: 29,
+        text: "10:30-11:30",
+      },
+      {
+        value: 30,
+        text: "11:30-12:30",
+      },
+      {
+        value: 31,
+        text: "12:30-13:30",
+      },
+      {
+        value: 32,
+        text: "13:30-14:30",
+      },
+      {
+        value: 33,
+        text: "14:30-15:30",
+      },
+      {
+        value: 34,
+        text: "15:30-16:30",
+      },
+
+      {
+        value: 35,
+        text: "16:30-17:30",
+      },
+      {
+        value: 36,
+        text: "17:30-18:30",
+      },
+      {
+        value: 37,
+        text: "19:30-20:30",
+      },
+      {
+        value: 38,
+        text: "20:30-21:30",
+      },
+      {
+        value: 39,
+        text: "21:30-22:30",
+      },
+      {
+        value: 40,
+        text: "22:30-23:30",
+      },
+      {
+        value: 41,
+        text: "23:30-00:30",
+      },
+      {
+        value: 42,
+        text: "00:30-01:30",
+      },
+      {
+        value: 43,
+        text: "01:30-02:30",
+      },
+      {
+        value: 44,
+        text: "02:30-03:30",
+      },
+      {
+        value: 45,
+        text: "03:30-04:30",
+      },
+      {
+        value: 46,
+        text: "04:30-05:30",
+      },
+    ],
   },
+
   {
     id: 32,
-    text: "Temperature",
+    text: "WRF Relative Humidity",
     show: false,
     class: "Alerts and Early Warning",
     subclass: "WRF",
-    layer: "NERDRR_NEW:2021_06_15tp1",
-    link: "https://analytics.nesdr.gov.in/wrf/temperature?slide=4",
-    // options: [
-    //   {
-    //     value: "NERDRR_NEW:2021_06_15tp1",
-    //     text: "11:30-14:30",
-    //   },
-    //   {
-    //     value: "NERDRR_NEW:2021_06_15tp2",
-    //     text: "14:30-17:30",
-    //   },
-    //   {
-    //     value: "NERDRR_NEW:2021_06_15tp3",
-    //     text: "17:30-12:30",
-    //   }]
+    layer: "",
+    link: "https://analytics.nesdr.gov.in/wrf/rh",
+    options: [
+      {
+        value: 1,
+        text: "05:30-6:30",
+      },
+      {
+        value: 2,
+        text: "06:30-7:30",
+      },
+      {
+        value: 3,
+        text: "07:30-8:30",
+      },
+      {
+        value: 4,
+        text: "08:30-9:30",
+      },
+      {
+        value: 5,
+        text: "09:30-10:30",
+      },
+      {
+        value: 6,
+        text: "10:30-11:30",
+      },
+      {
+        value: 7,
+        text: "11:30-12:30",
+      },
+      {
+        value: 8,
+        text: "12:30-13:30",
+      },
+      {
+        value: 9,
+        text: "13:30-14:30",
+      },
+      {
+        value: 10,
+        text: "14:30-15:30",
+      },
+      {
+        value: 11,
+        text: "15:30-16:30",
+      },
+
+      {
+        value: 12,
+        text: "16:30-17:30",
+      },
+      {
+        value: 13,
+        text: "17:30-18:30",
+      },
+      {
+        value: 14,
+        text: "19:30-20:30",
+      },
+      {
+        value: 15,
+        text: "20:30-21:30",
+      },
+      {
+        value: 16,
+        text: "21:30-22:30",
+      },
+      {
+        value: 17,
+        text: "22:30-23:30",
+      },
+      {
+        value: 18,
+        text: "23:30-00:30",
+      },
+      {
+        value: 19,
+        text: "00:30-01:30",
+      },
+      {
+        value: 20,
+        text: "01:30-02:30",
+      },
+      {
+        value: 21,
+        text: "02:30-03:30",
+      },
+      {
+        value: 22,
+        text: "03:30-04:30",
+      },
+      {
+        value: 23,
+        text: "04:30-05:30",
+      },
+      {
+        value: 24,
+        text: "05:30-6:30",
+      },
+      {
+        value: 25,
+        text: "06:30-7:30",
+      },
+      {
+        value: 26,
+        text: "07:30-8:30",
+      },
+      {
+        value: 27,
+        text: "08:30-9:30",
+      },
+      {
+        value: 28,
+        text: "09:30-10:30",
+      },
+      {
+        value: 29,
+        text: "10:30-11:30",
+      },
+      {
+        value: 30,
+        text: "11:30-12:30",
+      },
+      {
+        value: 31,
+        text: "12:30-13:30",
+      },
+      {
+        value: 32,
+        text: "13:30-14:30",
+      },
+      {
+        value: 33,
+        text: "14:30-15:30",
+      },
+      {
+        value: 34,
+        text: "15:30-16:30",
+      },
+
+      {
+        value: 35,
+        text: "16:30-17:30",
+      },
+      {
+        value: 36,
+        text: "17:30-18:30",
+      },
+      {
+        value: 37,
+        text: "19:30-20:30",
+      },
+      {
+        value: 38,
+        text: "20:30-21:30",
+      },
+      {
+        value: 39,
+        text: "21:30-22:30",
+      },
+      {
+        value: 40,
+        text: "22:30-23:30",
+      },
+      {
+        value: 41,
+        text: "23:30-00:30",
+      },
+      {
+        value: 42,
+        text: "00:30-01:30",
+      },
+      {
+        value: 43,
+        text: "01:30-02:30",
+      },
+      {
+        value: 44,
+        text: "02:30-03:30",
+      },
+      {
+        value: 45,
+        text: "03:30-04:30",
+      },
+      {
+        value: 46,
+        text: "04:30-05:30",
+      },
+    ],
   },
-  // {
-  //   id: 29,
-  //   text: "Landslide",
-  //   show: false,
-  //   class: "Forestry",
-  //   layer: "NERDRR_NEW:ladslide_points",
-  //   link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
-  // },
-  // census end
 ];
 
 // maps configuration
