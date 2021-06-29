@@ -81,7 +81,7 @@ body {
 }
 
 .SidePanel >ul>li:hover {
-  background-color: #ff7839;
+  background-color: #ffa500;
   border: black;
   color: #fff;
 }

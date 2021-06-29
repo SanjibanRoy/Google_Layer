@@ -17,7 +17,7 @@ const SidePanel = ({ changeVisibility, visibility }) => {
   return (
     <SIDEPANEL className="SidePanel">
       <ul>
-        <li key={1} style={{backgroundColor:"#ff7839"}}>
+        <li key={1} style={{backgroundColor:"#ffa500"}}>
           <img src="./logotest.png" alt="nesdr-logo" />
         </li>
         <li
@@ -73,7 +73,7 @@ export const SIDEPANEL = styled.div`
     left: 5%;
   }
   .activetab {
-    border-left: 3px solid #ff7839;
+    border-left: 3px solid #ffa500;
     border-color: oragne;
   }
   .activetab>.MuiSvgIcon-root{

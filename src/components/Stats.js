@@ -48,6 +48,9 @@ const Stats = ({ info, state }) => {
           var urlapi=info.options[0].api+ '' + (e.districtname !== undefined ? e.districtname.toLowerCase() : "")
         }
       }
+      if (info.stats.val == "kharifcrop") {
+        var urlapi = info.stats.api + '' + (e.districtname !== undefined ? e.districtname : "")
+      }
       console.log(urlapi)
       fetch(
         urlapi, {
@@ -61,6 +64,32 @@ const Stats = ({ info, state }) => {
             var chartarea = result.map((e) => Number(e.area) / 1000000);
           }
           if (info.stats.val == "firev") {
+            var a1 = result.map((e) => Number(e.area1) / 1000000);
+            var a2 = result.map((e) => Number(e.area2) / 1000000);
+            var a3 = result.map((e) => Number(e.area3) / 1000000);
+            var a4 = result.map((e) => Number(e.area4) / 1000000);
+            var a5 = result.map((e) => Number(e.area5) / 1000000);
+            var chartarea = [{
+              name: 'Very Low',
+              y: a1[0],
+              sliced: true,
+              selected: true
+            }, {
+              name: 'Low',
+              y: a2[0],
+            }, {
+              name: 'Moderate',
+              y: a3[0],
+            }, {
+              name: 'High',
+              y: a4[0],
+            }, {
+              name: 'Very High',
+              y: a5[0],
+            }]
+            var date = "";
+          }
+          if (info.stats.val == "kharifcrop") {
             var a1 = result.map((e) => Number(e.area1) / 1000000);
             var a2 = result.map((e) => Number(e.area2) / 1000000);
             var a3 = result.map((e) => Number(e.area3) / 1000000);
