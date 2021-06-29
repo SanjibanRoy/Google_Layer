@@ -7,6 +7,7 @@ import InsertChartIcon from "@material-ui/icons/InsertChart";
 import MapIcon from "@material-ui/icons/Map";
 import styled from "styled-components";
 import BuildIcon from '@material-ui/icons/Build';
+import WarningIcon from '@material-ui/icons/Warning';
 import $ from "jquery";
 $(document).on("click", 'ul li', function(){
   $('ul li').removeClass('activetab');
@@ -16,8 +17,8 @@ const SidePanel = ({ changeVisibility, visibility }) => {
   return (
     <SIDEPANEL className="SidePanel">
       <ul>
-        <li key={1}>
-          <img src="./logo1.png" alt="nesdr-logo" />
+        <li key={1} style={{backgroundColor:"#ffa500"}}>
+          <img src="./logotest.png" alt="nesdr-logo" />
         </li>
         <li
           className="activetab"
@@ -27,9 +28,13 @@ const SidePanel = ({ changeVisibility, visibility }) => {
           <HomeIcon />
           <span align="center">Home</span>
         </li>
-        <li key={3} onClick={() => changeVisibility("Apps")}>
+        {/* <li key={3} onClick={() => changeVisibility("Apps")}>
           <AppsIcon />
           <span align="center">Apps</span>
+        </li> */}
+        <li key={3} onClick={() => changeVisibility("Alert")}>
+          <WarningIcon />
+          <span align="center">Alerts</span>
         </li>
         <li key={2} onClick={() => changeVisibility("Layer")}>
           <LayersIcon />
@@ -50,7 +55,7 @@ const SidePanel = ({ changeVisibility, visibility }) => {
         </li>
       </ul>
       <ul className="legend">
-        <li key={3} onClick={() => changeVisibility("Alert")}>
+        <li key={3} onClick={() => changeVisibility("")}>
           <MapIcon />
           <span align="center">Legend</span>
         </li>
@@ -68,7 +73,7 @@ export const SIDEPANEL = styled.div`
     left: 5%;
   }
   .activetab {
-    border-left: 3px solid orange;
+    border-left: 3px solid #ffa500;
     border-color: oragne;
   }
   .activetab>.MuiSvgIcon-root{

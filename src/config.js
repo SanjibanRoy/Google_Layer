@@ -24,7 +24,7 @@ export const layer = [
       { value: "area", text: "Area" },
       // { value: "diff", text: "Change"},
     ],
-    minZoom:10
+    minZoom: 10,
     // stats: {
     //   api:"https://apps.nesdr.gov.in/nerdrrapi/flood.php?district=",
     //   charttype:"column"
@@ -56,7 +56,8 @@ export const layer = [
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "Revenue Circle",
     stats: true,
-    legend:"https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:ner_landuse_landcover_50k_1st_cycle"
+    legend:
+      "https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:ner_landuse_landcover_50k_1st_cycle",
   },
   {
     id: 5,
@@ -66,8 +67,8 @@ export const layer = [
     layer: "analytic:lulc2ndcycle",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "Revenue Circle",
-    legend:"https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:lulc2ndcycle"
-
+    legend:
+      "https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:lulc2ndcycle",
   },
   {
     id: 6,
@@ -77,8 +78,8 @@ export const layer = [
     layer: "analytic:lulc3rdcycle",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "LULC(2015-16)",
-    legend:"https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:lulc3rdcycle"
-
+    legend:
+      "https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:lulc3rdcycle",
   },
   // Land Use and Land Cover end
 
@@ -88,10 +89,17 @@ export const layer = [
     text: "Census",
     show: false,
     class: "Census",
+<<<<<<< HEAD
     layer: "analytic:ner_census",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     legend:"https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NEC:assam_census"
 
+=======
+    layer: "NEC:assam_census",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
+    legend:
+      "https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NEC:assam_census",
+>>>>>>> eb103012b6608f968e3733ae6c8d6ed3c0e79985
   },
   {
     id: 8,
@@ -124,13 +132,15 @@ export const layer = [
     class: "Earthquake/Landslides",
     layer: "NERDRR_NEW:ladslide_points",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
-    info:"This is an inventory of all landslide incidents that have occurred in the NER in 2020 and 2021 (till date). This seasonal landslide inventory is small-medium in scale and archival in nature. The inventory is sourced from Newspapers, Social Media, GSI Reports, SDMA reports and Field Visits. The inventory has a 3-Tier classification for all landslide incidents. Type 1 incidents have accurate geolocation, Type 2 incidents have some degree of locational uncertainty while Type 3 incidents are collapsed/blocked road sections along National/State Highways and other important roads. Those landside incidents which have been verified are mentioned. The preceding '24 hours' rainfall for each landslide is derived from NASA's Global Precipitation Measurement (GPM) mission using the 'NASA/GPM_L3/IMERG_V06' product. If the landslide was fatal in nature then the number of deaths caused are also mentioned."
+    info:
+      "This is an inventory of all landslide incidents that have occurred in the NER in 2020 and 2021 (till date). This seasonal landslide inventory is small-medium in scale and archival in nature. The inventory is sourced from Newspapers, Social Media, GSI Reports, SDMA reports and Field Visits. The inventory has a 3-Tier classification for all landslide incidents. Type 1 incidents have accurate geolocation, Type 2 incidents have some degree of locational uncertainty while Type 3 incidents are collapsed/blocked road sections along National/State Highways and other important roads. Those landside incidents which have been verified are mentioned. The preceding '24 hours' rainfall for each landslide is derived from NASA's Global Precipitation Measurement (GPM) mission using the 'NASA/GPM_L3/IMERG_V06' product. If the landslide was fatal in nature then the number of deaths caused are also mentioned.",
   },
   {
     id: 12,
     text: "Flood Inundation",
     show: false,
     class: "Flood",
+    subclass: "Flood",
     // layer: "FLEWS:1august20",
     options: [
       { value: "FLEWS:1august20", text: "1 August 2020" },
@@ -153,9 +163,9 @@ export const layer = [
     stats: {
       api: "https://api.nesdr.gov.in/nerdrr/flood.php?district=",
       charttype: "column",
-      val:"flood",
+      val: "flood",
     },
-    layer_date:'',
+    layer_date: "",
     link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
   },
   {
@@ -173,15 +183,29 @@ export const layer = [
     class: "Alerts and Early Warning",
     layer: "FLEWS:1august20",
 
-    link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
+    link: "https://analytics.nesdr.gov.in/nerdrr_lightning/lightning?slide=1",
   },
   {
     id: 15,
-    text: "Thunderstorm",
+    text: "Thunderstorm Probable Index",
     show: false,
     class: "Alerts and Early Warning",
-    layer: "FLEWS:1august20",
-    link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
+    layer: "NERDRR_NEW:2021_06_15tp1",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    options: [
+      {
+        value: "NERDRR_NEW:2021_06_15tp1",
+        text: "11:30-14:30",
+      },
+      {
+        value: "NERDRR_NEW:2021_06_15tp2",
+        text: "14:30-17:30",
+      },
+      {
+        value: "NERDRR_NEW:2021_06_15tp3",
+        text: "17:30-12:30",
+      },
+    ],
   },
   {
     id: 16,
@@ -195,33 +219,41 @@ export const layer = [
     id: 17,
     text: "PulseRad",
     show: false,
-    class: "Lightning",
+    class: "Alerts and Early Warning",
+    subclass: "Lightning",
     layer: "NEWRM:ne_earthquake",
-    link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=pulserad&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
+    link:
+      "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=pulserad&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
   },
   {
     id: 18,
     text: "Storm ETA",
     show: false,
-    class: "Lightning",
+    class: "Alerts and Early Warning",
+    subclass: "Lightning",
     layer: "NEWRM:ne_earthquake",
-    link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=eta&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
+    link:
+      "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=eta&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
   },
   {
     id: 19,
     text: "Lightning Alert Polygons",
     show: false,
-    class: "Lightning",
+    class: "Alerts and Early Warning",
+    subclass: "Lightning",
     layer: "NEWRM:ne_earthquake",
-    link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Total.Lightning.Polygons:::1:2:3&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
+    link:
+      "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Total.Lightning.Polygons:::1:2:3&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
   },
   {
     id: 20,
     text: "Lightning Cell Tracks",
     show: false,
-    class: "Lightning",
+    class: "Alerts and Early Warning",
+    subclass: "Lightning",
     layer: "NEWRM:ne_earthquake",
-    link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Cell.Tracks&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
+    link:
+      "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Cell.Tracks&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
   },
   {
     id: 21,
@@ -230,8 +262,16 @@ export const layer = [
     class: "CropDAMS",
     layer: "NERDRR_NEW:cropdam_flood_4326",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
-    legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:cropdam_flood_4326"
-
+    legend:
+      "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:cropdam_flood_4326",
+    stats: {
+      api: "https://api.nesdr.gov.in/nerdrr/cropdamsassam.php?district=",
+      apitable:
+        "https://api.nesdr.gov.in/nerdrr/datatable.php?state=kharifcropassam",
+      charttype: "pie",
+      val: "kharifcrop",
+    },
+    layer_date: "",
   },
   {
     id: 22,
@@ -241,13 +281,16 @@ export const layer = [
     layer: "NERDRR_NEW:mizoram_fire_vul_4326",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
     stats: {
-      api: "https://api.nesdr.gov.in/nerdrr/firevunalarability.php?state=mizoram&district=",
+      api:
+        "https://api.nesdr.gov.in/nerdrr/firevunalarability.php?state=mizoram&district=",
       apitable: "https://api.nesdr.gov.in/nerdrr/datatable.php?state=mizoram",
       charttype: "pie",
-      val:"firev",
+      val: "firev",
     },
-    legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:mizoram_fire_vul_4326",
-    info:"A forest fire vulnerability map provides information about the likelihood of forest fire in a specific region. The vulnerability of forest fire depends on many factors, the important factors being forest types, forest density, elevation above mean sea level, the slope of the terrain, hill’s aspect, and proximity. This information is useful in the forest fire early warning and is beneficial for decision-making policies of mitigating forest fire. "
+    legend:
+      "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:mizoram_fire_vul_4326",
+    info:
+      "A forest fire vulnerability map provides information about the likelihood of forest fire in a specific region. The vulnerability of forest fire depends on many factors, the important factors being forest types, forest density, elevation above mean sea level, the slope of the terrain, hill’s aspect, and proximity. This information is useful in the forest fire early warning and is beneficial for decision-making policies of mitigating forest fire. ",
   },
   {
     id: 23,
@@ -257,13 +300,16 @@ export const layer = [
     layer: "  NERDRR_NEW:megh_fire_vul_4326",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
     stats: {
-      api: "https://api.nesdr.gov.in/nerdrr/firevunalarability.php?state=meghalaya&district=",
+      api:
+        "https://api.nesdr.gov.in/nerdrr/firevunalarability.php?state=meghalaya&district=",
       apitable: "https://api.nesdr.gov.in/nerdrr/datatable.php?state=meghalaya",
       charttype: "pie",
-      val:"firev",
+      val: "firev",
     },
-    legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:mizoram_fire_vul_4326",
-    info:"A forest fire vulnerability map provides information about the likelihood of forest fire in a specific region. The vulnerability of forest fire depends on many factors, the important factors being forest types, forest density, elevation above mean sea level, the slope of the terrain, hill’s aspect, and proximity. This information is useful in the forest fire early warning and is beneficial for decision-making policies of mitigating forest fire. "
+    legend:
+      "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:mizoram_fire_vul_4326",
+    info:
+      "A forest fire vulnerability map provides information about the likelihood of forest fire in a specific region. The vulnerability of forest fire depends on many factors, the important factors being forest types, forest density, elevation above mean sea level, the slope of the terrain, hill’s aspect, and proximity. This information is useful in the forest fire early warning and is beneficial for decision-making policies of mitigating forest fire. ",
   },
   {
     id: 24,
@@ -293,7 +339,6 @@ export const layer = [
         value: "NERDRR_NEW:2005_streamline_4326",
         text: "2005",
       },
-      	
     ],
   },
   {
@@ -301,31 +346,33 @@ export const layer = [
     text: "Crop Damage (River Bank Erosion)",
     show: false,
     class: "CropDAMS",
+    subclass: "cropDAMS",
     layer: "NERDRR_NEW:2005-11-6_districts_cropdam_due_to_bankline_erosion",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
-    layer_date:'',
+    layer_date: "",
     stats: {
-      val:"cropyear",
+      val: "cropyear",
       charttype: "pie",
-
     },
     options: [
       {
         value: "NERDRR_NEW:2005-11-6_districts_cropdam_due_to_bankline_erosion",
         text: "2005-2011",
-        api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2005-2011&district=",
+        api:
+          "https://api.nesdr.gov.in/nerdrr/crop.php?year=2005-2011&district=",
       },
       {
         value: "NERDRR_NEW:2005-15-6_districts_cropdam_due_to_bankline_erosion",
         text: "2005-2015",
-        api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2005-2015&district=",
+        api:
+          "https://api.nesdr.gov.in/nerdrr/crop.php?year=2005-2015&district=",
       },
       {
         value: "NERDRR_NEW:2011-15-6_districts_cropdam_due_to_bankline_erosion",
         text: "2011-2015",
-        api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2011-2015&district=",
+        api:
+          "https://api.nesdr.gov.in/nerdrr/crop.php?year=2011-2015&district=",
       },
-      	
     ],
   },
   {
@@ -335,9 +382,9 @@ export const layer = [
     class: "Lightning",
     layer: "NERDRR_NEW:Light_Hazards_Map",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
-    info:"LIS DATA (Lightnign Hazards map is prepared by the TRMM- Lightning Imaging Sensor (LIS) available data . The spatial resulution is 0.1 degee X 0.1 degree."
+    info:
+      "LIS DATA (Lightnign Hazards map is prepared by the TRMM- Lightning Imaging Sensor (LIS) available data . The spatial resulution is 0.1 degee X 0.1 degree.",
   },
-
   {
     id: 28,
     text: "Forest Vulnarability Map",
@@ -356,26 +403,627 @@ export const layer = [
     options: [
       {
         value: "NERDRR_NEW:2021_06_15tp1",
-        text: "2005-2011",
+        text: "11:30-14:30",
       },
       {
         value: "NERDRR_NEW:2021_06_15tp2",
-        text: "2005-2015",
+        text: "14:30-17:30",
       },
       {
         value: "NERDRR_NEW:2021_06_15tp3",
-        text: "2011-2015",
-      }]
+        text: "17:30-12:30",
+      },
+    ],
   },
-  // {
-  //   id: 29,
-  //   text: "Landslide",
-  //   show: false,
-  //   class: "Forestry",
-  //   layer: "NERDRR_NEW:ladslide_points",
-  //   link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
-  // },
-  // census end
+  {
+    id: 30,
+    text: "WRF Rainfall",
+    show: false,
+    class: "Alerts and Early Warning",
+    subclass: "WRF",
+    layer: "",
+    link: "https://analytics.nesdr.gov.in/wrf/rain",
+    options: [
+      {
+        value: 1,
+        text: "05:30-6:30",
+      },
+      {
+        value: 2,
+        text: "06:30-7:30",
+      },
+      {
+        value: 3,
+        text: "07:30-8:30",
+      },
+      {
+        value: 4,
+        text: "08:30-9:30",
+      },
+      {
+        value: 5,
+        text: "09:30-10:30",
+      },
+      {
+        value: 6,
+        text: "10:30-11:30",
+      },
+      {
+        value: 7,
+        text: "11:30-12:30",
+      },
+      {
+        value: 8,
+        text: "12:30-13:30",
+      },
+      {
+        value: 9,
+        text: "13:30-14:30",
+      },
+      {
+        value: 10,
+        text: "14:30-15:30",
+      },
+      {
+        value: 11,
+        text: "15:30-16:30",
+      },
+
+      {
+        value: 12,
+        text: "16:30-17:30",
+      },
+      {
+        value: 13,
+        text: "17:30-18:30",
+      },
+      {
+        value: 14,
+        text: "19:30-20:30",
+      },
+      {
+        value: 15,
+        text: "20:30-21:30",
+      },
+      {
+        value: 16,
+        text: "21:30-22:30",
+      },
+      {
+        value: 17,
+        text: "22:30-23:30",
+      },
+      {
+        value: 18,
+        text: "23:30-00:30",
+      },
+      {
+        value: 19,
+        text: "00:30-01:30",
+      },
+      {
+        value: 20,
+        text: "01:30-02:30",
+      },
+      {
+        value: 21,
+        text: "02:30-03:30",
+      },
+      {
+        value: 22,
+        text: "03:30-04:30",
+      },
+      {
+        value: 23,
+        text: "04:30-05:30",
+      },
+      {
+        value: 24,
+        text: "05:30-6:30",
+      },
+      {
+        value: 25,
+        text: "06:30-7:30",
+      },
+      {
+        value: 26,
+        text: "07:30-8:30",
+      },
+      {
+        value: 27,
+        text: "08:30-9:30",
+      },
+      {
+        value: 28,
+        text: "09:30-10:30",
+      },
+      {
+        value: 29,
+        text: "10:30-11:30",
+      },
+      {
+        value: 30,
+        text: "11:30-12:30",
+      },
+      {
+        value: 31,
+        text: "12:30-13:30",
+      },
+      {
+        value: 32,
+        text: "13:30-14:30",
+      },
+      {
+        value: 33,
+        text: "14:30-15:30",
+      },
+      {
+        value: 34,
+        text: "15:30-16:30",
+      },
+
+      {
+        value: 35,
+        text: "16:30-17:30",
+      },
+      {
+        value: 36,
+        text: "17:30-18:30",
+      },
+      {
+        value: 37,
+        text: "19:30-20:30",
+      },
+      {
+        value: 38,
+        text: "20:30-21:30",
+      },
+      {
+        value: 39,
+        text: "21:30-22:30",
+      },
+      {
+        value: 40,
+        text: "22:30-23:30",
+      },
+      {
+        value: 41,
+        text: "23:30-00:30",
+      },
+      {
+        value: 42,
+        text: "00:30-01:30",
+      },
+      {
+        value: 43,
+        text: "01:30-02:30",
+      },
+      {
+        value: 44,
+        text: "02:30-03:30",
+      },
+      {
+        value: 45,
+        text: "03:30-04:30",
+      },
+      {
+        value: 46,
+        text: "04:30-05:30",
+      },
+    ],
+  },
+
+  {
+    id: 31,
+    text: "WRF Temperature",
+    show: false,
+    class: "Alerts and Early Warning",
+    subclass: "WRF",
+    layer: "",
+    link: "https://analytics.nesdr.gov.in/wrf/temperature",
+    options: [
+      {
+        value: 1,
+        text: "05:30-6:30",
+      },
+      {
+        value: 2,
+        text: "06:30-7:30",
+      },
+      {
+        value: 3,
+        text: "07:30-8:30",
+      },
+      {
+        value: 4,
+        text: "08:30-9:30",
+      },
+      {
+        value: 5,
+        text: "09:30-10:30",
+      },
+      {
+        value: 6,
+        text: "10:30-11:30",
+      },
+      {
+        value: 7,
+        text: "11:30-12:30",
+      },
+      {
+        value: 8,
+        text: "12:30-13:30",
+      },
+      {
+        value: 9,
+        text: "13:30-14:30",
+      },
+      {
+        value: 10,
+        text: "14:30-15:30",
+      },
+      {
+        value: 11,
+        text: "15:30-16:30",
+      },
+
+      {
+        value: 12,
+        text: "16:30-17:30",
+      },
+      {
+        value: 13,
+        text: "17:30-18:30",
+      },
+      {
+        value: 14,
+        text: "19:30-20:30",
+      },
+      {
+        value: 15,
+        text: "20:30-21:30",
+      },
+      {
+        value: 16,
+        text: "21:30-22:30",
+      },
+      {
+        value: 17,
+        text: "22:30-23:30",
+      },
+      {
+        value: 18,
+        text: "23:30-00:30",
+      },
+      {
+        value: 19,
+        text: "00:30-01:30",
+      },
+      {
+        value: 20,
+        text: "01:30-02:30",
+      },
+      {
+        value: 21,
+        text: "02:30-03:30",
+      },
+      {
+        value: 22,
+        text: "03:30-04:30",
+      },
+      {
+        value: 23,
+        text: "04:30-05:30",
+      },
+      {
+        value: 24,
+        text: "05:30-6:30",
+      },
+      {
+        value: 25,
+        text: "06:30-7:30",
+      },
+      {
+        value: 26,
+        text: "07:30-8:30",
+      },
+      {
+        value: 27,
+        text: "08:30-9:30",
+      },
+      {
+        value: 28,
+        text: "09:30-10:30",
+      },
+      {
+        value: 29,
+        text: "10:30-11:30",
+      },
+      {
+        value: 30,
+        text: "11:30-12:30",
+      },
+      {
+        value: 31,
+        text: "12:30-13:30",
+      },
+      {
+        value: 32,
+        text: "13:30-14:30",
+      },
+      {
+        value: 33,
+        text: "14:30-15:30",
+      },
+      {
+        value: 34,
+        text: "15:30-16:30",
+      },
+
+      {
+        value: 35,
+        text: "16:30-17:30",
+      },
+      {
+        value: 36,
+        text: "17:30-18:30",
+      },
+      {
+        value: 37,
+        text: "19:30-20:30",
+      },
+      {
+        value: 38,
+        text: "20:30-21:30",
+      },
+      {
+        value: 39,
+        text: "21:30-22:30",
+      },
+      {
+        value: 40,
+        text: "22:30-23:30",
+      },
+      {
+        value: 41,
+        text: "23:30-00:30",
+      },
+      {
+        value: 42,
+        text: "00:30-01:30",
+      },
+      {
+        value: 43,
+        text: "01:30-02:30",
+      },
+      {
+        value: 44,
+        text: "02:30-03:30",
+      },
+      {
+        value: 45,
+        text: "03:30-04:30",
+      },
+      {
+        value: 46,
+        text: "04:30-05:30",
+      },
+    ],
+  },
+
+  {
+    id: 32,
+    text: "WRF Relative Humidity",
+    show: false,
+    class: "Alerts and Early Warning",
+    subclass: "WRF",
+    layer: "",
+    link: "https://analytics.nesdr.gov.in/wrf/rh",
+    options: [
+      {
+        value: 1,
+        text: "05:30-6:30",
+      },
+      {
+        value: 2,
+        text: "06:30-7:30",
+      },
+      {
+        value: 3,
+        text: "07:30-8:30",
+      },
+      {
+        value: 4,
+        text: "08:30-9:30",
+      },
+      {
+        value: 5,
+        text: "09:30-10:30",
+      },
+      {
+        value: 6,
+        text: "10:30-11:30",
+      },
+      {
+        value: 7,
+        text: "11:30-12:30",
+      },
+      {
+        value: 8,
+        text: "12:30-13:30",
+      },
+      {
+        value: 9,
+        text: "13:30-14:30",
+      },
+      {
+        value: 10,
+        text: "14:30-15:30",
+      },
+      {
+        value: 11,
+        text: "15:30-16:30",
+      },
+
+      {
+        value: 12,
+        text: "16:30-17:30",
+      },
+      {
+        value: 13,
+        text: "17:30-18:30",
+      },
+      {
+        value: 14,
+        text: "19:30-20:30",
+      },
+      {
+        value: 15,
+        text: "20:30-21:30",
+      },
+      {
+        value: 16,
+        text: "21:30-22:30",
+      },
+      {
+        value: 17,
+        text: "22:30-23:30",
+      },
+      {
+        value: 18,
+        text: "23:30-00:30",
+      },
+      {
+        value: 19,
+        text: "00:30-01:30",
+      },
+      {
+        value: 20,
+        text: "01:30-02:30",
+      },
+      {
+        value: 21,
+        text: "02:30-03:30",
+      },
+      {
+        value: 22,
+        text: "03:30-04:30",
+      },
+      {
+        value: 23,
+        text: "04:30-05:30",
+      },
+      {
+        value: 24,
+        text: "05:30-6:30",
+      },
+      {
+        value: 25,
+        text: "06:30-7:30",
+      },
+      {
+        value: 26,
+        text: "07:30-8:30",
+      },
+      {
+        value: 27,
+        text: "08:30-9:30",
+      },
+      {
+        value: 28,
+        text: "09:30-10:30",
+      },
+      {
+        value: 29,
+        text: "10:30-11:30",
+      },
+      {
+        value: 30,
+        text: "11:30-12:30",
+      },
+      {
+        value: 31,
+        text: "12:30-13:30",
+      },
+      {
+        value: 32,
+        text: "13:30-14:30",
+      },
+      {
+        value: 33,
+        text: "14:30-15:30",
+      },
+      {
+        value: 34,
+        text: "15:30-16:30",
+      },
+
+      {
+        value: 35,
+        text: "16:30-17:30",
+      },
+      {
+        value: 36,
+        text: "17:30-18:30",
+      },
+      {
+        value: 37,
+        text: "19:30-20:30",
+      },
+      {
+        value: 38,
+        text: "20:30-21:30",
+      },
+      {
+        value: 39,
+        text: "21:30-22:30",
+      },
+      {
+        value: 40,
+        text: "22:30-23:30",
+      },
+      {
+        value: 41,
+        text: "23:30-00:30",
+      },
+      {
+        value: 42,
+        text: "00:30-01:30",
+      },
+      {
+        value: 43,
+        text: "01:30-02:30",
+      },
+      {
+        value: 44,
+        text: "02:30-03:30",
+      },
+      {
+        value: 45,
+        text: "03:30-04:30",
+      },
+      {
+        value: 46,
+        text: "04:30-05:30",
+      },
+    ],
+  },
+  {
+    id: 33,
+    text: "Recent Earthquakes",
+    show: false,
+    class: "Alerts and Early Warning",
+    subclass: "GeoJSON",
+    link: "https://nerdrr.gov.in/tempdbacc/getLastDayEqs.php",
+  },
+  {
+    id: 34,
+    text: "Forest Fire (2021)",
+    show: false,
+    class: "Forestry",
+    subclass: "GeoJSON",
+    link: "https://nerdrr.gov.in/tempdbacc/getForestFirePoints_2021.php",
+  },
 ];
 
 // maps configuration
@@ -387,7 +1035,8 @@ export const maps = [
     show: true,
     class: "Maps",
     layer: "analytic:ner_boundary",
-    link: "https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGluZXNoa2N1YmUiLCJhIjoiY2p2Z2Jzc3pyMDVwajN5bWowdjA1YTAyMSJ9.TcJaEwi-qTQqBPqTh0Kt2g",
+    link:
+      "https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGluZXNoa2N1YmUiLCJhIjoiY2p2Z2Jzc3pyMDVwajN5bWowdjA1YTAyMSJ9.TcJaEwi-qTQqBPqTh0Kt2g",
     format: "image/png",
     domain: " ",
     type: "tile",
@@ -454,7 +1103,8 @@ export const maps = [
     show: false,
     class: "Maps",
     layer: "analytic:ner_boundary",
-    link: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    link:
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
     format: "image/png",
     // domain: ["mt0", "mt1", "mt2", "mt3"],
     image: "google.png",
@@ -465,7 +1115,8 @@ export const maps = [
     show: false,
     class: "Maps",
     layer: "analytic:ner_boundary",
-    link: "https://mt3.mapmyindia.com/advancedmaps/v1/493dfe9d040ca1e0f2c7d1a5c7bc5f5a/base_hybrid/{z}/{x}/{y}.png",
+    link:
+      "https://mt3.mapmyindia.com/advancedmaps/v1/493dfe9d040ca1e0f2c7d1a5c7bc5f5a/base_hybrid/{z}/{x}/{y}.png",
     format: "image/png",
     // domain: ["mt0", "mt1", "mt2", "mt3"],
     type: "tile",
@@ -543,7 +1194,6 @@ export const panelVisibilty = [
   },
 ];
 
-
 // analytics layer
 export const analyticoper = [
   {
@@ -551,11 +1201,30 @@ export const analyticoper = [
     text: "modisndvi",
     wmsname: "modis_ndvi",
     state: "modis_ndvi",
-    wmsname_op:"modis_ndvi",
+    wmsname_op: "modis_ndvi",
     show: false,
     yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
     ],
     operations: [
       { value: "diff", text: "Change", legend: "" },
@@ -578,11 +1247,30 @@ export const analyticoper = [
     text: "smap",
     wmsname: "soil",
     state: "soil_date",
-    wmsname_op:"soil",
+    wmsname_op: "soil",
 
     yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
     ],
     show: false,
     operations: [
@@ -600,11 +1288,30 @@ export const analyticoper = [
     text: "et",
     wmsname: "et",
     state: "et",
-    wmsname_op:"et",
+    wmsname_op: "et",
 
     yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
     ],
     show: false,
     operations: [
@@ -622,11 +1329,30 @@ export const analyticoper = [
     text: "INSAT Rainfall",
     wmsname: "insat_rain",
     state: "insat_rainfall",
-    wmsname_op:"insat_rain",
+    wmsname_op: "insat_rain",
 
     yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
     ],
     show: false,
     operations: [
@@ -641,11 +1367,30 @@ export const analyticoper = [
     text: "Air Quality AOD",
     wmsname: "aod",
     state: "aod_date",
-    wmsname_op:"aod",
+    wmsname_op: "aod",
 
     yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
     ],
     show: false,
     operations: [
@@ -660,11 +1405,30 @@ export const analyticoper = [
     text: "Land Surface Temperature",
     wmsname: "lst",
     state: "lst_date",
-    wmsname_op:"lst",
+    wmsname_op: "lst",
 
     yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
     ],
     show: false,
     operations: [
@@ -681,8 +1445,27 @@ export const analyticoper = [
     state: "modis_flood",
     wmsname_op: "modis_flood",
     yearrange: [
-      2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-      2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
     ],
     show: false,
     operations: [
@@ -690,7 +1473,6 @@ export const analyticoper = [
       { value: "mean", text: "Mean", legend: "" },
       { value: "max", text: "Maximum", legend: "" },
       { value: "range", text: "Flood Statistical Analysis", legend: "" },
-
     ],
     category: "weather",
   },
@@ -701,16 +1483,16 @@ export const analyticoper = [
     state: "sentinal",
     show: false,
     operations: [
-      { value: "NDVI", text: "NDVI"},
+      { value: "NDVI", text: "NDVI" },
       { value: "NDWI", text: "NDWI" },
-      { value: "NBR" , text: "NBR"},
-      { value: "Deforestation", text: "Deforestation"},
+      { value: "NBR", text: "NBR" },
+      { value: "Deforestation", text: "Deforestation" },
       { value: "Fire Detection Index", text: "Fire Detection Index" },
-      { value: "EVI", text: "EVI"},
-      { value: "Custom", text: "Custom"}
+      { value: "EVI", text: "EVI" },
+      { value: "Custom", text: "Custom" },
     ],
     category: "Satellite",
-  }
+  },
 ];
 
 //list of dates

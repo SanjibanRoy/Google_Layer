@@ -31,10 +31,12 @@ body {
 .Legend{
   width: 15%;
   bottom: 8px;
-  right: 16px;
+  right: 60px;
   position: absolute;
   background-color: #fff;
   z-index: 10000;
+  max-Height: 30%; 
+  overflow-y: auto; 
 }
 .header {
   display: grid;
@@ -79,7 +81,7 @@ body {
 }
 
 .SidePanel >ul>li:hover {
-  background-color: #ff7839;
+  background-color: #ffa500;
   border: black;
   color: #fff;
 }

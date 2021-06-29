@@ -18,13 +18,14 @@ const Info = ({ info, state }) => {
   const overlayLayers = useSelector(selectLayerDataSet);
   const activelayers = overlayLayers.filter((e) => e.show).map((e) => e.text);
   const getInfo = async () => {
-  //  console.log(info)
+    //  console.log(info)
     try {
       setFeatureInfo({ data: [], isFetching: true });
 
       // console.log(formData);
       fetch(
         info.link +
+<<<<<<< HEAD
           "?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&QUERY_LAYERS=" +
           info.layer +
           "&LAYERS=" +
@@ -39,12 +40,29 @@ const Info = ({ info, state }) => {
           Math.round(state.shape.y) +
           "&BBOX=" +
           state.bounds,
+=======
+        "?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&QUERY_LAYERS=" +
+        info.layer +
+        "&LAYERS=" +
+        info.layer +
+        "&INFO_FORMAT=application/json&FEATURE_COUNT=50&X=" +
+        Math.round(state.point.x) +
+        "&Y=" +
+        Math.round(state.point.y) +
+        "&WIDTH=" +
+        Math.round(state.shape.x) +
+        "&HEIGHT=" +
+        Math.round(state.shape.y) +
+        "&BBOX=" +
+        state.bounds,
+>>>>>>> eb103012b6608f968e3733ae6c8d6ed3c0e79985
         {
           method: "GET",
         }
       )
         .then((response) => response.json())
         .then((result) => {
+          // console.log(result.numberReturned)
           // if (
           //   activelayers.includes("State Boundary") &
           //   activelayers.includes("District Boundary")
@@ -87,31 +105,36 @@ const Info = ({ info, state }) => {
   }, [state]);
   return (
     (
+      console.log(featureInfo.data.length),
       <INFO>
-        {featureInfo.isFetching ? (
-          <CircularProgress />
-        ) : (
-          featureInfo.data.length > 0 && (
-            <React.Fragment ><div className="InfoBox">         
-                <p onClick={() => setShowLayer(!showLayer)}>
-                {showLayer ? (
-                    <RemoveIcon />
-                  ) : (
-                    <AddIcon />
-                  )}
-                  {info.text}
-                </p>
-                {/* <p>{info.text}</p> */}
-                <table className={`${showLayer ? "showtable" : "visibility"}`}>
-                  <thead >
-                    <tr >
-                      <td style={{backgroundColor:"orange", fontWeight:"bold"}}>Attribute</td>
-                      <td style={{backgroundColor:"orange", fontWeight:"bold"}}>Value</td>
-                    </tr>
-                  </thead>
-                  <tbody >
-                    {featureInfo.data[0] !== undefined && info.attributes
-                      ? info.attributes.map((attribute) =>
+        {
+          featureInfo.data.length == 0 ?
+            <h1 className='example' style={{ color: "black" }}>Data not available</h1>
+            :
+            featureInfo.isFetching ? (
+              <CircularProgress />
+            ) : (
+              featureInfo.data.length > 0 && (
+                <React.Fragment ><div className="InfoBox">
+                  <p onClick={() => setShowLayer(!showLayer)}>
+                    {showLayer ? (
+                      <RemoveIcon />
+                    ) : (
+                      <AddIcon />
+                    )}
+                    {info.text}
+                  </p>
+                  {/* <p>{info.text}</p> */}
+                  <table className={`${showLayer ? "showtable" : "visibility"}`}>
+                    <thead >
+                      <tr >
+                        <td style={{ backgroundColor: "orange", fontWeight: "bold" }}>Attribute</td>
+                        <td style={{ backgroundColor: "orange", fontWeight: "bold" }}>Value</td>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      {featureInfo.data[0] !== undefined && info.attributes
+                        ? info.attributes.map((attribute) =>
                           Object.keys(featureInfo.data[0].properties)
                             .filter((e) => e === attribute.value)
                             .map(function (element, index) {
@@ -125,7 +148,7 @@ const Info = ({ info, state }) => {
                               );
                             })
                         )
-                      : Object.keys(featureInfo.data[0].properties).map(function (
+                        : Object.keys(featureInfo.data[0].properties).map(function (
                           element,
                           index
                         ) {
@@ -136,12 +159,12 @@ const Info = ({ info, state }) => {
                             </tr>
                           );
                         })}
-                  </tbody>
-                </table>
-            </div>
-            </React.Fragment>
-          )
-        )}
+                    </tbody>
+                  </table>
+                </div>
+                </React.Fragment>
+              )
+            )}
       </INFO>
     )
   );

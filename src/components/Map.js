@@ -26,11 +26,10 @@ import { selectLayerData } from "../features/layers/layervisualiseslice";
 import { selectDataSet } from "../features/layers/layerslice";
 import AddTimeseries from "./AddTimeseries";
 import { setMapBounds } from "../features/maps/mapZoomSlice";
-import VectorTile from "./VectorTile"
+import VectorTile from "./VectorTile";
+import Overlays from "./Overlays";
+import MarkersAdd from "./MarkersAdd";
 
-let sbs = null;
-let rightlayer = null;
-let leftlayer = null;
 
 //**************Map Controls***********/
 const ZoomtoLocation = ({ bounds }) => {
@@ -68,8 +67,6 @@ function HandleHover() {
   });
   return null;
 }
-
-
 
 const Map = ({ visibility }) => {
   // console.log(visibility);
@@ -166,42 +163,13 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.show & (overlayer.options === undefined) && (
-            <WMSTileLayer
-              key={index}
-              format="image/png"
-              layers={overlayer.layer}
-              url={overlayer.link}
-              transparent="true"
-              minZoom={overlayer.minZoom !== undefined ? overlayer.minZoom : ""}
-              zIndex={overlayer.class === "Administrative" ? "15" : "10"}
-            />
-          )
+          overlayer.show && <Overlays overlayer={overlayer} index={index} />
       )}
-      {overlayLayers.map(
-        (overlayer, index) =>
-          overlayer.show & (overlayer.options !== undefined) && (
-            <AddTimeseries
-              key={index}
-              test={[overlayer.layer, overlayer.link]}
-              showAnalytics={overlayer.show}
-            />
-          )
-      )}
-      {overlayLayers.map(
-        (overlayer, index) =>
-          overlayer.show & (overlayer.class === "Lightning") && (
-            <TileLayer
-              key={index}
-              url={overlayer.link + "&t=" + Math.floor(+new Date() / 1000)}
-              zIndex="10"
-            />
-          )
-      )}
+
       {/* <Toolbar /> */}
       <FeatureGroup>
         <EditControl
-          position="bottomleft"
+          position="bottomright"
           draw={{
             rectangle: false,
             circlemarker: false,
@@ -224,12 +192,14 @@ const Map = ({ visibility }) => {
       )}
       <ZoomtoLocation bounds={mapZoomState} />
       {mapZoomState.path != "" && <GeoJSON data={mapZoomState.path} />}
-      {mapZoomState.villages != "" & mapZoomState.villages != undefined && (
+      {(mapZoomState.villages != "") & (mapZoomState.villages != undefined) && (
         <FeatureGroup>
-      {  mapZoomState.villages.map((e)=>(  <Marker position={[e.lat,e.lng]}>
-          </Marker>))}
+          {mapZoomState.villages.map((e) => (
+            <Marker position={[e.lat, e.lng]}></Marker>
+          ))}
         </FeatureGroup>
       )}
+      {/* <MarkersAdd/> */}
 
       <HandleClick />
       <HandleHover />

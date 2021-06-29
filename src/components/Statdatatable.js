@@ -21,22 +21,25 @@ const Statsdatatable = ({ info, state }) => {
   const infodata = useSelector(selectInfo);
   const layerdata = useSelector(selectLayerDataSet);
   const toolsState = useSelector(selectMapZoomstate);
-  console.log(toolsState)
+  //console.log(toolsState)
   var dateapi;
   var cropyeardataapi;
+  var kharifcropdataapi;
   const [test, setTest] = useState([]);
   useEffect(() => {
+    console.log(layerdata)
     dateapi = layerdata[11].layer_date;
     cropyeardataapi=layerdata[25].layer_date;
-    tabledata(dateapi,cropyeardataapi)
+    kharifcropdataapi=layerdata[20].layer_date;
+    tabledata(dateapi,cropyeardataapi,kharifcropdataapi)
   }, [layerdata]);
 
   useEffect(() => {
     console.log(toolsState)
 
-  }, [toolsState]);
+  }, []);
 
-  const tabledata = async (e,cropyeardataapi) => {
+  const tabledata = async (e,cropyeardataapi,kharifcropdataapi) => {
     var cropdamsyear=cropyeardataapi;
     try {
       var ar = []
@@ -69,7 +72,6 @@ const Statsdatatable = ({ info, state }) => {
       }
       else if (info.stats.val == "firev") {
         var dataurlapi = info.stats.apitable
-        // console.log(dataurlapi)
       }
       else if (info.stats.val == "cropyear") {
         if(cropdamsyear=='2005-2011'){
@@ -82,7 +84,10 @@ const Statsdatatable = ({ info, state }) => {
           var dataurlapi=info.options[0].api
         }
       }
-      console.log(dataurlapi)
+      else if (info.stats.val == "kharifcrop") {
+        var dataurlapi = info.stats.apitable
+      }
+     // console.log(dataurlapi)
       fetch(dataurlapi, {
         method: "GET",
       })
@@ -115,7 +120,7 @@ const Statsdatatable = ({ info, state }) => {
               rows: ar,
             })
           }
-          if (info.stats.val == "firev") {
+          if (info.stats.val == "firev" || info.stats.val == "kharifcrop") {
             mydata.map((e) => {
               ar.push({
                 district: e.dtname,
