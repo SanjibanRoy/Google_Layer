@@ -88,8 +88,8 @@ export const layer = [
     text: "Census",
     show: false,
     class: "Census",
-    layer: "NEC:assam_census",
-    link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
+    layer: "analytic:ner_census",
+    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     legend:"https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NEC:assam_census"
 
   },

@@ -41,7 +41,7 @@ const AppsPanel = () => {
   //   console.log(tools.filter((e) => e.name === "Search"))
   return (
     <Toolpanel>
-      <p className="heads">Applications</p>
+      <p className="heads">Tools</p>
 
       <VEGANALYSIS>
         <div className="apps" onClick={() => ChangeMap("Search")}>
