@@ -255,7 +255,6 @@ export const layer = [
     class: "CropDAMS",
     layer: "NERDRR_NEW:cropdam_flood_4326",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
-<<<<<<< HEAD
     legend:"https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:cropdam_flood_4326",
     stats: {
       api: "https://api.nesdr.gov.in/nerdrr/cropdamsassam.php?district=",
@@ -264,10 +263,6 @@ export const layer = [
       val:"kharifcrop",
     },
     layer_date:'',
-=======
-    legend:
-      "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NERDRR_NEW:cropdam_flood_4326",
->>>>>>> cf00397dac223ef910bcbf46d6721b843fb19296
   },
   {
     id: 22,

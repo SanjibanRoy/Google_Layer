@@ -91,9 +91,9 @@ const Info = ({ info, state }) => {
       console.log(featureInfo.data.length),
       <INFO>
         {
-          featureInfo.data.length == 0 ?
-            <h1 className='example' style={{ color: "black" }}>Data not available</h1>
-            :
+          // featureInfo.data.length == 0 ?
+          //   <h1 className='example' style={{ color: "black" }}>Data not available</h1>
+          //   :
             featureInfo.isFetching ? (
               <CircularProgress />
             ) : (
