@@ -30,13 +30,13 @@ const Info = ({ info, state }) => {
           "&LAYERS=" +
           info.layer +
           "&INFO_FORMAT=application/json&FEATURE_COUNT=50&X=" +
-          state.point.x +
+          Math.round(state.point.x) +
           "&Y=" +
-          state.point.y +
+          Math.round(state.point.y) +
           "&WIDTH=" +
-          state.shape.x +
+          Math.round(state.shape.x) +
           "&HEIGHT=" +
-          state.shape.y +
+          Math.round(state.shape.y) +
           "&BBOX=" +
           state.bounds,
         {

@@ -190,7 +190,7 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.show & (overlayer.class === "Lightning") && (
+          overlayer.show & (overlayer.subclass === "Lightning") && (
             <TileLayer
               key={index}
               url={overlayer.link + "&t=" + Math.floor(+new Date() / 1000)}
