@@ -26,8 +26,8 @@ import { selectLayerData } from "../features/layers/layervisualiseslice";
 import { selectDataSet } from "../features/layers/layerslice";
 import AddTimeseries from "./AddTimeseries";
 import { setMapBounds } from "../features/maps/mapZoomSlice";
-import VectorTile from "./VectorTile"
-
+import VectorTile from "./VectorTile";
+import Overlays from "./Overlays"
 let sbs = null;
 let rightlayer = null;
 let leftlayer = null;
@@ -68,8 +68,6 @@ function HandleHover() {
   });
   return null;
 }
-
-
 
 const Map = ({ visibility }) => {
   // console.log(visibility);
@@ -166,19 +164,20 @@ const Map = ({ visibility }) => {
       )}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.show & (overlayer.options === undefined) && (
-            <WMSTileLayer
-              key={index}
-              format="image/png"
-              layers={overlayer.layer}
-              url={overlayer.link}
-              transparent="true"
-              minZoom={overlayer.minZoom !== undefined ? overlayer.minZoom : ""}
-              zIndex={overlayer.class === "Administrative" ? "15" : "10"}
-            />
+          overlayer.show && (
+            <Overlays overlayer= {overlayer}  index ={index}/>
+            // <WMSTileLayer
+            //   key={index}
+            //   format="image/png"
+            //   layers={overlayer.layer}
+            //   url={overlayer.link}
+            //   transparent="true"
+            //   minZoom={overlayer.minZoom !== undefined ? overlayer.minZoom : ""}
+            //   zIndex={overlayer.class === "Administrative" ? "15" : "10"}
+            // />
           )
       )}
-      {overlayLayers.map(
+      {/* {overlayLayers.map(
         (overlayer, index) =>
           overlayer.show & (overlayer.options !== undefined) && (
             <AddTimeseries
@@ -187,8 +186,8 @@ const Map = ({ visibility }) => {
               showAnalytics={overlayer.show}
             />
           )
-      )}
-      {overlayLayers.map(
+      )} */}
+      {/* {overlayLayers.map(
         (overlayer, index) =>
           overlayer.show & (overlayer.subclass === "Lightning") && (
             <TileLayer
@@ -197,7 +196,19 @@ const Map = ({ visibility }) => {
               zIndex="10"
             />
           )
-      )}
+      )} */}
+      {/* {overlayLayers.map(
+        (overlayer, index) =>
+          overlayer.show & (overlayer.subclass === "WRF") && (
+            console.log(overlayer.link+overlayer.layer+'?slide=4'),
+            
+            <WMSTileLayer
+              key={index}
+              url={overlayer.link+overlayer.layer+'?slide=4'}
+              zIndex="10"
+            />
+          )
+      )} */}
       {/* <Toolbar /> */}
       <FeatureGroup>
         <EditControl
@@ -224,10 +235,11 @@ const Map = ({ visibility }) => {
       )}
       <ZoomtoLocation bounds={mapZoomState} />
       {mapZoomState.path != "" && <GeoJSON data={mapZoomState.path} />}
-      {mapZoomState.villages != "" & mapZoomState.villages != undefined && (
+      {(mapZoomState.villages != "") & (mapZoomState.villages != undefined) && (
         <FeatureGroup>
-      {  mapZoomState.villages.map((e)=>(  <Marker position={[e.lat,e.lng]}>
-          </Marker>))}
+          {mapZoomState.villages.map((e) => (
+            <Marker position={[e.lat, e.lng]}></Marker>
+          ))}
         </FeatureGroup>
       )}
 
