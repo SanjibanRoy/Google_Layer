@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  dataset: "modis_ndvi",
+  dataset: "sentinel2",
   dates: "",
   bands:"",
   operation: "visu",

@@ -36,11 +36,13 @@ const AddAnalyticsLayer = ({ test, showAnalytics }) => {
   }
   if (test.dataset == "sentinel1") {
     analyticslayer = L.tileLayer.wms(
-      "https://analytics.nesdr.gov.in/nerdrr_sentinel_1/visu?band=0",
+      "https://analytics.nesdr.gov.in/nerdrr_sentinel_1/visu?date=1619847000",
       {
         // date: test.dates,
+        band: test.bands !== undefined && test.bands[0],
         format: "image/png",
         transparent: true,
+        zIndex:10,
       }
     );
   }
@@ -54,7 +56,7 @@ const AddAnalyticsLayer = ({ test, showAnalytics }) => {
         date: test.dates,
         format: "image/png",
         transparent: true,
-        zIndex: 100,
+        zIndex: 10,
 
         band1: test.bands !== undefined && test.bands[0],
         band2: test.bands !== undefined && test.bands[1],
@@ -73,7 +75,7 @@ const AddAnalyticsLayer = ({ test, showAnalytics }) => {
         date: test.dates,
         format: "image/png",
         transparent: true,
-        // zIndex: 100,
+         zIndex: 10,
 
         //  }),
         //   ...(data === "modis_flood" && {
@@ -91,7 +93,7 @@ const AddAnalyticsLayer = ({ test, showAnalytics }) => {
         date: test.dates,
         format: "image/png",
         transparent: true,
-        zIndex: 100,
+        zIndex: 10,
 
         //  }),
         //   ...(data === "modis_flood" && {
