@@ -89,17 +89,9 @@ export const layer = [
     text: "Census",
     show: false,
     class: "Census",
-<<<<<<< HEAD
     layer: "analytic:ner_census",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     legend:"https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NEC:assam_census"
-
-=======
-    layer: "NEC:assam_census",
-    link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
-    legend:
-      "https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NEC:assam_census",
->>>>>>> eb103012b6608f968e3733ae6c8d6ed3c0e79985
   },
   {
     id: 8,
@@ -324,7 +316,7 @@ export const layer = [
     text: "Bankline Change",
     show: false,
     class: "CropDAMS",
-    layer: "NERDRR_NEW:2015_streamline_4326",
+    layer: "",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
     options: [
       {
@@ -347,7 +339,7 @@ export const layer = [
     show: false,
     class: "CropDAMS",
     subclass: "cropDAMS",
-    layer: "NERDRR_NEW:2005-11-6_districts_cropdam_due_to_bankline_erosion",
+    layer: "",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
     layer_date: "",
     stats: {
@@ -1081,9 +1073,9 @@ export const maps = [
     show: false,
     class: "Maps",
     layer: "analytic:ner_boundary",
-    link: "http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
+    link: "https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
     format: "image/png",
-    domain: "['mt0','mt1','mt2','mt3']",
+    type: "tile",
     image: "osm.png",
   },
   {
@@ -1121,6 +1113,18 @@ export const maps = [
     // domain: ["mt0", "mt1", "mt2", "mt3"],
     type: "tile",
     image: "google.png",
+  },
+  {
+    id: 9,
+    text: "Terrain",
+    show: false,
+    class: "Maps",
+    layer: "ace2dem",
+    link:  "https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
+    format: "image/png",
+    type:"tile",
+    // domain: ["mt0", "mt1", "mt2", "mt3"],
+    image: "terrain.png",
   },
   //maps end
 ];

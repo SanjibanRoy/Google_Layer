@@ -25,7 +25,6 @@ const Info = ({ info, state }) => {
       // console.log(formData);
       fetch(
         info.link +
-<<<<<<< HEAD
           "?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&QUERY_LAYERS=" +
           info.layer +
           "&LAYERS=" +
@@ -40,22 +39,7 @@ const Info = ({ info, state }) => {
           Math.round(state.shape.y) +
           "&BBOX=" +
           state.bounds,
-=======
-        "?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetFeatureInfo&QUERY_LAYERS=" +
-        info.layer +
-        "&LAYERS=" +
-        info.layer +
-        "&INFO_FORMAT=application/json&FEATURE_COUNT=50&X=" +
-        Math.round(state.point.x) +
-        "&Y=" +
-        Math.round(state.point.y) +
-        "&WIDTH=" +
-        Math.round(state.shape.x) +
-        "&HEIGHT=" +
-        Math.round(state.shape.y) +
-        "&BBOX=" +
-        state.bounds,
->>>>>>> eb103012b6608f968e3733ae6c8d6ed3c0e79985
+
         {
           method: "GET",
         }

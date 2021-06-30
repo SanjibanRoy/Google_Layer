@@ -1,18 +1,23 @@
 import { useMap } from "react-leaflet";
 import { useEffect } from "react";
 import L from "leaflet";
+let analyticslayer=null;
 
-let analyticslayer = null;
+function AddTimeseries({ test, showAnalytics, subclass, slide, options }) {
 
-function AddTimeseries({ test, showAnalytics, subclass, slide }) {
-  console.log(subclass);
-  let data = null;
+  console.log(options);
+  console.log(test);
+
   const map = useMap();
+//   if (options !== test[0]) {
+//     analyticslayer=null
+//   }
   useEffect(() => {
     if (analyticslayer != null) {
       map.removeLayer(analyticslayer);
     }
     if (subclass == "WRF") {
+        console.log("Inside WRF")
       analyticslayer = L.tileLayer.wms(test[1], {
         format: "image/png",
         transparent: true,
@@ -27,11 +32,18 @@ function AddTimeseries({ test, showAnalytics, subclass, slide }) {
         zIndex: 10,
       });
     }
-    map.addLayer(analyticslayer);
-    if (!showAnalytics) {
-      map.removeLayer(analyticslayer);
-    }
-  }, [test, showAnalytics]);
+    // if (options == test[0]) {
+    //     // analyticslayer=null
+    //     map.addLayer(analyticslayer);
+
+    //   }
+      map.addLayer(analyticslayer);
+
+    // map.addLayer(analyticslayer);
+    // if (!showAnalytics) {
+    //   map.removeLayer(analyticslayer);
+    // }
+  }, [test]);
 
   useEffect(() => {
     return () => {

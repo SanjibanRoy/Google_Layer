@@ -23,6 +23,7 @@ const ProximityTool = () => {
 
   const [villages, setVillages] = useState()
 
+
   console.log(epicenter)
   useEffect(() => {
     console.log(epicenter)
@@ -213,11 +214,10 @@ table th {
   font-weight:"bold";
 }
 p{
-  margin:top:20%;
+  margin-top:20%;
   font-weight:bold;
   background-color:#004b96bd;
   text-align:center;
   color:white;
   padding:6px;
-}
-`;
+}`;
