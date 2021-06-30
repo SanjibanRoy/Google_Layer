@@ -39,4 +39,5 @@ const InfoBoxx = styled.div`
     /* margin-left: 10px;  */
     margin-right: 15px;
   /* width: 20rem; */
+  font-weight:bold;
 `;

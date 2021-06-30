@@ -48,6 +48,7 @@ const InfoBoxx = styled.div`
     max-width: 25rem;
     padding: 8px 10px;
     border-bottom: 1px solid #ccc;
+    font-weight:bold;
     color: black;
   }
   .MuiSvgIcon-root {

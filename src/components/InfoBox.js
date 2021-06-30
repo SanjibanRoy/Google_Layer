@@ -46,5 +46,6 @@ const InfoBoxx = styled.div`
     /* padding: 8px 10px; */
     border-bottom: 1px solid #ccc;
     color:black;
+    font-weight:bold;
   }
 `;
