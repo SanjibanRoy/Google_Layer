@@ -20,7 +20,7 @@ const AnalyticsVisualise = () => {
   };
 
   const setDataset = (e) => {
-    dispatch(setAnalyticsVisual({ ...state, dataset: e, show:true }));
+    dispatch(setAnalyticsVisual({ ...state, dataset: e, show: true }));
   };
 
   const [date, setdate] = useState({
@@ -28,14 +28,13 @@ const AnalyticsVisualise = () => {
     isFetching: false,
   });
 
-
   const setBand = (e) => {
     let red = document.getElementById("red").value;
-    let green = document.getElementById("green").value;
-    let blue = document.getElementById("blue").value;
+    let green = document.getElementById("green")!==null&&document.getElementById("green").value;
+    let blue = document.getElementById("blue")!==null&&document.getElementById("blue").value;
     // getDates();
-    console.log([red,green,blue])
-    
+    console.log([red, green, blue]);
+
     dispatch(
       setAnalyticsVisual({
         ...state,
@@ -74,39 +73,39 @@ const AnalyticsVisualise = () => {
   };
 
   useEffect(() => {
-    fetchDates();
-    let red = document.getElementById("red").value;
-    let green = document.getElementById("green").value;
-    let blue = document.getElementById("blue").value;
-    dispatch(
-      setAnalyticsVisual({
-        ...state,
-        bands: [red, green, blue],
-        show: true,
-      })
-    );
-    //dispatch(setAnalyticsVisual({ ...state, dates: document.getElementById("date").value, show: true }));
+    // fetchDates();
+    // let red = document.getElementById("red").value;
+    // let green = document.getElementById("green").value;
+    // let blue = document.getElementById("blue").value;
+    // dispatch(
+    //   setAnalyticsVisual({
+    //     ...state,
+    //     bands: [red, green, blue],
+    //     show: true,
+    //   })
+    // );
+    // //dispatch(setAnalyticsVisual({ ...state, dates: document.getElementById("date").value, show: true }));
   }, [state.dataset]);
 
   useEffect(() => {
-    dispatch(
-      setAnalyticsVisual({
-        ...state,
-        dataset: document.getElementById("data").value,
-        show: true,
-      })
-    );
-    let red = document.getElementById("red").value;
-    let green = document.getElementById("green").value;
-    let blue = document.getElementById("blue").value;
-    dispatch(
-      setAnalyticsVisual({
-        ...state,
-        bands: [red, green, blue],
-        show: true,
-      })
-    );
-    fetchDates();
+    // dispatch(
+    //   setAnalyticsVisual({
+    //     ...state,
+    //     dataset: document.getElementById("data").value,
+    //     show: true,
+    //   })
+    // );
+    // let red = document.getElementById("red").value;
+    // let green = document.getElementById("green").value;
+    // let blue = document.getElementById("blue").value;
+    // dispatch(
+    //   setAnalyticsVisual({
+    //     ...state,
+    //     bands: [red, green, blue],
+    //     show: true,
+    //   })
+    // );
+    // fetchDates();
   }, []);
 
   return (
@@ -125,9 +124,7 @@ const AnalyticsVisualise = () => {
       <div className="LayerTree">
         <p className="heads">Date</p>
       </div>
-      {date.isFetching ? (
-        <CircularProgress />
-      ) : (
+
         <React.Fragment>
           <div>
             <select
@@ -135,16 +132,15 @@ const AnalyticsVisualise = () => {
               className="SelectMenu"
               onChange={(event) => setDate(event.target.value)}
             >
-              {date.dates.map((task, index) => (
-                <option key={index} value={task.time_stamp}>
-                  {task.date}
-                </option>
-              ))}
+              <option value={1619847000}>01-05-2021</option>
+              <option value={1619847000}>01-04-2021</option>
+              <option value={1619847000}>01-05-2020</option>
+
             </select>
           </div>
         </React.Fragment>
-      )}
-      {state.dataset !== "night_light" && (
+      
+      {state.dataset !== "sentinel1" ? (
         <React.Fragment>
           <div className="LayerTree">
             <p className="heads">Bands</p>
@@ -156,7 +152,7 @@ const AnalyticsVisualise = () => {
               <select
                 id="red"
                 className="SelectMenu1"
-                 onChange={(e) => setBand(e.target.value)}
+                onChange={(e) => setBand(e.target.value)}
               >
                 <option value="0">Band 1</option>
                 <option value="1">Band 2</option>
@@ -191,7 +187,6 @@ const AnalyticsVisualise = () => {
                 <option value="9">Band 10</option>
                 <option value="10">Band 11</option>
                 <option value="11">Band 12</option>
-
               </select>
             </div>
             <div className="Change">
@@ -217,7 +212,28 @@ const AnalyticsVisualise = () => {
             </div>
           </div>
         </React.Fragment>
-      )}
+      ):(<React.Fragment>
+        <div className="LayerTree">
+          <p className="heads">Bands</p>
+        </div>
+
+        <div className="Bands">
+          <div className="Change">
+            <p>Band</p>
+            <select
+              id="red"
+              className="SelectMenu1"
+              onChange={(e) => setBand(e.target.value)}
+            >
+              <option value="0">VV</option>
+              <option value="1">VH</option>
+     
+            </select>
+          </div>
+          
+          
+        </div>
+      </React.Fragment>)}
     </VEGVISUALISE>
   );
 };
