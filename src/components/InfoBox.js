@@ -28,7 +28,7 @@ const InfoBoxx = styled.div`
   background: white;
   z-index: 10000;
   max-height: 80%;
-  max-width: 20rem;
+  max-width: 25rem;
   width:100%;
   height:100%;
   padding-left: 10px;
@@ -40,10 +40,11 @@ const InfoBoxx = styled.div`
   margin-right: 15px;
   /* width: 20rem; */
   p {
-    background: #215a93;
+    background: white;
     align-items: center;
-    width: 20rem;
+    width: 25rem;
     /* padding: 8px 10px; */
     border-bottom: 1px solid #ccc;
+    color:black;
   }
 `;

@@ -187,7 +187,7 @@ const Stats = ({ info, state }) => {
           setFeatureInfo({ data: [result], isFetching: false });
           setOptions({
             chart: {
-              width: 300,
+              width: 400,
               backgroundColor: {
                 linearGradient: {
                   x1: 0,
@@ -309,7 +309,7 @@ const Stats = ({ info, state }) => {
           <CircularProgress />
         ) : (
           featureInfo.data.length > 0 && (
-            <React.Fragment>
+            <React.Fragment >
               <p onClick={() => setShowLayer(!showLayer)}>{info.text}</p>
               <HighchartsReact highcharts={Highcharts} options={options} />
               {/* <Test/> */}
@@ -331,7 +331,7 @@ export const INFO = styled.div`
   p {
     background: white;
     align-items: center;
-    width: 100%;
+    width: 25rem;
     padding: 8px 10px;
     border-bottom: 1px solid #ccc;
     color:black;

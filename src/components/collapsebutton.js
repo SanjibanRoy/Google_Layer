@@ -129,8 +129,8 @@ function openNav() {
   toggle1 = !toggle1;
 }
 function openNav1() {
-  document.getElementById("mySidebar").style.width = "20rem";
-  document.getElementById("main").style.right = "20rem";
+  document.getElementById("mySidebar").style.width = "25rem";
+  document.getElementById("main").style.right = "25rem";
 }
 function closeNav() {
   document.getElementById("mySidebar").style.width = "0";
