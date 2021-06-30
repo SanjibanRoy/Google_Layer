@@ -7,7 +7,7 @@ import { selectMapstate } from "../features/maps/mapStateSlice";
 const InfoBox = () => {
   const state = useSelector(selectMapstate);
   const info = state.overlays.filter((layers) => layers.class !== "Lightning");
-  console.log(info)
+  //console.log(info)
   return (
     <InfoBoxx>
       <React.Fragment>
