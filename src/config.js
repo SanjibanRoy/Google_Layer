@@ -126,6 +126,11 @@ export const layer = [
     layer: "NERDRR_NEW:ladslide_points",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
     info: "This is an inventory of all landslide incidents that have occurred in the NER in 2020 and 2021 (till date). This seasonal landslide inventory is small-medium in scale and archival in nature. The inventory is sourced from Newspapers, Social Media, GSI Reports, SDMA reports and Field Visits. The inventory has a 3-Tier classification for all landslide incidents. Type 1 incidents have accurate geolocation, Type 2 incidents have some degree of locational uncertainty while Type 3 incidents are collapsed/blocked road sections along National/State Highways and other important roads. Those landside incidents which have been verified are mentioned. The preceding '24 hours' rainfall for each landslide is derived from NASA's Global Precipitation Measurement (GPM) mission using the 'NASA/GPM_L3/IMERG_V06' product. If the landslide was fatal in nature then the number of deaths caused are also mentioned.",
+    stats: {
+      api: "https://api.nesdr.gov.in/nerdrr/landslide.php",
+      charttype: "column",
+      val: "landslide",
+    },
   },
   {
     id: 12,
