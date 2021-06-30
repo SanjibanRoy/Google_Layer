@@ -26,11 +26,67 @@ import { selectLayerData } from "../features/layers/layervisualiseslice";
 import { selectDataSet } from "../features/layers/layerslice";
 import AddTimeseries from "./AddTimeseries";
 import { setMapBounds } from "../features/maps/mapZoomSlice";
-import VectorTile from "./VectorTile";
+// import VectorTile from "./VectorTile";
 import Overlays from "./Overlays";
 import MarkersAdd from "./MarkersAdd";
 
+const VectorTile = ({ show }) => {
+  console.log("Hi");
+  const map = useMap();
+  // useEffect(() => {
+  var simpletyle = {
+    weight: 2,
+    color: "green",
+    opacity: 1,
+    fillColor: "yellow",
+    fill: true,
+    fillOpacity: 1.0,
+  };
 
+  var highlighted = {
+    weight: 2,
+    color: "green",
+    opacity: 1,
+    fillColor: "yellow",
+    fill: true,
+    fillOpacity: 0.0,
+  };
+
+  //  "http://geoserver.vassarlabs.com/geoserver/gwc/service/wmts?layer=VASSARLABS:AP_VILLAGE_V2&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=application/x-protobuf;type=mapbox-vector&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}",
+
+  let village = L.vectorGrid.protobuf(
+    "http://staging.nesdr.gov.in:8080/geoserver/gwc/service/wmts?layer=assam:assamdistrict&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=application/x-protobuf;type=mapbox-vector&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}",
+    {
+      interactive: true,
+      minZoom: 9,
+      maxZoom: 15,
+      vectorTileLayerStyles: {
+        assamdistrict: function (feature, zoom) {
+          // console.log(feature)
+          if ((feature.dtname = "Nagaon")) {
+            return simpletyle;
+          } else {
+            console.log("No Here")
+
+            return highlighted;
+          }
+        },
+      },
+    }
+  );
+  village
+    .on("click", function (e) {
+      var id = 0;
+      console.log(e.layer);
+      var layer = e.layer.options;
+      e.layer.options.color = "red"
+      village.setFeatureStyle(7,highlighted)
+  
+    })
+    .addTo(map);
+
+  return null;
+};
 //**************Map Controls***********/
 const ZoomtoLocation = ({ bounds }) => {
   console.log(bounds);

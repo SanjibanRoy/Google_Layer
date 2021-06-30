@@ -2,6 +2,7 @@ import React from 'react'
 import {useMap} from "react-leaflet"
 import L from "leaflet";
 
+import "leaflet.vectorgrid";
 
 export default VectorTile
 const VectorTile = ({ show }) => {

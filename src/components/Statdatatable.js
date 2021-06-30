@@ -265,7 +265,7 @@ const Statsdatatable = ({ info, state }) => {
                   },
                 },
                 {
-                  label: 'Daeth Count',
+                  label: 'Death Count',
                   field: 'area',
                 },
               ],

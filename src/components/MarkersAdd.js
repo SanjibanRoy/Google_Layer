@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { FeatureGroup, Marker } from "react-leaflet";
+import { FeatureGroup, Marker,Popup } from "react-leaflet";
 import { Equalizer } from "@material-ui/icons";
 const MarkersAdd = (url) => {
     console.log(url)
@@ -45,7 +45,9 @@ const MarkersAdd = (url) => {
         (
           <FeatureGroup>
             {eq.fetching&&eq.data.map((e) => (
-              <Marker position={[e.lat, e.lng]}></Marker>
+              <Marker position={[e.lat, e.lng]}>      <Popup>
+              
+            </Popup>{e.mag}</Marker>
             ))}
           </FeatureGroup>
         ))
