@@ -37,7 +37,7 @@ const Overlays = ({ overlayer }, { index }) => {
       />
     );
   } else if (overlayer.subclass === "GeoJSON") {
-    layers = <MarkersAdd url ={overlayer.link}/>;
+    layers = <MarkersAdd url={overlayer.link} />;
   } else if (overlayer.subclass === "WRF") {
     layers = (
       <AddTimeseries
@@ -49,13 +49,17 @@ const Overlays = ({ overlayer }, { index }) => {
       />
     );
   } else if (overlayer.options !== "undefined") {
-    layers = (
-      <AddTimeseries
-        key={index}
-        test={[overlayer.layer, overlayer.link]}
-        showAnalytics={overlayer.show}
-        subclass={overlayer.subclass}
-      />
+    layers = overlayer.show&&overlayer.options.map(
+      (e) =>
+        e.value === overlayer.layer && (
+          <AddTimeseries
+            key={index}
+            test={[overlayer.layer, overlayer.link]}
+            showAnalytics={overlayer.show}
+            subclass={overlayer.subclass}
+            options={e.value}
+          />
+        )
     );
   }
 
