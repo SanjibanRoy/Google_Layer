@@ -23,6 +23,7 @@ const Legend = () => {
     "NERDRR_NEW:2005-15-6_districts_cropdam_due_to_bankline_erosion",
     "NERDRR_NEW:2011-15-6_districts_cropdam_due_to_bankline_erosion",
     "NERDRR_NEW:ner_forest_fire_prone_area_map",
+    "NERDRR_NEW:ladslide_points"
   ];
   // let sstyle = {
   //   backgroundColor: "orange",

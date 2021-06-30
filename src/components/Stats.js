@@ -68,6 +68,8 @@ const Stats = ({ info, state }) => {
         }
         // console.log(nso)
         var urlapi= "https://api.nesdr.gov.in/nerdrr/nerff.php?state="+snr+"&district="+nso;
+      }else if (info.stats.val == "landslide") {
+        var urlapi = info.stats.api
       }
       console.log(urlapi)
       fetch(
@@ -137,8 +139,12 @@ const Stats = ({ info, state }) => {
             var date = result.map((e) => e.district);
             var chartarea = result.map((e) => Number(e.area) / 1000000);
           }
+          if (info.stats.val == "landslide") {
+            var date = result.map((e) => e.state);
+            var chartarea = result.map((e) => Number(e.area));
+          }
           if (info.stats.val == "nerff") {
-            var areas="Fire Forest Count"
+            var areas="Forest Fire Count"
             if (nso !== ""){
             var ctype="pie";
             var a1 = result.map((e) => Number(e.very_low));
@@ -170,7 +176,11 @@ const Stats = ({ info, state }) => {
               var chartarea = result.map((e) => Number(e.ff_count));
               var ctype="bar"
             }
-          }else{
+          }
+          else if (info.stats.val == "landslide") {
+            var areas="Death Count";
+          }
+          else{
             var areas="Area (sq. km)"
             var ctype=info.stats.charttype
           }
@@ -226,7 +236,7 @@ const Stats = ({ info, state }) => {
             tooltip: {
               formatter: function () {
                 return (
-                  "Total Area is <b>" + this.y + "</b>"
+                  "Total <b>" + this.y + "</b>"
                 );
               },
             },

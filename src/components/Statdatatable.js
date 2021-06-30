@@ -90,6 +90,9 @@ const Statsdatatable = ({ info, state }) => {
       else if (info.stats.val == "nerff") {
         var dataurlapi = "https://api.nesdr.gov.in/nerdrr/datatable.php?state=all"
       }
+      else if (info.stats.val == "landslide") {
+        var dataurlapi = "https://api.nesdr.gov.in/nerdrr/landslide.php"
+      }
      // console.log(dataurlapi)
       fetch(dataurlapi, {
         method: "GET",
@@ -238,6 +241,32 @@ const Statsdatatable = ({ info, state }) => {
                 {
                   label: 'Very High',
                   field: 'area5',
+                },
+              ],
+              rows: ar,
+            })
+          }
+          if (info.stats.val == "landslide") {
+            mydata.map((e) => {
+              ar.push({
+                district: e.state,
+                area: e.area
+              })
+            })
+            setDatatable({ dataa: [mydata], isFetching: false });
+            setTest({
+              columns: [
+                {
+                  label: 'State',
+                  field: 'district',
+                  attributes: {
+                    'aria-controls': 'DataTable',
+                    'aria-label': 'District',
+                  },
+                },
+                {
+                  label: 'Daeth Count',
+                  field: 'area',
                 },
               ],
               rows: ar,
