@@ -1121,7 +1121,7 @@ export const maps = [
     link: "https://mt3.mapmyindia.com/advancedmaps/v1/493dfe9d040ca1e0f2c7d1a5c7bc5f5a/base_hybrid/{z}/{x}/{y}.png",
     format: "image/png",
     // domain: ["mt0", "mt1", "mt2", "mt3"],
-    type: "vectortile",
+    type: "tile",
     image: "google.png",
   },
   {
