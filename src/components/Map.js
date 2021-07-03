@@ -162,14 +162,14 @@ const Map = ({ visibility }) => {
       {overlayLayers.map(
         (overlayer, index) =>
           overlayer.show & (overlayer.text === "State Boundary") && (
-            <VectorTile show="State" />
+            <VectorTile show="State" test = { overlayer.show}/>
           )
         // (overlayer.show & overlayer.text==="District Boundary")&&<VectorTile show="District"/>
       )}
       {overlayLayers.map(
         (overlayer, index) =>
           overlayer.show & (overlayer.text === "District Boundary") && (
-            <VectorTile show="District" />
+            <VectorTile show="District"  test = { overlayer.show}/>
           )
         // (overlayer.show & overlayer.text==="District Boundary")&&<VectorTile show="District"/>
       )}
