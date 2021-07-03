@@ -2,20 +2,29 @@ import { useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet.vectorgrid";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setInfoDetails } from "../features/layers/infoboxslice";
 
-const VectorTile = ({ show }) => {
+const VectorTile = ({ show, test }) => {
   // console.log("Vector TIles")
 
-  console.log(show);
   const map = useMap();
   // useEffect(() => {
   var simpletyle = {
-    weight: 2,
+    weight: 1,
     color: "green",
     opacity: 1,
     fillColor: "yellow",
     fill: true,
     fillOpacity: 0.0,
+    "line-width": {
+      "base": 1,
+      "stops": [
+        [3, 1],
+        [5, 1.2],
+        [12, 3]
+      ]
+    }
   };
 
   let url;
@@ -30,6 +39,8 @@ const VectorTile = ({ show }) => {
   //  "http://geoserver.vassarlabs.com/geoserver/gwc/service/wmts?layer=VASSARLABS:AP_VILLAGE_V2&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=application/x-protobuf;type=mapbox-vector&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}",
 
   let village = L.vectorGrid.protobuf(url, {
+    rendererFactory: L.canvas.tile,
+
     interactive: true,
     getFeatureId: function (f) {
       if (show === "State") {
@@ -40,8 +51,9 @@ const VectorTile = ({ show }) => {
 
       }
     },
-    minZoom: show === "State"?5:10,
+    minZoom: show === "State"?5:9,
     maxZoom: show === "State"?9:15,
+    zIndex:200,
     vectorTileLayerStyles: {
       ner_states: function (feature, zoom) {
         // console.log(feature)
@@ -57,16 +69,24 @@ const VectorTile = ({ show }) => {
   });
 
   let previd;
-  village.on("mouseover", function (e) {
-    console.log(show);
+  let dispatch = useDispatch()
+
+  village.on("click", function (e) {
+              dispatch(
+                setInfoDetails({
+                  // statename: result.features[0].properties.stname,
+                  // distname: result.features[0].properties.dtname,
+                })
+              );
+
+
 
     previd !== undefined && village.resetFeatureStyle(previd);
-    console.log(e.layer.properties.objectid);
     village.setFeatureStyle(show === "State"?e.layer.properties.objectid:e.layer.properties.gid, {
-      weight: 2,
+      weight: 1,
       color: "red",
       opacity: 1,
-      fillColor: "",
+      fillColor: "yellow",
       fill: true,
       fillOpacity: 0.0,
     });
@@ -79,7 +99,10 @@ const VectorTile = ({ show }) => {
       }
   });
   village.addTo(map);
+  !test&&map.removeLayer(village);
+
   useEffect(() => {
+    console.log("HIHI")
     map.removeLayer(village);
   }, []);
   return null;
