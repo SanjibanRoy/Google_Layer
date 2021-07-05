@@ -99,8 +99,8 @@ export const layer = [
     text: "Embankment",
     show: false,
     class: "Flood",
-    layer: "NEWRM:ne_embankments",
-    link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
+    layer: "NERDRR_NEW:embank",
+    link: "https://geoserver.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
   },
   {
     id: 9,
