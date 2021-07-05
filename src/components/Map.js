@@ -30,7 +30,6 @@ import VectorTile from "./VectorTile";
 import Overlays from "./Overlays";
 import MarkersAdd from "./MarkersAdd";
 
-
 //**************Map Controls***********/
 const ZoomtoLocation = ({ bounds }) => {
   console.log(bounds);
@@ -92,7 +91,6 @@ const Map = ({ visibility }) => {
     } else {
       setNavigation(false);
     }
-    console.log(navigation);
   }, [mapZoomState.path]);
 
   function HandleClick() {
@@ -160,6 +158,20 @@ const Map = ({ visibility }) => {
               zIndex="1"
             />
           ))
+      )}
+      {overlayLayers.map(
+        (overlayer, index) =>
+          overlayer.show & (overlayer.text === "State Boundary") && (
+            <VectorTile show="State" test = { overlayer.show}/>
+          )
+        // (overlayer.show & overlayer.text==="District Boundary")&&<VectorTile show="District"/>
+      )}
+      {overlayLayers.map(
+        (overlayer, index) =>
+          overlayer.show & (overlayer.text === "District Boundary") && (
+            <VectorTile show="District"  test = { overlayer.show}/>
+          )
+        // (overlayer.show & overlayer.text==="District Boundary")&&<VectorTile show="District"/>
       )}
       {overlayLayers.map(
         (overlayer, index) =>

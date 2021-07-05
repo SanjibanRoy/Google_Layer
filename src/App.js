@@ -11,6 +11,7 @@ import Infowrapper from "./components/Infowrapper";
 import SwipePanel from "./components/SwipePanel";
 import Searchbox from "./components/Searchbox";
 import NavigationBox from "./components/NavigationBox";
+import Alert from "@material-ui/lab/Alert";
 const App = () => {
   const [visibility, setVisibility] = useState(panelVisibilty);
   const [panel, setPanel] = useState(false);
@@ -50,6 +51,7 @@ const App = () => {
       <StatsBox/>*/}
       <LayerInfo />
       <Legend />
+      <Alert/>
     </div>
   );
 };
