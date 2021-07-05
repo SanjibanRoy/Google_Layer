@@ -107,8 +107,8 @@ export const layer = [
     text: "Breach Locations",
     show: false,
     class: "Flood",
-    layer: "NEWRM:ne_breach_total_locations",
-    link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
+    layer: "NERDRR_NEW:breach_locations",
+    link: "https://geoserver.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
   },
   {
     id: 10,
