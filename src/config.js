@@ -52,34 +52,34 @@ export const layer = [
     text: "LULC (2005-06)",
     show: false,
     class: "Land Use/Land Cover",
-    layer: "analytic:ner_landuse_landcover_50k_1st_cycle",
-    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
+    layer: "NER_LULC_50K_1st_CYCLE",
+    link: "https://www.nesdr.gov.in/igistile/NER_Land_Use_50K_QC_passWS/wms",
     info: "Revenue Circle",
     stats: true,
-    legend:
-      "https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:ner_landuse_landcover_50k_1st_cycle",
+    clayer: "lege",
+    legend:"./legend/lulc1.png",
   },
   {
     id: 5,
     text: "LULC(2011-12)",
     show: false,
     class: "Land Use/Land Cover",
-    layer: "analytic:lulc2ndcycle",
-    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
+    layer: "NER_LULC_50K_2nd_CYCLE",
+    link: "https://www.nesdr.gov.in/igistile/NER_Land_Use_50K_QC_passWS/wms",
     info: "Revenue Circle",
-    legend:
-      "https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:lulc2ndcycle",
+    clayer: "lege",
+    legend:"./legend/lulc2.png",
   },
   {
     id: 6,
     text: "LULC(2015-16)",
     show: false,
     class: "Land Use/Land Cover",
-    layer: "analytic:lulc3rdcycle",
-    link: "https://apps.nesdr.gov.in:442/geoserver/wms",
-    info: "LULC(2015-16)",
-    legend:
-      "https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=analytic:lulc3rdcycle",
+    layer: "NER_LULC_50K_3RD_CYCLE",
+    link: "https://www.nesdr.gov.in/igistile/NER_Land_Use_50K_QC_passWS/wms",
+    info: "Revenue Circle",
+    clayer: "lege",
+    legend:"./legend/lulc3.png",
   },
   // Land Use and Land Cover end
 
@@ -235,8 +235,10 @@ export const layer = [
     show: false,
     class: "Alerts and Early Warning",
     subclass: "Lightning",
-    layer: "NEWRM:ne_earthquake",
+    clayer: "lege",
+    //layer: "NEWRM:ne_earthquake",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=pulserad&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
+    legend:"./legend/PulseRad.png"
   },
   {
     id: 18,
@@ -244,8 +246,10 @@ export const layer = [
     show: false,
     class: "Alerts and Early Warning",
     subclass: "Lightning",
-    layer: "NEWRM:ne_earthquake",
+   // layer: "NEWRM:ne_earthquake",
+    clayer: "lege",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=eta&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
+    legend:"./legend/StormETA.png"
   },
   {
     id: 19,
@@ -253,8 +257,10 @@ export const layer = [
     show: false,
     class: "Alerts and Early Warning",
     subclass: "Lightning",
-    layer: "NEWRM:ne_earthquake",
+    clayer: "lege",
+    //layer: "NEWRM:ne_earthquake",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Total.Lightning.Polygons:::1:2:3&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
+    legend:"./legend/Lightning Alert Polygons.png"
   },
   {
     id: 20,
@@ -262,8 +268,10 @@ export const layer = [
     show: false,
     class: "Alerts and Early Warning",
     subclass: "Lightning",
-    layer: "NEWRM:ne_earthquake",
+    clayer: "lege",
+    //layer: "NEWRM:ne_earthquake",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Cell.Tracks&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
+    legend:"./legend/CellTrack.png"
   },
   {
     id: 21,
@@ -428,6 +436,8 @@ export const layer = [
     subclass: "WRF",
     layer: "",
     link: "https://analytics.nesdr.gov.in/wrf/rain",
+    legend:"./legend/lr.png",
+    clayer: "lege",
     options: [
       {
         value: 1,
@@ -626,6 +636,8 @@ export const layer = [
     subclass: "WRF",
     layer: "",
     link: "https://analytics.nesdr.gov.in/wrf/temperature",
+    legend:"./legend/lt.png",
+    clayer: "lege",
     options: [
       {
         value: 1,
@@ -824,6 +836,8 @@ export const layer = [
     subclass: "WRF",
     layer: "",
     link: "https://analytics.nesdr.gov.in/wrf/rh",
+    legend:"./legend/lh.png",
+    clayer: "lege",
     options: [
       {
         value: 1,
