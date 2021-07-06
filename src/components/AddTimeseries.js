@@ -17,13 +17,20 @@ function AddTimeseries({ test, showAnalytics, subclass, slide, options }) {
     map._layers[Object.keys(map._layers)[Object.keys(map._layers).length - 1]]
       .wmsParams !== undefined
   ) {
+    console.log(Object.keys(map._layers));
     prevLayer =
       map._layers[Object.keys(map._layers)[Object.keys(map._layers).length - 1]]
         .wmsParams.layers;
+    console.log(
+      map._layers[Object.keys(map._layers)[Object.keys(map._layers).length - 1]]
+        .wmsParams.layers
+    );
   }
   analyticslayer !== null && map.removeLayer(analyticslayer);
 
   useEffect(() => {
+    console.log(prevLayer);
+    console.log(test[0]);
     if (test[0] !== prevLayer) {
       if (analyticslayer != null) {
         map.removeLayer(analyticslayer);
@@ -35,7 +42,6 @@ function AddTimeseries({ test, showAnalytics, subclass, slide, options }) {
         }
         analyticslayer = L.tileLayer.wms(test[1], {
           format: "image/png",
-          layers:test[0],
           transparent: true,
           slide: test[0],
           zIndex: 10,

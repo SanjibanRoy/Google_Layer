@@ -38,22 +38,17 @@ const Overlays = ({ overlayer }, { index }) => {
     );
   } else if (overlayer.subclass === "GeoJSON") {
     layers = <MarkersAdd url={overlayer.link} />;
-  }
-   else if (overlayer.subclass === "WRF") {
-    layers =
-      overlayer.show &&
-(
-            <AddTimeseries
-              key={index}
-              test={[overlayer.layer, overlayer.link]}
-              showAnalytics={overlayer.show}
-              subclass="WRF"
-              slide={5}
-            />
-          
-      );
-  }
-   else if (overlayer.options !== "undefined") {
+  } else if (overlayer.subclass === "WRF") {
+    layers = (
+      <AddTimeseries
+        key={index}
+        test={[overlayer.layer, overlayer.link]}
+        showAnalytics={overlayer.show}
+        subclass="WRF"
+        slide={5}
+      />
+    );
+  } else if (overlayer.options !== "undefined") {
     layers = overlayer.show&&overlayer.options.map(
       (e) =>
         e.value === overlayer.layer && (
