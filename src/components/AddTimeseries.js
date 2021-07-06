@@ -1,9 +1,10 @@
 import { useMap } from "react-leaflet";
 import { useEffect } from "react";
 import L from "leaflet";
-let analyticslayer=null;
 
 function AddTimeseries({ test, showAnalytics, subclass, slide, options }) {
+  let analyticslayer = null;
+
   console.log(options);
   console.log(test);
 
@@ -19,18 +20,19 @@ function AddTimeseries({ test, showAnalytics, subclass, slide, options }) {
     prevLayer =
       map._layers[Object.keys(map._layers)[Object.keys(map._layers).length - 1]]
         .wmsParams.layers;
-        console.log(map._layers)
   }
-
-  console.log(prevLayer)
   analyticslayer !== null && map.removeLayer(analyticslayer);
 
   useEffect(() => {
-    
-
+    if (test[0] !== prevLayer) {
+      if (analyticslayer != null) {
+        map.removeLayer(analyticslayer);
+      }
       if (subclass == "WRF") {
         console.log("Inside WRF");
-       
+        if (analyticslayer != null) {
+          map.removeLayer(analyticslayer);
+        }
         analyticslayer = L.tileLayer.wms(test[1], {
           format: "image/png",
           layers:test[0],
@@ -39,7 +41,7 @@ function AddTimeseries({ test, showAnalytics, subclass, slide, options }) {
           zIndex: 10,
         });
 
-
+        map.addLayer(analyticslayer);
       } else {
         analyticslayer = L.tileLayer.wms(test[1], {
           layers: test[0],
@@ -47,17 +49,14 @@ function AddTimeseries({ test, showAnalytics, subclass, slide, options }) {
           transparent: true,
           zIndex: 10,
         });
+        map.addLayer(analyticslayer);
       }
-      if (test[0] !== prevLayer) {
-      map.addLayer(analyticslayer);
-
     }
     // if (options == test[0]) {
     //     // analyticslayer=null
     //     map.addLayer(analyticslayer);
 
     //   }
-      map.addLayer(analyticslayer);
 
     // map.addLayer(analyticslayer);
     // if (!showAnalytics) {
@@ -66,7 +65,6 @@ function AddTimeseries({ test, showAnalytics, subclass, slide, options }) {
   }, [test]);
 
   useEffect(() => {
-    console.log(analyticslayer)
     return () => {
       map.removeLayer(analyticslayer);
     };
