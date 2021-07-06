@@ -1,10 +1,9 @@
 import { useMap } from "react-leaflet";
 import { useEffect } from "react";
 import L from "leaflet";
+let analyticslayer=null;
 
 function AddTimeseries({ test, showAnalytics, subclass, slide, options }) {
-  let analyticslayer = null;
-  console.log(subclass)
   console.log(options);
   console.log(test);
 
@@ -58,6 +57,7 @@ function AddTimeseries({ test, showAnalytics, subclass, slide, options }) {
     //     map.addLayer(analyticslayer);
 
     //   }
+      map.addLayer(analyticslayer);
 
     // map.addLayer(analyticslayer);
     // if (!showAnalytics) {
