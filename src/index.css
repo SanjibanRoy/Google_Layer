@@ -29,7 +29,7 @@ body {
   z-index: 10000;
 }
 .Legend{
-  width: 15%;
+  width: auto;
   bottom: 8px;
   right: 60px;
   position: absolute;
@@ -204,5 +204,9 @@ width: 250px !important;
 
 }
 
-
-
+.efliuI {
+  padding-left: 0px !important;
+}
+.kRuvKO{
+  padding-left: 0px !important;
+}

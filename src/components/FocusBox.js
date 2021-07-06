@@ -42,7 +42,7 @@ const InfoBoxx = styled.div`
   margin-right: auto;
   /* width: 20rem; */
   p {
-    background: white;
+    background: #eaeaea;
     align-items: center;
     width: 25rem;
     max-width: 25rem;
