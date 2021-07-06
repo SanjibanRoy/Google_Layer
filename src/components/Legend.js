@@ -33,7 +33,7 @@ const Legend = () => {
               // console.log(task.text),
               //  console.log(task.layer),
              // console.log(task.legend),
-                (sanju ="https://geoserver.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=" +task.layer),
+                (sanju ="https://geoserver.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=" +task.layer+"&legend_options=fontSize:14;fontWeight:bold"),
                  !arr.includes(task.layer) && (
                   <>
                     <Legen sanju={sanju} task={task}/>

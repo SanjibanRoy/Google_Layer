@@ -217,10 +217,10 @@ const Statsdatatable = ({ info, state }) => {
                 {
                   label: 'District',
                   field: 'district',
-                  attributes: {
-                    'aria-controls': 'DataTable',
-                    'aria-label': 'District',
-                  },
+                  // attributes: {
+                  //   'aria-controls': 'DataTable',
+                  //   'aria-label': 'District',
+                  // },
                 },
                 {
                   label: 'Very Low',
@@ -312,7 +312,7 @@ export const INFO = styled.div`
   color: white;
   /* table-layout: fixed; */
   p {
-    background: white;
+    background: #eaeaea;;
     align-items: center;
     width: 100%;
     padding: 8px 10px;
@@ -332,17 +332,18 @@ export const INFO = styled.div`
     margin-bottom: 2%;
     /* max-width: 20%; */
     table-layout: fixed;
-    width: 100%;
     /* border: none; */
     border-collapse: collapse;
     border: 1px solid #dadada;
     background-color: #222222;
+   
   }
   table tr {
     margin-bottom: 1px;
     border-bottom: 0.5px solid #dadada;
-    word-break: break-all;
-    width:80%;
+    // word-break: break-all;
+    overflow-x: scroll;
+
   }
   table td {
     padding: 6px !important;
@@ -358,6 +359,7 @@ table th {
   font-weight:bold !important;
   color:black !important;
   font-weight:"bold";
+  overflow:auto;
 }
 div.mdb-datatable div.mdb-datatable-info {
   display: none !important;

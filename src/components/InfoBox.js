@@ -40,7 +40,7 @@ const InfoBoxx = styled.div`
   margin-right: 15px;
   /* width: 20rem; */
   p {
-    background: white;
+    background: #eaeaea;
     align-items: center;
     width: 25rem;
     /* padding: 8px 10px; */

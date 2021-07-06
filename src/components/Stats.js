@@ -10,6 +10,7 @@ import HighchartsReact from "highcharts-react-official";
 import Cbutton from "./collapsebutton";
 import { ContactsOutlined } from "@material-ui/icons";
 import Statsdatatable from "./Statdatatable";
+import InfoIcon from "@material-ui/icons/Info";
 const Stats = ({ info, state }) => {
   const [featureInfo, setFeatureInfo] = useState({
     data: [],
@@ -309,8 +310,10 @@ const Stats = ({ info, state }) => {
           <CircularProgress />
         ) : (
           featureInfo.data.length > 0 && (
-            <React.Fragment >
-              <p onClick={() => setShowLayer(!showLayer)}>{info.text}</p>
+            <React.Fragment >                  
+                    <p onClick={() => setShowLayer(!showLayer)}> {info.text}</p>
+                   
+             
               <HighchartsReact highcharts={Highcharts} options={options} />
               {/* <Test/> */}
             </React.Fragment>
@@ -329,7 +332,7 @@ export const INFO = styled.div`
   color: white;
   /* table-layout: fixed; */
   p {
-    background: white;
+    background: #eaeaea;;
     align-items: center;
     width: 25rem;
     padding: 8px 10px;
