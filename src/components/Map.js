@@ -145,6 +145,7 @@ const Map = ({ visibility }) => {
               key={index}
               url={baselayer.link}
               domain={baselayer.domain}
+              maxZoom={7}
               zIndex="1"
             />
           ) : baselayer.type === "vectortile" ? (
@@ -154,6 +155,8 @@ const Map = ({ visibility }) => {
               key={index}
               url={baselayer.link}
               layers={baselayer.layer}
+              maxZoom={7}
+
               format="image/png"
               zIndex="1"
             />
