@@ -260,7 +260,7 @@ export const layer = [
     clayer: "lege",
     //layer: "NEWRM:ne_earthquake",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Total.Lightning.Polygons:::1:2:3&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
-    legend:"./legend/Lightning Alert Polygons.png"
+    legend:"./legend/Lightning Alert.png"
   },
   {
     id: 20,
@@ -271,7 +271,7 @@ export const layer = [
     clayer: "lege",
     //layer: "NEWRM:ne_earthquake",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Cell.Tracks&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
-    legend:"./legend/CellTrack.png"
+    legend:"./legend/CellTrack_new.png"
   },
   {
     id: 21,
@@ -436,7 +436,7 @@ export const layer = [
     subclass: "WRF",
     layer: "",
     link: "https://analytics.nesdr.gov.in/wrf/rain",
-    legend:"./legend/lr.png",
+    legend:"./legend/lr_new.png",
     clayer: "lege",
     options: [
       {
@@ -636,7 +636,7 @@ export const layer = [
     subclass: "WRF",
     layer: "",
     link: "https://analytics.nesdr.gov.in/wrf/temperature",
-    legend:"./legend/lt.png",
+    legend:"./legend/lt_new.png",
     clayer: "lege",
     options: [
       {
@@ -836,7 +836,7 @@ export const layer = [
     subclass: "WRF",
     layer: "",
     link: "https://analytics.nesdr.gov.in/wrf/rh",
-    legend:"./legend/lh.png",
+    legend:"./legend/lh_new.png",
     clayer: "lege",
     options: [
       {
