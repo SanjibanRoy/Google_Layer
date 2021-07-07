@@ -5,19 +5,22 @@ import L from "leaflet";
 function AddTimeseries({ test, showAnalytics, subclass, slide, options }) {
   let analyticslayer = null;
 
-  console.log(options);
-  console.log(test);
+  // console.log(options);
+  // console.log(test);
 
   const map = useMap();
   //   if (options !== test[0]) {
   //     analyticslayer=null
   //   }
   let prevLayer;
+  let prevurl;
+  console.log(    map._layers[Object.keys(map._layers)[Object.keys(map._layers).length - 1]]
+  .wmsParams)
   if (
     map._layers[Object.keys(map._layers)[Object.keys(map._layers).length - 1]]
       .wmsParams !== undefined
   ) {
-    console.log(Object.keys(map._layers));
+    console.log((map._layers));
     prevLayer =
       map._layers[Object.keys(map._layers)[Object.keys(map._layers).length - 1]]
         .wmsParams.layers;

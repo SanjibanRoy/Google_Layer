@@ -39,28 +39,35 @@ const Overlays = ({ overlayer }, { index }) => {
   } else if (overlayer.subclass === "GeoJSON") {
     layers = <MarkersAdd url={overlayer.link} />;
   } else if (overlayer.subclass === "WRF") {
-    layers = (
-      <AddTimeseries
-        key={index}
-        test={[overlayer.layer, overlayer.link]}
-        showAnalytics={overlayer.show}
-        subclass="WRF"
-        slide={5}
-      />
-    );
+    layers =
+      overlayer.show &&
+      overlayer.options.map(
+        (e) =>
+          e.value === parseInt(overlayer.layer) && (
+            <AddTimeseries
+              key={index}
+              test={[overlayer.layer, overlayer.link]}
+              showAnalytics={overlayer.show}
+              subclass="WRF"
+              slide={5}
+            />
+          )
+      );
   } else if (overlayer.options !== "undefined") {
-    layers = overlayer.show&&overlayer.options.map(
-      (e) =>
-        e.value === overlayer.layer && (
-          <AddTimeseries
-            key={index}
-            test={[overlayer.layer, overlayer.link]}
-            showAnalytics={overlayer.show}
-            subclass={overlayer.subclass}
-            options={e.value}
-          />
-        )
-    );
+    layers =
+      overlayer.show &&
+      overlayer.options.map(
+        (e) =>
+          e.value === overlayer.layer && (
+            <AddTimeseries
+              key={index}
+              test={[overlayer.layer, overlayer.link]}
+              showAnalytics={overlayer.show}
+              // subclass={overlayer.subclass}
+              options={e.value}
+            />
+          )
+      );
   }
 
   return <div>{layers}</div>;

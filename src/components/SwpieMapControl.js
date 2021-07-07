@@ -15,13 +15,13 @@ let baselayer = null;
 const SwpieMapControl = ({ show }) => {
   const state = useSelector(selectSwipeDataSet);
   const layers = useSelector(selectLayerDataSet);
-  console.log(state);
+  // console.log(state);
   const map = useMap();
 
   let left = layers.filter((e) => e.id == state.leftmap);
 
   let right = layers.filter((e) => e.id == state.rightmap);
-  console.log(left);
+  // console.log(left);
 
   useEffect(() => {
     console.log(state);
