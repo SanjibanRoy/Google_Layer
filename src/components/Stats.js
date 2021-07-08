@@ -11,7 +11,11 @@ import Cbutton from "./collapsebutton";
 import { ContactsOutlined } from "@material-ui/icons";
 import Statsdatatable from "./Statdatatable";
 import InfoIcon from "@material-ui/icons/Info";
+import {selectMapstate} from "../features/maps/mapStateSlice"
 const Stats = ({ info, state }) => {
+  const mapState = useSelector(selectMapstate)
+  console.log(mapState)
+
   const [featureInfo, setFeatureInfo] = useState({
     data: [],
     isFetching: false,
@@ -34,7 +38,7 @@ const Stats = ({ info, state }) => {
       setFeatureInfo({ data: [], isFetching: true });
       console.log(info.stats.val)
       if (info.stats.val == "flood") {
-        var urlapi = info.stats.api + '' + (e.districtname !== undefined ? e.districtname.toUpperCase() : "")
+        var urlapi = info.stats.api + '' + (e.districtname !== undefined & mapState.zoom>=9 ? e.districtname.toUpperCase() : "")
       }else
       if (info.stats.val == "firev") {
         var urlapi = info.stats.api + '' + (e.districtname !== undefined ? e.districtname : "")

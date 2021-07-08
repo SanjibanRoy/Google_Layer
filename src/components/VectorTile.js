@@ -14,9 +14,7 @@ const VectorTile = ({ show, test }) => {
     weight: 1,
     color: "green",
     opacity: 1,
-    fillColor: "yellow",
-    fill: true,
-    fillOpacity: 0.0,
+    
     "line-width": {
       "base": 1,
       "stops": [
@@ -72,10 +70,11 @@ const VectorTile = ({ show, test }) => {
   let dispatch = useDispatch()
 
   village.on("click", function (e) {
+    console.log(e)
               dispatch(
                 setInfoDetails({
-                  // statename: result.features[0].properties.stname,
-                  // distname: result.features[0].properties.dtname,
+                  statename: e.layer.properties.stname,
+                  distname: e.layer.properties.dtname!==undefined&&e.layer.properties.dtname,
                 })
               );
 
@@ -83,12 +82,10 @@ const VectorTile = ({ show, test }) => {
 
     previd !== undefined && village.resetFeatureStyle(previd);
     village.setFeatureStyle(show === "State"?e.layer.properties.objectid:e.layer.properties.gid, {
-      weight: 3,
-      color: "red",
-      opacity: 1,
-      fillColor: "yellow",
-      fill: true,
-      fillOpacity: 0.0,
+      stroke: true,
+      color: 'red',
+      weight: show === "State"?3:1,
+      opacity: 1
     });
     if (show === "State") {
       previd = e.layer.properties.objectid;
