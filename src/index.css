@@ -134,7 +134,15 @@ display:none;
   text-align: right;
   
 } */
-
+table.mdb-dataTable thead > tr > th.sorting_asc, table.mdb-dataTable thead > tr > th.sorting_desc, table.mdb-dataTable thead > tr > th.sorting, table.mdb-dataTable thead > tr > td.sorting_asc, table.mdb-dataTable thead > tr > td.sorting_desc, table.mdb-dataTable thead > tr > td.sorting, table thead.mdb-dataTable-head > tr > th.sorting_asc, table thead.mdb-dataTable-head > tr > th.sorting_desc, table thead.mdb-dataTable-head > tr > th.sorting, table thead.mdb-dataTable-head > tr > td.sorting_asc, table thead.mdb-dataTable-head > tr > td.sorting_desc, table thead.mdb-dataTable-head > tr > td.sorting{
+  padding-right: 0px !important;
+}
+table.mdb-dataTable thead .sorting:before, table.mdb-dataTable thead .sorting:after, table.mdb-dataTable thead .sorting_asc:before, table.mdb-dataTable thead .sorting_asc:after, table.mdb-dataTable thead .sorting_desc:before, table.mdb-dataTable thead .sorting_desc:after, table.mdb-dataTable thead .sorting_asc_disabled:before, table.mdb-dataTable thead .sorting_asc_disabled:after, table.mdb-dataTable thead .sorting_desc_disabled:before, table.mdb-dataTable thead .sorting_desc_disabled:after, table thead.mdb-dataTable-head .sorting:before, table thead.mdb-dataTable-head .sorting:after, table thead.mdb-dataTable-head .sorting_asc:before, table thead.mdb-dataTable-head .sorting_asc:after, table thead.mdb-dataTable-head .sorting_desc:before, table thead.mdb-dataTable-head .sorting_desc:after, table thead.mdb-dataTable-head .sorting_asc_disabled:before, table thead.mdb-dataTable-head .sorting_asc_disabled:after, table thead.mdb-dataTable-head .sorting_desc_disabled:before, table thead.mdb-dataTable-head .sorting_desc_disabled:after {
+  /* position: absolute; */
+  bottom: 1rem;
+  display: none !important;
+  opacity: 0;
+}
 
 
 .LayerTree p{
