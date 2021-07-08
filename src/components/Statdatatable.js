@@ -295,7 +295,7 @@ const Statsdatatable = ({ info, state }) => {
             <React.Fragment>
               <p>Data Table</p>
               <br></br>
-              <MDBDataTableV5 scrollY maxHeight="300px" hover entriesOptions={[8, 20, 25, 100]} entries={8} pagesAmount={4} data={test} searchTop searchBottom={false}
+              <MDBDataTableV5 maxHeight="300px" hover entriesOptions={[8, 20, 25, 100]} entries={8} pagesAmount={4} data={test} searchTop searchBottom={false}
               />
             </React.Fragment>
           )
@@ -317,7 +317,7 @@ export const INFO = styled.div`
     width: 100%;
     padding: 8px 10px;
     border-bottom: 1px solid #ccc;
-    color:black;
+    color:#215a93;
   }
   p > .MuiSvgIcon-root {
     float: right;
@@ -336,30 +336,42 @@ export const INFO = styled.div`
     border-collapse: collapse;
     border: 1px solid #dadada;
     background-color: #222222;
-   
+   width: 100%
   }
   table tr {
     margin-bottom: 1px;
     border-bottom: 0.5px solid #dadada;
     // word-break: break-all;
-    overflow-x: scroll;
-
+    overflow-x:scroll
+    overflow-y: scroll;
+   
   }
   table td {
-    padding: 6px !important;
+    padding: 10px -3px !important;
     text-align: center !important;
-    background-color:white;
-    color:black !important;
-    font-weight: 400;
+    background-color: white;
+    color: black !important;
+    /* font-weight: 400; */
+    //  word-wrap: break-word; 
+    border: 1px solid #eee;
+    font-size:13px;
+    font-weight:500
+
 }
 table th {
-  padding: 6px !important;
+  padding: 5px !important;
   text-align: center !important;
   background-color:orange !important;
   font-weight:bold !important;
   color:black !important;
-  font-weight:"bold";
-  overflow:auto;
+  font-weight:800;
+  word-wrap: break-word;
+  border-top:1px solid  #cec6b7!important;
+  border: 1px solid #cec6b7;
+  font-size:13px;
+
+
+ 
 }
 div.mdb-datatable div.mdb-datatable-info {
   display: none !important;

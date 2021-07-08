@@ -49,7 +49,7 @@ const InfoBoxx = styled.div`
     padding: 8px 10px;
     border-bottom: 1px solid #ccc;
     font-weight:bold;
-    color: black;
+    color: #215a93;
   }
   .MuiSvgIcon-root {
     font-size: 16px;

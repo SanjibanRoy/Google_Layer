@@ -41,7 +41,7 @@ const Layer = ({ task, showLayer }) => {
       })
     );
   };
-
+  // console.log(task.options)
   let dropdown;
   if (task.show) {
     
@@ -59,6 +59,7 @@ const Layer = ({ task, showLayer }) => {
               <option value={data.value}> {data.text}</option>
             ))}
           </select>
+
           {task.subclass==="WRF"&&<TimeSlider data = {task.options}/>}        </>
       );
     }

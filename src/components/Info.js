@@ -165,7 +165,7 @@ export const INFO = styled.div`
 
   }
   p {
-    background: #294da1;
+    // background: #294da1;
     align-items: center;
     width: 100%;
     padding: 8px 10px;
@@ -202,10 +202,11 @@ export const INFO = styled.div`
     height:20%;
   }
   table td {
-    padding: 6px !important;
+    padding: 5px !important;
     text-align: center !important;
     background-color:white;
     color:black !important;
     font-weight: 400;
+    border: 1px solid #cec6b7;
 }
 `;
