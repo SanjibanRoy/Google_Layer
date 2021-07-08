@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import {useState} from "react"
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 200,
@@ -12,41 +13,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const marks = [
-  {
-    value: 0,
-    label: '0°C',
-  },
-  {
-    value: 20,
-    label: '20°C',
-  },
-  {
-    value: 37,
-    label: '37°C',
-  },
-  {
-    value: 100,
-    label: '100°C',
-  },
-];
+
+
 
 function valuetext(value) {
   return `${value}`;
 }
 
-export default function TimeSlider() {
+export default function TimeSlider({data}) {
+  let data1 = data.map((e)=>({value:e.value, label:e.text}))
+
+  const [marks, setMarks] = useState(data1)
+  console.log(data1)
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-    <PlayArrowIcon/>  <Slider
+    <Slider
         defaultValue={20}
         getAriaValueText={valuetext}
         aria-labelledby="discrete-slider-custom"
-        step={10}
+        step={1}
         valueLabelDisplay="auto"
         // marks={marks}
+        max={48}
       />
     </div>
   );

@@ -1051,7 +1051,7 @@ export const maps = [
   {
     id: 1,
     text: "Mapbox Light",
-    show: true,
+    show: false,
     class: "Maps",
     layer: "analytic:ner_boundary",
     link: "https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGluZXNoa2N1YmUiLCJhIjoiY2p2Z2Jzc3pyMDVwajN5bWowdjA1YTAyMSJ9.TcJaEwi-qTQqBPqTh0Kt2g",
@@ -1104,19 +1104,9 @@ export const maps = [
     type: "tile",
     image: "osm.png",
   },
+  
   {
     id: 6,
-    text: "Google Satellite",
-    show: false,
-    class: "Maps",
-    layer: "analytic:ner_boundary",
-    link: "http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
-    format: "image/png",
-    domain: ["mt0", "mt1", "mt2", "mt3"],
-    image: "google.png",
-  },
-  {
-    id: 7,
     text: " Satellite",
     show: false,
     class: "Maps",
@@ -1127,7 +1117,7 @@ export const maps = [
     image: "google.png",
   },
   {
-    id: 8,
+    id: 7,
     text: " Map My India",
     show: false,
     class: "Maps",
@@ -1139,7 +1129,7 @@ export const maps = [
     image: "google.png",
   },
   {
-    id: 9,
+    id: 8,
     text: "Terrain",
     show: false,
     class: "Maps",
@@ -1149,7 +1139,18 @@ export const maps = [
     type: "tile",
     // domain: ["mt0", "mt1", "mt2", "mt3"],
     image: "terrain.png",
-  },
+  },{
+    id: 9,
+    text: "Carto DEM",
+    show: true,
+    class: "Maps",
+    layer: "NEWRM:CARTO_DEM",
+    link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
+    format: "image/png",
+    // domain: ["mt0", "mt1", "mt2", "mt3"],
+    image: "terrain.png",
+    
+  }
   //maps end
 ];
 
