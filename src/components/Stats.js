@@ -14,7 +14,7 @@ import InfoIcon from "@material-ui/icons/Info";
 import {selectMapstate} from "../features/maps/mapStateSlice"
 const Stats = ({ info, state }) => {
   const mapState = useSelector(selectMapstate)
-  console.log(mapState)
+  // console.log(mapState)
 
   const [featureInfo, setFeatureInfo] = useState({
     data: [],

@@ -15,7 +15,6 @@ const Legen = ({ task, sanju }) => {
           <AddIcon />
         )}
         {task.text}
-        {console.log(task.layer)}
       </p>
       <div className={`${showlegend ? "" : "visibility"}`}>
        { task.clayer !== "lege" ?<img src={sanju} />:

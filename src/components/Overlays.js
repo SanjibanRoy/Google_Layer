@@ -15,7 +15,6 @@ import VectorTile from "./VectorTile";
 
 const Overlays = ({ overlayer }, { index }) => {
   let layers;
-  console.log(overlayer.text);
   if((overlayer.text=="State Boundary")){
     layers = (  overlayer.show&&<VectorTile show="State" />)
 
@@ -37,7 +36,6 @@ const Overlays = ({ overlayer }, { index }) => {
       />
     );
   } else if (overlayer.subclass === "Lightning") {
-    console.log("Inside Lightining");
     layers = (
       <TileLayer
         key={index}
