@@ -41,21 +41,21 @@ const Stats = ({ info, state }) => {
         var urlapi = info.stats.api + '' + (e.districtname !== undefined & mapState.zoom>=9 ? e.districtname.toUpperCase() : "")
       }else
       if (info.stats.val == "firev") {
-        var urlapi = info.stats.api + '' + (e.districtname !== undefined ? e.districtname : "")
+        var urlapi = info.stats.api + '' + (e.districtname !== undefined & mapState.zoom>=9? e.districtname : "")
       }else
       if (info.stats.val == "cropyear") {
         if(cropdamsyear=='2005-2011'){
-          var urlapi=info.options[0].api+ '' + (e.districtname !== undefined ? e.districtname.toLowerCase() : "")
+          var urlapi=info.options[0].api+ '' + (e.districtname !== undefined& mapState.zoom>=9 ? e.districtname.toLowerCase() : "")
         }else if(cropdamsyear=='2005-2015'){
-          var urlapi=info.options[1].api+ '' + (e.districtname !== undefined ? e.districtname.toLowerCase() : "")
+          var urlapi=info.options[1].api+ '' + (e.districtname !== undefined & mapState.zoom>=9? e.districtname.toLowerCase() : "")
         }else if(cropdamsyear=='2011-2015'){
-          var urlapi=info.options[2].api+ '' + (e.districtname !== undefined ? e.districtname.toLowerCase() : "")
+          var urlapi=info.options[2].api+ '' + (e.districtname !== undefined & mapState.zoom>=9? e.districtname.toLowerCase() : "")
         }else{
           var urlapi=info.options[0].api+ '' + (e.districtname !== undefined ? e.districtname.toLowerCase() : "")
         }
       }
       if (info.stats.val == "kharifcrop") {
-        var urlapi = info.stats.api + '' + (e.districtname !== undefined ? e.districtname : "")
+        var urlapi = info.stats.api + '' + (e.districtname !== undefined & mapState.zoom>=9? e.districtname : "")
       }
       if (info.stats.val == "nerff") {
         console.log(e.districtname)

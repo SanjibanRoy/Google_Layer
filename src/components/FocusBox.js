@@ -5,14 +5,17 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { selectInfo } from "../features/layers/infoboxslice";
 import InfoIcon from "@material-ui/icons/Info";
+import {selectMapstate} from "../features/maps/mapStateSlice"
 
 const FocusBox = () => {
   const state = useSelector(selectInfo);
+  const mapState = useSelector(selectMapstate)
+  console.log(mapState)
  // console.log(state);
   return (
     <InfoBoxx>
       <React.Fragment>
-        {state.districtname !== undefined ? (
+        {state.districtname !== undefined & mapState.zoom>=9 ? (
           <p>
             <InfoIcon />
             Area of Focus: {state.districtname} (District)
