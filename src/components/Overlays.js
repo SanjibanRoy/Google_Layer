@@ -11,11 +11,20 @@ import {
 } from "react-leaflet";
 import AddTimeseries from "./AddTimeseries";
 import MarkersAdd from "./MarkersAdd";
+import VectorTile from "./VectorTile";
 
 const Overlays = ({ overlayer }, { index }) => {
   let layers;
-  console.log(overlayer.options);
-  if ((overlayer.options === undefined) & (overlayer.subclass === undefined)) {
+  console.log(overlayer.text);
+  if((overlayer.text=="State Boundary")){
+    layers = (  overlayer.show&&<VectorTile show="State" />)
+
+  }
+  else if((overlayer.text=="District Boundary")){
+    layers = (  overlayer.show&&<VectorTile show="District" />)
+
+  }
+  else if ((overlayer.options === undefined) & (overlayer.subclass === undefined)) {
     layers = (
       <WMSTileLayer
         key={index}
@@ -44,13 +53,18 @@ const Overlays = ({ overlayer }, { index }) => {
       overlayer.options.map(
         (e) =>
           e.value === parseInt(overlayer.layer) && (
-            <AddTimeseries
+            <WMSTileLayer
               key={index}
-              test={[overlayer.layer, overlayer.link]}
-              showAnalytics={overlayer.show}
-              subclass="WRF"
-              slide={5}
+              format="image/png"
+              layers={overlayer.layer}
+              url={overlayer.link}
+              transparent="true"
+              slide={overlayer.layer}
+
+              // minZoom={overlayer.minZoom !== undefined ? overlayer.minZoom : ""}
+              // zIndex={overlayer.class === "Administrative" ? "15" : "10"}
             />
+
           )
       );
   } else if (overlayer.options !== "undefined") {
@@ -59,13 +73,16 @@ const Overlays = ({ overlayer }, { index }) => {
       overlayer.options.map(
         (e) =>
           e.value === overlayer.layer && (
-            <AddTimeseries
+            <WMSTileLayer
               key={index}
-              test={[overlayer.layer, overlayer.link]}
-              showAnalytics={overlayer.show}
-              // subclass={overlayer.subclass}
-              options={e.value}
+              format="image/png"
+              layers={overlayer.layer}
+              url={overlayer.link}
+              transparent="true"
+              // minZoom={overlayer.minZoom !== undefined ? overlayer.minZoom : ""}
+              // zIndex={overlayer.class === "Administrative" ? "15" : "10"}
             />
+
           )
       );
   }

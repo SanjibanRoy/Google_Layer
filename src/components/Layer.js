@@ -59,8 +59,8 @@ const Layer = ({ task, showLayer }) => {
               <option value={data.value}> {data.text}</option>
             ))}
           </select>
-          <TimeSlider/>
-        </>
+
+          {task.subclass==="WRF"&&<TimeSlider data = {task.options}/>}        </>
       );
     }
     if (task.options !== undefined&task.submenu !== undefined) {
@@ -90,7 +90,7 @@ const Layer = ({ task, showLayer }) => {
               <option value={data.value}> {data.text}</option>
             ))}
           </select>
-          {/* <TimeSlider/> */}
+          <TimeSlider/>
         </div>
       );
     }

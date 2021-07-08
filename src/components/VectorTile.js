@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setInfoDetails } from "../features/layers/infoboxslice";
 
 const VectorTile = ({ show, test }) => {
-  // console.log("Vector TIles")
+  console.log("Vector TIles")
 
   const map = useMap();
   // useEffect(() => {
@@ -67,7 +67,7 @@ const VectorTile = ({ show, test }) => {
       },
     },
   });
-
+ console.log(map)
   let previd;
   let dispatch = useDispatch()
 
@@ -83,7 +83,7 @@ const VectorTile = ({ show, test }) => {
 
     previd !== undefined && village.resetFeatureStyle(previd);
     village.setFeatureStyle(show === "State"?e.layer.properties.objectid:e.layer.properties.gid, {
-      weight: 1,
+      weight: 3,
       color: "red",
       opacity: 1,
       fillColor: "yellow",
@@ -98,13 +98,23 @@ const VectorTile = ({ show, test }) => {
 
       }
   });
-  village.addTo(map);
-  !test&&map.removeLayer(village);
+  useEffect(()=>{
+    village.addTo(map);
 
+  },[])
+  
+  // !test&&map.removeLayer(village);
   useEffect(() => {
-    console.log("HIHI")
-    map.removeLayer(village);
+    return () => {
+      console.log("Unmounting");
+      console.log(map)
+      map.removeLayer(village);
+    };
   }, []);
+  // useEffect(() => {
+  //   console.log("HIHI")
+  //   map.removeLayer(village);
+  // }, []);
   return null;
 };
 

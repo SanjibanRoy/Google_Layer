@@ -5,36 +5,36 @@ import L from "leaflet";
 function AddTimeseries({ test, showAnalytics, subclass, slide, options }) {
   let analyticslayer = null;
 
-  // console.log(options);
-  // console.log(test);
-
-  const map = useMap();
+   const map = useMap();
   //   if (options !== test[0]) {
   //     analyticslayer=null
   //   }
   let prevLayer;
-  let prevurl;
-  console.log(    map._layers[Object.keys(map._layers)[Object.keys(map._layers).length - 1]]
-  .wmsParams)
-  if (
-    map._layers[Object.keys(map._layers)[Object.keys(map._layers).length - 1]]
-      .wmsParams !== undefined
-  ) {
-    console.log((map._layers));
-    prevLayer =
-      map._layers[Object.keys(map._layers)[Object.keys(map._layers).length - 1]]
-        .wmsParams.layers;
-    console.log(
-      map._layers[Object.keys(map._layers)[Object.keys(map._layers).length - 1]]
-        .wmsParams.layers
-    );
-  }
+  // if (
+  //   map._layers[Object.keys(map._layers)[Object.keys(map._layers).length - 1]]
+  //     .wmsParams !== undefined
+  // ) {
+  //   console.log(Object.keys(map._layers));
+  //   prevLayer =
+  //     map._layers[Object.keys(map._layers)[Object.keys(map._layers).length - 1]]
+  //       .wmsParams.layers;
+  
+  // }
   analyticslayer !== null && map.removeLayer(analyticslayer);
+  var keys_array = Object.keys(map._layers).map(key => parseInt(key))
+  keys_array.map(d => {
+    console.log(map._layers[d]._url)
+      if (test[0] === map._layers[d].options.layers  ) {
+        console.log(map._layers[d]._url)
 
+           map.removeLayer(map._layers[d])
+       }
+  })
   useEffect(() => {
-    console.log(prevLayer);
+    // console.log(prevLayer);
     console.log(test[0]);
-    if (test[0] !== prevLayer) {
+    // if (test[0] !== prevLayer) 
+    {
       if (analyticslayer != null) {
         map.removeLayer(analyticslayer);
       }
@@ -52,12 +52,17 @@ function AddTimeseries({ test, showAnalytics, subclass, slide, options }) {
 
         map.addLayer(analyticslayer);
       } else {
+        if (analyticslayer != null) {
+          map.removeLayer(analyticslayer);
+        }
         analyticslayer = L.tileLayer.wms(test[1], {
           layers: test[0],
           format: "image/png",
           transparent: true,
           zIndex: 10,
         });
+        map.removeLayer(analyticslayer);
+
         map.addLayer(analyticslayer);
       }
     }
@@ -75,6 +80,7 @@ function AddTimeseries({ test, showAnalytics, subclass, slide, options }) {
 
   useEffect(() => {
     return () => {
+      console.log("Unmounting");
       map.removeLayer(analyticslayer);
     };
   }, []);
