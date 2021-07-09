@@ -34,13 +34,23 @@ const AddAnalyticsLayer = ({ test, showAnalytics }) => {
   if (analyticslayer != null) {
     map.removeLayer(analyticslayer);
   }
-  if (test.dataset == "sentinel1") {
+  if (test.operation === "visu" && test.dataset == "sentinel1") {
+    // analyticslayer = L.tileLayer.wms(
+    //   "https://analytics.nesdr.gov.in/nerdrr_sentinel_1/customrange?",
+    //   {
+    //     date: test.date,
+    //     band: test.band,
+    //     range: test.range,
+    //     format: "image/png",
+    //     transparent: true,
+    //     zIndex: 10,
+    //   }
+    // );
     analyticslayer = L.tileLayer.wms(
-      "https://analytics.nesdr.gov.in/nerdrr_sentinel_1/customrange?",
+      "https://analytics.nesdr.gov.in/nerdrr_sentinel_1/visu?date=1619847000",
       {
-        date: test.date,
-        band: test.band,
-        range: test.range,
+        // date: test.dates,
+        band: test.bands !== undefined && test.bands[0],
         format: "image/png",
         transparent: true,
         zIndex: 10,
@@ -85,7 +95,25 @@ const AddAnalyticsLayer = ({ test, showAnalytics }) => {
           //   }),
         }
       );
-    } else {
+    }
+    if (test.operation != "visu" && test.dataset == "sentinel1") {
+
+      analyticslayer = L.tileLayer.wms(
+        "https://analytics.nesdr.gov.in/nerdrr_sentinel_1/customrange?",
+        {
+          date: test.date,
+          band: test.band,
+          range: test.range,
+          format: "image/png",
+          transparent: true,
+          zIndex: 10,
+        }
+      );
+
+    }
+
+
+    else {
       analyticslayer = L.tileLayer.wms(
         "https://analytics.nesdr.gov.in/nerdrr_sentinel_2/oper?color=default&from=-1.0&to=1.0&oper=" +
         test.operation +
