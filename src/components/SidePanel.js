@@ -49,13 +49,13 @@ const SidePanel = ({ changeVisibility, visibility }) => {
           <InsertChartIcon />
           <span align="center">Analytics</span>
         </li>
-        <li key={6} onClick={() => changeVisibility("Search")}>
+        <li key={7} onClick={() => changeVisibility("Search")}>
           <BuildIcon />
           <span align="center">Tools</span>
         </li>
       </ul>
       <ul className="legend">
-        <li key={3} onClick={() => changeVisibility("")}>
+        <li key={8} onClick={() => changeVisibility("")}>
           <MapIcon />
           <span align="center">Legend</span>
         </li>

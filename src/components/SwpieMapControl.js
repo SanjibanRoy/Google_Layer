@@ -24,7 +24,6 @@ const SwpieMapControl = ({ show }) => {
   // console.log(left);
 
   useEffect(() => {
-    console.log(state);
     if (show) {
       rightlayer !== null && map.removeLayer(rightlayer);
       leftlayer !== null && map.removeLayer(leftlayer);

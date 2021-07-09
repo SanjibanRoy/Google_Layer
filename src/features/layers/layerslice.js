@@ -3,10 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   dataset: "modis_ndvi",
   operation: "diff",
-  dates: [111,2222,333],
-  mask:"",
-  show:false,
-  custom:""
+  dates: [111, 2222, 333],
+  mask: "",
+  show: false,
+  custom: ""
 };
 
 const userSlice = createSlice({
@@ -14,12 +14,15 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setAnalyticsDetails: (state, action) => {
-      state.dataset =  action.payload.dataset;
+      state.dataset = action.payload.dataset;
       state.operation = action.payload.operation;
       state.dates = action.payload.dates;
-      state.mask =  action.payload.mask;
+      state.mask = action.payload.mask;
       state.show = action.payload.show;
-      state.custom =action.payload.custom
+      state.custom = action.payload.custom
+      state.band = action.payload.band
+      state.range = action.payload.range
+      state.date = action.payload.date
     }
   },
 });

@@ -44,7 +44,7 @@ const SwipePanel = () => {
       >
         {overlayLayers.map(
           (data, index) =>
-            data.show && <option value={data.id}> {data.text}</option>
+            data.show && <option key={index} value={data.id}> {data.text}</option>
         )}
       </select>
 
@@ -55,7 +55,7 @@ const SwipePanel = () => {
       >
         {overlayLayers.map(
           (data, index) =>
-            data.show && <option value={data.id}> {data.text}</option>
+            data.show && <option key={index} value={data.id}> {data.text}</option>
         )}
       </select>
     </Swipe>
