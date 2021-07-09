@@ -93,7 +93,7 @@ const Infowrapper = () => {
         });
       setFeatureInfo({ ...featureInfo, isFetching: true });
     } catch (exception) {
-      console.log(exception);
+      // console.log(exception);
     }
   };
 

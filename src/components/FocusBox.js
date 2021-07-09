@@ -10,7 +10,7 @@ import {selectMapstate} from "../features/maps/mapStateSlice"
 const FocusBox = () => {
   const state = useSelector(selectInfo);
   const mapState = useSelector(selectMapstate)
-  console.log(mapState)
+  // console.log(mapState)
  // console.log(state);
   return (
     <InfoBoxx>

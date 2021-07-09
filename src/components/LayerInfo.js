@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 
 const LayerInfo = () => {
   const state = useSelector(selectLayerInfo);
-  console.log(state)
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -46,7 +45,6 @@ const LayerInfo = () => {
   };
 
   const handleClose = () => {
-    // console.log("Here");
     dispatch(
       setLayerInfoDetails({ show: false })
     );

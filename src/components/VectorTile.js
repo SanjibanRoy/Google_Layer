@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setInfoDetails } from "../features/layers/infoboxslice";
 
 const VectorTile = ({ show, test }) => {
-  console.log("Vector TIles")
 
   const map = useMap();
   // useEffect(() => {
@@ -65,7 +64,6 @@ const VectorTile = ({ show, test }) => {
       },
     },
   });
- console.log(map)
   let previd;
   let dispatch = useDispatch()
 
@@ -103,8 +101,7 @@ const VectorTile = ({ show, test }) => {
   // !test&&map.removeLayer(village);
   useEffect(() => {
     return () => {
-      console.log("Unmounting");
-      console.log(map)
+
       map.removeLayer(village);
     };
   }, []);

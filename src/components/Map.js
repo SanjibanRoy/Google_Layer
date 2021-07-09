@@ -32,7 +32,6 @@ import MarkersAdd from "./MarkersAdd";
 
 //**************Map Controls***********/
 const ZoomtoLocation = ({ bounds }) => {
-  console.log(bounds);
   const map = useMap();
   // map.fitBounds([40.712, -74.227],
   //   [40.774, -74.125])
@@ -96,7 +95,6 @@ const Map = ({ visibility }) => {
   function HandleClick() {
     const map = useMapEvents({
       click: (e) => {
-        console.log(e);
         dispatch(
           setMapState({
             lat: e.latlng.lat,
@@ -118,7 +116,6 @@ const Map = ({ visibility }) => {
     setTimeout(1000);
     Object.keys(json).forEach(function (key) {
       if (json[key]._mRadius !== undefined) {
-        console.log(json[key]);
         dispatch(
           setMapBounds({
             lat: json[key]._latlng.lat,
@@ -178,7 +175,7 @@ const Map = ({ visibility }) => {
       )} */}
       {overlayLayers.map(
         (overlayer, index) =>
-          overlayer.show && <Overlays overlayer={overlayer} index={index} />
+          overlayer.show && <Overlays key={index} overlayer={overlayer} index={index} />
       )}
 
       {/* <Toolbar /> */}

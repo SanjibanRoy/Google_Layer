@@ -1,15 +1,11 @@
 import { useState } from "react";
 import Map from "./components/Map";
-import InfoBox from "./components/InfoBox";
 import Legend from "./components/Legend";
 import SideBarWrapper from "./components/SideBarWrapper";
 import { panelVisibilty } from "./config";
 import LayerInfo from "./components/LayerInfo";
-import StatsBox from "./components/StatsBox";
-import FocusBox from "./components/FocusBox";
 import Infowrapper from "./components/Infowrapper";
 import SwipePanel from "./components/SwipePanel";
-import Searchbox from "./components/Searchbox";
 import NavigationBox from "./components/NavigationBox";
 import Alert from "./components/Alerts";
 const App = () => {
