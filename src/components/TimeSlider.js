@@ -1,98 +1,58 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-// import { useDispatch } from "react-redux";
-// import {
-//   setAnalyticsDetails,
-//   selectLayerDataSet,
-// } from "../features/layers/overlaylayerslice";
-// import { useSelector } from "react-redux";
-// import { setLayerInfoDetails } from "../features/layers/layerinfoslice";
-// const Layer = ({ task, showLayer }) => {
-//   const dispatch = useDispatch();
-//   const state = useSelector(selectLayerDataSet);
-
-//   const toggleLayer = (id, e) => {
-//     dispatch(setAnalyticsDetails({ ...state, id: id - 1, show: e }));
-//   };
-//   const showInfo = (data, info) => {
-//     dispatch(setLayerInfoDetails({ dataset: data, info: info, show: true }));
-//   };
-//   const changeDate = (date, id) => {
-//     var vall = document.getElementById("date");
-//     var text = vall.options[vall.selectedIndex].text;
-//     console.log(text);
-//     dispatch(setAnalyticsDetails({ ...state, id: id - 1, show: false }));
-//     setTimeout(console.log(""), 10000);
-
-//     dispatch(
-//       setAnalyticsDetails({
-//         ...state,
-//         id: id - 1,
-//         show: true,
-//         layer: date,
-//         layer_date: text,
-//       })
-//     );
-//   };
-
-// console.log(task.options)
-// }
 import {useState} from "react"
+import { useDispatch } from "react-redux";
+import {RangeStepInput} from 'react-range-step-input';
+import {
+  setAnalyticsDetails,
+  selectLayerDataSet,
+} from "../features/layers/overlaylayerslice";
+import { useSelector } from "react-redux";
+import { setLayerInfoDetails } from "../features/layers/layerinfoslice";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: 200,
-    display:"flex"
-  },
-  margin: {
-    height: theme.spacing(3),
-  },
-}));
-// const marks = [
-//   {
-//     value: 0,
-//     label: '0°C',
-//   },
-//   {
-//     value: 20,
-//     label: '20°C',
-//   },
-//   {
-//     value: 37,
-//     label: '37°C',
-//   },
-//   {
-//     value: 100,
-//     label: '100°C',
-//   },
-// ];
+const TimeSlider = ({data, task, id}) => {
+  console.log(id)
+  const dispatch = useDispatch();
+  const state = useSelector(selectLayerDataSet);
 
+  const changeDate = (date, id) => {
+    // var vall = document.getElementById("date");
+    // var text = vall.options[vall.selectedIndex].text;
+    // console.log(text);
 
-function valuetext(value) {
-  return `${value}`;
-}
+  };
 
-export default function TimeSlider({data}) {
   let data1 = data.map((e)=>({value:e.value, label:e.text}))
+  const [value, setValue] = useState();
+  const [val, setVal] = useState();
+  const updateRange = (e, val) => {
+    setValue(data1.filter((e)=>e.value===val )[0].label)
+    // dispatch(setAnalyticsDetails({ ...state, id: val - 1, show: false }));
+    // setTimeout(console.log(""), 10000);
 
-  const [marks, setMarks] = useState(data1)
-  console.log(data1)
-  const classes = useStyles();
-
+    dispatch(
+      setAnalyticsDetails({
+        ...state,
+        id: id-1,
+        show: true,
+        layer: val,
+        layer_date: value,
+      })
+    );
+  };
   return (
-    <div className={classes.root}>
-
-    <Slider
-        defaultValue={20}
-        getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider-custom"
-        step={1}
-        valueLabelDisplay="auto"
-        // marks={marks}
-        max={48}
-      />
+    <div className="App">
+        <Slider value={val}
+         onChange={(updateRange)}
+        // onChange={(updateRange) => {
+        //   changeDate(updateRange.target.value, task.id);
+        // }}
+        min={1}
+        max={48}/>
+        <a> {value}</a>
     </div>
   );
-}
+ }
+export default TimeSlider;
+
+

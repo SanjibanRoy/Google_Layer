@@ -28,9 +28,9 @@ const Layer = ({ task, showLayer }) => {
     var vall = document.getElementById("date");
     var text = vall.options[vall.selectedIndex].text;
     console.log(text);
-    dispatch(setAnalyticsDetails({ ...state, id: id - 1, show: false }));
-    setTimeout(console.log(""), 10000);
-
+    // dispatch(setAnalyticsDetails({ ...state, id: id - 1, show: false }));
+    // setTimeout(console.log(""), 10000);
+console.log(id)
     dispatch(
       setAnalyticsDetails({
         ...state,
@@ -60,7 +60,7 @@ const Layer = ({ task, showLayer }) => {
             ))}
           </select>
 
-          {task.subclass==="WRF"&&<TimeSlider data = {task.options}/>}        </>
+          {task.subclass==="WRF"&&<TimeSlider data = {task.options} id={task.id}/>}        </>
       );
     }
     if (task.options !== undefined&task.submenu !== undefined) {
@@ -90,7 +90,7 @@ const Layer = ({ task, showLayer }) => {
               <option value={data.value}> {data.text}</option>
             ))}
           </select>
-          <TimeSlider/>
+          <TimeSlider />
         </div>
       );
     }
