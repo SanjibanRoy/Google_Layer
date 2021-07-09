@@ -30,7 +30,7 @@ const Layer = ({ task, showLayer }) => {
     console.log(text);
     // dispatch(setAnalyticsDetails({ ...state, id: id - 1, show: false }));
     // setTimeout(console.log(""), 10000);
-console.log(id)
+// console.log(id)
     dispatch(
       setAnalyticsDetails({
         ...state,
@@ -48,19 +48,20 @@ console.log(id)
     if (task.options !== undefined) {
       dropdown = (
         <>
-          <select
-            id="date"
-            // onClick={getdrop}
-            onChange={(event) => {
-              changeDate(event.target.value, task.id);
-            }}
-          >
-            {task.options.map((data) => (
-              <option value={data.value}> {data.text}</option>
-            ))}
-          </select>
-
-          {task.subclass==="WRF"&&<TimeSlider data = {task.options} id={task.id}/>}        </>
+          {task.subclass !== "WRF"?
+             <select
+             id="date"
+             onChange={(event) => {
+               changeDate(event.target.value, task.id);
+             }}
+           >
+             {task.options.map((data) => (
+               <option value={data.value}> {data.text}</option>
+             ))}
+           </select>:
+           <TimeSlider data = {task.options} id={task.id}/>      
+        }        
+        </>
       );
     }
     if (task.options !== undefined&task.submenu !== undefined) {

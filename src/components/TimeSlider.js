@@ -1,35 +1,42 @@
 import React from 'react';
 import Slider from '@material-ui/core/Slider';
+import { makeStyles } from '@material-ui/core/styles';
 import {useState} from "react"
 import { useDispatch } from "react-redux";
-import {RangeStepInput} from 'react-range-step-input';
 import {
   setAnalyticsDetails,
   selectLayerDataSet,
 } from "../features/layers/overlaylayerslice";
 import { useSelector } from "react-redux";
 import { setLayerInfoDetails } from "../features/layers/layerinfoslice";
+import { red } from '@material-ui/core/colors';
+import { ArrowLeft } from '@material-ui/icons';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: 280,
+    marginLeft:10,
+  },
+  margin: {
+    height: theme.spacing(10),
+  },
+  databox: {
+    backgroundColor:'#ccc',
+    textAlign :'center',
+    width:'28%',
+    marginLeft:'72%',
+
+  },
+}));
 const TimeSlider = ({data, task, id}) => {
-  console.log(id)
+  const classes = useStyles();
   const dispatch = useDispatch();
   const state = useSelector(selectLayerDataSet);
-
-  const changeDate = (date, id) => {
-    // var vall = document.getElementById("date");
-    // var text = vall.options[vall.selectedIndex].text;
-    // console.log(text);
-
-  };
-
   let data1 = data.map((e)=>({value:e.value, label:e.text}))
   const [value, setValue] = useState();
   const [val, setVal] = useState();
   const updateRange = (e, val) => {
     setValue(data1.filter((e)=>e.value===val )[0].label)
-    // dispatch(setAnalyticsDetails({ ...state, id: val - 1, show: false }));
-    // setTimeout(console.log(""), 10000);
-
     dispatch(
       setAnalyticsDetails({
         ...state,
@@ -41,15 +48,13 @@ const TimeSlider = ({data, task, id}) => {
     );
   };
   return (
-    <div className="App">
+    <div className={classes.root}>
         <Slider value={val}
-         onChange={(updateRange)}
-        // onChange={(updateRange) => {
-        //   changeDate(updateRange.target.value, task.id);
-        // }}
+        onChange={(updateRange)}
         min={1}
-        max={48}/>
-        <a> {value}</a>
+        max={46}/>
+        <input className={classes.databox} type="textbox" value={value} disabled/>
+        &nbsp;
     </div>
   );
  }
