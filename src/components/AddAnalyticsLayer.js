@@ -36,74 +36,75 @@ const AddAnalyticsLayer = ({ test, showAnalytics }) => {
   }
   if (test.dataset == "sentinel1") {
     analyticslayer = L.tileLayer.wms(
-      "https://analytics.nesdr.gov.in/nerdrr_sentinel_1/visu?date=1619847000",
+      "https://analytics.nesdr.gov.in/nerdrr_sentinel_1/customrange?",
       {
-        // date: test.dates,
-        band: test.bands !== undefined && test.bands[0],
+        date: test.date,
+        band: test.band,
+        range: test.range,
         format: "image/png",
         transparent: true,
-        zIndex:10,
+        zIndex: 10,
       }
     );
   }
-  else{
-  if (test.operation === "visu") {
-    analyticslayer = L.tileLayer.wms(
-      "https://analytics.nesdr.gov.in/nerdrr_sentinel_2/" +
+  else {
+    if (test.operation === "visu") {
+      analyticslayer = L.tileLayer.wms(
+        "https://analytics.nesdr.gov.in/nerdrr_sentinel_2/" +
         test.operation +
         "?",
-      {
-        date: test.dates,
-        format: "image/png",
-        transparent: true,
-        zIndex: 10,
+        {
+          date: test.dates,
+          format: "image/png",
+          transparent: true,
+          zIndex: 10,
 
-        band1: test.bands !== undefined && test.bands[0],
-        band2: test.bands !== undefined && test.bands[1],
-        band3: test.bands !== undefined && test.bands[2],
-        //  }),
-        //   ...(data === "modis_flood" && {
-        //     fromrange: test.fromrange,
-        //     torange: test.torange,
-        //   }),
-      }
-    );
-  } else if (test.operation === "Custom") {
-    analyticslayer = L.tileLayer.wms(
-      "https://analytics.nesdr.gov.in/nerdrr_sentinel_2/custom?exp="+encodeURIComponent(test.custom)+"&color=default&from=-1.0&to=1.0",
-      {
-        date: test.dates,
-        format: "image/png",
-        transparent: true,
-         zIndex: 10,
+          band1: test.bands !== undefined && test.bands[0],
+          band2: test.bands !== undefined && test.bands[1],
+          band3: test.bands !== undefined && test.bands[2],
+          //  }),
+          //   ...(data === "modis_flood" && {
+          //     fromrange: test.fromrange,
+          //     torange: test.torange,
+          //   }),
+        }
+      );
+    } else if (test.operation === "Custom") {
+      analyticslayer = L.tileLayer.wms(
+        "https://analytics.nesdr.gov.in/nerdrr_sentinel_2/custom?exp=" + encodeURIComponent(test.custom) + "&color=default&from=-1.0&to=1.0",
+        {
+          date: test.dates,
+          format: "image/png",
+          transparent: true,
+          zIndex: 10,
 
-        //  }),
-        //   ...(data === "modis_flood" && {
-        //     fromrange: test.fromrange,
-        //     torange: test.torange,
-        //   }),
-      }
-    );
-  } else {
-    analyticslayer = L.tileLayer.wms(
-      "https://analytics.nesdr.gov.in/nerdrr_sentinel_2/oper?color=default&from=-1.0&to=1.0&oper=" +
+          //  }),
+          //   ...(data === "modis_flood" && {
+          //     fromrange: test.fromrange,
+          //     torange: test.torange,
+          //   }),
+        }
+      );
+    } else {
+      analyticslayer = L.tileLayer.wms(
+        "https://analytics.nesdr.gov.in/nerdrr_sentinel_2/oper?color=default&from=-1.0&to=1.0&oper=" +
         test.operation +
         "&dataset=sentinal2",
-      {
-        date: test.dates,
-        format: "image/png",
-        transparent: true,
-        zIndex: 10,
+        {
+          date: test.dates,
+          format: "image/png",
+          transparent: true,
+          zIndex: 10,
 
-        //  }),
-        //   ...(data === "modis_flood" && {
-        //     fromrange: test.fromrange,
-        //     torange: test.torange,
-        //   }),
-      }
-    );
+          //  }),
+          //   ...(data === "modis_flood" && {
+          //     fromrange: test.fromrange,
+          //     torange: test.torange,
+          //   }),
+        }
+      );
+    }
   }
-}
   map.addLayer(analyticslayer);
   if (showAnalytics) {
     console.log(showAnalytics);
