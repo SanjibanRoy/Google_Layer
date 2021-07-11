@@ -140,6 +140,7 @@ export const layer = [
     subclass: "Flood",
     // layer: "FLEWS:1august20",
     options: [
+      { value: "", text: "Select a date" },
       { value: "FLEWS:1august20", text: "1 August 2020" },
       { value: "FLEWS:8july2020", text: "8 July 2020" },
       { value: "FLEWS:25july2020", text: "25 July 2020" },
