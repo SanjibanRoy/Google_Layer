@@ -11,9 +11,10 @@ import Cbutton from "./collapsebutton";
 import { ContactsOutlined } from "@material-ui/icons";
 import Statsdatatable from "./Statdatatable";
 import InfoIcon from "@material-ui/icons/Info";
-import {selectMapstate} from "../features/maps/mapStateSlice"
+import { selectMapstate } from "../features/maps/mapStateSlice";
+var sone;
 const Stats = ({ info, state }) => {
-  const mapState = useSelector(selectMapstate)
+  const mapState = useSelector(selectMapstate);
   // console.log(mapState)
 
   const [featureInfo, setFeatureInfo] = useState({
@@ -30,60 +31,94 @@ const Stats = ({ info, state }) => {
   useEffect(() => {
     // console.log(layerdata)
     dateapi = layerdata[25].layer_date;
-    getInfo(dateapi)
+    getInfo(dateapi);
   }, [layerdata]);
   const getInfo = async (e) => {
-    var cropdamsyear=e;
+    var cropdamsyear = e;
     try {
       setFeatureInfo({ data: [], isFetching: true });
-      console.log(info.stats.val)
+      console.log(info.stats.val);
       if (info.stats.val == "flood") {
-        var urlapi = info.stats.api + '' + (e.districtname !== undefined & mapState.zoom>=9 ? e.districtname.toUpperCase() : "")
-      }else
-      if (info.stats.val == "firev") {
-        var urlapi = info.stats.api + '' + (e.districtname !== undefined & mapState.zoom>=9? e.districtname : "")
-      }else
-      if (info.stats.val == "cropyear") {
-        if(cropdamsyear=='2005-2011'){
-          var urlapi=info.options[0].api+ '' + (e.districtname !== undefined& mapState.zoom>=9 ? e.districtname.toLowerCase() : "")
-        }else if(cropdamsyear=='2005-2015'){
-          var urlapi=info.options[1].api+ '' + (e.districtname !== undefined & mapState.zoom>=9? e.districtname.toLowerCase() : "")
-        }else if(cropdamsyear=='2011-2015'){
-          var urlapi=info.options[2].api+ '' + (e.districtname !== undefined & mapState.zoom>=9? e.districtname.toLowerCase() : "")
-        }else{
-          var urlapi=info.options[0].api+ '' + (e.districtname !== undefined ? e.districtname.toLowerCase() : "")
+        var urlapi =
+          info.stats.api +
+          "" +
+          ((e.districtname !== undefined) & (mapState.zoom >= 9)
+            ? e.districtname.toUpperCase()
+            : "");
+      } else if (info.stats.val == "firev") {
+        var urlapi =
+          info.stats.api +
+          "" +
+          ((e.districtname !== undefined) & (mapState.zoom >= 9)
+            ? e.districtname
+            : "");
+      } else if (info.stats.val == "cropyear") {
+        if (cropdamsyear == "2005-2011") {
+          var urlapi =
+            info.options[0].api +
+            "" +
+            ((e.districtname !== undefined) & (mapState.zoom >= 9)
+              ? e.districtname.toLowerCase()
+              : "");
+        } else if (cropdamsyear == "2005-2015") {
+          var urlapi =
+            info.options[1].api +
+            "" +
+            ((e.districtname !== undefined) & (mapState.zoom >= 9)
+              ? e.districtname.toLowerCase()
+              : "");
+        } else if (cropdamsyear == "2011-2015") {
+          var urlapi =
+            info.options[2].api +
+            "" +
+            ((e.districtname !== undefined) & (mapState.zoom >= 9)
+              ? e.districtname.toLowerCase()
+              : "");
+        } else {
+          var urlapi =
+            info.options[0].api +
+            "" +
+            (e.districtname !== undefined ? e.districtname.toLowerCase() : "");
         }
       }
       if (info.stats.val == "kharifcrop") {
-        var urlapi = info.stats.api + '' + (e.districtname !== undefined & mapState.zoom>=9? e.districtname : "")
+        var urlapi =
+          info.stats.api +
+          "" +
+          ((e.districtname !== undefined) & (mapState.zoom >= 9)
+            ? e.districtname
+            : "");
       }
       if (info.stats.val == "nerff") {
-        console.log(e.districtname)
+        console.log(e.districtname);
         var nso;
         var snr;
-        if (e.statename=="Arunachal Pradesh"){
-          snr="Arunachal"
-        }else{
-          snr=e.statename
+        if (e.statename == "Arunachal Pradesh") {
+          snr = "Arunachal";
+        } else {
+          snr = e.statename;
         }
-        if(e.districtname==undefined){
-          nso="";
-        }else{
-          nso=e.districtname;
+        if (e.districtname == undefined) {
+          nso = "";
+        } else {
+          nso = e.districtname;
         }
         // console.log(nso)
-        var urlapi= "https://api.nesdr.gov.in/nerdrr/nerff.php?state="+snr+"&district="+nso;
-      }else if (info.stats.val == "landslide") {
-        var urlapi = info.stats.api
+        var urlapi =
+          "https://api.nesdr.gov.in/nerdrr/nerff.php?state=" +
+          snr +
+          "&district=" +
+          nso;
+      } else if (info.stats.val == "landslide") {
+        var urlapi = info.stats.api;
       }
-      console.log(urlapi)
-      fetch(
-        urlapi, {
+      console.log(urlapi);
+      fetch(urlapi, {
         method: "GET",
       })
         .then((response) => response.json())
         .then((result) => {
-         // console.log(result)
+          // console.log(result)
           if (info.stats.val == "flood") {
             var date = result.map((e) => e.date);
             var chartarea = result.map((e) => Number(e.area) / 1000000);
@@ -94,24 +129,30 @@ const Stats = ({ info, state }) => {
             var a3 = result.map((e) => Number(e.area3) / 1000000);
             var a4 = result.map((e) => Number(e.area4) / 1000000);
             var a5 = result.map((e) => Number(e.area5) / 1000000);
-            var chartarea = [{
-              name: 'Very Low',
-              y: a1[0],
-              sliced: true,
-              selected: true
-            }, {
-              name: 'Low',
-              y: a2[0],
-            }, {
-              name: 'Moderate',
-              y: a3[0],
-            }, {
-              name: 'High',
-              y: a4[0],
-            }, {
-              name: 'Very High',
-              y: a5[0],
-            }]
+            var chartarea = [
+              {
+                name: "Very Low",
+                y: a1[0],
+                sliced: true,
+                selected: true,
+              },
+              {
+                name: "Low",
+                y: a2[0],
+              },
+              {
+                name: "Moderate",
+                y: a3[0],
+              },
+              {
+                name: "High",
+                y: a4[0],
+              },
+              {
+                name: "Very High",
+                y: a5[0],
+              },
+            ];
             var date = "";
           }
           if (info.stats.val == "kharifcrop") {
@@ -120,24 +161,30 @@ const Stats = ({ info, state }) => {
             var a3 = result.map((e) => Number(e.area3) / 1000000);
             var a4 = result.map((e) => Number(e.area4) / 1000000);
             var a5 = result.map((e) => Number(e.area5) / 1000000);
-            var chartarea = [{
-              name: 'Very Low',
-              y: a1[0],
-              sliced: true,
-              selected: true
-            }, {
-              name: 'Low',
-              y: a2[0],
-            }, {
-              name: 'Moderate',
-              y: a3[0],
-            }, {
-              name: 'High',
-              y: a4[0],
-            }, {
-              name: 'Very High',
-              y: a5[0],
-            }]
+            var chartarea = [
+              {
+                name: "Very Low",
+                y: a1[0],
+                sliced: true,
+                selected: true,
+              },
+              {
+                name: "Low",
+                y: a2[0],
+              },
+              {
+                name: "Moderate",
+                y: a3[0],
+              },
+              {
+                name: "High",
+                y: a4[0],
+              },
+              {
+                name: "Very High",
+                y: a5[0],
+              },
+            ];
             var date = "";
           }
           if (info.stats.val == "cropyear") {
@@ -149,45 +196,49 @@ const Stats = ({ info, state }) => {
             var chartarea = result.map((e) => Number(e.area));
           }
           if (info.stats.val == "nerff") {
-            var areas="Forest Fire Count"
-            if (nso !== ""){
-            var ctype="pie";
-            var a1 = result.map((e) => Number(e.very_low));
-            var a2 = result.map((e) => Number(e.low_count));
-            var a3 = result.map((e) => Number(e.mod_count));
-            var a4 = result.map((e) => Number(e.high_count));
-            var a5 = result.map((e) => Number(e.very_high));
-            var chartarea = [{
-              name: 'Very Low',
-              y: a1[0],
-              sliced: true,
-              selected: true,
-            }, {
-              name: 'Low',
-              y: a2[0],
-            }, {
-              name: 'Moderate',
-              y: a3[0],
-            }, {
-              name: 'High',
-              y: a4[0],
-            }, {
-              name: 'Very High',
-              y: a5[0],
-            }]
-            var date = "";
-            }else{
+            var areas = "Forest Fire Count";
+            if (nso !== "") {
+              var ctype = "pie";
+              var a1 = result.map((e) => Number(e.very_low));
+              var a2 = result.map((e) => Number(e.low_count));
+              var a3 = result.map((e) => Number(e.mod_count));
+              var a4 = result.map((e) => Number(e.high_count));
+              var a5 = result.map((e) => Number(e.very_high));
+              var chartarea = [
+                {
+                  name: "Very Low",
+                  y: a1[0],
+                  sliced: true,
+                  selected: true,
+                },
+                {
+                  name: "Low",
+                  y: a2[0],
+                },
+                {
+                  name: "Moderate",
+                  y: a3[0],
+                },
+                {
+                  name: "High",
+                  y: a4[0],
+                },
+                {
+                  name: "Very High",
+                  y: a5[0],
+                },
+              ];
+              var date = "";
+            } else {
               var date = result.map((e) => e.dtname);
               var chartarea = result.map((e) => Number(e.ff_count));
-              var ctype="bar"
+              var ctype = "bar";
             }
-          }
-          else if (info.stats.val == "landslide") {
-            var areas="Death Count";
-          }
-          else{
-            var areas="Area (sq. km)"
-            var ctype=info.stats.charttype
+          } else if (info.stats.val == "landslide") {
+            var areas = "Death Count";
+          } else {
+            var areas = "Area (sq. km)";
+            var ctype = info.stats.charttype;
           }
           setFeatureInfo({ data: [result], isFetching: false });
           setOptions({
@@ -240,25 +291,23 @@ const Stats = ({ info, state }) => {
             },
             tooltip: {
               formatter: function () {
-                return (
-                  "Total <b>" + this.y + "</b>"
-                );
+                return "Total <b>" + this.y + "</b>";
               },
             },
             plotOptions: {
               pie: {
                 colors: [
-                  'green', 
-                  'rgb(100, 229, 114)', 
-                  '#DDDF00', 
-                  'orange', 
-                  'red'
+                  "green",
+                  "rgb(100, 229, 114)",
+                  "#DDDF00",
+                  "orange",
+                  "red",
                 ],
                 allowPointSelect: true,
-                cursor: 'pointer',
+                cursor: "pointer",
                 dataLabels: {
                   enabled: false,
-                }
+                },
               },
               spline: {
                 marker: {
@@ -293,6 +342,7 @@ const Stats = ({ info, state }) => {
               },
             ],
           });
+          sone=result;
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -314,16 +364,18 @@ const Stats = ({ info, state }) => {
           <CircularProgress />
         ) : (
           featureInfo.data.length > 0 && (
-            <React.Fragment >                  
-                    <p onClick={() => setShowLayer(!showLayer)}> {info.text}</p>
-                   
-             
-              <HighchartsReact highcharts={Highcharts} options={options} />
+            <React.Fragment>
+              <p onClick={() => setShowLayer(!showLayer)}> {info.text}</p>
+              { sone==0? (
+                <a style={{ color: "black", fontWeight:"100" }}>Data not available</a>
+              ) : (
+                <HighchartsReact highcharts={Highcharts} options={options} />
+              )}
               {/* <Test/> */}
             </React.Fragment>
           )
         )}
-        <Statsdatatable/>
+        <Statsdatatable />
       </INFO>
     </>
   );
@@ -336,14 +388,14 @@ export const INFO = styled.div`
   color: white;
   /* table-layout: fixed; */
   p {
-    background: #eaeaea;;
+    background: #eaeaea;
     align-items: center;
     width: 25rem;
     padding: 8px 10px;
     border-bottom: 1px solid #ccc;
-    color:#215a93;
+    color: #215a93;
   }
-  
+
   p > .MuiSvgIcon-root {
     float: right;
     color: gray;
@@ -367,32 +419,34 @@ export const INFO = styled.div`
     margin-bottom: 1px;
     border-bottom: 0.5px solid #dadada;
     word-break: break-all;
-    width:80%;
+    width: 80%;
   }
   table td {
     padding: 6px !important;
     text-align: center !important;
-    background-color:white;
-    color:black !important;
+    background-color: white;
+    color: black !important;
     font-weight: 400;
-}
-table th {
-  padding: 6px !important;
-  text-align: center !important;
-  background-color:orange !important;
-  font-weight:bold !important;
-  color:black !important;
-  font-weight:"bold";
-}
-div.mdb-datatable div.mdb-datatable-info {
-  display: none !important;
-}
-div.mdb-datatable div.mdb-datatable-info, div.mdb-datatable div.mdb-dataTables_paginate, div.mdb-datatable div.mdb-datatable-entries {
-  padding-top: 0rem !important;
-  padding-bottom: 0rem !important;
-  padding-left: 0rem !important;
-}
-.pagination .page-item .page-link {
-  text-align:center !important;
-}
+  }
+  table th {
+    padding: 6px !important;
+    text-align: center !important;
+    background-color: orange !important;
+    font-weight: bold !important;
+    color: black !important;
+    font-weight: "bold";
+  }
+  div.mdb-datatable div.mdb-datatable-info {
+    display: none !important;
+  }
+  div.mdb-datatable div.mdb-datatable-info,
+  div.mdb-datatable div.mdb-dataTables_paginate,
+  div.mdb-datatable div.mdb-datatable-entries {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+    padding-left: 0rem !important;
+  }
+  .pagination .page-item .page-link {
+    text-align: center !important;
+  }
 `;
