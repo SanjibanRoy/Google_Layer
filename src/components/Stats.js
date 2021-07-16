@@ -37,7 +37,7 @@ const Stats = ({ info, state }) => {
     var cropdamsyear = e;
     try {
       setFeatureInfo({ data: [], isFetching: true });
-      console.log(info.stats.val);
+      //console.log(info.stats.val);
       if (info.stats.val == "flood") {
         var urlapi =
           info.stats.api +
@@ -90,7 +90,7 @@ const Stats = ({ info, state }) => {
             : "");
       }
       if (info.stats.val == "nerff") {
-        console.log(e.districtname);
+        // console.log(e.districtname);
         var nso;
         var snr;
         if (e.statename == "Arunachal Pradesh") {
@@ -112,7 +112,7 @@ const Stats = ({ info, state }) => {
       } else if (info.stats.val == "landslide") {
         var urlapi = info.stats.api;
       }
-      console.log(urlapi);
+      // console.log(urlapi);
       fetch(urlapi, {
         method: "GET",
       })

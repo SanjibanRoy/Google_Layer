@@ -65,9 +65,12 @@ const TimeSlider = ({ data, task, id }) => {
   const [val, setVal] = useState();
   const updateRange = (e, val) => {
     setValue(data1.filter((e) => e.value === val)[0].label);
-    val < 24 ? (dat = "02 September 2020") : (dat = "03 September 2020");
+    const today = new Date()
+    const yesterday = new Date(today)
+    yesterday.setDate(yesterday.getDate() - 1)
+    val < 24 ? (dat = today.toDateString()) : (dat = yesterday.toDateString());
     finalvalue = dat + ", " + value;
-    console.log(finalvalue);
+    // console.log(finalvalue);
     dispatch(
       setAnalyticsDetails({
         ...state,
@@ -80,11 +83,10 @@ const TimeSlider = ({ data, task, id }) => {
   };
 
   return (
+    finalvalue == undefined
+      ? (finalvalu = "Slide")
+      : (finalvalu = finalvalue),
     <div className={classes.root}>
-      {console.log(finalvalue)}
-      {finalvalue == undefined
-        ? (finalvalu = "Slide")
-        : (finalvalu = finalvalue)}
       <PrettoSlider value={val} onChange={updateRange} min={1} max={46} />
       <input
         className={classes.databox}
