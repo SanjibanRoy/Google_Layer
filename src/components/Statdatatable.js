@@ -10,8 +10,8 @@ import { MDBDataTable, MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import Cbutton from "./collapsebutton";
 import { ContactsOutlined } from "@material-ui/icons";
 import {selectMapZoomstate} from "../features/maps/mapZoomSlice"
+import {selectMapstate} from "../features/maps/mapStateSlice"
 const Statsdatatable = ({ info, state }) => {
-  // console.log(info)
   const [datatable, setDatatable] = useState({
     dataa: [],
     isFetching: false,
@@ -21,6 +21,7 @@ const Statsdatatable = ({ info, state }) => {
   const infodata = useSelector(selectInfo);
   const layerdata = useSelector(selectLayerDataSet);
   const toolsState = useSelector(selectMapZoomstate);
+  const statemap = useSelector(selectMapstate);
   //console.log(toolsState)
   var dateapi;
   var cropyeardataapi;
@@ -34,17 +35,17 @@ const Statsdatatable = ({ info, state }) => {
     tabledata(dateapi,cropyeardataapi,kharifcropdataapi)
   }, [layerdata]);
 
-  useEffect(() => {
-    //console.log(toolsState)
-
-  }, []);
+  // useEffect(() => {
+  //   console.log("test")
+    
+  // }, [statemap]);
 
   const tabledata = async (e,cropyeardataapi,kharifcropdataapi) => {
     var cropdamsyear=cropyeardataapi;
     try {
       var ar = []
       setDatatable({ dataa: [], isFetching: true });
-      console.log(info.stats.val)
+      console.log(info)
       if (info.stats.val == "flood") {
         var hayeram = String(e);
         var str;
@@ -93,7 +94,7 @@ const Statsdatatable = ({ info, state }) => {
       else if (info.stats.val == "landslide") {
         var dataurlapi = "https://api.nesdr.gov.in/nerdrr/landslide.php"
       }
-     // console.log(dataurlapi)
+     console.log(dataurlapi)
       fetch(dataurlapi, {
         method: "GET",
       })
@@ -284,7 +285,7 @@ const Statsdatatable = ({ info, state }) => {
   };
   useEffect(() => {
     tabledata();
-  }, []);
+  }, [statemap]);
   return (
     <>
       <INFO>
