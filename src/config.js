@@ -1044,6 +1044,14 @@ export const layer = [
     subclass: "GeoJSON",
     link: "https://nerdrr.gov.in/tempdbacc/getForestFirePoints_2021.php",
   },
+  {
+    id: 35,
+    text: "Forest Fire NER District",
+    show: false,
+    class: "Forestry",
+    layer: "NERDRR_NEW:fp_ner_dist_clipped",
+    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+  },
 ];
 
 // maps configuration
