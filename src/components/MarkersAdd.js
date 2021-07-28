@@ -3,10 +3,17 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { FeatureGroup, Marker,Popup } from "react-leaflet";
 import { Equalizer } from "@material-ui/icons";
+import L from 'leaflet';
+import eqicon from './../pic/earthquake.png';
 const MarkersAdd = (url) => {
     console.log(url)
   const [eq, setEQ] = useState({ data: [], fetching: false });
-
+  const earthqicon = new L.Icon({
+    iconUrl: eqicon,
+    iconSize: [26, 26],
+    popupAnchor: [0, -15],
+    shadowAnchor: [13, 28]
+  })
   const navigate = () => {
     var config = {
       method: "get",
@@ -14,7 +21,6 @@ const MarkersAdd = (url) => {
 
       headers: {},
     };
-
     axios(config)
       .then(function (response) {
         console.log(response);
@@ -45,9 +51,10 @@ const MarkersAdd = (url) => {
         (
           <FeatureGroup>
             {eq.fetching&&eq.data.map((e) => (
-              <Marker position={[e.lat, e.lng]}>      <Popup>
-              
-            </Popup>{e.mag}</Marker>
+              <Marker position={[e.lat, e.lng]} icon={earthqicon}>
+              <Popup>
+                Magnitude: {e.mag}
+            </Popup></Marker>
             ))}
           </FeatureGroup>
         ))

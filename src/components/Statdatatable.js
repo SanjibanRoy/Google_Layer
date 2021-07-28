@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { MDBDataTableV5 } from 'mdbreact';
 import { MDBDataTable, MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import Cbutton from "./collapsebutton";
-import { ContactsOutlined } from "@material-ui/icons";
+import { CompassCalibrationOutlined, ContactsOutlined } from "@material-ui/icons";
 import {selectMapZoomstate} from "../features/maps/mapZoomSlice"
 import {selectMapstate} from "../features/maps/mapStateSlice"
 const Statsdatatable = ({ info, state }) => {
@@ -45,7 +45,7 @@ const Statsdatatable = ({ info, state }) => {
     try {
       var ar = []
       setDatatable({ dataa: [], isFetching: true });
-      console.log(info)
+      // console.log(info)
       if (info.stats.val == "flood") {
         var hayeram = String(e);
         var str;
@@ -94,12 +94,16 @@ const Statsdatatable = ({ info, state }) => {
       else if (info.stats.val == "landslide") {
         var dataurlapi = "https://api.nesdr.gov.in/nerdrr/landslide.php"
       }
-     console.log(dataurlapi)
+      else if (info.stats.val == "nerburntarea2021") {
+        var dataurlapi = "https://api.nesdr.gov.in/nerdrr/datatable.php?state=nerburntarea"
+      }
+    //  console.log(dataurlapi)
       fetch(dataurlapi, {
         method: "GET",
       })
         .then((response) => response.json())
         .then((mydata) => {
+          // console.log(mydata)
           if (info.stats.val == "flood") {
             mydata.map((e) => {
               var sko = e.district.toLowerCase();
@@ -273,6 +277,33 @@ const Statsdatatable = ({ info, state }) => {
               rows: ar,
             })
           }
+          if (info.stats.val == "nerburntarea2021") {
+            mydata.map((e) => {
+              // console.log(e)
+              ar.push({
+                district: e.stname,
+                area: (e.burnt_area / 10000).toFixed(2)
+              })
+            })
+            setDatatable({ dataa: [mydata], isFetching: false });
+            setTest({
+              columns: [
+                {
+                  label: 'State',
+                  field: 'district',
+                  attributes: {
+                    'aria-controls': 'DataTable',
+                    'aria-label': 'District',
+                  },
+                },
+                {
+                  label: 'Area',
+                  field: 'area',
+                },
+              ],
+              rows: ar,
+            })
+          }
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -280,7 +311,7 @@ const Statsdatatable = ({ info, state }) => {
       setDatatable({ ...datatable, isFetching: true });
     }
     catch (exception) {
-      console.log(exception);
+     // console.log(exception);
     }
   };
   useEffect(() => {

@@ -13,7 +13,8 @@ const Legend = () => {
   var arr = [
     "NEWRM:ne_earthquake",
     "NEC:ner_states",
-    "analytic:ner_boundary"
+    "analytic:ner_boundary",
+    undefined
   ];
 
   // let sstyle = {
@@ -31,7 +32,7 @@ const Legend = () => {
             .map(
               (task, index) => (
               // console.log(task.text),
-              //  console.log(task.layer),
+               // console.log(task.layer),
              // console.log(task.legend),
                 (sanju ="https://geoserver.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=" +task.layer+"&legend_options=fontSize:14;fontWeight:bold"),
                  !arr.includes(task.layer) && (

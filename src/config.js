@@ -292,7 +292,7 @@ export const layer = [
   },
   {
     id: 22,
-    text: "Forest Fire Vunalarability (Mizoram)",
+    text: "Forest Fire Vulnerability (Mizoram)",
     show: false,
     class: "Forestry",
     layer: "NERDRR_NEW:mizoram_fire_vul_4326",
@@ -309,7 +309,7 @@ export const layer = [
   },
   {
     id: 23,
-    text: "Forest Fire Vunalarability (Meghalaya)",
+    text: "Forest Fire Vulnerability (Meghalaya)",
     show: false,
     class: "Forestry",
     layer: "  NERDRR_NEW:megh_fire_vul_4326",
@@ -326,11 +326,16 @@ export const layer = [
   },
   {
     id: 24,
-    text: "Burn Patches",
+    text: "Burnt Area NER 2021",
     show: false,
     class: "Forestry",
-    layer: "NERDRR_NEW:churachandpur_patchwise_4326",
+    layer: "NERDRR_NEW:ner_burnt_area_fixed_4326",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    stats: {
+      api: "https://api.nesdr.gov.in/nerdrr/nerburntareastats.php?district=",
+      charttype: "column",
+      val: "nerburntarea2021",
+    },
   },
   {
     id: 25,
@@ -356,7 +361,7 @@ export const layer = [
   },
   {
     id: 26,
-    text: "Crop Damage (River Bank Erosion)",
+    text: "Crop Damage (River Bank Erosion) Entire Brahmaputra",
     show: false,
     class: "CropDAMS",
     subclass: "cropDAMS",
@@ -368,6 +373,9 @@ export const layer = [
       charttype: "pie",
     },
     options: [
+      {
+        text: "Select",
+      },
       {
         value: "NERDRR_NEW:2005-11-6_districts_cropdam_due_to_bankline_erosion",
         text: "2005-2011",
@@ -1051,6 +1059,16 @@ export const layer = [
     class: "Forestry",
     layer: "NERDRR_NEW:fp_ner_dist_clipped",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+  },
+  {
+    id: 36,
+    text: "Cloudbrust/Heavy Rain",
+    show: false,
+    class: "Alerts and Early Warning",
+    subclass: "GeoJSONe",
+    api:"external",
+    //link: "./data.json",
+    link: "https://www.mosdac.gov.in/live/backend/rain_cloudburst.php",
   },
 ];
 

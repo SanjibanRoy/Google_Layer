@@ -12,7 +12,7 @@ import {
 import AddTimeseries from "./AddTimeseries";
 import MarkersAdd from "./MarkersAdd";
 import VectorTile from "./VectorTile";
-
+import LayerGroup from "./Markercluster";
 const Overlays = ({ overlayer }, { index }) => {
   let layers;
   if((overlayer.text=="State Boundary")){
@@ -45,7 +45,9 @@ const Overlays = ({ overlayer }, { index }) => {
     );
   } else if (overlayer.subclass === "GeoJSON") {
     layers = <MarkersAdd url={overlayer.link} />;
-  } else if (overlayer.subclass === "WRF") {
+  }else if (overlayer.subclass === "GeoJSONe") {
+    layers = <LayerGroup url={overlayer.link} />;
+  }else if (overlayer.subclass === "WRF") {
     layers =
       overlayer.show &&
       overlayer.options.map(
