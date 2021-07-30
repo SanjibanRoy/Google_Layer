@@ -175,12 +175,12 @@ const Stats = ({ info, state }) => {
             var a4 = result.map((e) => Number(e.area4) / 1000000);
             var a5 = result.map((e) => Number(e.area5) / 1000000);
             var chartarea = [
-              {
-                name: "Very Low",
-                y: a1[0],
-                sliced: true,
-                selected: true,
-              },
+              // {
+              //   name: "Very Low",
+              //   y: a1[0],
+              //   sliced: true,
+              //   selected: true,
+              // },
               {
                 name: "Low",
                 y: a2[0],

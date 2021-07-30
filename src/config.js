@@ -361,7 +361,7 @@ export const layer = [
   },
   {
     id: 26,
-    text: "Crop Damage (River Bank Erosion) Entire Brahmaputra",
+    text: "Crop Damage (River Bank Erosion)",
     show: false,
     class: "CropDAMS",
     subclass: "cropDAMS",
@@ -1175,8 +1175,7 @@ export const maps = [
     link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
     format: "image/png",
     // domain: ["mt0", "mt1", "mt2", "mt3"],
-    image: "terrain.png",
-    
+    image: "terrain.png",   
   }
   //maps end
 ];
