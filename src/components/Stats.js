@@ -124,7 +124,12 @@ const Stats = ({ info, state }) => {
         ((e.districtname !== undefined) & (mapState.zoom >= 9)                                          
           ? e.districtname
           : snr );
-      } 
+      } else if (info.stats.val == "eq") {
+        var urlapi =
+          info.stats.api +
+          "" +
+          (e.districtname !== undefined ? e.districtname.toUpperCase() : "");
+      }
         console.log(urlapi);
       fetch(urlapi, {
         method: "GET",
@@ -264,7 +269,22 @@ const Stats = ({ info, state }) => {
           if (info.stats.val == "landslide") {
             var areas = "Death Count";
             var ctype = info.stats.charttype;
-          } else {
+          } 
+          if (info.stats.val == "eq") {
+            if (e.districtname != undefined) {
+              console.log(result)
+              var eqYear = result.map((e) => e.eq_year);
+              var chartarea = result.map((e) => e.eq_counts);
+              var ctype = info.stats.charttype;
+              var areas = "Eathquake";
+            }
+            if (e.districtname == undefined) {
+              var stName = result.map((e) => e.stname);
+              var chartarea = result.map((e) => e.eq_counts);
+              var ctype = info.stats.charttype;
+              var areas = "Eathquake";
+            }
+          }else {
             var areas = "Area (sq. km)";
             var ctype = info.stats.charttype;
           }

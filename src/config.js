@@ -227,8 +227,14 @@ export const layer = [
     text: "Earthquake",
     show: false,
     class: "Earthquake/Landslides",
-    layer: "NEWRM:ne_earthquake",
-    link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
+    layer: "NERDRR_NEW:ner_earthquakes",
+    zindex:"1000000000000000000",
+    link: "https://geoserver.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    stats: {
+      api: "https://api.nesdr.gov.in/nerdrr/earthquake.php?district=",
+      charttype: "column",
+      val: "eq",
+    },
   },
   {
     id: 17,
@@ -237,7 +243,6 @@ export const layer = [
     class: "Alerts and Early Warning",
     subclass: "Lightning",
     clayer: "lege",
-    //layer: "NEWRM:ne_earthquake",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=pulserad&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
     legend:"./legend/PulseRad.png"
   },
@@ -1044,13 +1049,12 @@ export const layer = [
     subclass: "GeoJSON",
     link: "https://nerdrr.gov.in/tempdbacc/getLastDayEqs.php",
   },
-  {
-    id: 34,
+  {id: 34,
     text: "Forest Fire (2021)",
     show: false,
     class: "Forestry",
-    subclass: "GeoJSON",
-    link: "https://nerdrr.gov.in/tempdbacc/getForestFirePoints_2021.php",
+    layer: "NERDRR_NEW:fp_ner_2021",
+    link: "https://geoserver.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?",
   },
   {
     id: 35,
