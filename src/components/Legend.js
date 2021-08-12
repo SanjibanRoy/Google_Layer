@@ -14,6 +14,7 @@ const Legend = () => {
     "NEWRM:ne_earthquake",
     "NEC:ner_states",
     "analytic:ner_boundary",
+    "NERDRR_NEW:nermask",
     undefined
   ];
 

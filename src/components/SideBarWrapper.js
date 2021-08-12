@@ -83,6 +83,7 @@ const SideBarWrapper = ({
               <LayerTree category="CropDAMS" />
               <LayerTree category="Earthquake/Landslides" />
               <LayerTree category="Lightning" />
+              <LayerTree category="Mask Layer" />
               {/* <LayerTree category="Alerts and Early Warning" /> */}
             </div>
           </div>
