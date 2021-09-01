@@ -24,7 +24,7 @@ const SidePanel = ({ changeVisibility, visibility }) => {
           className="activetab"
           key={4}
          
-          ><a href="#"></a>
+          ><a href="../../"></a>
           <HomeIcon />
           <span align="center">Home</span>
         </li>
