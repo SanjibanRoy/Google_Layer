@@ -5,7 +5,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { selectInfo } from "../features/layers/infoboxslice";
 import { selectLayerDataSet } from "../features/layers/overlaylayerslice";
 import { useDispatch, useSelector } from "react-redux";
-import Highcharts from "highcharts";
+import Highcharts, { map } from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import Cbutton from "./collapsebutton";
 import { ContactsOutlined } from "@material-ui/icons";
@@ -13,14 +13,14 @@ import Statsdatatable from "./Statdatatable";
 import InfoIcon from "@material-ui/icons/Info";
 import { selectMapstate } from "../features/maps/mapStateSlice";
 var sone;
+var neso;
 const Stats = ({ info, state }) => {
   const mapState = useSelector(selectMapstate);
-  // console.log(mapState)
-
   const [featureInfo, setFeatureInfo] = useState({
     data: [],
     isFetching: false,
   });
+  const [labeel, setLabeel] = useState([]);
   const [options, setOptions] = useState([]);
   const [showLayer, setShowLayer] = useState(false);
   const infodata = useSelector(selectInfo);
@@ -29,11 +29,11 @@ const Stats = ({ info, state }) => {
   // console.log(dateapi)
   var dateapi;
   useEffect(() => {
-    // console.log(layerdata)
     dateapi = layerdata[25].layer_date;
     getInfo(dateapi);
   }, [layerdata]);
   const getInfo = async (e) => {
+    console.log(e)
     var cropdamsyear = e;
     try {
       setFeatureInfo({ data: [], isFetching: true });
@@ -111,8 +111,26 @@ const Stats = ({ info, state }) => {
           nso;
       } else if (info.stats.val == "landslide") {
         var urlapi = info.stats.api;
+      }else if (info.stats.val == "nerburntarea2021") {
+        if (e.statename == "Arunachal Pradesh") {
+          snr = "Arunachal";
+        } else {
+          snr = e.statename;
+        }
+        console.log(snr)
+        var urlapi =
+        info.stats.api +
+        "" +
+        ((e.districtname !== undefined) & (mapState.zoom >= 9)                                          
+          ? e.districtname
+          : snr );
+      } else if (info.stats.val == "eq") {
+        var urlapi =
+          info.stats.api +
+          "" +
+          (e.districtname !== undefined ? e.districtname.toUpperCase() : "");
       }
-      // console.log(urlapi);
+        console.log(urlapi);
       fetch(urlapi, {
         method: "GET",
       })
@@ -162,12 +180,12 @@ const Stats = ({ info, state }) => {
             var a4 = result.map((e) => Number(e.area4) / 1000000);
             var a5 = result.map((e) => Number(e.area5) / 1000000);
             var chartarea = [
-              {
-                name: "Very Low",
-                y: a1[0],
-                sliced: true,
-                selected: true,
-              },
+              // {
+              //   name: "Very Low",
+              //   y: a1[0],
+              //   sliced: true,
+              //   selected: true,
+              // },
               {
                 name: "Low",
                 y: a2[0],
@@ -234,9 +252,39 @@ const Stats = ({ info, state }) => {
               var chartarea = result.map((e) => Number(e.ff_count));
               var ctype = "bar";
             }
-          } else if (info.stats.val == "landslide") {
+          } 
+          if (info.stats.val == "nerburntarea2021") {
+            if(mapState.zoom < 9){
+            var date = result.map((e) => e.dtname);
+            var chartarea = result.map((e) => Number(e.burnt_area) / 1000000);
+            var areas = "Burnt Area (sq. km)";
+            var ctype = info.stats.charttype;
+            // console.log(date)
+            // console.log(chartarea)
+            }else  if(mapState.zoom >= 9){
+              var labeel= result.map((e) => Number((e.burnt_area) / 1000000).toFixed(2));
+              setLabeel({data:labeel});
+            }
+          }
+          if (info.stats.val == "landslide") {
             var areas = "Death Count";
-          } else {
+            var ctype = info.stats.charttype;
+          } 
+          if (info.stats.val == "eq") {
+            if (e.districtname != undefined) {
+              console.log(result)
+              var eqYear = result.map((e) => e.eq_year);
+              var chartarea = result.map((e) => e.eq_counts);
+              var ctype = info.stats.charttype;
+              var areas = "Eathquake";
+            }
+            if (e.districtname == undefined) {
+              var stName = result.map((e) => e.stname);
+              var chartarea = result.map((e) => e.eq_counts);
+              var ctype = info.stats.charttype;
+              var areas = "Eathquake";
+            }
+          }else {
             var areas = "Area (sq. km)";
             var ctype = info.stats.charttype;
           }
@@ -343,6 +391,8 @@ const Stats = ({ info, state }) => {
             ],
           });
           sone=result;
+          neso=Number(sone.length);
+          // console.log(neso)
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -365,10 +415,15 @@ const Stats = ({ info, state }) => {
         ) : (
           featureInfo.data.length > 0 && (
             <React.Fragment>
+              {/* {console.log(mapState.zoom),
+              console.log(labeel.data[0])} */}
               <p onClick={() => setShowLayer(!showLayer)}> {info.text}</p>
-              { sone==0? (
+              { 
+              neso <= 0? (
                 <a style={{ color: "black", fontWeight:"100" }}>Data not available</a>
               ) : (
+                (info.stats.val == "nerburntarea2021") && (labeel.data !== undefined)  && (mapState.zoom >= 9) ?
+                <a style={{ color: "black", fontWeight:"100" }}>Area: {labeel.data[0]} sq.km</a>:
                 <HighchartsReact highcharts={Highcharts} options={options} />
               )}
               {/* <Test/> */}

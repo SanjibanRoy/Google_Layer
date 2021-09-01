@@ -134,6 +134,13 @@ const Map = ({ visibility }) => {
       zoomControl={false}
       attributionControl={false}
     >
+       {/* <WMSTileLayer
+        url="https://geoserver.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms"
+        layers="NERDRR_NEW:nermask"
+        format="image/png"
+        zIndex="1000"
+        transparent="true"
+      /> */}
       {baseLayers.map(
         (baselayer, index) =>
           baselayer.show &&
@@ -144,6 +151,7 @@ const Map = ({ visibility }) => {
               domain={baselayer.domain}
               maxZoom={7}
               zIndex="1"
+
             />
           ) : baselayer.type === "vectortile" ? (
             <VectorTile />

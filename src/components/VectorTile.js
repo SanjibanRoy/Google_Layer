@@ -68,7 +68,7 @@ const VectorTile = ({ show, test }) => {
   let dispatch = useDispatch()
 
   village.on("click", function (e) {
-    console.log(e)
+    //console.log(e)
               dispatch(
                 setInfoDetails({
                   statename: e.layer.properties.stname,
