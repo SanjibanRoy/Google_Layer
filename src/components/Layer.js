@@ -124,7 +124,6 @@ const LAYER = styled.div`
   }
   .info {
     cursor: pointer;
-
     margin-top: 5px;
     display: block;
     margin-inline-end: 15px;

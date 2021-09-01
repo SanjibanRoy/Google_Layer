@@ -94,7 +94,7 @@ const SideBarWrapper = ({
             <AppsPanel />
           </div>
           <div className={type === "Alert" ? "LayerContainer" : "hidden"}>
-            <LayerTree category="Alerts and Early Warning" show ={true}/>
+            <LayerTree category="Alerts and Early Warning"/>
           </div>
           {/* <div className={type === "Tools" ? "LayerContainer" : "hidden"}>
             <SwipePanel />

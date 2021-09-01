@@ -8,7 +8,7 @@ export const layer = [
     show: true,
     class: "Administrative",
     layer: "NEC:ner_states",
-
+    info:  "Boundary of all the states in NER region.",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
   },
   {
@@ -17,6 +17,7 @@ export const layer = [
     show: true,
     class: "Administrative",
     layer: "analytic:ner_boundary",
+    info: "District boundary of all the states in NER region.",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     info: "District Boundary",
     attributes: [
@@ -36,6 +37,7 @@ export const layer = [
     show: false,
     class: "Administrative",
     layer: "NEC:assam_dist",
+    info: "Revenue Circle boundary of all the states in NER region.",
     link: "https://apps.nesdr.gov.in:442/geoserver/NEC/wms",
     info: "Revenue Circle",
     attributes: [
@@ -207,6 +209,7 @@ export const layer = [
     class: "Alerts and Early Warning",
     layer: "NERDRR_NEW:2021_06_15tp1",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    info:"Thunderstorm Probable Index (TPI) is forecasted using WRF model at 9 square km resolution.",
     options: [
       {
         value: "NERDRR_NEW:2021_06_15tp1",
@@ -294,6 +297,7 @@ export const layer = [
       val: "kharifcrop",
     },
     layer_date:'',
+    info:"Crop damage due flood map shows the kharif crop areas affected by 2020 floods over Assam. Temporal Crop phenological changes has been observed using Sentinel 1A SAR data and the extent of crop areas damaged due to flood was estimated.",
   },
   {
     id: 22,
@@ -336,6 +340,7 @@ export const layer = [
     class: "Forestry",
     layer: "NERDRR_NEW:ner_burnt_area_fixed_4326",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    info:"Forest fire burned area shows the area that has been burned in a given time. This the annual burned area product for the year 2021. This has been generated through optical satellite sensors’ imagery. The product is useful for post-forest fire disaster management and support in the NER.",
     stats: {
       api: "https://api.nesdr.gov.in/nerdrr/nerburntareastats.php?district=",
       charttype: "column",
@@ -373,6 +378,7 @@ export const layer = [
     layer: "",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
     layer_date: "",
+    info:"Agricultural land loss due to bank line change over Brahmaputra River and its tributaries has been measured using Landsat 5 and Sentinel 2 satellite images land use land cover data for the periods from 2005 to 2015 at 5 years interval (2005 to 2011, 2011 to 2015 and also change from 2005 to 2015) over the Northern bank plain districts of Assam.",
     stats: {
       val: "cropyear",
       charttype: "pie",
@@ -414,36 +420,37 @@ export const layer = [
     class: "Forestry",
     layer: "NERDRR_NEW:ner_forest_fire_prone_area_map",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    info:"Forest fire-prone grid areas are the region where maximum fire has been detected by satellite imagery from the year 2002 to 2021. This has been represented in grids over the entire northeastern region (NER) of India. This product is useful for the overall comparison of forest fire-prone areas in the NER.",
     stats: {
       api: "https://api.nesdr.gov.in/nerdrr/nerff.php?state=",
       // charttype: "bar",
       val: "nerff",
     },
   },
+  // {
+  //   id: 29,
+  //   text: "Thunderstorm Probable Index",
+  //   show: false,
+  //   class: "Lightning",
+  //   layer: "NERDRR_NEW:2021_06_15tp1",
+  //   link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+  //   options: [
+  //     {
+  //       value: "NERDRR_NEW:2021_06_15tp1",
+  //       text: "11:30-14:30",
+  //     },
+  //     {
+  //       value: "NERDRR_NEW:2021_06_15tp2",
+  //       text: "14:30-17:30",
+  //     },
+  //     {
+  //       value: "NERDRR_NEW:2021_06_15tp3",
+  //       text: "17:30-12:30",
+  //     },
+  //   ],
+  // },
   {
     id: 29,
-    text: "Thunderstorm Probable Index",
-    show: false,
-    class: "Lightning",
-    layer: "NERDRR_NEW:2021_06_15tp1",
-    link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
-    options: [
-      {
-        value: "NERDRR_NEW:2021_06_15tp1",
-        text: "11:30-14:30",
-      },
-      {
-        value: "NERDRR_NEW:2021_06_15tp2",
-        text: "14:30-17:30",
-      },
-      {
-        value: "NERDRR_NEW:2021_06_15tp3",
-        text: "17:30-12:30",
-      },
-    ],
-  },
-  {
-    id: 30,
     text: "WRF Rainfall",
     show: false,
     class: "Alerts and Early Warning",
@@ -643,7 +650,7 @@ export const layer = [
   },
 
   {
-    id: 31,
+    id: 30,
     text: "WRF Temperature",
     show: false,
     class: "Alerts and Early Warning",
@@ -843,7 +850,7 @@ export const layer = [
   },
 
   {
-    id: 32,
+    id: 31,
     text: "WRF Relative Humidity",
     show: false,
     class: "Alerts and Early Warning",
@@ -1042,14 +1049,14 @@ export const layer = [
     ],
   },
   {
-    id: 33,
+    id: 32,
     text: "Recent Earthquakes",
     show: false,
     class: "Alerts and Early Warning",
     subclass: "GeoJSON",
     link: "https://nerdrr.gov.in/tempdbacc/getLastDayEqs.php",
   },
-  {id: 34,
+  {id: 33,
     text: "Forest Fire (2021)",
     show: false,
     class: "Forestry",
@@ -1057,7 +1064,7 @@ export const layer = [
     link: "https://geoserver.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?",
   },
   {
-    id: 35,
+    id: 34,
     text: "Forest Fire NER District",
     show: false,
     class: "Forestry",
@@ -1065,7 +1072,7 @@ export const layer = [
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
   },
   {
-    id: 36,
+    id: 35,
     text: "Cloudburst/Heavy Rain",
     show: false,
     class: "Alerts and Early Warning",
@@ -1075,7 +1082,7 @@ export const layer = [
     link: "https://www.mosdac.gov.in/live/backend/rain_cloudburst.php",
   },
   {
-    id: 37,
+    id: 36,
     text: "Brahmaputra Bankline",
     show: false,
     class: "CropDAMS",
@@ -1133,13 +1140,14 @@ export const layer = [
   //   layer_date:'',
   // },
   {
-    id: 38,
+    id: 37,
     text: "Brahmaputra Cropdam Erosion",
     show: false,
     class: "CropDAMS",
     // layer: "NERDRR_NEW:brahmaputra_cropdam_bank_erosion_2005_11",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
     layer_date:'',
+    info:"Agricultural land loss due to Brahmaputra River bank line change has been measured using Sentinel 2 satellite images and land use land cover data for the period from 2015 to 2020 over the Assam state.",
     options: [
       {
         value: "",
@@ -1191,7 +1199,7 @@ export const layer = [
   //   layer_date:'',
   // },
   {
-    id: 39,
+    id: 38,
     text: "NER Mask Layer",
     show: true,
     class: "Mask Layer",
