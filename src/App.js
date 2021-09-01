@@ -8,6 +8,7 @@ import Infowrapper from "./components/Infowrapper";
 import SwipePanel from "./components/SwipePanel";
 import NavigationBox from "./components/NavigationBox";
 import Alert from "./components/Alerts";
+// npm run-script build
 const App = () => {
   const [visibility, setVisibility] = useState(panelVisibilty);
   const [panel, setPanel] = useState(false);
