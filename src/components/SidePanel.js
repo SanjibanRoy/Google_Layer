@@ -24,9 +24,9 @@ const SidePanel = ({ changeVisibility, visibility }) => {
           className="activetab"
           key={4}
          
-          ><a href="../../"></a>
-          <HomeIcon />
-          <span align="center">Home</span>
+          ><a href="../../" style={{color:"white", fontSize: "13px"}}>
+          <HomeIcon style={{paddingLeft:"4px", fontSize: "30px"}}/>
+          <span align="center">Home</span></a>
         </li>
         {/* <li key={3} onClick={() => changeVisibility("Apps")}>
           <AppsIcon />
