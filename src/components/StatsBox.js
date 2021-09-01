@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { selectMapstate } from "../features/maps/mapStateSlice";
 const StatsBox = () => {
   const state = useSelector(selectMapstate);
-  const info = state.overlays.filter((layers)=>layers.class!=="Lightning");
+  const info = state.overlays.filter((layers)=>layers.class!=="Mask Layer");
   useEffect(()=>{},[state])
   return (
     <InfoBoxx>

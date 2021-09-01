@@ -32,7 +32,7 @@ const Overlays = ({ overlayer }, { index }) => {
         url={overlayer.link}
         transparent="true"
         minZoom={overlayer.minZoom !== undefined ? overlayer.minZoom : ""}
-        zIndex={overlayer.class === "Administrative" ? "15" : "10"}
+        zIndex={overlayer.class === "Mask Layer" ? "15" : "10"}
       />
     );
   } else if (overlayer.subclass === "Lightning") {
