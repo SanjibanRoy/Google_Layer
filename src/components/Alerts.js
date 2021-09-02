@@ -20,9 +20,14 @@ const Alerts = () => {
     const overlayLayers = useSelector(selectLayerDataSet);
 
   return (
-    overlayLayers.filter((e)=>e.text==="Flood Inundation")[0].show&& <INFO1>
+    <>
+    {overlayLayers.filter((e)=>e.text==="Flood Inundation")[0].show&& <INFO1>
       <Alert severity="error">Inundation map is based on pass of satellite image</Alert>
-    </INFO1>
+    </INFO1>}
+      {overlayLayers.filter((e)=>e.text==="Thunderstorm Probable Index")[0].show&& <INFO1>
+      <Alert severity="error">Currently no active Thunderstorm Image</Alert>
+    </INFO1>}
+    </>
   );
 };
 
