@@ -10,6 +10,9 @@ export const layer = [
     layer: "NEC:ner_states",
     info:  "Boundary of all the states in NER region.",
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
+    attributes: [
+      { value: "stname", text: "State" },
+    ],
   },
   {
     id: 2,
@@ -22,7 +25,7 @@ export const layer = [
     info: "District Boundary",
     attributes: [
       { value: "dtname", text: "District Name" },
-      { value: "area", text: "Area" },
+      // { value: "area", text: "Area" },
       // { value: "diff", text: "Change"},
     ],
     minZoom: 10,
@@ -60,6 +63,9 @@ export const layer = [
     stats: true,
     clayer: "lege",
     legend:"./legend/lulc1.png",
+    // attributes: [
+    //   { value: "stname", text: "State" },
+    // ],
   },
   {
     id: 5,
@@ -95,6 +101,13 @@ export const layer = [
     link: "https://apps.nesdr.gov.in:442/geoserver/wms",
     legend:
       "https://apps.nesdr.gov.in:442/geoserver/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=NEC:assam_census",
+    attributes: [
+      { value: "name", text: "Name" },
+      { value: "tru", text: "Type" },
+      { value: "tot_p", text: "Population" },
+      { value: "ycoord", text: "Latitude" },
+      { value: "xcoord", text: "Longitude" },
+    ],
   },
   {
     id: 8,
@@ -111,6 +124,12 @@ export const layer = [
     class: "Flood",
     layer: "NERDRR_NEW:breach_locations",
     link: "https://geoserver.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    attributes: [
+      { value: "name", text: "Name" },
+      { value: "length_km", text: "Length (Km)" },
+      { value: "distance", text: "Distance" },
+      { value: "angle", text: "Angle" },
+    ],
   },
   {
     id: 10,
@@ -119,6 +138,12 @@ export const layer = [
     class: "Flood",
     layer: "NEWRM:NE_ErosionDeposition",
     link: "http://geoserver.vassarlabs.com/geoserver/NEWRM/gwc/service/wms",
+    attributes: [
+      { value: "name", text: "Name" },
+      { value: "length_km", text: "Length (Km)" },
+      { value: "distance", text: "Distance" },
+      { value: "angle", text: "Angle" },
+    ],
   },
   {
     id: 11,
@@ -133,6 +158,20 @@ export const layer = [
       charttype: "column",
       val: "landslide",
     },
+    attributes: [
+      { value: "name", text: "Name" },
+      { value: "location", text: "Location" },
+      { value: "ls_year", text: "Year" },
+      { value: "ls_month", text: "Month" },
+      { value: "ls_date", text: "Date" },
+      { value: "ev_time", text: "Time" },
+      { value: "ev_type", text: "Type" },
+      { value: "casualty", text: "Casualty" },
+      { value: "rainfall2", text: "Rainfall" },
+      { value: "death_cnt", text: "Rainfall" },
+      { value: "lat", text: "Latitude" },
+      { value: "lon", text: "Longitude" },
+    ],
   },
   {
     id: 12,
@@ -143,21 +182,30 @@ export const layer = [
     // layer: "FLEWS:1august20",
     options: [
       { value: "", text: "Select a date" },
-      { value: "FLEWS:1august20", text: "1 August 2020" },
-      { value: "FLEWS:8july2020", text: "8 July 2020" },
+      { value: "FLEWS:27august2021_1800", text: "27 August 2021 (1800)" },
+      { value: "FLEWS:27august2021_0600", text: "27 August 2021 (0600)" },
+      { value: "FLEWS:13july2021", text: "13 July 2021" },
+      { value: "FLEWS:10july2021", text: "10 July 2021" },
+      { value: "FLEWS:03july2021", text: "03 July 2021" },
+      { value: "FLEWS:01july2021", text: "01 July 2021" },
+      { value: "FLEWS:28june2021", text: "28 June 2021" },
+      { value: "FLEWS:9june2021", text: "09 June 2021" },
+      { value: "FLEWS:7june2021", text: "07 June 2021" },
+      { value: "FLEWS:1august20", text: "01 August 2020" },
+      { value: "FLEWS:8july2020", text: "08 July 2020" },
       { value: "FLEWS:25july2020", text: "25 July 2020" },
       { value: "FLEWS:22july2020", text: "22 July 2020" },
       { value: "FLEWS:19_july", text: "19 July 2020" },
       { value: "FLEWS:17July", text: "17 July 2020" },
       { value: "FLEWS:16_july", text: "16 July 2020" },
       { value: "FLEWS:10july2020", text: "10 July 2020" },
-      { value: "FLEWS:3july2020", text: "3 July 2020" },
-      { value: "FLEWS:onejuly", text: "1 July 2020" },
+      { value: "FLEWS:3july2020", text: "03 July 2020" },
+      { value: "FLEWS:onejuly", text: "01 July 2020" },
       { value: "FLEWS:28june2020", text: "28 June 2020" },
       { value: "FLEWS:26june2020", text: "26 June 2020" },
       { value: "FLEWS:24june20", text: "24 June 2020" },
       { value: "FLEWS:21june", text: "21 June 2020" },
-      { value: "FLEWS:2june", text: "2 June 2020" },
+      { value: "FLEWS:2june", text: "02 June 2020" },
       { value: "FLEWS:may28", text: "28 May 2020" },
     ],
     stats: {
@@ -171,10 +219,15 @@ export const layer = [
   {
     id: 13,
     text: "Flood Alerts",
-    show: false,
+    show: true,
     class: "Alerts and Early Warning",
     layer: "FLEWS:assam_rc_utm",
     link: "https://apps.nesdr.gov.in:442/geoserver/FLEWS/wms",
+    stats: "",
+    attributes: [
+      { value: "rc_name", text: "RC" },
+      { value: "alert", text: "Alert" },
+    ],
   },
   {
     id: 14,
@@ -182,7 +235,7 @@ export const layer = [
     show: false,
     class: "Alerts and Early Warning",
     layer: "FLEWS:1august20",
-
+    stats: "",
     link: "https://analytics.nesdr.gov.in/nerdrr_lightning/lightning?slide=1",
     options: [
       {
@@ -207,20 +260,21 @@ export const layer = [
     text: "Thunderstorm Probable Index",
     show: false,
     class: "Alerts and Early Warning",
-    layer: "NERDRR_NEW:2021_06_15tp1",
+    //layer: "NERDRR_NEW:2021_06_15tp1",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
     info:"Thunderstorm Probable Index (TPI) is forecasted using WRF model at 9 square km resolution.",
+    stats: "",
     options: [
       {
-        value: "NERDRR_NEW:2021_06_15tp1",
+        //value: "NERDRR_NEW:2021_06_15tp1",
         text: "11:30-14:30",
       },
       {
-        value: "NERDRR_NEW:2021_06_15tp2",
+       // value: "NERDRR_NEW:2021_06_15tp2",
         text: "14:30-17:30",
       },
       {
-        value: "NERDRR_NEW:2021_06_15tp3",
+        //value: "NERDRR_NEW:2021_06_15tp3",
         text: "17:30-12:30",
       },
     ],
@@ -242,12 +296,14 @@ export const layer = [
   {
     id: 17,
     text: "PulseRad",
-    show: false,
+    show: true,
     class: "Alerts and Early Warning",
     subclass: "Lightning",
     clayer: "lege",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=pulserad&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
-    legend:"./legend/PulseRad.png"
+    legend:"./legend/PulseRad.png",
+    layer:"",
+    stats: "",
   },
   {
     id: 18,
@@ -258,7 +314,9 @@ export const layer = [
    // layer: "NEWRM:ne_earthquake",
     clayer: "lege",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=eta&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
-    legend:"./legend/StormETA.png"
+    legend:"./legend/StormETA.png",
+    layer:"",
+    stats: "",
   },
   {
     id: 19,
@@ -269,7 +327,8 @@ export const layer = [
     clayer: "lege",
     //layer: "NEWRM:ne_earthquake",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Total.Lightning.Polygons:::1:2:3&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
-    legend:"./legend/Lightning Alert.png"
+    legend:"./legend/Lightning Alert.png",
+    layer: ""
   },
   {
     id: 20,
@@ -280,11 +339,13 @@ export const layer = [
     clayer: "lege",
     //layer: "NEWRM:ne_earthquake",
     link: "https://earthnetworks.azure-api.net/maps/overlays/tile?x={x}&y={y}&z={z}&lid=Cell.Tracks&epsg=3857&subscription-key=f9d0c8aa32904e45884cc6f7c34b5e9e",
-    legend:"./legend/CellTrack_new.png"
+    legend:"./legend/CellTrack_new.png",
+    layer: "",
+    stats: "",
   },
   {
     id: 21,
-    text: "Kharif Crop Damage (Flood)",
+    text: "Kharif Crop Damage (Flood 2020)",
     show: false,
     class: "CropDAMS",
     layer: "NERDRR_NEW:cropdam_flood_4326",
@@ -346,26 +407,41 @@ export const layer = [
       charttype: "column",
       val: "nerburntarea2021",
     },
+    attributes: [
+      { value: "areasqkm", text: "Area (sqkm)" },
+    ],
   },
   {
     id: 25,
-    text: "Bankline Change",
+    text: "River Bankline (Districtwise)",
     show: false,
     class: "CropDAMS",
-    layer: "",
+    // layer: "NERDRR_NEW:Brahmaputra_Bankline_2005",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    layer_date:'',
+    attributes: [
+      { value: "layer", text: "Year" },
+    ],
     options: [
       {
-        value: "NERDRR_NEW:2015_streamline_4326",
-        text: "2015",
+        value: "",
+        text: "Select",
       },
       {
-        value: "NERDRR_NEW:2011_streamline_4326",
+        value: "NERDRR_NEW:Brahmaputra_Bankline_2005",
+        text: "2005",
+      },
+      {
+        value: "NERDRR_NEW:Brahmaputra_Bankline_2011",
         text: "2011",
       },
       {
-        value: "NERDRR_NEW:2005_streamline_4326",
-        text: "2005",
+        value: "NERDRR_NEW:Brahmaputra_Bankline_2015",
+        text: "2015",
+      },
+      {
+        value: "NERDRR_NEW:Brahmaputra_Bankline_2020",
+        text: "2020",
       },
     ],
   },
@@ -374,33 +450,30 @@ export const layer = [
     text: "Crop Damage (River Bank Erosion)",
     show: false,
     class: "CropDAMS",
-    subclass: "cropDAMS",
-    layer: "",
+    // layer: "NERDRR_NEW:brahmaputra_cropdam_bank_erosion_2005_11",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
-    layer_date: "",
-    info:"Agricultural land loss due to bank line change over Brahmaputra River and its tributaries has been measured using Landsat 5 and Sentinel 2 satellite images land use land cover data for the periods from 2005 to 2015 at 5 years interval (2005 to 2011, 2011 to 2015 and also change from 2005 to 2015) over the Northern bank plain districts of Assam.",
-    stats: {
-      val: "cropyear",
-      charttype: "pie",
-    },
+    layer_date:'',
+    info:"Agricultural land loss due to Brahmaputra River bank line change has been measured using Sentinel 2 satellite images and land use land cover data for the period from 2015 to 2020 over the Assam state.",
     options: [
       {
+        value: "",
         text: "Select",
       },
       {
-        value: "NERDRR_NEW:2005-11-6_districts_cropdam_due_to_bankline_erosion",
-        text: "2005-2011",
-        api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2005-2011&district=",
+        value: "NERDRR_NEW:brahmaputra_cropdam_bank_erosion_2005_11",
+        text: "2005-11",
       },
       {
-        value: "NERDRR_NEW:2005-15-6_districts_cropdam_due_to_bankline_erosion",
-        text: "2005-2015",
-        api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2005-2015&district=",
+        value: "NERDRR_NEW:brahmaputra_cropdam_bank_erosion_2011_15",
+        text: "2011-15",
       },
       {
-        value: "NERDRR_NEW:2011-15-6_districts_cropdam_due_to_bankline_erosion",
-        text: "2011-2015",
-        api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2011-2015&district=",
+        value: "NERDRR_NEW:brahmaputra_cropdam_bank_erosion_2015_20",
+        text: "2015-20",
+      },
+      {
+        value: "NERDRR_NEW:brahmaputra_cropdam_bank_erosion_2005_20",
+        text: "2005-20",
       },
     ],
   },
@@ -426,6 +499,9 @@ export const layer = [
       // charttype: "bar",
       val: "nerff",
     },
+    attributes: [
+      { value: "pron_n", text: "Prone Area" },
+    ],
   },
   // {
   //   id: 29,
@@ -456,6 +532,7 @@ export const layer = [
     class: "Alerts and Early Warning",
     subclass: "WRF",
     layer: "",
+    stats: "",
     link: "https://analytics.nesdr.gov.in/wrf/rain",
     legend:"./legend/lr_new.png",
     clayer: "lege",
@@ -656,6 +733,7 @@ export const layer = [
     class: "Alerts and Early Warning",
     subclass: "WRF",
     layer: "",
+    stats: "",
     link: "https://analytics.nesdr.gov.in/wrf/temperature",
     legend:"./legend/lt_new.png",
     clayer: "lege",
@@ -856,6 +934,7 @@ export const layer = [
     class: "Alerts and Early Warning",
     subclass: "WRF",
     layer: "",
+    stats: "",
     link: "https://analytics.nesdr.gov.in/wrf/rh",
     legend:"./legend/lh_new.png",
     clayer: "lege",
@@ -1054,7 +1133,10 @@ export const layer = [
     show: false,
     class: "Alerts and Early Warning",
     subclass: "GeoJSON",
+    stats: "",
     link: "https://nerdrr.gov.in/tempdbacc/getLastDayEqs.php",
+    legend:"./legend/earthquake.png",
+    // layer: "",
   },
   {id: 33,
     text: "Forest Fire (2021)",
@@ -1062,6 +1144,12 @@ export const layer = [
     class: "Forestry",
     layer: "NERDRR_NEW:fp_ner_2021",
     link: "https://geoserver.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms?",
+    attributes: [
+      { value: "firedate", text: "Fire Date" },
+      { value: "firetime", text: "Fire Time" },
+      { value: "latitude", text: "Latitude" },
+      { value: "longitude", text: "Longitude" },
+    ],
   },
   {
     id: 34,
@@ -1070,6 +1158,13 @@ export const layer = [
     class: "Forestry",
     layer: "NERDRR_NEW:fp_ner_dist_clipped",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
+    attributes: [
+      { value: "firedate", text: "Fire Date" },
+      { value: "firetime", text: "Fire Time" },
+      { value: "latitude", text: "Latitude" },
+      { value: "longitude", text: "Longitude" },
+      { value: "sourcetype", text: "Source" },
+    ],
   },
   {
     id: 35,
@@ -1080,35 +1175,34 @@ export const layer = [
     api:"external",
     //link: "./data.json",
     link: "https://www.mosdac.gov.in/live/backend/rain_cloudburst.php",
+    stats: "",
   },
   {
     id: 36,
-    text: "Brahmaputra Bankline",
+    text: "River Bankline (Brahmaputra)",
     show: false,
     class: "CropDAMS",
-    // layer: "NERDRR_NEW:Brahmaputra_Bankline_2005",
+    layer: "",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
-    layer_date:'',
+    attributes: [
+      { value: "layer", text: "Layer" },
+    ],
     options: [
       {
         value: "",
         text: "Select",
       },
       {
-        value: "NERDRR_NEW:Brahmaputra_Bankline_2005",
-        text: "2005",
-      },
-      {
-        value: "NERDRR_NEW:Brahmaputra_Bankline_2011",
-        text: "2011",
-      },
-      {
-        value: "NERDRR_NEW:Brahmaputra_Bankline_2015",
+        value: "NERDRR_NEW:2015_streamline_4326",
         text: "2015",
       },
       {
-        value: "NERDRR_NEW:Brahmaputra_Bankline_2020",
-        text: "2020",
+        value: "NERDRR_NEW:2011_streamline_4326",
+        text: "2011",
+      },
+      {
+        value: "NERDRR_NEW:2005_streamline_4326",
+        text: "2005",
       },
     ],
   },
@@ -1141,33 +1235,39 @@ export const layer = [
   // },
   {
     id: 37,
-    text: "Brahmaputra Cropdam Erosion",
+    text: "Crop Damage (Brahmaputra Bankline Erosion)",
     show: false,
     class: "CropDAMS",
-    // layer: "NERDRR_NEW:brahmaputra_cropdam_bank_erosion_2005_11",
+    subclass: "cropDAMS",
+    layer: "",
     link: "https://apps.nesdr.gov.in:442/geoserver/NERDRR_NEW/wms",
-    layer_date:'',
-    info:"Agricultural land loss due to Brahmaputra River bank line change has been measured using Sentinel 2 satellite images and land use land cover data for the period from 2015 to 2020 over the Assam state.",
+    layer_date: "",
+    info:"Agricultural land loss due to bank line change over Brahmaputra River and its tributaries has been measured using Landsat 5 and Sentinel 2 satellite images land use land cover data for the periods from 2005 to 2015 at 5 years interval (2005 to 2011, 2011 to 2015 and also change from 2005 to 2015) over the Northern bank plain districts of Assam.",
+    stats: {
+      val: "cropyear",
+      charttype: "pie",
+    },
+    attributes: [
+      { value: "area_hac", text: "Area (Hectare)" },
+    ],
     options: [
       {
-        value: "",
         text: "Select",
       },
       {
-        value: "NERDRR_NEW:brahmaputra_cropdam_bank_erosion_2005_11",
-        text: "2005-11",
+        value: "NERDRR_NEW:2005-11-6_districts_cropdam_due_to_bankline_erosion",
+        text: "2005-2011",
+        api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2005-2011&district=",
       },
       {
-        value: "NERDRR_NEW:brahmaputra_cropdam_bank_erosion_2011_15",
-        text: "2011-15",
+        value: "NERDRR_NEW:2005-15-6_districts_cropdam_due_to_bankline_erosion",
+        text: "2005-2015",
+        api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2005-2015&district=",
       },
       {
-        value: "NERDRR_NEW:brahmaputra_cropdam_bank_erosion_2015_20",
-        text: "2015-20",
-      },
-      {
-        value: "NERDRR_NEW:brahmaputra_cropdam_bank_erosion_2005_20",
-        text: "2005-20",
+        value: "NERDRR_NEW:2011-15-6_districts_cropdam_due_to_bankline_erosion",
+        text: "2011-2015",
+        api: "https://api.nesdr.gov.in/nerdrr/crop.php?year=2011-2015&district=",
       },
     ],
   },

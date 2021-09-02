@@ -14,6 +14,7 @@ import InfoIcon from "@material-ui/icons/Info";
 import { selectMapstate } from "../features/maps/mapStateSlice";
 var sone;
 var neso;
+var colors = [];
 const Stats = ({ info, state }) => {
   const mapState = useSelector(selectMapstate);
   const [featureInfo, setFeatureInfo] = useState({
@@ -25,6 +26,7 @@ const Stats = ({ info, state }) => {
   const [showLayer, setShowLayer] = useState(false);
   const infodata = useSelector(selectInfo);
   const layerdata = useSelector(selectLayerDataSet);
+  //console.log(layerdata)
   // var dateapi=layerdata[25].layer_date;
   // console.log(dateapi)
   var dateapi;
@@ -33,7 +35,7 @@ const Stats = ({ info, state }) => {
     getInfo(dateapi);
   }, [layerdata]);
   const getInfo = async (e) => {
-    console.log(e)
+   // console.log(e)
     var cropdamsyear = e;
     try {
       setFeatureInfo({ data: [], isFetching: true });
@@ -187,7 +189,7 @@ const Stats = ({ info, state }) => {
               //   selected: true,
               // },
               {
-                name: "Low",
+                name: "Severe",
                 y: a2[0],
               },
               {
@@ -195,11 +197,11 @@ const Stats = ({ info, state }) => {
                 y: a3[0],
               },
               {
-                name: "High",
+                name: "Low",
                 y: a4[0],
               },
               {
-                name: "Very High",
+                name: "Normal",
                 y: a5[0],
               },
             ];
@@ -288,6 +290,25 @@ const Stats = ({ info, state }) => {
             var areas = "Area (sq. km)";
             var ctype = info.stats.charttype;
           }
+          //color pie
+          if (info.stats.val == "kharifcrop") {
+            colors = [];
+            colors = [
+              "Red",
+              "Orange",
+              "Yellow",
+              "Green",
+             ]
+          }else{
+            colors = [];
+            colors = [
+              "green",
+              "rgb(100, 229, 114)",
+              "#DDDF00",
+              "orange",
+              "red",
+            ]
+          }
           setFeatureInfo({ data: [result], isFetching: false });
           setOptions({
             chart: {
@@ -344,13 +365,7 @@ const Stats = ({ info, state }) => {
             },
             plotOptions: {
               pie: {
-                colors: [
-                  "green",
-                  "rgb(100, 229, 114)",
-                  "#DDDF00",
-                  "orange",
-                  "red",
-                ],
+                colors,
                 allowPointSelect: true,
                 cursor: "pointer",
                 dataLabels: {

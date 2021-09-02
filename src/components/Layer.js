@@ -96,6 +96,10 @@ const Layer = ({ task, showLayer }) => {
       );
     }
   }
+//   useEffect(() => {
+//     ({category}.category == "Alerts and Early Warning" ) ? 
+//     setShowLayer(true) : setShowLayer(false)
+// }, [task.info]);
 
   return (
     <LAYER className={`${showLayer ? "active" : "task"}`}>

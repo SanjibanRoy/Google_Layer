@@ -6,7 +6,7 @@ import { Equalizer } from "@material-ui/icons";
 import L from 'leaflet';
 import eqicon from './../pic/earthquake.png';
 const MarkersAdd = (url) => {
-    console.log(url)
+    // console.log(url)
   const [eq, setEQ] = useState({ data: [], fetching: false });
   const earthqicon = new L.Icon({
     iconUrl: eqicon,
@@ -23,7 +23,7 @@ const MarkersAdd = (url) => {
     };
     axios(config)
       .then(function (response) {
-        console.log(response);
+        //console.log(response);
 
         let ds = response.data.map((e) => ({
           "lat": e.latitude,
@@ -33,7 +33,7 @@ const MarkersAdd = (url) => {
         }));
 
         setEQ({data:ds, fetching: true});
-        console.log(eq)
+       // console.log(eq)
       })
       .catch(function (error) {
         console.log(error);
@@ -42,12 +42,12 @@ const MarkersAdd = (url) => {
 
   useEffect(() => {
     navigate();
-    console.log(eq)
+    //console.log(eq)
   }, []);
   return (
     <div>
       {
-        (console.log(eq),
+        (//console.log(eq),
         (
           <FeatureGroup>
             {eq.fetching&&eq.data.map((e) => (

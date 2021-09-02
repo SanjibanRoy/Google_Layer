@@ -89,12 +89,10 @@ const Info = ({ info, state }) => {
   }, [state]);
   return (
     (
-      //console.log(featureInfo.data.length),
       <INFO>
         {
-          // featureInfo.data.length == 0 ?
-          //   <h1 className='example' style={{ color: "black" }}>Data not available</h1>
-          //   :
+          featureInfo.data == undefined ? ""
+            : (
             featureInfo.isFetching ? (
               <CircularProgress />
             ) : (
@@ -148,7 +146,8 @@ const Info = ({ info, state }) => {
                 </div>
                 </React.Fragment>
               )
-            )}
+            )
+          )}
       </INFO>
     )
   );
