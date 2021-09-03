@@ -13,6 +13,7 @@ import AddTimeseries from "./AddTimeseries";
 import MarkersAdd from "./MarkersAdd";
 import VectorTile from "./VectorTile";
 import LayerGroup from "./Markercluster";
+import { CollectionsOutlined, ContactsOutlined } from "@material-ui/icons";
 const Overlays = ({ overlayer }, { index }) => {
   let layers;
   if((overlayer.text=="State Boundary")){
@@ -53,6 +54,7 @@ const Overlays = ({ overlayer }, { index }) => {
       overlayer.options.map(
         (e) =>
           e.value === parseInt(overlayer.layer) && (
+            console.log(overlayer.layer),
             <WMSTileLayer
               key={index}
               format="image/png"
@@ -64,10 +66,26 @@ const Overlays = ({ overlayer }, { index }) => {
               // minZoom={overlayer.minZoom !== undefined ? overlayer.minZoom : ""}
               // zIndex={overlayer.class === "Administrative" ? "15" : "10"}
             />
-
           )
       );
-  } else if (overlayer.options !== "undefined") {
+  }else if(overlayer.subclass == "alertlightning"){
+      layers =
+      overlayer.show &&
+      overlayer.options.map(
+        (e) =>
+        e.value === overlayer.layer && (
+            <WMSTileLayer
+              key={index}
+              format="image/png"
+              layers={overlayer.layer}
+              url={overlayer.link}
+              transparent="true"
+              slide={overlayer.layer}
+            />
+          ),
+      );  
+  } 
+  else if (overlayer.options !== "undefined") {
     layers =
       overlayer.show &&
       overlayer.options.map(

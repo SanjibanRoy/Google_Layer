@@ -4,7 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import { selectLayerInfo,setLayerInfoDetails } from "../features/layers/layerinfoslice";
 import { useEffect } from "react";
-
+import styled from "styled-components";
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -55,10 +55,24 @@ const LayerInfo = () => {
     handleOpen();
   }, [state]);
   const body = (
+  <Styleme>
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">{state.dataset}</h2>
-      <p id="simple-modal-description">{state.info}</p>
+      {/* <Styleme> */}
+      <table>
+        <tr>
+          <th>
+             <h2 id="simple-modal-title">{state.dataset}</h2>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <p id="simple-modal-description">{state.info}</p>
+          </td>
+       </tr>
+      </table>
+      {/* </Styleme> */}
     </div>
+  </Styleme>
   );
 
   return (
@@ -76,4 +90,26 @@ const LayerInfo = () => {
   );
 };
 
+
 export default LayerInfo;
+
+const Styleme = styled.div`
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+`;

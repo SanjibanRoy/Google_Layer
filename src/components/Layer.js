@@ -27,7 +27,7 @@ const Layer = ({ task, showLayer }) => {
   const changeDate = (date, id) => {
     var vall = document.getElementById("date");
     var text = vall.options[vall.selectedIndex].text;
-    console.log(text);
+    //console.log(text);
     // dispatch(setAnalyticsDetails({ ...state, id: id - 1, show: false }));
     // setTimeout(console.log(""), 10000);
 // console.log(id)
@@ -43,8 +43,7 @@ const Layer = ({ task, showLayer }) => {
   };
   // console.log(task.options)
   let dropdown;
-  if (task.show) {
-    
+  if (task.show) { 
     if (task.options !== undefined) {
       dropdown = (
         <>
@@ -65,7 +64,7 @@ const Layer = ({ task, showLayer }) => {
       );
     }
     if (task.options !== undefined&task.submenu !== undefined) {
-      console.log("In submenus ")
+      console.log("In submenus")
       dropdown = (
         <div>
           <select

@@ -25,7 +25,10 @@ const Alerts = () => {
       <Alert severity="error">Inundation map is based on pass of satellite image</Alert>
     </INFO1>}
       {overlayLayers.filter((e)=>e.text==="Thunderstorm Probable Index")[0].show&& <INFO1>
-      <Alert severity="error">Currently no active Thunderstorm Image</Alert>
+      <Alert severity="error">Currently no active Thunderstorm events</Alert>
+    </INFO1>}
+    {overlayLayers.filter((e)=>e.text==="Lightning Alerts")[0].show&& <INFO1>
+      <Alert severity="error">Last Updated on 12 July 2021</Alert>
     </INFO1>}
     </>
   );

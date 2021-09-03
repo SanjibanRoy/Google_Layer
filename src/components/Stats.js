@@ -138,7 +138,7 @@ const Stats = ({ info, state }) => {
       })
         .then((response) => response.json())
         .then((result) => {
-          // console.log(result)
+           console.log(result)
           if (info.stats.val == "flood") {
             var date = result.map((e) => e.date);
             var chartarea = result.map((e) => Number(e.area) / 1000000);
@@ -269,12 +269,13 @@ const Stats = ({ info, state }) => {
             }
           }
           if (info.stats.val == "landslide") {
+            // console.log(info.stats.val)
             var areas = "Death Count";
-            var ctype = info.stats.charttype;
-          } 
+            var ctype = info.stats.charttype; 
+          }else 
           if (info.stats.val == "eq") {
             if (e.districtname != undefined) {
-              console.log(result)
+              // console.log(result)
               var eqYear = result.map((e) => e.eq_year);
               var chartarea = result.map((e) => e.eq_counts);
               var ctype = info.stats.charttype;
@@ -287,6 +288,7 @@ const Stats = ({ info, state }) => {
               var areas = "Eathquake";
             }
           }else {
+            // console.log("info.stats.val")
             var areas = "Area (sq. km)";
             var ctype = info.stats.charttype;
           }
