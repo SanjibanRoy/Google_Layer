@@ -30,6 +30,7 @@ const MarkersAdd = (url) => {
           "lng": e.longitude,
           "mag": e.mag,
           "date": e.occurenceTime,
+          "place": e.place,
         }));
 
         setEQ({data:ds, fetching: true});
@@ -53,7 +54,17 @@ const MarkersAdd = (url) => {
             {eq.fetching&&eq.data.map((e) => (
               <Marker position={[e.lat, e.lng]} icon={earthqicon}>
               <Popup>
-                Magnitude: {e.mag}
+                <div style={{color:"black"}}>
+                  <a >Place: {e.place}</a>
+                  <br></br><br></br>
+                  <a >Date: {e.date}</a>
+                  <br></br><br></br>
+                  <a >Magnitude: {e.mag}</a>
+                  <br></br><br></br>
+                  <a >Latitude: {e.lat}</a>
+                  <br></br><br></br>
+                  <a >Longitude: {e.lng}</a>
+                </div>
             </Popup></Marker>
             ))}
           </FeatureGroup>

@@ -15,7 +15,6 @@ useEffect(() => {
     ({category}.category == "Alerts and Early Warning" ) ? 
     setShowLayer(true) : setShowLayer(false)
 }, [setShowLayer]);
-
   return (
     <div className="LayerTree" >
       {/* {console.log(showLayer)} */}

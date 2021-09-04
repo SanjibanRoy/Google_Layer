@@ -149,7 +149,7 @@ const Map = ({ visibility }) => {
               key={index}
               url={baselayer.link}
               domain={baselayer.domain}
-              maxZoom={7}
+             // maxZoom={7}
               zIndex="1"
 
             />
@@ -160,7 +160,7 @@ const Map = ({ visibility }) => {
               key={index}
               url={baselayer.link}
               layers={baselayer.layer}
-              maxZoom={7}
+              //maxZoom={7}
 
               format="image/png"
               zIndex="1"
